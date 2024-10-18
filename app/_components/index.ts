@@ -10,6 +10,8 @@ import Header from "./Header";
 import Icon from "./CustomIcon";
 import IconButton from "./IconButton";
 import MenuList from "./MenuList";
+import ProductCard from "./ProductCard";
+import SectionHeader from "./SectionHeader";
 import Typography from "./Typography";
 
 export {
@@ -23,7 +25,9 @@ export {
   Icon,
   IconButton,
   MenuList,
+  ProductCard,
   Rating,
+  SectionHeader,
   Tags,
   Typography,
 };
