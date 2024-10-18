@@ -1,0 +1,75 @@
+.link {
+  color: #747995;
+  font-size: 14px;
+  font-family: sans-serif;
+  font-weight: 500;
+  line-height: 130%;
+  text-decoration-line: underline;
+}
+
+// DISPLAY
+.flex-center {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.flex-start {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+}
+
+.flex-end {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+}
+
+.space-between {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.space-between-end {
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: space-between !important;
+}
+
+// GAP
+.gap-1 {
+  gap: 8px !important;
+}
+
+.gap-2 {
+  gap: 16px !important;
+}
+
+.gap-3 {
+  gap: 24px !important;
+}
+
+// MARGIN
+.m-0 {
+  margin: 0 !important;
+}
+
+.ml-1 {
+  margin-left: 8px !important;
+}
+
+.ml-2 {
+  margin-left: 16px !important;
+}
+
+.ml-3 {
+  margin-left: 24px !important;
+}
+
+//for storybook
+.form-container {
+  max-width: 45rem;
+  margin: 0 auto;
+}

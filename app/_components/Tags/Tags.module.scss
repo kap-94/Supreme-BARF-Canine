@@ -1,0 +1,38 @@
+@import "../../_styles/variables.scss";
+@import "../../_styles/mixins.scss";
+
+.tags {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  li:not(:last-child) {
+    margin-right: 8px;
+  }
+
+  &__tag {
+    align-items: flex-start;
+    background: #f1f2fa;
+    border-radius: 16px;
+    color: $black;
+    display: flex;
+    // font-family: $geometria;
+    font-size: rem(12);
+    font-style: normal;
+    font-weight: 500;
+    gap: 4px;
+    justify-content: center;
+    letter-spacing: rem(0.036);
+    padding: 8px 12px;
+    transition: background-color 0.3s ease;
+    text-wrap: nowrap;
+
+    img {
+      margin-right: 0 !important;
+    }
+  }
+}

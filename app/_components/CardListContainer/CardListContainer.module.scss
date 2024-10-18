@@ -1,0 +1,103 @@
+@import "../../_styles/variables.scss";
+
+.card-list-container {
+  display: flex;
+  position: relative;
+  max-height: 680px;
+  overflow-y: auto;
+  padding-right: 20px;
+  overflow-x: hidden;
+
+  &--horizontal {
+    flex-direction: row;
+    overflow-x: auto;
+    max-height: none;
+    gap: 24px;
+  }
+
+  &--vertical {
+    gap: 60px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &__line {
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+
+    background-color: rgba($primary, 0.8);
+    border-radius: 3px;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start; // Alinear los elementos al inicio del ítem
+    position: relative;
+    max-width: 500px;
+
+    &--numbered {
+      // Muestra el número en la parte superior izquierda
+      .card-list-container__number-top {
+        position: absolute;
+        top: -25px; // Ajusta la posición del número superior
+        left: 0;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: $primary;
+        position: relative;
+        top: 0; // Alinear con la parte superior del ítem
+      }
+    }
+
+    &--circled {
+      // Aparece el círculo
+      .card-list-container__circle {
+        position: relative;
+        top: 0; // Alinear con la parte superior del ítem
+        left: 5px;
+      }
+    }
+  }
+
+  &__circle {
+    width: 16px; /* Tamaño un poco mayor para resaltar */
+    height: 16px;
+    background: radial-gradient(
+      circle,
+      rgba($primary, 0.6) 0%,
+      rgba($secondary, 1) 100%
+    );
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra suave */
+    position: relative;
+    flex-shrink: 0;
+
+    /* Animación sutil al hacer hover */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    /* Borde alrededor del círculo */
+    border: 2px solid rgba(255, 255, 255, 0.5); /* Borde sutil */
+  }
+
+  &__number-top {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: $primary;
+    position: absolute;
+    // left: -25px; // Ajusta el número a la izquierda
+  }
+
+  &__content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

@@ -1,0 +1,32 @@
+@import "../../_styles/variables.scss";
+
+.card {
+  background-color: $white;
+
+  &__image-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__image {
+    width: 100%;
+  }
+
+  &__image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 50%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 7px;
+
+    > * {
+      max-width: 80%;
+    }
+  }
+}
