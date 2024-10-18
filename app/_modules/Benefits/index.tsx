@@ -27,7 +27,7 @@ const benefitsData = [
 
 const Benefits: React.FC = () => {
   return (
-    <section id="benefits" className={cx("benefits")}>
+    <section id="about" className={cx("benefits")}>
       <div className={cx("benefits__content")}>
         {/* Lado izquierdo con la imagen */}
         <div className={cx("benefits__image")}>
@@ -41,6 +41,7 @@ const Benefits: React.FC = () => {
         </div>
 
         <div className={cx("benefits__list")}>
+          <Typography variant="h3">Beneficios</Typography>
           {/* Lado derecho con los textos */}
           <CardListContainer orientation="vertical" itemIndicator="circle">
             {benefitsData.map((benefit, index) => (
