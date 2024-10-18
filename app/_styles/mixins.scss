@@ -1,0 +1,28 @@
+@function rem($size) {
+  $remSize: $size/16;
+  @return #{$remSize}rem;
+}
+
+@mixin elevation($level) {
+  @if $level == 0 {
+    box-shadow: none;
+  } @else if $level == 1 {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); // Sombra más suave y sutil
+  } @else if $level == 2 {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07); // Sombra ligera
+  } @else if $level == 3 {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); // Sombra que te gusta
+  } @else if $level == 4 {
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15); // Sombra más profunda
+  } @else if $level == 5 {
+    box-shadow: 0 25px 55px rgba(0, 0, 0, 0.2); // Sombra más intensa y grande
+  }
+}
+
+@mixin hover-supported {
+  @media not all and (pointer: coarse) {
+    &:hover {
+      @content;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+@import "functions.scss";
+
+// @font-face {
+//   font-family: Kepler;
+//   src: url(../fonts/Kepler/Kepler-Std-Display_26108.ttf) format("truetype");
+// }
+
+// @font-face {
+//   font-family: Raleway;
+//   src: url(../fonts/Raleway/Raleway-Medium.ttf) format("truetype");
+// }
+
+$root-size: 16;
+$grid-width: rem(calc(1120 + 64));
+$column-gap: rem(32);
+
+// Breakpoints
+$small: 480px;
+$medium: 768px;
+$large: 1024px;
+$xlarge: 1200px;
+$xxlarge: 1440px;
+
+// // Typography
+
+// Colors
+$primary: #1f3a41;
+$secondary: #f9f1eb;
+$secondary-light: #fef8f4;
+$accent: #ec863b;
+$white: #fdfdff;
+$black: #111;
+$error: #c92a07;
+
+// Border Radious
+$card-radious: 14px;
+
+// Box Shadows
+$shadow-primary: 0 15px 35px rgba(0, 0, 0, 0.1);
