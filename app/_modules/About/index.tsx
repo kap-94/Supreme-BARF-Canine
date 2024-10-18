@@ -23,13 +23,13 @@ const About: React.FC = () => {
           </Typography>
 
           <div className={cx("about__text--bottom")}>
-            <Button variant="link" icon="right-arrow" href="/">
+            <Button variant="link-light" icon="right-arrow" href="/">
               Visita la tienda
             </Button>
 
             <Typography variant="p1" color="white">
-              Con ingredientes 100% naturales, ofrece a tu perro nutrientes y
-              beneficios que las croquetas no pueden brindar.
+              Con ingredientes naturales, ofrece a tu perro beneficios que las
+              croquetas no pueden brindar.
             </Typography>
           </div>
         </div>
