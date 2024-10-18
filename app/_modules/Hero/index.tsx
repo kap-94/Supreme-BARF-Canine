@@ -16,9 +16,15 @@ const Hero: React.FC = () => {
         <div className={cx("hero__text")}>
           <Typography variant="h5" className={cx("hero__eyebrow")}>
             SUPREME BARF CANINE
+            {/* SUPREME BARF CANINE */}
           </Typography>
-          <Typography variant="h1" className={cx("hero__title")}>
-            ALIMENTO SUPERIOR PARA PERROS
+          <Typography
+            variant="h1"
+            // textTransform="uppercase"
+            className={cx("hero__title")}
+          >
+            ALIMENTO PARA PERROS FELICES
+            {/* La Opción Saludable en Comida para Perros */}
           </Typography>
           <Typography variant="p1" className={cx("hero__paragraph")}>
             Dile adiós a las croquetas y comienza a darle a tu perro un alimento
