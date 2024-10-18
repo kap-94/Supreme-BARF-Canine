@@ -1,4 +1,4 @@
-import { About, Benefits, Hero } from "./_modules";
+import { About, Benefits, Hero, ProductGrid } from "./_modules";
 
 export default function Home() {
   return (
@@ -7,6 +7,7 @@ export default function Home() {
         <Hero />
         <About />
         <Benefits />
+        <ProductGrid />
       </main>
     </div>
   );
