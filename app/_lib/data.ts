@@ -26,8 +26,8 @@ export const payloadPrimary: HeaderProps = {
         menu_item_id: 740,
         menu_item_parent: 0,
         title: "Productos",
-        target: "#",
-        url: "#",
+        target: "#product-grid",
+        url: "#product-grid",
         // icon: "book",
       },
       {
