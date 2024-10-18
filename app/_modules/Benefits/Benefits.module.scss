@@ -1,0 +1,71 @@
+// Benefits.module.scss
+@import "../../_styles/variables.scss";
+
+.benefits {
+  background-color: $white;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 180px 36px;
+
+  @media only screen and (max-width: 1348px) {
+    padding: 120px 24px;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1440px;
+    width: 100%;
+    gap: 80px;
+
+    @media only screen and (max-width: 1348px) {
+      flex-direction: column-reverse;
+      gap: 48px;
+      max-width: 620px;
+    }
+  }
+
+  &__image {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    width: 50%;
+    aspect-ratio: 1 / 1;
+    position: relative;
+
+    @media only screen and (max-width: 1348px) {
+      width: 100%;
+    }
+  }
+
+  &__dog {
+    object-fit: cover;
+  }
+
+  &__list {
+    width: 50%;
+
+    @media only screen and (max-width: 1348px) {
+      width: 100%;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+    gap: 8px;
+  }
+
+  &__item-number {
+    color: $primary;
+    font-size: 18px;
+    font-weight: 900;
+    margin-right: 4px;
+  }
+}
