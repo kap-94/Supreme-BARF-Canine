@@ -1,0 +1,48 @@
+@import "../../_styles/variables.scss"; // Importa tus variables y breakpoints
+
+.section-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 72px;
+
+  @media only screen and (max-width: 1348px) {
+    margin-bottom: 48px;
+  }
+
+  &--left {
+    align-items: flex-start;
+    text-align: left;
+
+    @media only screen and (max-width: 1348px) {
+      align-items: center;
+    }
+  }
+
+  &--center {
+    align-items: center;
+    text-align: center;
+  }
+
+  &--right {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  &__title {
+  }
+
+  &__subtitle {
+    font-size: 18px;
+    color: $secondary;
+
+    @media only screen and (max-width: 1348px) {
+      font-size: 16px;
+    }
+
+    @media only screen and (max-width: 680px) {
+      font-size: 14px;
+    }
+  }
+}
