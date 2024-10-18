@@ -1,0 +1,121 @@
+@import "../../_styles/functions.scss";
+@import "../../_styles/variables.scss";
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 680px;
+  width: 580px;
+  transition: all 0.3s ease;
+
+  &__header {
+    position: relative;
+    height: 628px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    flex-direction: column;
+    margin-bottom: 24px;
+    padding: 60px 36px 24px;
+    background-color: $secondary-light;
+    border: 5px solid $white;
+    border-radius: 4px;
+
+    @media only screen and (max-width: 1200px) {
+      height: 546px;
+      margin-bottom: 20px;
+      padding: 60px 36px 20px;
+    }
+
+    @media only screen and (max-width: 680px) {
+      height: 346px;
+      margin-bottom: 24px;
+      padding: 60px 32px 24px;
+    }
+  }
+
+  &__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+  }
+
+  // &__title {
+  //   font-size: rem(24) !important;
+
+  //   @media only screen and (max-width: 600px) {
+  //     font-size: rem(24) !important;
+  //     letter-spacing: rem(0.06);
+  //   }
+  // }
+
+  &__textbox {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    @media only screen and (max-width: 680px) {
+      gap: 16px;
+    }
+  }
+
+  &__body {
+    padding: 0 40px;
+    margin-bottom: 32px;
+
+    @media only screen and (max-width: 1200px) {
+      margin-bottom: 24px;
+    }
+  }
+
+  &__button {
+    p {
+      color: $black !important;
+    }
+  }
+
+  &__excerpt {
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  &__footer {
+    align-self: flex-start;
+    padding-inline: 28px;
+    margin-bottom: 32px;
+
+    @media only screen and (max-width: 1200px) {
+      margin-bottom: 24px;
+    }
+  }
+
+  @media only screen and (max-width: 680px) {
+    & {
+      min-width: unset;
+      max-width: unset;
+      width: 100%;
+    }
+  }
+
+  //   &__overlay {
+  //     background: linear-gradient(
+  //       0deg,
+  //       rgba(0, 0, 0, 0.65),
+  //       rgba(0, 0, 0, 0) 50%
+  //     );
+  //     position: absolute;
+  //     top: 0;
+  //     left: 0;
+  //     right: 0;
+  //     bottom: 0;
+  //   }
+}
