@@ -1,0 +1,49 @@
+@import "../../_styles/variables.scss";
+@import "../../_styles/mixins.scss";
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border-radius: 100%;
+  border: none;
+  outline: none;
+  transition: background-color 0.4s ease-in-out;
+  will-change: background-color;
+  cursor: pointer;
+
+  i {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &--primary {
+    background-color: $white;
+  }
+
+  &--secondary {
+    background-color: transparent;
+  }
+
+  &--large {
+    height: rem(40);
+    width: rem(40);
+
+    img {
+      height: rem(16);
+      width: rem(16);
+    }
+  }
+
+  &--medium {
+    height: rem(30);
+    width: rem(30);
+
+    img {
+      height: rem(14);
+      width: rem(14);
+    }
+  }
+}

@@ -1,0 +1,247 @@
+@import "../../_styles/variables.scss";
+@import "../../_styles/mixins.scss";
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100000;
+  background: $primary;
+
+  &__inner-wrapper {
+    align-items: center;
+    display: flex;
+    gap: 40px;
+    margin-inline: auto;
+    max-width: 1700px;
+    overflow-x: clip;
+    padding: 12px 56px;
+    position: relative;
+
+    @media only screen and (max-width: 1140px) {
+      justify-content: space-between;
+      flex-direction: row-reverse;
+    }
+
+    @media only screen and (max-width: 768px) {
+      padding-inline: 24px;
+    }
+  }
+
+  &__logo-container {
+    display: flex;
+    justify-content: flex-start;
+    z-index: 2;
+
+    @media only screen and (max-width: 1140px) {
+      justify-content: center;
+    }
+  }
+
+  &__hamburger-container {
+    display: none;
+    background: transparent;
+    border: 1px solid rgba(244, 247, 246, 0.5);
+    z-index: 10000000;
+
+    @media only screen and (max-width: 1140px) {
+      display: flex;
+      width: fit-content;
+    }
+
+    button {
+      padding: 12px;
+    }
+
+    button span {
+      display: flex;
+      justify-content: center;
+      height: rem(24);
+      width: rem(24);
+    }
+
+    button span span {
+      &,
+      &::before,
+      &::after {
+        background-color: #f4f7f6 !important;
+        height: rem(2);
+        width: rem(24);
+      }
+    }
+  }
+
+  &__menu--primary {
+    //   position: absolute;
+    //   right: 50%;
+    //   transform: translateX(50%);
+    //   z-index: 1;
+    justify-content: center;
+
+    @media only screen and (max-width: 1140px) {
+      display: none;
+    }
+  }
+
+  &__menu--secondary {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 24px;
+    z-index: 1;
+    margin-left: auto !important;
+
+    @media only screen and (max-width: 1140px) {
+      display: none;
+    }
+  }
+
+  &__sign-in-button {
+    transition: none !important;
+    padding: 17px 16px !important;
+    gap: 0;
+  }
+
+  &--elevation-0 {
+    @include elevation(0);
+  }
+  &--elevation-1 {
+    @include elevation(1);
+  }
+  &--elevation-2 {
+    @include elevation(2);
+  }
+  &--elevation-3 {
+    @include elevation(3);
+  }
+  &--elevation-4 {
+    @include elevation(4);
+  }
+  &--elevation-5 {
+    @include elevation(5);
+  }
+}
+
+.snackbar {
+  align-items: center;
+  background-color: $accent;
+  display: flex;
+  // height: 60px;
+  justify-content: center;
+  padding: 16px 0;
+  text-align: center;
+  width: 100%;
+  z-index: 10;
+}
+
+.mobile {
+  display: none;
+  background: $primary;
+  flex-direction: column;
+  position: fixed;
+  height: 100vh;
+  right: 100%;
+  top: 0;
+  transition: all 0.56s ease;
+  width: 100%;
+  z-index: 1;
+
+  &__header {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    margin: 12px 24px 36px 32px;
+  }
+
+  &__hamburger-container {
+    visibility: hidden;
+  }
+
+  &__sign-in-button {
+    padding: 13px 17px !important;
+  }
+
+  &__menu {
+    border-top: 1px solid rgba($white, 0.6);
+    display: flex;
+    flex-direction: column;
+    padding-block: 32px;
+    margin: 0;
+
+    ul {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+
+      li {
+        width: 100%;
+      }
+
+      a {
+        justify-content: flex-start;
+        padding: 18px 32px;
+        width: inherit;
+        transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+        &:hover {
+          background-color: $secondary;
+
+          p {
+            color: $black !important;
+          }
+        }
+      }
+
+      p {
+        font-size: 13px !important;
+      }
+
+      img {
+        display: none;
+      }
+    }
+  }
+
+  @media all and (max-width: 1280px) {
+    display: flex;
+  }
+}
+
+.open {
+  .header {
+    &__hamburger-container {
+      border-color: $white;
+
+      button span span {
+        &,
+        &::before,
+        &::after {
+          background-color: $white !important;
+          height: 2px;
+          width: 24px;
+        }
+      }
+    }
+
+    &__menu--secondary {
+      padding-left: 33px;
+    }
+
+    // &__logo-container,
+    // &__menu--secondary {
+    //   @media only screen and (max-width: 768px) {
+    //     padding-left: 0px;
+    //   }
+    // }
+  }
+
+  &.light {
+    .header__hamburger-container {
+      transform: translateY(13px);
+    }
+  }
+
+  .mobile {
+    right: 0;
+  }
+}

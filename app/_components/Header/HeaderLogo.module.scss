@@ -1,0 +1,53 @@
+.logo {
+  &__default {
+    // filter: brightness(100);
+  }
+
+  &__light,
+  &__dark,
+  &__lightMobile {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.24s;
+  }
+}
+
+.scrolled {
+  .logo {
+    &__default {
+      display: none;
+    }
+
+    &__light {
+      display: block;
+      opacity: 1;
+      transition: opacity 0.24s;
+    }
+  }
+}
+
+// &.light {
+//   .logo {
+//     &::before,
+//     &::after {
+//       content: unset;
+//     }
+
+//     &__light {
+//       opacity: 0;
+//     }
+
+//     &__lightWrapper,
+//     &__lightMobileWrapper {
+//       display: none;
+//     }
+
+//     &__dark {
+//       opacity: 1;
+//     }
+
+//     &__darkWrapper {
+//       display: block;
+//     }
+//   }
+// }

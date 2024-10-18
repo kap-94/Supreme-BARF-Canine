@@ -1,0 +1,213 @@
+@import "../../_styles/variables.scss";
+@import "../../_styles/mixins.scss";
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+  text-wrap: nowrap;
+  width: fit-content;
+
+  &:hover {
+    transform: translateY(-3px);
+  }
+
+  &:active,
+  &:focus {
+    box-shadow: 0 5px 12.5px rgba(0, 0, 0, 0.07);
+    transform: translateY(-1px);
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+  }
+
+  &--small {
+    padding: 12px;
+    gap: 4px;
+
+    &.button--pill {
+      border-radius: 16px;
+    }
+
+    .button__icon {
+      margin-right: 6px;
+      height: 14px;
+      width: 12px;
+    }
+
+    .button__text {
+      font-size: rem(12);
+      font-weight: 600;
+      line-height: rem(15);
+      letter-spacing: rem(0.036);
+    }
+  }
+
+  &--medium {
+    padding: 13px 16px;
+
+    &.button--pill {
+      border-radius: 20px;
+    }
+
+    .button__icon {
+      margin-right: 8px;
+      height: 18px;
+      width: 15px;
+    }
+
+    .button__text {
+      font-size: rem(14);
+      font-weight: 600;
+      line-height: rem(17);
+      letter-spacing: rem(0.042);
+    }
+  }
+
+  &--large {
+    padding: 18px;
+
+    &.button--pill {
+      border-radius: 24px;
+    }
+
+    .button__icon {
+      margin-right: 8px;
+      height: 22px;
+      width: 18px;
+    }
+
+    .button__text {
+      font-size: rem(16);
+      font-weight: 700;
+      line-height: rem(20);
+      letter-spacing: rem(0.048);
+    }
+  }
+
+  &--primary {
+    background-color: $primary;
+
+    &:hover {
+      filter: brightness(1.1);
+      // background-color: $ui-aqua;
+    }
+
+    &[disabled] {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    // .button__text {
+    //   color: $white;
+    // }
+
+    .button__icon {
+      filter: brightness(0) invert(100%) sepia(33%) saturate(3729%)
+        hue-rotate(180deg) brightness(104%) contrast(113%);
+    }
+  }
+
+  &--accent {
+    background-color: $accent;
+
+    &:hover {
+      filter: brightness(1.1);
+      // background-color: $ui-aqua;
+    }
+
+    &[disabled] {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .button__text {
+      color: $white;
+    }
+
+    .button__icon {
+      filter: brightness(0) invert(100%) sepia(33%) saturate(3729%)
+        hue-rotate(180deg) brightness(104%) contrast(113%);
+    }
+  }
+
+  &--secondary {
+    background-color: $secondary;
+
+    &:hover {
+      background-color: $secondary-light;
+    }
+
+    &[disabled] {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    // .button__text {
+    //   color: $black;
+    //   opacity: 0.72;
+    // }
+
+    .button__icon {
+      filter: brightness(0) invert(25%) sepia(16%) saturate(1346%)
+        hue-rotate(194deg) brightness(96%) contrast(98%);
+    }
+  }
+
+  &--link {
+    background-color: transparent;
+    border-radius: 0;
+    // border-bottom: 2px solid $white;
+    padding: 8px 0;
+    display: flex;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:active,
+    &:focus {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .button__text {
+      color: $white;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .button__icon {
+      filter: brightness(100);
+      transform: rotate(-45deg);
+    }
+  }
+
+  &--full-width {
+    width: 100%;
+  }
+
+  &--elevation-0 {
+    @include elevation(0);
+  }
+  &--elevation-1 {
+    @include elevation(1);
+  }
+  &--elevation-2 {
+    @include elevation(2);
+  }
+  &--elevation-3 {
+    @include elevation(3);
+  }
+  &--elevation-4 {
+    @include elevation(4);
+  }
+  &--elevation-5 {
+    @include elevation(5);
+  }
+}
