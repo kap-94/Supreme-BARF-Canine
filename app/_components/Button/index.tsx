@@ -20,7 +20,7 @@ export interface ButtonProps {
   size?: "small" | "medium" | "large";
   style?: React.CSSProperties;
   type?: "button" | "submit" | "reset";
-  variant?: "primary" | "secondary" | "accent" | "link";
+  variant?: "primary" | "secondary" | "accent" | "link-light" | "link-dark";
 }
 
 export const Button: React.FC<ButtonProps> = React.memo(
@@ -51,13 +51,14 @@ export const Button: React.FC<ButtonProps> = React.memo(
       className
     );
 
-    if (variant === "link" && href) {
+    // Return a Link for "link-light" or "link-dark" variants
+    if ((variant === "link-light" || variant === "link-dark") && href) {
       return (
         <Link href={href} className={buttonClasses} style={style}>
           <Typography
             variant="p1"
             fontFamily="raleway"
-            fontWeight={700}
+            fontWeight={800}
             className={cx("button__text")}
           >
             {children}
