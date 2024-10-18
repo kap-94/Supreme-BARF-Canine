@@ -1,0 +1,123 @@
+@import "../../_styles/variables.scss";
+@import "../../_styles/mixins.scss";
+
+.typography {
+  margin: 0;
+
+  &--h1 {
+    color: $black;
+    font-size: rem(68);
+    font-style: normal;
+    font-weight: 900;
+    line-height: 106%;
+
+    @media only screen and (max-width: 600px) {
+      font-size: rem(48);
+    }
+  }
+
+  &--h2 {
+    color: $black;
+    font-size: rem(48);
+    font-style: normal;
+    font-weight: 900;
+    line-height: 106%;
+
+    @media only screen and (max-width: 600px) {
+      font-size: rem(32);
+    }
+  }
+
+  &--h3 {
+    color: $black;
+    font-size: rem(32);
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: rem(0.096);
+    line-height: 1.5;
+
+    @media only screen and (max-width: 600px) {
+      font-size: rem(24);
+      letter-spacing: rem(0.072);
+    }
+  }
+
+  &--h4 {
+    color: $black;
+    font-size: rem(24);
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.5;
+    letter-spacing: rem(0.072);
+
+    @media only screen and (max-width: 600px) {
+      font-size: rem(20);
+      letter-spacing: rem(0.06);
+    }
+  }
+
+  &--h5 {
+    font-size: rem(14);
+    color: $black;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 1.5;
+    letter-spacing: rem(0.06);
+
+    @media only screen and (max-width: 600px) {
+      font-size: rem(13);
+      letter-spacing: rem(0.048);
+    }
+  }
+
+  &--p1 {
+    color: $black;
+    font-size: rem(18);
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: rem(0.048);
+
+    @media only screen and (max-width: 600px) {
+      font-size: rem(16);
+      font-weight: 500;
+      letter-spacing: rem(0.042);
+    }
+  }
+
+  &--p2 {
+    color: $black;
+    font-size: rem(16);
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: rem(0.042);
+
+    @media only screen and (max-width: 600px) {
+      font-size: rem(14);
+      letter-spacing: rem(0.036);
+    }
+  }
+
+  &--p3 {
+    color: $white;
+    font-size: rem(12);
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: rem(0.036);
+  }
+
+  &--button {
+    font-size: rem(16);
+    font-weight: bold;
+    text-transform: uppercase;
+    color: $black;
+  }
+
+  &--overline {
+    font-size: rem(14);
+    text-transform: uppercase;
+    color: $black;
+  }
+}
