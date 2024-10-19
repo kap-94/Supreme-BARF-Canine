@@ -14,6 +14,9 @@ export interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   icon?: IconName;
   variant?: "primary" | "secondary";
   placeholder?: string;
+  labelClassName?: string; // Nueva prop para className del label
+  inputClassName?: string; // Nueva prop para className del input
+  errorClassName?: string; // Nueva prop para className del error
 }
 
 export const TextField: FC<TextFieldProps> = ({
@@ -23,6 +26,9 @@ export const TextField: FC<TextFieldProps> = ({
   type = "text",
   variant = "primary",
   placeholder,
+  labelClassName, // Recibe la nueva prop
+  inputClassName, // Recibe la nueva prop
+  errorClassName, // Recibe la nueva prop
   ...props
 }) => {
   const [field, meta] = useField(name);
@@ -57,7 +63,7 @@ export const TextField: FC<TextFieldProps> = ({
     <div className={containerClasses}>
       <div className={cx("form-control__input-container")}>
         <label
-          className={cx("form-control__label", {
+          className={cx("form-control__label", labelClassName, {
             "form-control__label--focused":
               variant === "secondary" && (focused || field.value),
           })}
@@ -67,7 +73,7 @@ export const TextField: FC<TextFieldProps> = ({
         </label>
 
         <input
-          className={cx("form-control__input")}
+          className={cx("form-control__input", inputClassName)} // Aplica className personalizado al input
           {...field}
           {...props}
           placeholder={variant === "primary" ? placeholder : ""}
@@ -92,7 +98,9 @@ export const TextField: FC<TextFieldProps> = ({
       </div>
 
       {meta.touched && meta.error && (
-        <div className={cx("form-control__error")}>{meta.error}</div>
+        <div className={cx("form-control__error", errorClassName)}>
+          {meta.error}
+        </div>
       )}
     </div>
   );

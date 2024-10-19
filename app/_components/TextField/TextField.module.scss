@@ -6,7 +6,8 @@ $form-control-transition-duration: 0.3s;
 .form-control {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
   width: 100%;
 
   // Ocultar spinners en Chrome, Safari, Edge y Opera
@@ -156,7 +157,7 @@ $form-control-transition-duration: 0.3s;
     }
   }
 
-  &--error-container {
+  &--error {
     .form-control__input {
       border-color: $error;
     }
