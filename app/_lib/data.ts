@@ -17,9 +17,9 @@ export const payloadPrimary: HeaderProps = {
       {
         menu_item_id: 739,
         menu_item_parent: 0,
-        title: "Calculadora de alimento",
-        url: "#benefits",
+        title: "Beneficios",
         target: "#benefits",
+        url: "#benefits",
         // icon: "book",
       },
       {
@@ -31,7 +31,15 @@ export const payloadPrimary: HeaderProps = {
         // icon: "book",
       },
       {
-        menu_item_id: 740,
+        menu_item_id: 741,
+        menu_item_parent: 0,
+        title: "Calculadora de alimento",
+        url: "#food-calculator",
+        target: "#food-calculator",
+        // icon: "book",
+      },
+      {
+        menu_item_id: 742,
         menu_item_parent: 0,
         title: "Preguntas Frecuentes",
         target: "#",
