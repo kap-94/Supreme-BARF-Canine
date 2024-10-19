@@ -1,4 +1,3 @@
-// useCalculateFoodAmount.ts
 import { useEffect, useState } from "react";
 
 interface DogFormValues {
@@ -7,6 +6,7 @@ interface DogFormValues {
   dogWeight: number | string;
   sterilized: string;
   activityLevel: string;
+  pregnancyStatus: string;
 }
 
 interface CalculationResult {
@@ -22,8 +22,14 @@ const useCalculateFoodAmount = (values: DogFormValues): CalculationResult => {
 
   useEffect(() => {
     const calculateFoodAmount = () => {
-      const { dogYears, dogMonths, dogWeight, sterilized, activityLevel } =
-        values;
+      const {
+        dogYears,
+        dogMonths,
+        dogWeight,
+        sterilized,
+        activityLevel,
+        pregnancyStatus,
+      } = values;
 
       const dogAgeYears = parseInt(dogYears, 10);
       const dogAgeMonths = parseInt(dogMonths, 10);
@@ -46,38 +52,46 @@ const useCalculateFoodAmount = (values: DogFormValues): CalculationResult => {
         };
       }
 
-      let baseAmount = 100; // gramos base para perros de tamaño medio
-      let weightMultiplier = weight / 10;
-      let ageAdjustment = dogAge <= 2 ? 1.2 : dogAge > 7 ? 0.8 : 1;
+      // Fórmulas específicas basadas en los datos proporcionados
+      // Nivel de actividad
+      let activityLevelMultiplier =
+        activityLevel === "Sedentario"
+          ? 95
+          : activityLevel === "Moderado"
+          ? 130
+          : activityLevel === "Activo"
+          ? 160
+          : 0;
 
-      // Ajuste por esterilización
-      let sterilizedAdjustment = sterilized === "yes" ? 0.85 : 1;
+      // Edad
+      let ageMultiplier =
+        dogAge < 1 ? 1.5 : dogAge < 7 ? 1 : dogAge > 7 ? 0.8 : 0;
 
-      // Mapeo de niveles de actividad a español
-      const activityLevelMap: { [key: string]: string } = {
-        high: "alto",
-        medium: "medio",
-        low: "bajo",
-      };
+      // Esterilización
+      let sterilizedMultiplier = sterilized === "Esterilizado" ? 0.85 : 1;
 
-      // Obtener el nivel de actividad en español, por defecto "medio" si no se encuentra
-      const activityLevelDisplay = activityLevelMap[activityLevel] || "medio";
-
-      // Ajuste por nivel de actividad
-      let activityMultiplier =
-        activityLevel === "high" ? 1.5 : activityLevel === "medium" ? 1 : 0.8;
+      // Gestación o lactancia
+      let pregnancyMultiplier =
+        pregnancyStatus === "Gestación"
+          ? 1.25
+          : pregnancyStatus === "Lactancia"
+          ? 1.5
+          : pregnancyStatus === "No aplica"
+          ? 1
+          : 0;
 
       // Cálculo final
       let totalFoodAmount =
-        baseAmount *
-        weightMultiplier *
-        ageAdjustment *
-        sterilizedAdjustment *
-        activityMultiplier;
+        (Math.pow(weight, 0.75) *
+          activityLevelMultiplier *
+          ageMultiplier *
+          sterilizedMultiplier *
+          pregnancyMultiplier) /
+        (1850 / 1000);
 
       const foodAmountMessage = `Para un perro de <strong>${dogYears} años</strong> y <strong>${dogMonths} meses</strong>, que pesa <strong>${weight} kg</strong>, <strong>${
-        sterilized === "yes" ? "esterilizado" : "no esterilizado"
-      }</strong>, con un <strong>nivel de actividad ${activityLevelDisplay}</strong>, la cantidad recomendada de alimento es <strong>${Math.round(
+        sterilized === "Esterilizado" ? "esterilizado" : "no esterilizado"
+      }</strong>, con un <strong>nivel de actividad ${activityLevel.toLowerCase()}</strong> y estado de <strong>${pregnancyStatus.toLowerCase()}</strong>, la cantidad recomendada de alimento es <strong>${Math.round(
         totalFoodAmount
       )} gramos al día.</strong>`;
 
