@@ -37,7 +37,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section className={cx("contact")}>
+    <section id="contact" className={cx("contact")}>
       {/* <SectionHeader
         title="Contacto"
         subtitle="Contáctanos para más información y asistencia"
