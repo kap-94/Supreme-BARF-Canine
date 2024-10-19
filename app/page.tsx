@@ -5,6 +5,7 @@ import {
   ProductGrid,
   FoodCalculator,
   FrequentAskedQuestions,
+  Contact,
 } from "./_modules";
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
         <ProductGrid />
         <FoodCalculator />
         <FrequentAskedQuestions />
+        <Contact />
       </main>
     </div>
   );
