@@ -24,6 +24,7 @@ $form-control-transition-duration: 0.3s;
     border: 1px solid rgba($black, 0.2);
     color: $black;
     letter-spacing: rem(0.042);
+    font-family: $raleway-font;
     font-size: rem(16);
     font-weight: 500;
     outline: none;
@@ -31,6 +32,25 @@ $form-control-transition-duration: 0.3s;
     transition: all $form-control-transition-duration;
     width: 100%;
     resize: none;
+
+    &::placeholder {
+      color: rgba($black, 0.4);
+      font-family: $raleway-font;
+    }
+
+    /* Estilos específicos para navegadores */
+    &::-webkit-input-placeholder {
+      font-family: $raleway-font;
+    }
+    &:-moz-placeholder {
+      font-family: $raleway-font;
+    }
+    &::-moz-placeholder {
+      font-family: $raleway-font;
+    }
+    &:-ms-input-placeholder {
+      font-family: $raleway-font;
+    }
   }
 
   &--primary {
