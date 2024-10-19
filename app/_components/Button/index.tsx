@@ -83,7 +83,6 @@ export const Button: React.FC<ButtonProps> = React.memo(
         onClick={onClick}
         disabled={disabled}
       >
-        {icon && <Icon icon={icon} className={cx("button__icon")} />}
         <Typography
           variant="p1"
           fontFamily="poppins"
@@ -92,6 +91,14 @@ export const Button: React.FC<ButtonProps> = React.memo(
         >
           {children}
         </Typography>
+        {icon && (
+          <Icon
+            icon={icon}
+            height={20}
+            width={20}
+            className={cx("button__icon")}
+          />
+        )}
       </button>
     );
   }

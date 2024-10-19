@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s ease-in;
   text-wrap: nowrap;
@@ -37,9 +37,9 @@
     }
 
     .button__icon {
-      margin-right: 6px;
-      height: 14px;
-      width: 12px;
+      margin-left: 8px;
+      // height: 14px;
+      // width: 12px;
     }
 
     .button__text {
@@ -58,9 +58,9 @@
     }
 
     .button__icon {
-      margin-right: 8px;
-      height: 18px;
-      width: 15px;
+      margin-left: 8px;
+      // height: 18px;
+      // width: 15px;
     }
 
     .button__text {
@@ -79,9 +79,9 @@
     }
 
     .button__icon {
-      margin-right: 8px;
-      height: 22px;
-      width: 18px;
+      margin-left: 8px;
+      // height: 22px;
+      // width: 18px;
     }
 
     .button__text {
