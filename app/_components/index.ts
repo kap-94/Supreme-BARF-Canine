@@ -1,5 +1,6 @@
 import { Rating } from "./Rating";
 import { Tags } from "./Tags";
+import Alert from "./Alert";
 import Accordion from "./Accordion";
 import Button from "./Button";
 import Card from "./Card";
@@ -14,11 +15,14 @@ import IconButton from "./IconButton";
 import MenuList from "./MenuList";
 import ProductCard from "./ProductCard";
 import SectionHeader from "./SectionHeader";
+import Snackbar from "./Snackbar";
+import Spinner from "./Spinner";
 import TextArea from "./TextArea";
 import TextField from "./TextField";
 import Typography from "./Typography";
 
 export {
+  Alert,
   Accordion,
   Button,
   Card,
@@ -34,6 +38,8 @@ export {
   ProductCard,
   Rating,
   SectionHeader,
+  Snackbar,
+  Spinner,
   Tags,
   TextArea,
   TextField,
