@@ -3,7 +3,8 @@ import { Tags } from "./Tags";
 import Button from "./Button";
 import Card from "./Card";
 import CardListContainer from "./CardListContainer";
-import Dropdown from "./Dropdown/Dropdown";
+import Dropdown from "./Dropdown";
+import DogForm from "./DogForm";
 import Footer from "./Footer/Footer";
 import Hamburger from "./Hamburger/Hamburger";
 import Header from "./Header";
@@ -12,6 +13,7 @@ import IconButton from "./IconButton";
 import MenuList from "./MenuList";
 import ProductCard from "./ProductCard";
 import SectionHeader from "./SectionHeader";
+import TextField from "./TextField";
 import Typography from "./Typography";
 
 export {
@@ -19,6 +21,7 @@ export {
   Card,
   CardListContainer,
   Dropdown,
+  DogForm,
   Footer,
   Hamburger,
   Header,
@@ -29,5 +32,6 @@ export {
   Rating,
   SectionHeader,
   Tags,
+  TextField,
   Typography,
 };
