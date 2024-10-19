@@ -1,8 +1,10 @@
-import React from "react";
+"use client";
+import React, { useRef } from "react";
 import classNames from "classnames/bind";
 import { ProductCard, SectionHeader } from "@/app/_components";
 
 import styles from "./ProductGrid.module.scss";
+import useAnimations from "@/app/_hooks/useAnimations";
 
 const cx = classNames.bind(styles);
 
@@ -46,11 +48,25 @@ const productCardsPayload = [
 const ProductGrid: React.FC<ProductGridProps> = ({
   customAnchorId = "product-grid",
 }) => {
+  const headingRef = useRef<HTMLDivElement>(null);
+
+  useAnimations([
+    {
+      ref: headingRef, // El ref del encabezado
+      type: "fadeInUp", // Tipo de animación (puedes usar cualquier tipo definido)
+      options: {
+        duration: 1.2, // Opciones específicas para la animación
+        ease: "power2.out",
+      },
+    },
+  ]);
+
   return (
     <section className={cx("product-grid")} id={customAnchorId}>
       <SectionHeader
+        ref={headingRef}
         title="Nuestros Productos"
-        subtitle="La Mejor Comida Natural para el Bienestar de tu Mascota"
+        subtitle="La mejor comida natural para el bienestar de tu mascota"
         align="center"
         className={cx("product-grid__header")}
       />
