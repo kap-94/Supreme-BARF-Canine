@@ -1,5 +1,6 @@
 import { Rating } from "./Rating";
 import { Tags } from "./Tags";
+import Accordion from "./Accordion";
 import Button from "./Button";
 import Card from "./Card";
 import CardListContainer from "./CardListContainer";
@@ -17,6 +18,7 @@ import TextField from "./TextField";
 import Typography from "./Typography";
 
 export {
+  Accordion,
   Button,
   Card,
   CardListContainer,
