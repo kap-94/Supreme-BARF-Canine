@@ -79,7 +79,7 @@ export const payloadPrimary: HeaderProps = {
     logos: {
       defaultLogo: {
         // url: "https://login.scandinave.com/wp-content/uploads/2022/10/logo-1-1.svg",
-        url: "/logo.png",
+        url: "/logo-full.png",
         href: "/#",
         alt: "logo",
         width: 74,
@@ -87,21 +87,21 @@ export const payloadPrimary: HeaderProps = {
       },
       light: {
         // url: "https://login.scandinave.com/wp-content/uploads/2022/10/logo-1-1.svg",
-        url: "/logo.png",
+        url: "/logo-full.png",
         href: "/#",
         alt: "logo",
         width: 64,
         height: 64,
       },
       lightMobile: {
-        url: "/logo.png",
+        url: "/logo-full.png",
         href: "/#",
         alt: "logo",
         height: 46,
         width: 46,
       },
       dark: {
-        url: "/logo.png",
+        url: "/logo-full.png",
         href: "/#",
         alt: "logo",
         height: 46,
@@ -191,7 +191,7 @@ export const footerPayload: FooterProps = {
     copyright_name:
       "© 2024 Supreme BARF Canine. All rights reserved. | Built By KAgency",
     logo: {
-      url: "/logo.png",
+      url: "/logo-full.png",
       alt: "Supreme BARF Canine",
       width: 74,
       height: 80,
