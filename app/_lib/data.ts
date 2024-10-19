@@ -12,7 +12,6 @@ export const payloadPrimary: HeaderProps = {
         target: "#about",
         url: "#about",
         isSectionLink: true,
-        // icon: "boat",
       },
       {
         menu_item_id: 739,
@@ -20,7 +19,6 @@ export const payloadPrimary: HeaderProps = {
         title: "Beneficios",
         target: "#benefits",
         url: "#benefits",
-        // icon: "book",
       },
       {
         menu_item_id: 740,
@@ -28,7 +26,6 @@ export const payloadPrimary: HeaderProps = {
         title: "Productos",
         target: "#product-grid",
         url: "#product-grid",
-        // icon: "book",
       },
       {
         menu_item_id: 741,
@@ -36,7 +33,6 @@ export const payloadPrimary: HeaderProps = {
         title: "Calculadora de alimento",
         url: "#food-calculator",
         target: "#food-calculator",
-        // icon: "book",
       },
       {
         menu_item_id: 742,
@@ -44,7 +40,6 @@ export const payloadPrimary: HeaderProps = {
         title: "Preguntas Frecuentes",
         target: "#faq",
         url: "#faq",
-        // icon: "book",
       },
 
       // Submenu items for "Destinations"
@@ -56,15 +51,13 @@ export const payloadPrimary: HeaderProps = {
         title: "Tienda en línea",
         target: "/tienda",
         url: "/tienda",
-        // icon: "clock",
       },
       {
         menu_item_id: 742,
         menu_item_parent: 0,
         title: "Contacto",
-        target: "/#contacto",
-        url: "/#contacto",
-        // icon: "clock",
+        target: "#contact",
+        url: "#contact",
       },
     ],
     dropdownItems: [
