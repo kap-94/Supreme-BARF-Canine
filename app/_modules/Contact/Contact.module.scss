@@ -66,6 +66,12 @@
     margin-top: 32px;
     margin-inline: auto;
 
+    p {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
     img {
       transform: translateY(-3px);
       height: 30px;

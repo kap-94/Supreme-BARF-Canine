@@ -1,16 +1,21 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import classNames from "classnames/bind";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import {
+  Alert,
   Button,
+  Icon,
   SectionHeader,
+  Snackbar,
+  Spinner,
   TextArea,
   TextField,
   Typography,
 } from "@/app/_components";
+import { sendContactForm } from "@/app/_lib/api";
 import styles from "./Contact.module.scss";
 
 const cx = classNames.bind(styles);
@@ -31,10 +36,29 @@ interface ContactFormValues {
 }
 
 const Contact: React.FC = () => {
+  const [snackbar, setSnackbar] = useState({ open: false, message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const initialValues: ContactFormValues = {
     name: "",
     email: "",
     message: "",
+  };
+
+  const showSnackbar = (message: string) => {
+    setSnackbar({ open: true, message });
+  };
+  const handleFormSubmit = async (values: ContactFormValues) => {
+    setIsSubmitting(true);
+    try {
+      await sendContactForm(values);
+      showSnackbar("Mensaje enviado con éxito");
+    } catch (error) {
+      console.log({ error });
+
+      showSnackbar("Hubo un problema al enviar el mensaje");
+    }
+    setIsSubmitting(false);
   };
 
   return (
@@ -59,9 +83,8 @@ const Contact: React.FC = () => {
             initialValues={initialValues}
             validationSchema={ContactFormSchema}
             onSubmit={(values, { resetForm }) => {
-              // Lógica para enviar el formulario
               console.log(values);
-              resetForm();
+              handleFormSubmit(values);
             }}
           >
             {({ values, errors, touched, handleChange, handleBlur }) => (
@@ -107,11 +130,22 @@ const Contact: React.FC = () => {
                 <Button
                   type="submit"
                   size="large"
-                  icon="send"
                   variant="accent"
                   className={cx("contact__submit-button")}
                 >
                   Enviar Mensaje
+                  {isSubmitting ? (
+                    <div className={cx("form__button-icon-container")}>
+                      <Spinner />
+                    </div>
+                  ) : (
+                    <Icon
+                      icon="send"
+                      width={20}
+                      height={20}
+                      className={cx("form__button-icon")}
+                    />
+                  )}
                 </Button>
               </Form>
             )}
@@ -137,6 +171,26 @@ const Contact: React.FC = () => {
           </Typography>
         </div>
       </div>
+
+      <Snackbar
+        open={snackbar.open}
+        onClose={() => setSnackbar({ ...snackbar, open: false })}
+        autoHideDuration={6000}
+      >
+        <Alert
+          variant="filled"
+          severity={snackbar.message.includes("problem") ? "error" : "success"}
+        >
+          <Typography
+            variant="p1"
+            fontFamily="poppins"
+            color="white"
+            fontWeight={600}
+          >
+            {snackbar.message}
+          </Typography>
+        </Alert>
+      </Snackbar>
     </section>
   );
 };
