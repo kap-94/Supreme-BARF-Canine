@@ -1,0 +1,42 @@
+@import "../../_styles/variables.scss";
+
+.snackbar {
+  align-items: center;
+  background: $secondary-light;
+  border-radius: 6px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  color: $white;
+  display: flex;
+  justify-content: space-between;
+  left: 50%;
+  margin-top: 1rem;
+  max-width: 600px;
+  position: fixed;
+  top: 0;
+  transform: translateX(-50%);
+  z-index: 10000;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+
+  @media only screen and (max-width: 600px) {
+    h5 {
+      font-size: 14px !important;
+    }
+  }
+
+  &--visible {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+
+  &--hidden {
+    transform: translateX(-50%) translateY(-100%);
+    opacity: 0;
+  }
+
+  .snackbar__icon-button {
+    color: $white;
+    filter: brightness(100);
+    position: absolute;
+    right: 10px;
+  }
+}
