@@ -155,6 +155,7 @@ const Header: FC<HeaderProps> = ({
               frontPageID={1}
               data={menuDataSecondary}
               onClick={closeMenu}
+              useActiveStyle
               // frontPageID={frontPageID}
             />
           )}
