@@ -46,14 +46,14 @@ export const payloadPrimary: HeaderProps = {
     ],
     menuDataSecondary: [
       {
-        menu_item_id: 741,
+        menu_item_id: 743,
         menu_item_parent: 0,
         title: "Tienda en línea",
         target: "/tienda",
         url: "/tienda",
       },
       {
-        menu_item_id: 742,
+        menu_item_id: 744,
         menu_item_parent: 0,
         title: "Contacto",
         target: "#contact",
@@ -121,50 +121,48 @@ export const payloadPrimary: HeaderProps = {
 
 export const footerPayload: FooterProps = {
   footerMenuDataPrimary: [
-    // { name: "Destinos", link: "/destinos" },
-    // { name: "Itinerarios", link: "/itinerarios" },
-    // { name: "Sobre Nosotros", link: "/sobre-nosotros" },
-    // { name: "Contacto", link: "/contacto" },
-    // { name: "Blog", link: "/blog" },
-
     {
-      menu_item_id: 737,
-      menu_item_parent: 0,
-      title: "Inicio",
-      target: "/#",
-      url: "/#",
-      showDropdownIcon: false,
-    },
-    {
-      menu_item_id: 738,
+      menu_item_id: 1,
       menu_item_parent: 0,
       title: "¿Qué es supreme barf canine?",
-      target: "/#descripcion",
-      url: "/#descripcion",
-      // icon: "boat",
+      target: "#about",
+      url: "#about",
+      isSectionLink: true,
     },
     {
-      menu_item_id: 739,
+      menu_item_id: 2,
       menu_item_parent: 0,
-      title: "Cantidades",
-      target: "/#cantidades",
-      url: "/#cantidades",
-      // icon: "book",
+      title: "Beneficios",
+      target: "#benefits",
+      url: "#benefits",
     },
     {
-      menu_item_id: 740,
+      menu_item_id: 3,
       menu_item_parent: 0,
       title: "Productos",
-      target: "/#productos",
-      url: "/#productos",
-      // icon: "book",
+      target: "#product-grid",
+      url: "#product-grid",
+    },
+    {
+      menu_item_id: 4,
+      menu_item_parent: 0,
+      title: "Calculadora de alimento",
+      url: "#food-calculator",
+      target: "#food-calculator",
+    },
+    {
+      menu_item_id: 5,
+      menu_item_parent: 0,
+      title: "Preguntas Frecuentes",
+      target: "#faq",
+      url: "#faq",
     },
 
     // Submenu items for "Destinations"
   ],
   footerMenuDataSecondary: [
     {
-      menu_item_id: 739,
+      menu_item_id: 6,
       menu_item_parent: 0,
       title: "Facebook",
       target: "/",
@@ -172,7 +170,7 @@ export const footerPayload: FooterProps = {
       icon: "facebook",
     },
     {
-      menu_item_id: 738,
+      menu_item_id: 7,
       menu_item_parent: 0,
       title: "Tiktok",
       target: "/",
@@ -180,7 +178,7 @@ export const footerPayload: FooterProps = {
       icon: "tiktok",
     },
     {
-      menu_item_id: 737,
+      menu_item_id: 8,
       menu_item_parent: 0,
       title: "Instagram",
       target: "/",
