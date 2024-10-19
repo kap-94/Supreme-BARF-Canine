@@ -12,6 +12,7 @@ import HeaderLogo from "@/app/_components/Header/HeaderLogo";
 import { Option } from "@/app/_components/Dropdown";
 
 import styles from "./Header.module.scss";
+import PromoSnackbar from "../PromoSnackbar";
 
 const cx = classnames.bind(styles);
 
@@ -222,16 +223,8 @@ const Header: FC<HeaderProps> = ({
       </div>
 
       {/* <PopUpNotification props={props} /> */}
-      <div className={cx("snackbar")}>
-        <Typography
-          variant="p1"
-          color="white"
-          fontWeight={600}
-          style={{ fontStyle: "italic" }}
-        >
-          30% de descuento en el primer pedido!
-        </Typography>
-      </div>
+
+      <PromoSnackbar />
     </header>
   );
 };
