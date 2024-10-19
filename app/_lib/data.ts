@@ -42,8 +42,8 @@ export const payloadPrimary: HeaderProps = {
         menu_item_id: 742,
         menu_item_parent: 0,
         title: "Preguntas Frecuentes",
-        target: "#",
-        url: "#",
+        target: "#faq",
+        url: "#faq",
         // icon: "book",
       },
 
