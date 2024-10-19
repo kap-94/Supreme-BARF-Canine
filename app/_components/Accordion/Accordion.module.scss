@@ -1,0 +1,105 @@
+// ScandinaveAccordion.module.scss
+@import "../../_styles/variables.scss";
+@import "../../_styles/functions.scss";
+
+.accordion {
+  margin: auto;
+  //   max-width: 664px;
+  //   width: 100%;
+  padding: 0 32px;
+
+  &__title {
+    font-size: rem(40px);
+    font-weight: 400;
+    color: $black;
+    margin-bottom: 24px;
+  }
+
+  &__content {
+    .accordion__item {
+      border-top: 1px solid rgba($primary, 0.3);
+      padding: 24px 0;
+
+      &:last-child {
+        border-bottom: 1px solid rgba($primary, 0.3);
+      }
+
+      .accordion__trigger {
+        font-weight: 700;
+        font-size: rem(18px);
+        position: relative;
+        display: block;
+        padding-right: 48px;
+        cursor: pointer;
+        color: $primary;
+
+        // Remueve los estilos anteriores de ::before y ::after
+        &::before,
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          right: 16px; // Ajusta según necesites para posicionar el símbolo
+          width: 20px; // Longitud de las líneas
+          height: 2px; // Grosor de las líneas
+          background-color: $primary; // Color de las líneas
+          transform-origin: center;
+          transition: transform 0.3s ease;
+        }
+
+        // Línea horizontal
+        &::before {
+          transform: translateY(-50%) rotate(0deg);
+        }
+
+        // Línea vertical
+        &::after {
+          transform: translateY(-50%) rotate(90deg);
+        }
+
+        &--opened {
+          // Cambia las líneas para formar una '×'
+          &::before {
+            transform: translateY(-50%) rotate(45deg);
+          }
+
+          &::after {
+            transform: translateY(-50%) rotate(-45deg);
+          }
+        }
+      }
+
+      .accordion__answer {
+        margin-top: 24px;
+        max-width: 680px;
+
+        > * {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .accordion {
+    padding: 0 16px;
+
+    &__title {
+      font-size: rem(32px);
+    }
+
+    &__content {
+      .accordion__item {
+        .accordion__trigger {
+          font-size: rem(16px);
+        }
+
+        .accordion__answer {
+          font-size: rem(14px);
+        }
+      }
+    }
+  }
+}
