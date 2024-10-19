@@ -1,0 +1,20 @@
+@import "../../_styles/variables.scss";
+
+.spinner {
+  border: 2px solid rgba(255, 255, 255, 0.3); /* Color más claro para el borde */
+  border-top-color: $white; /* Color más fuerte para la parte superior */
+  border-right-color: $white; /* Hace que el spinner parezca girar más fluidamente */
+  border-radius: 50%;
+  width: 18px; /* Ajusta el tamaño para que encaje bien en un botón */
+  height: 18px;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
