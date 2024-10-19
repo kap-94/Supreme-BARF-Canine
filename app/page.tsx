@@ -1,4 +1,11 @@
-import { About, Benefits, Hero, ProductGrid, FoodCalculator } from "./_modules";
+import {
+  About,
+  Benefits,
+  Hero,
+  ProductGrid,
+  FoodCalculator,
+  FrequentAskedQuestions,
+} from "./_modules";
 
 export default function Home() {
   return (
@@ -9,6 +16,7 @@ export default function Home() {
         <Benefits />
         <ProductGrid />
         <FoodCalculator />
+        <FrequentAskedQuestions />
       </main>
     </div>
   );
