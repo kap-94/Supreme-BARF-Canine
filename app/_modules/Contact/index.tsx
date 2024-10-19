@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import classNames from "classnames/bind";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -46,10 +47,14 @@ const Contact: React.FC = () => {
       <div className={cx("contact__content")}>
         {/* Formulario de contacto */}
         <div className={cx("contact__form")}>
-          <Typography variant="h3">
-            {/* Contáctanos para más información y asistencia */}
-            ¿Cómo podemos ayudarte?
-          </Typography>
+          <div className={cx("contact__form-heading")}>
+            <Typography variant="h3">¿Cómo Podemos Ayudarte?</Typography>
+
+            <Typography variant="p1" align="center">
+              Contactanos y te contestaremos a la brevedad
+            </Typography>
+          </div>
+
           <Formik
             initialValues={initialValues}
             validationSchema={ContactFormSchema}
@@ -114,6 +119,13 @@ const Contact: React.FC = () => {
         </div>
         {/* Información de contacto */}
         <div className={cx("contact__info")}>
+          {/* <Image
+            src={logo}
+            height={140}
+            width={140}
+            className={cx("contact__logo")}
+            alt="Supreme BARF Canine"
+          /> */}
           <Typography variant="h2" align="center">
             SUPREME <span style={{ fontWeight: 600 }}>BARF</span> CANINE
           </Typography>

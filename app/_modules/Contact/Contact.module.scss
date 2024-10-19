@@ -42,7 +42,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 48px;
+    gap: 56px;
     width: 600px;
 
     @media only screen and (max-width: $xlarge) {
@@ -54,6 +54,12 @@
       width: 100%;
       padding-inline: 16px;
     }
+  }
+
+  &__form-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
 
   &__submit-button {
@@ -68,9 +74,13 @@
   }
 
   &__input {
-    background-color: transparent;
-    border: solid 1.5px $black;
+    background-color: rgba(#e7dfd9, 0.3);
+    border: solid 1.7px rgba($black, 0.7);
     padding: 16px;
+
+    &::placeholder {
+      color: rgba($black, 0.7);
+    }
   }
 
   &__info {
@@ -78,6 +88,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 20px;
   }
 
