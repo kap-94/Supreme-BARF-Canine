@@ -15,11 +15,12 @@ $grid-width: rem(calc(1120 + 64));
 $column-gap: rem(32);
 
 // Breakpoints
+// $large: 1024px;
+// $xxlarge: 1440px;
+
 $small: 480px;
 $medium: 768px;
-$large: 1024px;
-$xlarge: 1200px;
-$xxlarge: 1440px;
+$xlarge: 1348px;
 
 // // Typography
 
@@ -27,13 +28,15 @@ $xxlarge: 1440px;
 $primary: #1f3a41;
 $secondary: #f9f1eb;
 $secondary-light: #fef8f4;
+$secondary-dark: #bf9071;
 $accent: #ec863b;
 $white: #fdfdff;
 $black: #222;
 $error: #c92a07;
 
 // Border Radious
-$card-radious: 14px;
+$card-radious: 6px;
+$input-radious: 4px;
 
 // Box Shadows
 $shadow-primary: 0 15px 35px rgba(0, 0, 0, 0.1);
