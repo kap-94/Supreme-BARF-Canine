@@ -58,7 +58,7 @@
       .card-list-container__circle {
         position: relative;
         top: 0; // Alinear con la parte superior del ítem
-        left: 5px;
+        left: 4px;
       }
     }
   }
@@ -68,11 +68,11 @@
     height: 16px;
     background: radial-gradient(
       circle,
-      rgba($primary, 0.6) 0%,
-      rgba($secondary, 1) 100%
+      rgba($primary, 0.75) 0%,
+      rgba($primary, 1) 100%
     );
     border-radius: 50%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra suave */
+    // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra suave */
     position: relative;
     flex-shrink: 0;
 
@@ -80,7 +80,7 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 
     /* Borde alrededor del círculo */
-    border: 2px solid rgba(255, 255, 255, 0.5); /* Borde sutil */
+    // border: 1px solid rgba(255, 255, 255, 0.5); /* Borde sutil */
   }
 
   &__number-top {
