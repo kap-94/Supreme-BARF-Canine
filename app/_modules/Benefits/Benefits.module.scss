@@ -3,14 +3,19 @@
 
 .benefits {
   background-color: $white;
+  background-color: $secondary;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 180px 36px;
 
-  @media only screen and (max-width: 1348px) {
-    padding: 120px 24px;
+  @media only screen and (max-width: $xlarge) {
+    padding: 100px 24px 80px;
+  }
+
+  @media only screen and (max-width: $medium) {
+    padding: 80px 24px;
   }
 
   &__content {
@@ -21,7 +26,7 @@
     width: 100%;
     gap: 80px;
 
-    @media only screen and (max-width: 1348px) {
+    @media only screen and (max-width: $xlarge) {
       flex-direction: column-reverse;
       gap: 48px;
       max-width: 620px;
@@ -38,7 +43,7 @@
     aspect-ratio: 1 / 1;
     position: relative;
 
-    @media only screen and (max-width: 1348px) {
+    @media only screen and (max-width: $xlarge) {
       width: 100%;
     }
   }
@@ -53,7 +58,7 @@
     flex-direction: column;
     gap: 40px;
 
-    @media only screen and (max-width: 1348px) {
+    @media only screen and (max-width: $xlarge) {
       width: 100%;
     }
   }
