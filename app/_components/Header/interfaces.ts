@@ -1,5 +1,5 @@
 import { ButtonProps as ButtonItem } from "../Button";
-import { DropdownProps as DropdownItem } from "../Dropdown/Dropdown";
+import { DropdownProps as DropdownItem } from "../Dropdown";
 import { MenuItem } from "../MenuList";
 import { Logos } from "./HeaderLogo";
 

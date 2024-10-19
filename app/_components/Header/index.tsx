@@ -9,7 +9,7 @@ import Menulist from "../MenuList";
 // import PopUpNotification from "../PopUpNotification/PopUpNotification";
 import { Button, Typography } from "@/app/_components";
 import HeaderLogo from "@/app/_components/Header/HeaderLogo";
-import { Option } from "@/app/_components/Dropdown/Dropdown";
+import { Option } from "@/app/_components/Dropdown";
 
 import styles from "./Header.module.scss";
 
