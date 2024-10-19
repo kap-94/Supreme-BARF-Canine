@@ -5,10 +5,10 @@
 //   src: url(../fonts/Kepler/Kepler-Std-Display_26108.ttf) format("truetype");
 // }
 
-// @font-face {
-//   font-family: Raleway;
-//   src: url(../fonts/Raleway/Raleway-Medium.ttf) format("truetype");
-// }
+@font-face {
+  font-family: Raleway;
+  src: url(../_fonts/Raleway/Raleway-Medium.ttf) format("truetype");
+}
 
 $root-size: 16;
 $grid-width: rem(calc(1120 + 64));
@@ -22,7 +22,8 @@ $small: 480px;
 $medium: 768px;
 $xlarge: 1348px;
 
-// // Typography
+// Fonts
+$raleway-font: "Raleway", sans-serif;
 
 // Colors
 $primary: #1f3a41;
