@@ -1,11 +1,10 @@
 import React from "react";
+import Image from "next/image";
 import classNames from "classnames/bind";
+import { Typography, Button, Icon } from "../../_components";
 import heroDog from "@/public/dog.png";
 import heroMeat from "@/public/meat.png";
 import styles from "./Hero.module.scss";
-import Image from "next/image";
-import { Typography, Icon } from "../../_components";
-import Button from "../../_components/Button";
 
 const cx = classNames.bind(styles);
 
