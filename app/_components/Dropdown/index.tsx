@@ -17,6 +17,8 @@ export interface Option {
 }
 
 export interface DropdownProps {
+  label?: string;
+  id?: string;
   options: Option[];
   selected: Option;
   onSelectedChange?: Dispatch<Option>;
@@ -29,6 +31,8 @@ export interface DropdownProps {
 const cx = classnames.bind(styles);
 
 const Dropdown: FC<DropdownProps> = ({
+  label,
+  id,
   options,
   selected,
   onSelectedChange,
@@ -69,10 +73,11 @@ const Dropdown: FC<DropdownProps> = ({
     };
   }, [closeOnScroll]);
 
-  const sortedOptions = options.sort((a, b) => {
-    if (a.value < b.value) return -1;
-    if (a.value > b.value) return 1;
-    return 0;
+  // Ordenar las opciones numéricamente sin mutar el array original
+  const sortedOptions = [...options].sort((a, b) => {
+    const valueA = parseInt(a.value, 10);
+    const valueB = parseInt(b.value, 10);
+    return valueA - valueB;
   });
 
   const renderedOptions = sortedOptions.map((option, i) => {
@@ -84,48 +89,67 @@ const Dropdown: FC<DropdownProps> = ({
       <div
         key={i}
         className={cx("dropdown__item")}
-        onClick={() => onSelectedChange && onSelectedChange(option)} // Verifica si `onSelectedChange` está definido
+        onClick={() => onSelectedChange && onSelectedChange(option)}
       >
-        {option.value}
+        {option.label}
       </div>
     );
   });
 
   return (
     <div ref={ref} className={cx("dropdownWrapper")}>
+      {label && (
+        <label htmlFor={id} className={cx("dropdown__label")}>
+          {label}
+        </label>
+      )}
       <div className={cx("field")}>
-        <label className={cx("label")}>
+        <div className={cx("dropdownContainer")}>
           <div
             onClick={() => setOpen(!open)}
             className={cx("dropdown", `dropdown__${variant}`, className, {
               dropdown__active: open,
             })}
             style={inlineStyles}
+            id={id}
+            aria-haspopup="listbox"
+            aria-expanded={open}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                setOpen(!open);
+              }
+            }}
           >
             <div className={cx("dropdown__text")}>
               <div className={cx("dropdown__selected")}>
-                {/* <h6>{selected.label}:</h6> */}
                 <Typography
                   variant="p2"
                   className={cx("dropdown__selected-text")}
                 >
-                  {selected.value}
+                  {selected.label}
                 </Typography>
               </div>
               <Icon
                 icon="dropDown"
-                color={variant === "transparent" ? "white" : "black"}
+                color={variant === "transparent" ? "white" : "primary"}
                 width={12}
                 height={12}
               />
             </div>
-            <div
-              className={cx("dropdown__menu", { dropdown__menuActive: open })}
-            >
-              {renderedOptions}
-            </div>
+            {open && (
+              <div
+                className={cx("dropdown__menu", {
+                  dropdown__menuActive: open,
+                })}
+                role="listbox"
+              >
+                {renderedOptions}
+              </div>
+            )}
           </div>
-        </label>
+        </div>
       </div>
     </div>
   );
