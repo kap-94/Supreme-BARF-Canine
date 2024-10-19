@@ -1,0 +1,60 @@
+@import "../../_styles/variables.scss";
+
+.alert {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-radius: inherit;
+  width: 100%; // Ajuste para que ocupe todo el ancho del Snackbar
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+  padding-right: 46px;
+
+  // text-transform: uppercase;
+
+  &--outlined {
+    border-width: 1px;
+    border-style: solid;
+    background-color: transparent;
+  }
+
+  &--filled {
+    // Estilos específicos para variantes llenas se pueden agregar aquí
+  }
+
+  &--error {
+    color: $error;
+    border-color: $error;
+    background-color: $error;
+  }
+
+  &--warning {
+    color: $warning;
+    border-color: $warning;
+    background-color: $warning;
+  }
+
+  &--info {
+    color: $information;
+    border-color: $information;
+    background-color: $information;
+  }
+
+  &--success {
+    color: $success;
+    border-color: $success;
+    background-color: $success;
+  }
+
+  &__content {
+    flex-grow: 1;
+    // Añadir estilos para el texto o contenido adicional aquí
+  }
+}
+
+// Estilos de respuesta para diferentes tamaños de pantalla
+@media only screen and (max-width: 600px) {
+  .alert {
+    padding: 0.5rem;
+    border-radius: 4px;
+  }
+}
