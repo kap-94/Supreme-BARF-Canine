@@ -46,7 +46,6 @@ const ProductCard: FC<ProductCardProps> = ({
           <Typography
             variant="h4"
             fontWeight={700}
-            color="white"
             className={cx("product-card__title")}
           >
             {title}

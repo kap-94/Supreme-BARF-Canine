@@ -22,7 +22,7 @@
     flex-direction: column;
     margin-bottom: 24px;
     padding: 60px 36px 36px;
-    background-color: rgba($secondary-dark, 0.5);
+    background-color: $secondary-dark;
     border: 5px solid $white;
     border-radius: $card-radious;
 
@@ -51,7 +51,6 @@
 
   &__title {
     font-size: rem(28) !important;
-    color: #3a2315 !important;
 
     @media only screen and (max-width: 680px) {
       font-size: rem(24) !important;
