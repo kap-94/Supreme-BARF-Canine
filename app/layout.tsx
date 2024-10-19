@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Raleway } from "next/font/google";
 import { Header, Footer } from "@/app/_components";
 import { footerPayload, payloadPrimary } from "./_lib/data";
+import whatsappImage from "@/public/whatsapp.png";
 import "@/app/_styles/globals.scss";
 
 // Importar las fuentes con las variantes que desees
@@ -40,6 +42,16 @@ export default function RootLayout({
           frontPageID={footerPayload.frontPageID}
           options={footerPayload.options}
         />
+
+        {/* Ícono de WhatsApp fijo */}
+        <a
+          href="https://wa.me/521XXXXXXXXXX" // Reemplaza con tu número de WhatsApp
+          className="whatsapp-float"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image src={whatsappImage} alt="WhatsApp" width="50" height="50" />
+        </a>
       </body>
     </html>
   );
