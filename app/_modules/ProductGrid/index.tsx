@@ -48,12 +48,19 @@ const ProductGrid: React.FC<ProductGridProps> = ({
 }) => {
   return (
     <section className={cx("product-grid")} id={customAnchorId}>
-      <SectionHeader title="Nuestros Productos" align="left" />
+      <SectionHeader
+        title="Nuestros Productos"
+        subtitle="La Mejor Comida Natural para el Bienestar de tu Mascota"
+        align="center"
+        className={cx("product-grid__header")}
+      />
+
       <div className={cx("product-grid__background")}></div>
+
       <div className={cx("product-grid__cards")}>
         {productCardsPayload
           .filter((_, idx) => idx < 2)
-          .map((item) => (
+          .map((item, idx) => (
             <ProductCard
               key={item.title}
               image={item.image}
@@ -61,6 +68,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
               excerpt={item.excerpt}
               title={item.title}
               eyebrow={item.eyebrow}
+              className={idx === 0 ? cx("product-grid__first-product") : ""}
             />
           ))}
       </div>

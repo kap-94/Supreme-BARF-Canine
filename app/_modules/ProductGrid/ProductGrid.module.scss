@@ -2,19 +2,30 @@
 @import "../../_styles/variables.scss";
 
 .product-grid {
-  // align-items: center;
-  background-color: $secondary;
+  background-color: $secondary-light;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 160px 36px;
+  padding: 60px 36px 160px;
   position: relative;
-  max-width: 1160px;
   margin-inline: auto;
+  gap: 80px;
 
-  @media only screen and (max-width: 1348px) {
-    padding: 120px 24px;
+  @media only screen and (max-width: $xlarge) {
+    padding: 40px 24px 100px;
     max-width: 620px;
+    gap: 60px;
+  }
+
+  @media only screen and (max-width: $medium) {
+    padding: 60px 24px;
+  }
+
+  &__header {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 1160px;
+    z-index: 1;
   }
 
   &__background {
@@ -23,10 +34,10 @@
     height: 450px;
     left: 0;
     position: absolute;
-    background-color: none;
-    display: none;
+    background-color: $secondary;
+    // display: none;
 
-    @media only screen and (max-width: 1348px) {
+    @media only screen and (max-width: $xlarge) {
       height: 390px;
     }
 
@@ -43,13 +54,19 @@
     overflow: hidden;
     scroll-behavior: auto;
     scroll-snap-type: mandatory;
-    gap: 48px;
+    gap: 40px;
     margin-inline: auto;
 
-    @media only screen and (max-width: 1348px) {
+    img[alt="Imagen del Producto 1"] {
+      width: 80% !important;
+      height: 80% !important;
+      margin: auto;
+      transform: translateY(-16px);
+    }
+
+    @media only screen and (max-width: $xlarge) {
       flex-direction: column;
       align-items: center;
-      min-width: 600px;
       max-width: 900px;
       padding: 0;
     }
