@@ -14,6 +14,7 @@ import IconButton from "./IconButton";
 import MenuList from "./MenuList";
 import ProductCard from "./ProductCard";
 import SectionHeader from "./SectionHeader";
+import TextArea from "./TextArea";
 import TextField from "./TextField";
 import Typography from "./Typography";
 
@@ -34,6 +35,7 @@ export {
   Rating,
   SectionHeader,
   Tags,
+  TextArea,
   TextField,
   Typography,
 };
