@@ -1,15 +1,17 @@
 import About from "./About";
 import Benefits from "./Benefits";
-import Hero from "./Hero";
-import ProductGrid from "./ProductGrid";
+import Contact from "./Contact";
 import FoodCalculator from "./FoodCalculator";
 import FrequentAskedQuestions from "./FrequentAskedQuestions";
+import Hero from "./Hero";
+import ProductGrid from "./ProductGrid";
 
 export {
   About,
   Benefits,
-  Hero,
-  ProductGrid,
+  Contact,
   FoodCalculator,
   FrequentAskedQuestions,
+  Hero,
+  ProductGrid,
 };

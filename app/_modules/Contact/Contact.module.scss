@@ -1,0 +1,90 @@
+@import "../../_styles/variables.scss";
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 160px 36px;
+  gap: 90px;
+  max-width: 1440px;
+  margin-inline: auto;
+
+  @media only screen and (max-width: $xlarge) {
+    padding: 120px 48px 140px;
+    gap: 60px;
+  }
+
+  @media only screen and (max-width: $medium) {
+    padding: 60px 24px 90px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 80px;
+
+    @media only screen and (max-width: $xlarge) {
+      flex-direction: column-reverse;
+      gap: 72px;
+      max-width: 620px;
+    }
+
+    @media only screen and (max-width: $medium) {
+      max-width: unset;
+      width: 100%;
+    }
+  }
+
+  &__form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+    width: 600px;
+
+    @media only screen and (max-width: $xlarge) {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+
+    @media only screen and (max-width: $medium) {
+      width: 100%;
+      padding-inline: 16px;
+    }
+  }
+
+  &__submit-button {
+    margin-top: 32px;
+    margin-inline: auto;
+
+    img {
+      transform: translateY(-3px);
+      height: 30px;
+      width: 30px;
+    }
+  }
+
+  &__input {
+    background-color: transparent;
+    border: solid 1.5px $black;
+    padding: 16px;
+  }
+
+  &__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 24px;
+  }
+}
