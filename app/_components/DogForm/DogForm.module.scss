@@ -1,0 +1,69 @@
+@import "../../_styles/variables.scss";
+@import "../../_styles/mixins.scss";
+
+.dog-form {
+  // padding: 40px;
+
+  // @media only screen and (max-width: $medium) {
+  //   padding: 20px;
+  // }
+  width: 100%;
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 44px;
+
+    @media only screen and (max-width: $medium) {
+      flex-direction: column;
+      gap: 32px;
+    }
+  }
+
+  &__form,
+  &__results {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__form {
+    gap: 30px;
+
+    @media only screen and (max-width: $medium) {
+      width: 100%;
+      gap: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+
+      &--double {
+        display: flex;
+        gap: 16px;
+
+        .form-group__dropdown {
+          flex: 1;
+        }
+      }
+    }
+  }
+
+  &__results {
+    gap: 48px;
+
+    @media only screen and (max-width: $medium) {
+      gap: 24px;
+    }
+  }
+
+  &__result-details {
+    p {
+      font-size: 16px;
+      line-height: 1.5;
+      color: $black;
+      margin-bottom: 24px;
+    }
+  }
+}

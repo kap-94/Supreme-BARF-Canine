@@ -13,6 +13,7 @@ interface ProductCardProps {
   button: { url: string; target: string; title: string };
   image: { url: string; alt: string };
   fontColor?: string;
+  className?: string;
 }
 
 const ProductCard: FC<ProductCardProps> = ({
@@ -22,9 +23,10 @@ const ProductCard: FC<ProductCardProps> = ({
   button,
   image,
   fontColor = "#2c2929",
+  className,
 }) => {
   return (
-    <div className={cx("product-card")}>
+    <div className={cx("product-card", className)}>
       {/* Header con imagen y overlay */}
       <div className={cx("product-card__header")}>
         <div className={cx("product-card__image")}>
@@ -44,6 +46,7 @@ const ProductCard: FC<ProductCardProps> = ({
           <Typography
             variant="h4"
             fontWeight={700}
+            color="white"
             className={cx("product-card__title")}
           >
             {title}
@@ -56,6 +59,7 @@ const ProductCard: FC<ProductCardProps> = ({
         <Typography
           variant="p1"
           className={cx("product-card__excerpt")}
+          align="center"
           style={{ color: fontColor }}
         >
           {excerpt}
@@ -74,7 +78,7 @@ const ProductCard: FC<ProductCardProps> = ({
         </Button> */}
 
         <Button variant="link-dark" icon="right-arrow" href="/">
-          Comprar y ahorra
+          Compra y ahorra
         </Button>
       </div>
     </div>
