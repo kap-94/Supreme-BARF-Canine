@@ -9,17 +9,17 @@ const cx = classNames.bind(styles);
 
 const benefitsData = [
   {
-    title: "Nutrición Equilibrada para Tu Perro",
+    title: "Nutrición equilibrada para tu perro",
     description:
       "Supreme BARF Canine es una dieta basada en alimentos crudos, cuidadosamente seleccionados para brindarle a tu perro una nutrición equilibrada y completa.",
   },
   {
-    title: "Ingredientes 100% Naturales",
+    title: "Ingredientes 100% naturales",
     description:
       "Compuesto de una mezcla de carnes magras, vegetales frescos y superalimentos como el aceite de salmón y semillas de chía.",
   },
   {
-    title: "Salud Digestiva, Inmunológica y Dermatológica",
+    title: "Salud digestiva, inmunológica y dermatológica",
     description:
       "Nuestro producto está diseñado para mejorar su digestión, fortalecer su sistema inmunológico y mantener su piel y pelaje saludables.",
   },
