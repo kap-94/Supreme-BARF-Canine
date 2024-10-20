@@ -23,12 +23,12 @@
 
   &__line {
     position: absolute;
-    left: 10px;
+    left: 8px;
     top: 0;
     bottom: 0;
     width: 4px;
 
-    background-color: rgba($primary, 0.8);
+    background-color: rgba($primary, 0.85);
     border-radius: 3px;
   }
 
@@ -37,7 +37,7 @@
     flex-direction: row;
     align-items: flex-start; // Alinear los elementos al inicio del ítem
     position: relative;
-    max-width: 500px;
+    max-width: 540px;
 
     &--numbered {
       // Muestra el número en la parte superior izquierda
@@ -57,30 +57,24 @@
       // Aparece el círculo
       .card-list-container__circle {
         position: relative;
-        top: 0; // Alinear con la parte superior del ítem
+        top: 0;
         left: 4px;
       }
     }
   }
 
   &__circle {
-    width: 16px; /* Tamaño un poco mayor para resaltar */
-    height: 16px;
+    width: 12px;
+    height: 12px;
     background: radial-gradient(
       circle,
       rgba($primary, 0.75) 0%,
       rgba($primary, 1) 100%
     );
     border-radius: 50%;
-    // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra suave */
     position: relative;
     flex-shrink: 0;
-
-    /* Animación sutil al hacer hover */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-    /* Borde alrededor del círculo */
-    // border: 1px solid rgba(255, 255, 255, 0.5); /* Borde sutil */
   }
 
   &__number-top {
