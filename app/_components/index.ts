@@ -8,6 +8,7 @@ import CardListContainer from "./CardListContainer";
 import Dropdown from "./Dropdown";
 import DogForm from "./DogForm";
 import Footer from "./Footer/Footer";
+import GoogleAnalytics from "./GoogleAnalytics";
 import Hamburger from "./Hamburger/Hamburger";
 import Header from "./Header";
 import Icon from "./CustomIcon";
@@ -30,6 +31,7 @@ export {
   Dropdown,
   DogForm,
   Footer,
+  GoogleAnalytics,
   Hamburger,
   Header,
   Icon,

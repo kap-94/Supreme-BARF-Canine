@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Raleway } from "next/font/google";
-import { Header, Footer } from "@/app/_components";
+import { Header, Footer, GoogleAnalytics } from "@/app/_components"; // Asegúrate de importar GoogleAnalytics
 import { footerPayload, payloadPrimary } from "./_lib/data";
 import whatsappImage from "@/public/whatsapp.png";
 import "@/app/_styles/globals.scss";
@@ -28,6 +28,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <GoogleAnalytics />
+      </head>
       <body className={`${raleway.className}`}>
         <Header
           data={payloadPrimary.data}
