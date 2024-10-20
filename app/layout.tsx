@@ -43,9 +43,8 @@ export default function RootLayout({
           options={footerPayload.options}
         />
 
-        {/* Ícono de WhatsApp fijo */}
         <a
-          href="https://wa.me/521XXXXXXXXXX" // Reemplaza con tu número de WhatsApp
+          href="https://wa.me/+5215649395148"
           className="whatsapp-float"
           target="_blank"
           rel="noopener noreferrer"
