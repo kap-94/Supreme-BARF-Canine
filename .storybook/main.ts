@@ -2,8 +2,7 @@ import type { StorybookConfig } from "@storybook/nextjs";
 
 const config: StorybookConfig = {
   stories: [
-    "../stories/**/*.mdx",
-    "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    "../app/**/**/*.stories.tsx", // Busca historias dentro de cada componente
   ],
   addons: [
     "@storybook/addon-onboarding",
@@ -18,4 +17,5 @@ const config: StorybookConfig = {
   },
   staticDirs: ["../public"],
 };
+
 export default config;
