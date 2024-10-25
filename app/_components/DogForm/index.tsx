@@ -145,6 +145,7 @@ const DogForm: React.FC = () => {
                       label="¿Cuánto pesa mi perro? (kg)"
                       name="dogWeight"
                       type="number"
+                      // className={cx("dog-form__input")}
                       placeholder="Ej. 10.5"
                       min="1"
                       variant="primary"
@@ -246,26 +247,31 @@ const DogForm: React.FC = () => {
             )} */}
 
             {/* Sección de Tips */}
-            <div className={cx("tips-section")}>
-              <Typography variant="h5">
+            <div className={cx("dog-form__tips")}>
+              <Typography
+                variant="p1"
+                fontFamily="poppins"
+                fontWeight={600}
+                className={cx("dog-form__tips-title")}
+              >
                 Consejos para una mejor alimentación
               </Typography>
-              <br />
-              <ul className={cx("tips-list")}>
+
+              <ul className={cx("dog-form__tips-list")}>
                 <li>
-                  <Typography variant="p2">
+                  <Typography variant="p2" fontWeight={500}>
                     Divide la cantidad diaria de alimento en 2 o 3 comidas para
                     mejorar la digestión de tu perro.
                   </Typography>
                 </li>
                 <li>
-                  <Typography variant="p1">
+                  <Typography variant="p2" fontWeight={500}>
                     Asegúrate de que tu perro siempre tenga acceso a agua fresca
                     y limpia durante todo el día.
                   </Typography>
                 </li>
                 <li>
-                  <Typography variant="p1">
+                  <Typography variant="p2" fontWeight={500}>
                     Consulta a tu veterinario regularmente para ajustar la
                     cantidad de comida según las necesidades específicas de tu
                     perro.

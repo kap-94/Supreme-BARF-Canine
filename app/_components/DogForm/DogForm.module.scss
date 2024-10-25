@@ -2,18 +2,13 @@
 @import "../../_styles/mixins.scss";
 
 .dog-form {
-  // padding: 40px;
-
-  // @media only screen and (max-width: $medium) {
-  //   padding: 20px;
-  // }
   width: 100%;
 
   &__content {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 44px;
+    gap: 40px;
 
     @media only screen and (max-width: $medium) {
       flex-direction: column;
@@ -47,11 +42,15 @@
           flex: 1;
         }
       }
+
+      input {
+        border: 1px solid rgba($black-color, 0.2);
+      }
     }
   }
 
   &__results {
-    gap: 48px;
+    gap: 28px;
 
     @media only screen and (max-width: $medium) {
       gap: 24px;
@@ -59,16 +58,53 @@
   }
 
   &__result-details {
-    p {
+    > p:first-of-type {
+      margin-bottom: 36px;
       font-size: 16px;
+      font-weight: 500;
       line-height: 1.5;
-      color: $black;
-      margin-bottom: 24px;
+      color: $black-color;
+      margin-bottom: 48px;
+
+      @media only screen and (max-width: $medium) {
+        margin-bottom: 32px;
+      }
     }
 
     strong:last-child {
-      font-size: 20px;
+      font-size: 22px;
       text-decoration: underline;
+    }
+  }
+
+  &__tips-title {
+    margin-bottom: 16px;
+  }
+
+  &__tips-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-left: 6px;
+
+    @media only screen and (max-width: $medium) {
+      padding-left: 0;
+    }
+
+    li {
+      list-style: decimal-leading-zero;
+
+      @media only screen and (max-width: $medium) {
+        list-style: none;
+      }
+
+      &::marker {
+        font-weight: 600;
+      }
+    }
+
+    p {
+      font-size: 14.8px;
     }
   }
 }

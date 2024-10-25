@@ -89,11 +89,21 @@ const useCalculateFoodAmount = (values: DogFormValues): CalculationResult => {
           pregnancyMultiplier) /
         (1850 / 1000);
 
-      const foodAmountMessage = `Para un perro de <strong>${dogYears} años</strong> y <strong>${dogMonths} meses</strong>, que pesa <strong>${weight} kg</strong>, <strong>${
+      // Construcción dinámica del mensaje
+      let foodAmountMessage = `Para un perro de <strong>${dogYears} años</strong> y <strong>${dogMonths} meses</strong>, que pesa <strong>${weight} kg</strong>, <strong>${
         sterilized === "Esterilizado" ? "esterilizado" : "no esterilizado"
-      }</strong>, con un <strong>nivel de actividad ${activityLevel.toLowerCase()}</strong> y estado de <strong>${pregnancyStatus.toLowerCase()}</strong>, la cantidad recomendada de alimento es <strong>${Math.round(
-        totalFoodAmount
-      )} gramos al día.</strong>`;
+      }</strong>, `;
+
+      // Ajustar la conexión y agregar nivel de actividad
+      if (pregnancyStatus === "No aplica") {
+        foodAmountMessage += `y con un <strong>nivel de actividad ${activityLevel.toLowerCase()}</strong>, la cantidad recomendada de alimento es: </br><strong>${Math.round(
+          totalFoodAmount
+        )} gramos al día.</strong>`;
+      } else {
+        foodAmountMessage += `con un <strong>nivel de actividad ${activityLevel.toLowerCase()}</strong> y estado de <strong>${pregnancyStatus.toLowerCase()}</strong>, la cantidad recomendada de alimento es: </br><strong>${Math.round(
+          totalFoodAmount
+        )} gramos al día.</strong>`;
+      }
 
       const additionalMessage = `Recuerda que dividir la ración diaria en dos o tres comidas puede mejorar la digestión de tu perro. Además, siempre proporciona agua fresca para mantener su hidratación.`;
 
