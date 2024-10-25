@@ -1,7 +1,7 @@
 @import "../../_styles/variables.scss"; /* Asegúrate de tener las variables definidas */
 
 .about {
-  background-color: $primary;
+  background-color: $primary-color;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -63,6 +63,10 @@
         width: 100%;
       }
 
+      a {
+        margin-bottom: 8px;
+      }
+
       p {
         max-width: 446px;
       }
@@ -75,7 +79,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 5px solid $white;
+    border: 5px solid $white-color;
     border-radius: 4px;
     aspect-ratio: 1 / 1;
 

@@ -2,7 +2,7 @@
 @import "../../_styles/variables.scss";
 
 .product-grid {
-  background-color: $secondary-light;
+  background-color: $secondary-color-light;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,7 +18,7 @@
   }
 
   @media only screen and (max-width: $medium) {
-    padding: 60px 24px;
+    padding: 60px 24px 80px;
   }
 
   &__header {
@@ -34,8 +34,7 @@
     height: 450px;
     left: 0;
     position: absolute;
-    background-color: $secondary;
-    // display: none;
+    background-color: $secondary-color;
 
     @media only screen and (max-width: $xlarge) {
       height: 390px;
@@ -46,34 +45,64 @@
     }
   }
 
-  &__cards {
+  &__content {
     display: flex;
-    justify-content: center;
-    // min-width: 1160px;
+    justify-content: space-between;
+    align-items: flex-start;
     max-width: 1160px;
-    overflow: hidden;
-    scroll-behavior: auto;
-    scroll-snap-type: mandatory;
-    gap: 40px;
     margin-inline: auto;
-
-    img[alt="Imagen del Producto 1"] {
-      width: 80% !important;
-      height: 80% !important;
-      margin: auto;
-      transform: translateY(-16px);
-    }
+    gap: 48px;
 
     @media only screen and (max-width: $xlarge) {
       flex-direction: column;
       align-items: center;
-      max-width: 900px;
-      padding: 0;
+      gap: 16px;
     }
+  }
 
-    @media only screen and (max-width: 680px) {
-      min-width: unset;
+  &__card {
+    width: 50%;
+    position: relative;
+
+    @media only screen and (max-width: $xlarge) {
       width: 100%;
     }
+  }
+
+  &__description {
+    padding-top: 48px;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    z-index: 1;
+    gap: 20px;
+    max-width: 446px;
+
+    @media only screen and (max-width: $xlarge) {
+      padding-top: 24px;
+      width: 100%;
+      // text-align: center;
+    }
+
+    @media only screen and (max-width: $medium) {
+      padding-top: 16px;
+    }
+  }
+
+  &__title {
+    margin-bottom: 10px;
+  }
+
+  &__button {
+    margin-top: 16px;
+  }
+
+  img[alt="Imagen del Producto"] {
+    //   width: 80% !important;
+    //   height: 80% !important;
+    //   margin: auto;
+    transform: translateY(24px);
   }
 }

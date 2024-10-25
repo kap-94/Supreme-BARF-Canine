@@ -1,42 +1,26 @@
 @import "functions.scss";
 
-// @font-face {
-//   font-family: Kepler;
-//   src: url(../fonts/Kepler/Kepler-Std-Display_26108.ttf) format("truetype");
-// }
-
-@font-face {
-  font-family: Raleway;
-  src: url(../_fonts/Raleway/Raleway-Medium.ttf) format("truetype");
-}
-
 $root-size: 16;
 $grid-width: rem(calc(1120 + 64));
 $column-gap: rem(32);
 
 // Breakpoints
-// $large: 1024px;
-// $xxlarge: 1440px;
-
 $small: 480px;
 $medium: 768px;
 $xlarge: 1348px;
 
-// Fonts
-$raleway-font: "Raleway", sans-serif;
-
-// Colors
-$primary: #1f3a41;
-$secondary: #f9f1eb;
-$secondary-light: #fef8f4;
-$secondary-dark: #e6d1c3;
-$accent: #ec863b;
-$white: #fdfdff;
-$black: #222;
-$success: #4bb050;
-$warning: #e1b667;
-$information: #2196f3;
-$error: #c92a07;
+// Colors (También deben ser asignados en el componente Typography)
+$primary-color: #1f3a41;
+$secondary-color: #f9f1eb;
+$secondary-color-light: #fef8f4;
+$secondary-color-dark: #e7c8b3;
+$accent-color: #ec863b;
+$white-color: #fdfdff;
+$black-color: #222;
+$success-color: #4bb050;
+$warning-color: #e1b667;
+$information-color: #2196f3;
+$error-color: #c92a07;
 
 // Border Radious
 $card-radious: 6px;

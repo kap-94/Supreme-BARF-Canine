@@ -2,7 +2,7 @@
 @import "../../_styles/variables.scss";
 
 .benefits {
-  background-color: $secondary;
+  background-color: $secondary-color;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -60,6 +60,10 @@
     @media only screen and (max-width: $xlarge) {
       width: 100%;
     }
+
+    @media only screen and (max-width: $medium) {
+      gap: 48px;
+    }
   }
 
   &__item {
@@ -70,7 +74,7 @@
   }
 
   &__item-number {
-    color: $primary;
+    color: $primary-color;
     font-size: 18px;
     font-weight: 900;
     margin-right: 4px;

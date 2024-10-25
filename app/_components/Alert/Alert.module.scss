@@ -3,11 +3,11 @@
 .alert {
   display: flex;
   align-items: center;
-  padding: 1rem;
+  padding: 16px 32px;
   border-radius: inherit;
   width: 100%; // Ajuste para que ocupe todo el ancho del Snackbar
   transition: background-color 0.3s, border-color 0.3s, color 0.3s;
-  padding-right: 46px;
+  padding-right: 58px;
 
   // text-transform: uppercase;
 
@@ -22,27 +22,27 @@
   }
 
   &--error {
-    color: $error;
-    border-color: $error;
-    background-color: $error;
+    color: $error-color;
+    border-color: $error-color;
+    background-color: $error-color;
   }
 
   &--warning {
-    color: $warning;
-    border-color: $warning;
-    background-color: $warning;
+    color: $warning-color;
+    border-color: $warning-color;
+    background-color: $warning-color;
   }
 
   &--info {
-    color: $information;
-    border-color: $information;
-    background-color: $information;
+    color: $information-color;
+    border-color: $information-color;
+    background-color: $information-color;
   }
 
   &--success {
-    color: $success;
-    border-color: $success;
-    background-color: $success;
+    color: $success-color;
+    border-color: $success-color;
+    background-color: $success-color;
   }
 
   &__content {

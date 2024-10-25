@@ -1,7 +1,11 @@
 @import "../../_styles/variables.scss";
 
 .hero {
-  background: linear-gradient(90deg, $secondary 55%, $secondary-light 45%);
+  background: linear-gradient(
+    90deg,
+    $secondary-color 55%,
+    $secondary-color-light 45%
+  );
   display: flex;
   height: 100vh;
   justify-content: center;
@@ -10,7 +14,7 @@
   overflow: hidden;
 
   @media only screen and (max-width: 1280px) {
-    background: $secondary;
+    background: $secondary-color;
     height: auto;
     margin-top: 230px;
     max-height: unset;
@@ -103,7 +107,8 @@
   }
 
   &__image--primary,
-  &__image--secondary {
+  &__image--secondary,
+  &__image--tertiary {
     display: flex;
     // filter: drop-shadow(0px 8px 20px rgba(0, 0, 0, 0.15));
     filter: drop-shadow(0px 8px 20px rgba(153, 115, 90, 0.3));
@@ -135,6 +140,21 @@
     }
   }
 
+  &__image--tertiary {
+    aspect-ratio: 1;
+    width: 50%;
+    position: absolute;
+    bottom: -120px;
+    right: -60px;
+    z-index: 3;
+
+    @media only screen and (max-width: 1280px) {
+      width: 48%;
+      bottom: -10vw;
+      right: 0;
+    }
+  }
+
   &__dog {
     object-fit: cover;
     // transform: scale(0.95) translateY(24px);
@@ -151,10 +171,17 @@
     object-fit: contain;
     transform: scale(0.95) translateY(24px);
     // transform: translateY(36px);
+    filter: brightness(1.05);
 
     @media only screen and (max-width: 1280px) {
       transform: unset;
       object-fit: contain;
     }
+  }
+
+  &__food {
+    object-fit: contain;
+    transform: rotate(-7deg);
+    filter: brightness(1.02);
   }
 }

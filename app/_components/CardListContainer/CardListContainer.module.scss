@@ -4,9 +4,9 @@
   display: flex;
   position: relative;
   max-height: 680px;
-  overflow-y: auto;
+  // overflow-y: auto;
   padding-right: 20px;
-  overflow-x: hidden;
+  // overflow-x: hidden;
 
   &--horizontal {
     flex-direction: row;
@@ -19,6 +19,10 @@
     gap: 60px;
     flex-direction: column;
     align-items: flex-start;
+
+    @media only screen and (max-width: $medium) {
+      gap: 40px;
+    }
   }
 
   &__line {
@@ -27,8 +31,8 @@
     top: 0;
     bottom: 0;
     width: 4px;
-
-    background-color: rgba($primary, 0.85);
+    bottom: -16px;
+    background-color: rgba($primary-color, 0.85);
     border-radius: 3px;
   }
 
@@ -47,7 +51,7 @@
         left: 0;
         font-size: 1.5rem;
         font-weight: bold;
-        color: $primary;
+        color: $primary-color;
         position: relative;
         top: 0; // Alinear con la parte superior del ítem
       }
@@ -68,8 +72,8 @@
     height: 12px;
     background: radial-gradient(
       circle,
-      rgba($primary, 0.75) 0%,
-      rgba($primary, 1) 100%
+      rgba($primary-color, 0.75) 0%,
+      rgba($primary-color, 1) 100%
     );
     border-radius: 50%;
     position: relative;
@@ -78,9 +82,9 @@
   }
 
   &__number-top {
-    font-size: 1.5rem;
+    font-size: 16px;
     font-weight: bold;
-    color: $primary;
+    color: $primary-color;
     position: absolute;
     // left: -25px; // Ajusta el número a la izquierda
   }

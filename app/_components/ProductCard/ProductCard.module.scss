@@ -15,15 +15,15 @@
 
   &__header {
     position: relative;
-    height: 600px;
+    height: 620px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     flex-direction: column;
     margin-bottom: 24px;
     padding: 60px 36px 36px;
-    background-color: $secondary-dark;
-    border: 5px solid $white;
+    background-color: $secondary-color-dark;
+    border: 5px solid $white-color;
     border-radius: $card-radious;
 
     @media only screen and (max-width: 1200px) {
@@ -45,7 +45,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-
+    transform: scale(1.02);
     filter: brightness(1.1) drop-shadow(0px 8px 20px rgba(153, 115, 90, 0.3));
   }
 
@@ -82,7 +82,7 @@
 
   &__button {
     p {
-      color: $black !important;
+      color: $black-color !important;
     }
   }
 

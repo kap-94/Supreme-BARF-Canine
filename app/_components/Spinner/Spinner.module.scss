@@ -2,8 +2,8 @@
 
 .spinner {
   border: 2px solid rgba(255, 255, 255, 0.3); /* Color más claro para el borde */
-  border-top-color: $white; /* Color más fuerte para la parte superior */
-  border-right-color: $white; /* Hace que el spinner parezca girar más fluidamente */
+  border-top-color: $white-color; /* Color más fuerte para la parte superior */
+  border-right-color: $white-color; /* Hace que el spinner parezca girar más fluidamente */
   border-radius: 50%;
   width: 18px; /* Ajusta el tamaño para que encaje bien en un botón */
   height: 18px;

@@ -93,7 +93,7 @@
   }
 
   &--primary {
-    background-color: $primary;
+    background-color: $primary-color;
 
     &:hover {
       filter: brightness(1.1);
@@ -106,7 +106,7 @@
     }
 
     .button__text {
-      color: $white;
+      color: $white-color;
     }
 
     .button__icon {
@@ -116,7 +116,7 @@
   }
 
   &--accent {
-    background-color: $accent;
+    background-color: $accent-color;
 
     &:hover {
       filter: brightness(1.1);
@@ -129,7 +129,7 @@
     }
 
     .button__text {
-      color: $white;
+      color: $white-color;
     }
 
     .button__icon {
@@ -139,10 +139,10 @@
   }
 
   &--secondary {
-    background-color: $secondary;
+    background-color: $secondary-color;
 
     &:hover {
-      background-color: $secondary-light;
+      background-color: $secondary-color-light;
     }
 
     &[disabled] {
@@ -151,7 +151,7 @@
     }
 
     // .button__text {
-    //   color: $black;
+    //   color: $black-color;
     //   opacity: 0.72;
     // }
 
@@ -164,7 +164,7 @@
   &--link-light {
     background-color: transparent;
     border-radius: 0;
-    border-bottom: 2px solid $white;
+    border-bottom: 2px solid $white-color;
     padding: 8px 0;
     display: flex;
     gap: 12px;
@@ -178,7 +178,7 @@
     }
 
     .button__text {
-      color: $white;
+      color: $white-color;
       font-size: 15px;
       font-weight: 600;
     }
@@ -196,7 +196,7 @@
   &--link-dark {
     background-color: transparent;
     border-radius: 0;
-    border-bottom: 2px solid $black;
+    border-bottom: 2px solid $black-color;
     padding: 8px 0;
     display: flex;
     gap: 12px;
@@ -210,7 +210,7 @@
     }
 
     .button__text {
-      color: $primary;
+      color: $primary-color;
       font-size: 15px;
     }
 

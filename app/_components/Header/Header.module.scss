@@ -6,7 +6,7 @@
   top: 0;
   width: 100%;
   z-index: 10;
-  background: $primary;
+  background: $primary-color;
 
   &__inner-wrapper {
     align-items: center;
@@ -124,7 +124,7 @@
 
 .mobile {
   display: none;
-  background: $primary;
+  background: $primary-color;
   flex-direction: column;
   position: fixed;
   height: 100vh;
@@ -150,7 +150,7 @@
   }
 
   &__menu {
-    border-top: 1px solid rgba($white, 0.6);
+    border-top: 1px solid rgba($white-color, 0.6);
     display: flex;
     flex-direction: column;
     padding-block: 32px;
@@ -172,10 +172,10 @@
         transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
         &:hover {
-          background-color: $secondary;
+          background-color: $secondary-color;
 
           p {
-            color: $black !important;
+            color: $black-color !important;
           }
         }
       }
@@ -198,13 +198,13 @@
 .open {
   .header {
     &__hamburger-container {
-      border-color: $white;
+      border-color: $white-color;
 
       button span span {
         &,
         &::before,
         &::after {
-          background-color: $white !important;
+          background-color: $white-color !important;
           height: 2px;
           width: 24px;
         }
