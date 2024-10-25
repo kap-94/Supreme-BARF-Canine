@@ -23,7 +23,11 @@ const About: React.FC = () => {
           </Typography>
 
           <div className={cx("about__text--bottom")}>
-            <Button variant="link-light" icon="right-arrow" href="/">
+            <Button
+              variant="link-light"
+              icon="right-arrow"
+              href="https://supremebarfcanine.shop/"
+            >
               Visita la tienda
             </Button>
 
