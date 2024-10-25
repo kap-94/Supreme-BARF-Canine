@@ -173,17 +173,6 @@ const Header: FC<HeaderProps> = ({
           )} */}
         </div>
         {/* </div> */}
-        {currentVariant === "scrolled" && buttonMapping["sign-in"] && (
-          <Button
-            size="small"
-            key={buttonMapping["sign-in"].id}
-            icon="user"
-            className={cx("header__sign-in-button")}
-          >
-            {buttonMapping["sign-in"].children}
-            {/* {currentVariant !== "scrolled" && buttonMapping["sign-in"].children} */}
-          </Button>
-        )}
       </div>
 
       <div className={cx("mobile")}>
