@@ -7,10 +7,10 @@ import styles from "./ProductCard.module.scss";
 const cx = classNames.bind(styles);
 
 interface ProductCardProps {
-  eyebrow: string;
-  title: string;
-  excerpt: string;
-  button: { url: string; target: string; title: string };
+  eyebrow?: string;
+  title?: string;
+  excerpt?: string;
+  button?: { url: string; target: string; title: string };
   image: { url: string; alt: string };
   fontColor?: string;
   className?: string;
@@ -54,7 +54,7 @@ const ProductCard: FC<ProductCardProps> = ({
       </div>
 
       {/* Body con excerpt */}
-      <div className={cx("product-card__body")}>
+      {/* <div className={cx("product-card__body")}>
         <Typography
           variant="p1"
           className={cx("product-card__excerpt")}
@@ -63,23 +63,23 @@ const ProductCard: FC<ProductCardProps> = ({
         >
           {excerpt}
         </Typography>
-      </div>
+      </div> */}
 
       {/* Footer con botón */}
-      <div className={cx("product-card__footer")}>
-        {/* <Button
+      {/* <div className={cx("product-card__footer")}>
+        <Button
           variant="link-dark"
           icon="right-arrow"
           size="large"
           className={cx("product-card__button")}
         >
           Order
-        </Button> */}
+        </Button>
 
         <Button variant="link-dark" icon="right-arrow" href="/">
           Compra y ahorra
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 };
