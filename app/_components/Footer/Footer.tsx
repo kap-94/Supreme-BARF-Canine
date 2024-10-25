@@ -34,6 +34,7 @@ interface FooterOptions {
 export interface FooterProps {
   footerMenuDataPrimary: any[];
   footerMenuDataSecondary: any[];
+  footerPoliticsData: any[];
   frontPageID: string;
   options: FooterOptions;
 }
@@ -41,6 +42,7 @@ export interface FooterProps {
 const Footer: FC<FooterProps> = ({
   footerMenuDataPrimary,
   footerMenuDataSecondary,
+  footerPoliticsData,
   frontPageID,
   options: { logo, social_links, copyright_name },
 }) => {
@@ -66,7 +68,10 @@ const Footer: FC<FooterProps> = ({
             />
           )}
           <div className={cx("footer__copyright")}>
-            <Typography variant="p3">{copyright_name}</Typography>
+            <Typography variant="p3">
+              © {year}
+              {copyright_name}
+            </Typography>
           </div>
         </Link>
 
@@ -92,8 +97,8 @@ const Footer: FC<FooterProps> = ({
         </div>
 
         {/* Formulario de suscripción al newsletter con ícono de envío */}
-        <div className={cx("footer__newsletter")}>
-          <Typography
+        <div className={cx("footer__legal")}>
+          {/* <Typography
             variant="p3"
             textTransform="uppercase"
             className={cx("newsletter__title")}
@@ -145,7 +150,16 @@ const Footer: FC<FooterProps> = ({
                 />
               </Form>
             )}
-          </Formik>
+          </Formik> */}
+
+          {footerPoliticsData.length > 0 && (
+            <MenuList
+              data={footerPoliticsData}
+              frontPageID={1}
+              orientation="vertical"
+              gap={16}
+            />
+          )}
         </div>
 
         {/* Puedes descomentar esto si quieres mostrar los íconos sociales */}

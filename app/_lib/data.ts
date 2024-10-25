@@ -73,7 +73,7 @@ export const payloadPrimary: HeaderProps = {
     buttonItems: [
       {
         id: "sign-in",
-        children: "SIGN IN",
+        // children: "SIGN IN",
       },
     ],
     logos: {
@@ -125,7 +125,7 @@ export const footerPayload: FooterProps = {
       menu_item_id: 1,
       menu_item_parent: 0,
       title: "¿Qué es supreme barf canine?",
-      target: "#about",
+      target: "http//localhost:3000/#about",
       url: "#about",
       isSectionLink: true,
     },
@@ -186,10 +186,26 @@ export const footerPayload: FooterProps = {
     //   icon: "tiktok",
     // },
   ],
+  footerPoliticsData: [
+    {
+      menu_item_id: 9,
+      menu_item_parent: 0,
+      title: "Términos y condiciones",
+      target: "_self",
+      url: "/terms-and-conditions",
+    },
+    {
+      menu_item_id: 10,
+      menu_item_parent: 0,
+      title: "Política de privacidad",
+      target: "_self",
+      url: "/privacy-policy",
+    },
+  ],
   frontPageID: "12345",
   options: {
     copyright_name:
-      "© 2024 Supreme BARF Canine. All rights reserved. | Built By KAgency",
+      " Supreme BARF Canine. All rights reserved. | Built By KAgency",
     logo: {
       url: "/logo-full.png",
       alt: "Supreme BARF Canine",
@@ -200,22 +216,12 @@ export const footerPayload: FooterProps = {
       {
         site: "Facebook",
         icon: "facebook",
-        link: "https://www.facebook.com/KotahiTravel", // Corrected link to actual Facebook page
+        link: "https://www.facebook.com", // Corrected link to actual Facebook page
       },
       {
         site: "Instagram",
         icon: "instagram",
-        link: "https://www.instagram.com/KotahiTravel",
-      },
-      {
-        site: "Tiktok",
-        icon: "tiktok",
-        link: "https://www.twitter.com/KotahiTravel",
-      },
-      {
-        site: "Youtube",
-        icon: "youtube",
-        link: "https://www.tiktok.com/@KotahiTravel",
+        link: "https://www.instagram.com",
       },
     ],
   },
