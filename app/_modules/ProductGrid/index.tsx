@@ -1,10 +1,14 @@
-"use client";
-import React, { useRef } from "react";
+// "use client";
+// import React, { useRef } from "react";
 import classNames from "classnames/bind";
-import { ProductCard, SectionHeader } from "@/app/_components";
-
+import {
+  Button,
+  ProductCard,
+  SectionHeader,
+  Typography,
+} from "@/app/_components";
 import styles from "./ProductGrid.module.scss";
-import useAnimations from "@/app/_hooks/useAnimations";
+// import useAnimations from "@/app/_hooks/useAnimations";
 
 const cx = classNames.bind(styles);
 
@@ -12,59 +16,26 @@ interface ProductGridProps {
   customAnchorId?: string;
 }
 
-const productCardsPayload = [
-  {
-    eyebrow: "Nuevo lanzamiento",
-    title: "Paquete de 1 kg",
-    excerpt:
-      "Tiene características impresionantes que pueden mejorar tu vida de muchas maneras.",
-    button: {
-      url: "/product.png",
-      title: "Ver más",
-      target: "_self",
-    },
-    image: {
-      url: "/product.png",
-      alt: "Imagen del Producto 1",
-    },
-  },
-  {
-    eyebrow: "Oferta especial",
-    title: "Subscripción Mensual",
-    excerpt:
-      "Descubre las grandes ventajas del Producto 2. Calidad y precio inigualables.",
-    button: {
-      url: "/productos/producto-2",
-      title: "Comprar ahora",
-      target: "_self",
-    },
-    image: {
-      url: "/product-group.png",
-      alt: "Imagen del Producto 2",
-    },
-  },
-];
-
 const ProductGrid: React.FC<ProductGridProps> = ({
   customAnchorId = "product-grid",
 }) => {
-  const headingRef = useRef<HTMLDivElement>(null);
+  // const headingRef = useRef<HTMLDivElement>(null);
 
-  useAnimations([
-    {
-      ref: headingRef, // El ref del encabezado
-      type: "fadeInUp", // Tipo de animación (puedes usar cualquier tipo definido)
-      options: {
-        duration: 1.2, // Opciones específicas para la animación
-        ease: "power2.out",
-      },
-    },
-  ]);
+  // useAnimations([
+  //   {
+  //     ref: headingRef,
+  //     type: "fadeInUp",
+  //     options: {
+  //       duration: 1.2,
+  //       ease: "power2.out",
+  //     },
+  //   },
+  // ]);
 
   return (
     <section className={cx("product-grid")} id={customAnchorId}>
       <SectionHeader
-        ref={headingRef}
+        // ref={headingRef}
         title="Nuestros Productos"
         subtitle="La mejor comida natural para el bienestar de tu mascota"
         align="center"
@@ -73,20 +44,91 @@ const ProductGrid: React.FC<ProductGridProps> = ({
 
       <div className={cx("product-grid__background")}></div>
 
-      <div className={cx("product-grid__cards")}>
-        {productCardsPayload
-          .filter((_, idx) => idx < 2)
-          .map((item, idx) => (
-            <ProductCard
-              key={item.title}
-              image={item.image}
-              button={item.button}
-              excerpt={item.excerpt}
-              title={item.title}
-              eyebrow={item.eyebrow}
-              className={idx === 0 ? cx("product-grid__first-product") : ""}
-            />
-          ))}
+      <div className={cx("product-grid__content")}>
+        <div className={cx("product-grid__card")}>
+          <ProductCard
+            image={{ url: "/product.png", alt: "Imagen del Producto" }}
+            // button={{ url: "/product.png", title: "Ver más", target: "_self" }}
+            // title="Paquete de 1 kg"
+            // excerpt="Tiene características impresionantes que pueden mejorar tu vida de muchas maneras."
+            // eyebrow="Nuevo lanzamiento"
+          />
+        </div>
+
+        {/* Lado derecho con la descripción del producto */}
+        <div className={cx("product-grid__description")}>
+          <Typography variant="h4" className={cx("product-grid__title")}>
+            Paquete de 1.25 kg - Alimento natural para perros
+          </Typography>
+
+          {/* Primer bloque de descripción */}
+          <div className={cx("product-grid__excerpt-block")}>
+            <Typography
+              variant="p1"
+              fontWeight={700}
+              className={cx("product-grid__title-section")}
+            >
+              Ingredientes de calidad premium
+            </Typography>
+            <Typography
+              variant="p2"
+              fontWeight={500}
+              className={cx("product-grid__excerpt")}
+            >
+              Carne de pollo, vísceras y vegetales 100% naturales. Sin
+              conservantes ni aditivos.
+            </Typography>
+          </div>
+
+          {/* Segundo bloque de descripción */}
+          <div className={cx("product-grid__excerpt-block")}>
+            <Typography
+              variant="p1"
+              fontWeight={700}
+              className={cx("product-grid__title-section")}
+            >
+              Nutrientes esenciales
+            </Typography>
+            <Typography
+              variant="p2"
+              fontWeight={500}
+              className={cx("product-grid__excerpt")}
+            >
+              Rico en proteínas y ácidos grasos Omega-3 y 6. Favorece la
+              digestión, fortalece el sistema inmunológico y ayuda a mantener
+              una piel sana y articulaciones fuertes.
+            </Typography>
+          </div>
+
+          {/* Tercer bloque de descripción */}
+          <div className={cx("product-grid__excerpt-block")}>
+            <Typography
+              variant="p1"
+              fontWeight={700}
+              className={cx("product-grid__title-section")}
+            >
+              Aprobado por veterinarios
+            </Typography>
+            <Typography
+              variant="p2"
+              fontWeight={500}
+              className={cx("product-grid__excerpt")}
+            >
+              Desarrollado en colaboración con expertos en nutrición animal para
+              garantizar una dieta balanceada y saludable, recomendada por
+              veterinarios.
+            </Typography>
+          </div>
+
+          <Button
+            href="https://supremebarfcanine.shop/products/formula-de-pollo-perro-adulto-todas-las-razas"
+            variant="link-dark"
+            icon="right-arrow"
+            className={cx("product-grid__button")}
+          >
+            Compra y ahorra
+          </Button>
+        </div>
       </div>
     </section>
   );
