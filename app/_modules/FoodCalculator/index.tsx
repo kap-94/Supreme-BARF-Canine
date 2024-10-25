@@ -1,5 +1,5 @@
 // FoodCalculator.tsx
-"use client";
+// "use client";
 import React, { useRef } from "react";
 import Image from "next/image";
 import classNames from "classnames/bind";
@@ -7,28 +7,28 @@ import { SectionHeader, DogForm } from "@/app/_components";
 import dogIllustrationPrimary from "@/public/dog-illustration-primary.svg";
 import dogIllustrationSecondary from "@/public/dog-illustration-secondary.svg";
 import styles from "./FoodCalculator.module.scss";
-import useAnimations from "@/app/_hooks/useAnimations";
+// import useAnimations from "@/app/_hooks/useAnimations";
 
 const cx = classNames.bind(styles);
 
 const FoodCalculator: React.FC = () => {
-  const headingRef = useRef<HTMLDivElement>(null);
+  // const headingRef = useRef<HTMLDivElement>(null);
 
-  useAnimations([
-    {
-      ref: headingRef, // El ref del encabezado
-      type: "fadeInUp", // Tipo de animación (puedes usar cualquier tipo definido)
-      options: {
-        duration: 1.2, // Opciones específicas para la animación
-        ease: "power2.out",
-      },
-    },
-  ]);
+  // useAnimations([
+  //   {
+  //     ref: headingRef, // El ref del encabezado
+  //     type: "fadeInUp", // Tipo de animación (puedes usar cualquier tipo definido)
+  //     options: {
+  //       duration: 1.2, // Opciones específicas para la animación
+  //       ease: "power2.out",
+  //     },
+  //   },
+  // ]);
 
   return (
     <section id="food-calculator" className={cx("food-calculator")}>
       <SectionHeader
-        ref={headingRef}
+        // ref={headingRef}
         title="Nutrición Ideal para tu Perro"
         subtitle="Encuentra la cantidad de alimento adecuada"
       />
