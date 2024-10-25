@@ -7,13 +7,13 @@ import styles from "./Button.module.scss";
 
 const cx = classNames.bind(styles);
 
-export interface ButtonProps {
+// Base props para el botón
+export interface ButtonBaseProps {
   children: ReactNode;
   className?: string;
   disabled?: boolean;
   elevation?: 0 | 1 | 2 | 3 | 4 | 5;
   fullWidth?: boolean;
-  href?: string;
   icon?: IconName;
   onClick?: any;
   pill?: boolean;
@@ -22,6 +22,21 @@ export interface ButtonProps {
   type?: "button" | "submit" | "reset";
   variant?: "primary" | "secondary" | "accent" | "link-light" | "link-dark";
 }
+
+// Props cuando el variant es "link-light" o "link-dark" (href es obligatorio)
+interface LinkVariantProps extends ButtonBaseProps {
+  variant: "link-light" | "link-dark";
+  href?: string;
+}
+
+// Props para todos los otros variants
+interface NonLinkVariantProps extends ButtonBaseProps {
+  variant?: "primary" | "secondary" | "accent";
+  href?: undefined;
+}
+
+// Unión de tipos para definir los props del botón
+export type ButtonProps = LinkVariantProps | NonLinkVariantProps;
 
 export const Button: React.FC<ButtonProps> = React.memo(
   ({
@@ -51,10 +66,16 @@ export const Button: React.FC<ButtonProps> = React.memo(
       className
     );
 
-    // Return a Link for "link-light" or "link-dark" variants
+    // Retorna un Link para los variants "link-light" o "link-dark"
     if ((variant === "link-light" || variant === "link-dark") && href) {
       return (
-        <Link href={href} className={buttonClasses} style={style}>
+        <a
+          href={href}
+          className={buttonClasses}
+          style={style}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <Typography
             variant="p1"
             fontFamily="raleway"
@@ -71,10 +92,11 @@ export const Button: React.FC<ButtonProps> = React.memo(
               className={cx("button__icon")}
             />
           )}
-        </Link>
+        </a>
       );
     }
 
+    // Botón regular
     return (
       <button
         type={type}
