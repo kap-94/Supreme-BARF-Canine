@@ -2,7 +2,7 @@
 import React, { FC, InputHTMLAttributes, useState } from "react";
 import { useField } from "formik";
 import classNames from "classnames/bind";
-
+import { raleway } from "@/app/_fonts";
 import Icon, { IconName } from "@/app/_components/CustomIcon";
 import styles from "./TextField.module.scss";
 
@@ -63,17 +63,26 @@ export const TextField: FC<TextFieldProps> = ({
     <div className={containerClasses}>
       <div className={cx("form-control__input-container")}>
         <label
-          className={cx("form-control__label", labelClassName, {
-            "form-control__label--focused":
-              variant === "secondary" && (focused || field.value),
-          })}
+          className={cx(
+            "form-control__label",
+            raleway.className,
+            labelClassName,
+            {
+              "form-control__label--focused":
+                variant === "secondary" && (focused || field.value),
+            }
+          )}
           htmlFor={name}
         >
           {label}
         </label>
 
         <input
-          className={cx("form-control__input", inputClassName)} // Aplica className personalizado al input
+          className={cx(
+            "form-control__input",
+            raleway.className,
+            inputClassName
+          )} // Aplica className personalizado al input
           {...field}
           {...props}
           placeholder={variant === "primary" ? placeholder : ""}
@@ -98,7 +107,13 @@ export const TextField: FC<TextFieldProps> = ({
       </div>
 
       {meta.touched && meta.error && (
-        <div className={cx("form-control__error", errorClassName)}>
+        <div
+          className={cx(
+            "form-control__error",
+            raleway.className,
+            errorClassName
+          )}
+        >
           {meta.error}
         </div>
       )}

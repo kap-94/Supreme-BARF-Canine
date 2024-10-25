@@ -1,40 +1,27 @@
 import React from "react";
 import classNames from "classnames/bind";
-import { Raleway, Poppins } from "next/font/google";
 import {
   TypographyColor,
   TypographyProps,
   TypographyVariant,
 } from "./interfaces";
+import { poppins, raleway } from "@/app/_fonts";
 import styles from "./Typography.module.scss";
 
 const cx = classNames.bind(styles);
 
-// Definir las fuentes usando next/font/google
-const raleway = Raleway({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-  display: "swap",
-});
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  display: "swap",
-});
-
 // Mapeo de colores
 export const colorMapping: { [key in TypographyColor]: string } = {
   inherit: "inherit",
-  initial: "#3A4069", // ui-normal
-  primary: "#2a2f53",
-  normal: "#222222", // ui-normal
-  secondaryElements: "#747995", // ui-secondary-elements
-  blue: "#3950EE", // primary
+  initial: "#222222",
+  primary: "#1f3a41",
+  secondary: "#f9f1eb",
+  accent: "#ec863b",
   white: "#fdfdff",
-  light: "#d2d4e1",
-  error: "#FF0000",
-  secondary: "#65656A",
+  black: "#222222",
+  success: "#4bb050",
+  warning: "#e1b667",
+  error: "#c92a07",
 };
 
 // Mapeo de componentes según el variant
@@ -95,7 +82,7 @@ export const Typography: React.FC<
     "typography",
     `typography--${variant}`,
     className,
-    selectedFontFamily // Aplica la clase de la fuente seleccionada
+    selectedFontFamily
   );
 
   const customStyle: React.CSSProperties = {

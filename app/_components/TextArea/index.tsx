@@ -1,6 +1,7 @@
 "use client";
 import React, { FC, TextareaHTMLAttributes, useState } from "react";
 import { useField } from "formik";
+import { raleway } from "@/app/_fonts";
 import classNames from "classnames/bind";
 import styles from "./TextArea.module.scss";
 
@@ -12,9 +13,9 @@ export interface TextAreaProps
   name: string;
   variant?: "primary" | "secondary";
   placeholder?: string;
-  labelClassName?: string; // Nueva prop para className del label
-  inputClassName?: string; // Nueva prop para className del input
-  errorClassName?: string; // Nueva prop para className del error
+  labelClassName?: string;
+  inputClassName?: string;
+  errorClassName?: string;
 }
 
 export const TextArea: FC<TextAreaProps> = ({
@@ -48,16 +49,25 @@ export const TextArea: FC<TextAreaProps> = ({
     <div className={containerClasses}>
       <div className={cx("form-control__input-container")}>
         <label
-          className={cx("form-control__label", labelClassName, {
-            "form-control__label--focused": focused || field.value,
-          })}
+          className={cx(
+            "form-control__label",
+            raleway.className,
+            labelClassName,
+            {
+              "form-control__label--focused": focused || field.value,
+            }
+          )}
           htmlFor={name}
         >
           {label}
         </label>
 
         <textarea
-          className={cx("form-control__input", inputClassName)}
+          className={cx(
+            "form-control__input",
+            raleway.className,
+            inputClassName
+          )}
           {...field}
           {...props}
           placeholder={variant === "primary" ? placeholder : ""}
@@ -67,7 +77,13 @@ export const TextArea: FC<TextAreaProps> = ({
         />
 
         {meta.touched && meta.error && (
-          <div className={cx("form-control__error", errorClassName)}>
+          <div
+            className={cx(
+              "form-control__error",
+              raleway.className,
+              errorClassName
+            )}
+          >
             {meta.error}
           </div>
         )}

@@ -17,27 +17,15 @@ export type TypographyColor =
   | "inherit"
   | "initial"
   | "primary"
-  | "secondaryElements"
-  | "blue"
-  | "normal"
-  | "error"
-  | "light"
+  | "secondary"
+  | "accent"
   | "white"
-  | "secondary";
+  | "black"
+  | "success"
+  | "warning"
+  | "error";
 
 export interface TypographyProps {
-  /**
-   * @initial "#2a2f53"
-   * @blue "#3950EE"
-   * @normal "#3A4069"
-   * @inherit "inherit"
-   * @secondaryElements "#747995"
-   * @primary "#2a2f53"
-   * @light "#d2d4e1"
-   * @error "#FF0000"
-   * @white "#fff"
-   * @secondary "#65656a"
-   */
   color?: TypographyColor;
   align?: "inherit" | "left" | "center" | "right" | "justify";
   children: ReactNode;
@@ -48,5 +36,5 @@ export interface TypographyProps {
   style?: React.CSSProperties;
   textTransform?: "none" | "capitalize" | "uppercase" | "lowercase";
   variant?: TypographyVariant;
-  //   onClick?: GenericFunction;
+  //   onClick?: () => {});
 }
