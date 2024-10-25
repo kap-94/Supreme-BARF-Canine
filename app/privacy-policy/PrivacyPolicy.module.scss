@@ -1,0 +1,33 @@
+// @import "../_styles/variables.scss";
+
+.privacy-policy {
+  padding: 240px 24px 120px;
+
+  &__header {
+    margin-bottom: 48px;
+  }
+
+  &__content {
+    max-width: 720px;
+    margin: 0 auto;
+
+    ul {
+      max-width: 600px;
+    }
+
+    li {
+      list-style-type: disc;
+    }
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 40px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
