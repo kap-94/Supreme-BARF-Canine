@@ -1,8 +1,8 @@
+// Button.tsx
 import React, { ReactNode } from "react";
-import Link from "next/link";
 import classNames from "classnames/bind";
 import Icon, { IconName } from "@/app/_components/CustomIcon";
-import { Typography } from "@/app/_components";
+import { Typography, Spinner } from "@/app/_components";
 import styles from "./Button.module.scss";
 
 const cx = classNames.bind(styles);
@@ -11,28 +11,30 @@ const cx = classNames.bind(styles);
 export interface ButtonBaseProps {
   children: ReactNode;
   className?: string;
-  disabled?: boolean;
   elevation?: 0 | 1 | 2 | 3 | 4 | 5;
   fullWidth?: boolean;
   icon?: IconName;
-  onClick?: any;
+  onClick?: () => void;
   pill?: boolean;
   size?: "small" | "medium" | "large";
   style?: React.CSSProperties;
   type?: "button" | "submit" | "reset";
   variant?: "primary" | "secondary" | "accent" | "link-light" | "link-dark";
+  isLoading?: boolean; // Nueva prop isLoading
 }
 
 // Props cuando el variant es "link-light" o "link-dark" (href es obligatorio)
 interface LinkVariantProps extends ButtonBaseProps {
   variant: "link-light" | "link-dark";
-  href?: string;
+  href: string; // href es obligatorio para estos variants
+  isDisabled?: never; // isDisabled no es válido para enlaces
 }
 
 // Props para todos los otros variants
 interface NonLinkVariantProps extends ButtonBaseProps {
   variant?: "primary" | "secondary" | "accent";
   href?: undefined;
+  isDisabled?: boolean; // Nueva prop isDisabled solo para botones no enlazados
 }
 
 // Unión de tipos para definir los props del botón
@@ -45,7 +47,7 @@ export const Button: React.FC<ButtonProps> = React.memo(
     variant = "primary",
     children,
     className = "",
-    disabled = false,
+    isDisabled = false, // Nueva prop isDisabled
     fullWidth = false,
     icon,
     onClick,
@@ -53,7 +55,11 @@ export const Button: React.FC<ButtonProps> = React.memo(
     style,
     elevation = 0,
     href,
+    isLoading = false, // Valor por defecto para isLoading
   }) => {
+    // Solo aplicamos isDisabled si está definido (solo para NonLinkVariantProps)
+    const actualDisabled = isDisabled || isLoading;
+
     const buttonClasses = cx(
       "button",
       `button--${size}`,
@@ -62,6 +68,7 @@ export const Button: React.FC<ButtonProps> = React.memo(
       {
         "button--full-width": fullWidth,
         "button--pill": pill,
+        "button--loading": isLoading,
       },
       className
     );
@@ -84,13 +91,17 @@ export const Button: React.FC<ButtonProps> = React.memo(
           >
             {children}
           </Typography>
-          {icon && (
-            <Icon
-              icon={icon}
-              height={32}
-              width={32}
-              className={cx("button__icon")}
-            />
+          {isLoading ? (
+            <Spinner variant="button" className={cx("button__spinner")} />
+          ) : (
+            icon && (
+              <Icon
+                icon={icon}
+                height={32}
+                width={32}
+                className={cx("button__icon")}
+              />
+            )
           )}
         </a>
       );
@@ -103,7 +114,8 @@ export const Button: React.FC<ButtonProps> = React.memo(
         className={buttonClasses}
         style={style}
         onClick={onClick}
-        disabled={disabled}
+        disabled={actualDisabled} // Deshabilitar si está cargando o isDisabled
+        aria-busy={isLoading}
       >
         <Typography
           variant="p1"
@@ -113,13 +125,17 @@ export const Button: React.FC<ButtonProps> = React.memo(
         >
           {children}
         </Typography>
-        {icon && (
-          <Icon
-            icon={icon}
-            height={20}
-            width={20}
-            className={cx("button__icon")}
-          />
+        {isLoading ? (
+          <Spinner variant="button" className={cx("button__spinner")} />
+        ) : (
+          icon && (
+            <Icon
+              icon={icon}
+              height={20}
+              width={20}
+              className={cx("button__icon")}
+            />
+          )
         )}
       </button>
     );
