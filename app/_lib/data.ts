@@ -78,7 +78,6 @@ export const payloadPrimary: HeaderProps = {
     ],
     logos: {
       defaultLogo: {
-        // url: "https://login.scandinave.com/wp-content/uploads/2022/10/logo-1-1.svg",
         url: "/logo-full.png",
         href: "/#",
         alt: "logo",
@@ -86,7 +85,6 @@ export const payloadPrimary: HeaderProps = {
         height: 80,
       },
       light: {
-        // url: "https://login.scandinave.com/wp-content/uploads/2022/10/logo-1-1.svg",
         url: "/logo-full.png",
         href: "/#",
         alt: "logo",
@@ -107,14 +105,6 @@ export const payloadPrimary: HeaderProps = {
         height: 46,
         width: 46,
       },
-      // {
-      //   id: 815,
-      //   title: "logo-light-sm",
-      //   url: "https://login.scandinave.com/wp-content/uploads/2022/09/logo-light-sm.svg",
-      //   link: "https://login.scandinave.com/logo-light-sm/",
-      //   alt: "logo",
-      //   caption: "",
-      // },
     },
   },
 };
