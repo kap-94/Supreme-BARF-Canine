@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { raleway } from "@/app/_fonts";
-import { Header, Footer, GoogleAnalytics } from "@/app/_components"; // Asegúrate de importar GoogleAnalytics
+import { Header, Footer, GoogleAnalytics } from "@/app/_components";
 import { footerPayload, payloadPrimary } from "./_lib/data";
-import whatsappImage from "@/public/whatsapp.png";
 import "@/app/_styles/globals.scss";
 
 export const metadata: Metadata = {
@@ -42,15 +40,6 @@ export default function RootLayout({
           frontPageID={footerPayload.frontPageID}
           options={footerPayload.options}
         />
-
-        <a
-          href="https://wa.me/+5215649395148"
-          className="whatsapp-float"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image src={whatsappImage} alt="WhatsApp" width="50" height="50" />
-        </a>
       </body>
     </html>
   );
