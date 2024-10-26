@@ -9,7 +9,7 @@ const cx = classNames.bind(styles);
 
 const About: React.FC = () => {
   return (
-    <section id="about" className={cx("about")}>
+    <section id="about-section" className={cx("about")}>
       <div className={cx("about__content")}>
         {/* Lado izquierdo con los textos */}
         <div className={cx("about__text")}>

@@ -56,7 +56,7 @@ const Footer: FC<FooterProps> = ({
   ));
 
   return (
-    <div className={cx("footer__container")}>
+    <div id="footer" className={cx("footer__container")}>
       <footer className={cx("footer")}>
         <Link href="/" passHref className={cx("footer__logo")}>
           {logo && (

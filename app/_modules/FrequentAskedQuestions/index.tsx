@@ -40,7 +40,7 @@ interface FAQProps {
 }
 
 const FrequentAskedQuestions: React.FC<FAQProps> = ({
-  customAnchorId = "faq",
+  customAnchorId = "faq-section",
 }) => {
   return (
     <section className={cx("faq")} id={customAnchorId}>

@@ -17,7 +17,7 @@ interface ProductGridProps {
 }
 
 const ProductGrid: React.FC<ProductGridProps> = ({
-  customAnchorId = "product-grid",
+  customAnchorId = "product-section",
 }) => {
   // const headingRef = useRef<HTMLDivElement>(null);
 

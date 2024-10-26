@@ -27,7 +27,7 @@ const benefitsData = [
 
 const Benefits: React.FC = () => {
   return (
-    <section id="benefits" className={cx("benefits")}>
+    <section id="benefits-section" className={cx("benefits")}>
       <div className={cx("benefits__content")}>
         {/* Lado izquierdo con la imagen */}
         <div className={cx("benefits__image")}>

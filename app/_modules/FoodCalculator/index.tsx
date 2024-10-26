@@ -26,7 +26,7 @@ const FoodCalculator: React.FC = () => {
   // ]);
 
   return (
-    <section id="food-calculator" className={cx("food-calculator")}>
+    <section id="food-calculator-section" className={cx("food-calculator")}>
       <SectionHeader
         // ref={headingRef}
         title="Nutrición Ideal para tu Perro"
