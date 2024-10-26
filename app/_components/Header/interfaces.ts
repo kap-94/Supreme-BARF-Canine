@@ -13,14 +13,11 @@ export interface HeaderProps {
   elevation?: 0 | 1 | 2 | 3 | 4 | 5;
 }
 
-interface ButtonItemWithId extends ButtonItem {
-  id: string;
-}
-
-interface DropdownItemWithId extends DropdownItem {
-  id: string;
-}
-
+export type ButtonItemWithId = ButtonItem & { id: string };
+export type DropdownItemWithId = DropdownItem & { id: string };
+// interface DropdownItemWithId extends DropdownItem {
+//   id: string;
+// }
 interface Data {
   buttonItems: ButtonItemWithId[];
   dropdownItems: DropdownItemWithId[];
