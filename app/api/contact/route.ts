@@ -1,67 +1,81 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import { NextRequest, NextResponse } from "next/server";
 import { mailOptions, transporter } from "@/app/_lib/nodemailer";
+import { getContactFormSchema } from "@/app/_lib/validationSchemas";
+import { generateEmailHTML } from "@/app/_utils/htmlEmailGenerator";
+
+// Función para validar el token de reCAPTCHA
+const validateRecaptcha = async (
+  token: string
+): Promise<{ success: boolean; score: number }> => {
+  const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+  const response = await fetch(
+    `https://www.google.com/recaptcha/api/siteverify`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: `secret=${secretKey}&response=${token}`,
+    }
+  );
+
+  const data = await response.json();
+
+  return { success: data.success, score: data.score };
+};
 
 interface ContactMessageFields {
-  [key: string]: string;
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+  recaptchaToken?: string; // Añadimos el token de reCAPTCHA
 }
 
-const CONTACT_MESSAGE_FIELDS: ContactMessageFields = {
-  name: "Name",
-  email: "Email",
-  message: "Message",
-};
-
-interface EmailContent {
-  text: string;
-  html: string;
-}
-
-const generateEmailContent = (data: ContactMessageFields): EmailContent => {
-  const stringData = Object.entries(data).reduce(
-    (str, [key, val]) =>
-      (str += `${CONTACT_MESSAGE_FIELDS[key]}: \n${val} \n \n`),
-    ""
-  );
-  const htmlData = Object.entries(data).reduce((str, [key, val]) => {
-    return (str += `<h3 class="form-heading" align="left">${CONTACT_MESSAGE_FIELDS[key]}</h3><p class="form-answer" align="left">${val}</p>`);
-  }, "");
-
-  return {
-    text: stringData,
-    html: `<!DOCTYPE html><html> <head> <title></title> <meta charset="utf-8"/> <meta name="viewport" content="width=device-width, initial-scale=1"/> <meta http-equiv="X-UA-Compatible" content="IE=edge"/> <style type="text/css"> body, table, td, a{-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;}table{border-collapse: collapse !important;}body{height: 100% !important; margin: 0 !important; padding: 0 !important; width: 100% !important;}@media screen and (max-width: 525px){.wrapper{width: 100% !important; max-width: 100% !important;}.responsive-table{width: 100% !important;}.padding{padding: 10px 5% 15px 5% !important;}.section-padding{padding: 0 15px 50px 15px !important;}}.form-container{margin-bottom: 24px; padding: 20px; border: 1px dashed #ccc;}.form-heading{color: #2a2a2a; font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif; font-weight: 400; text-align: left; line-height: 20px; font-size: 18px; margin: 0 0 8px; padding: 0;}.form-answer{color: #2a2a2a; font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif; font-weight: 300; text-align: left; line-height: 20px; font-size: 16px; margin: 0 0 24px; padding: 0;}div[style*="margin: 16px 0;"]{margin: 0 !important;}</style> </head> <body style="margin: 0 !important; padding: 0 !important; background: #fff"> <div style=" display: none; font-size: 1px; color: #fefefe; line-height: 1px;  max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; " ></div><table border="0" cellpadding="0" cellspacing="0" width="100%"> <tr> <td bgcolor="#ffffff" align="center" style="padding: 10px 15px 30px 15px" class="section-padding" > <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 500px" class="responsive-table" > <tr> <td> <table width="100%" border="0" cellspacing="0" cellpadding="0"> <tr> <td> <table width="100%" border="0" cellspacing="0" cellpadding="0" > <tr> <td style=" padding: 0 0 0 0; font-size: 16px; line-height: 25px; color: #232323; " class="padding message-content" > <h2>New Contact Message</h2> <div class="form-container">${htmlData}</div></td></tr></table> </td></tr></table> </td></tr></table> </td></tr></table> </body></html>`,
-  };
-};
-
-// Handler for POST requests
 export async function POST(request: NextRequest) {
-  const data = await request.json();
-  if (!data || !data.name || !data.email || !data.message) {
-    return NextResponse.json({ message: "Bad request" }, { status: 400 });
-  }
-
   try {
+    // Parseamos el cuerpo de la solicitud como JSON
+    const data: ContactMessageFields = await request.json();
+
+    // Validar la estructura del formulario utilizando Yup
+    // Utilizamos abortEarly: true para detener la validación en el primer error
+    await getContactFormSchema(true).validate(data, { abortEarly: true });
+
+    // Validar el token de reCAPTCHA y loggear el score
+    const recaptchaResponse = await validateRecaptcha(data.recaptchaToken!);
+    const { success, score } = recaptchaResponse;
+
+    if (!success || score < 0.5) {
+      return NextResponse.json(
+        {
+          message: "La verificación de reCAPTCHA falló o el puntaje es bajo",
+          score,
+        },
+        { status: 400 }
+      );
+    }
+
+    // Excluimos el token reCAPTCHA al generar el contenido del correo
+    const { recaptchaToken, ...formData } = data;
+
+    // Enviar el correo electrónico utilizando Nodemailer
     await transporter.sendMail({
       ...mailOptions,
-      ...generateEmailContent(data),
-      subject: data.subject,
+      subject: "Nuevo Contacto desde la Página Web",
+      text: `Nombre: ${formData.name}\nTeléfono: ${formData.phone}\nEmail: ${formData.email}\nMensaje: ${formData.message}`,
+      html: generateEmailHTML(formData), // Aquí llamamos a la función que genera el HTML
     });
 
-    return NextResponse.json({ success: true }, { status: 200 });
-  } catch (err) {
-    console.error(err);
+    return NextResponse.json({ success: true });
+  } catch (err: any) {
+    if (err.name === "ValidationError") {
+      // Capturamos el primer error de validación específico de Yup
+      const firstError = err.errors[0]; // Tomamos solo el primer error
+      return NextResponse.json({ message: firstError }, { status: 400 });
+    }
+
+    console.error("Error del servidor:", err);
     return NextResponse.json(
-      { message: "Internal Server Error" },
+      { message: "Error interno del servidor", error: err.message },
       { status: 500 }
     );
   }
 }
-
-// Fallback handler for other methods
-export async function GET(request: NextRequest, res: NextApiResponse) {
-  return res.status(405).json({ message: "Method Not Allowed" });
-}
-
-// export default function handler(req: NextApiRequest, res: NextApiResponse) {
-//   return res.status(405).json({ message: "Method Not Allowed" });
-// }
