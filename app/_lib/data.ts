@@ -73,7 +73,7 @@ export const payloadPrimary: HeaderProps = {
     buttonItems: [
       {
         id: "sign-in",
-        // children: "SIGN IN",
+        children: "SIGN IN",
       },
     ],
     logos: {
