@@ -38,7 +38,7 @@
   &__text {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
     width: 50%;
     justify-content: center;
 
@@ -112,12 +112,13 @@
 
   &__paragraph {
     max-width: 400px;
+    margin-bottom: 12px;
   }
 
   &__benefits {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 16px;
     align-items: flex-start;
     width: fit-content;
 
@@ -125,7 +126,7 @@
       text-align: left;
       width: 100%;
       max-width: 400px;
-      gap: 10px;
+      gap: 12px;
     }
   }
 
@@ -133,7 +134,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 8px 0;
+    // padding: 8px 0;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 12px;
     transition: all 0.3s ease;
