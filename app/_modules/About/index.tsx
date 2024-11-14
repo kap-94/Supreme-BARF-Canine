@@ -1,26 +1,19 @@
-import React from "react";
 import Image from "next/image";
+import { AnimatedText, Button, Typography } from "@/app/_components";
+import aboutImage from "@/public/about-image.jpg";
 import classNames from "classnames/bind";
-import { Typography, Button } from "@/app/_components";
-import aboutImage from "@/public/about-image.png";
 import styles from "./About.module.scss";
 
 const cx = classNames.bind(styles);
 
-const About: React.FC = () => {
+const About = () => {
   return (
     <section id="about-section" className={cx("about")}>
       <div className={cx("about__content")}>
-        {/* Lado izquierdo con los textos */}
         <div className={cx("about__text")}>
-          <Typography
-            variant="h3"
-            color="white"
-            className={cx("about__text--top")}
-          >
-            Supreme BARF Canine es un alimento diseñado por amantes de perros
-            para amantes de perros.
-          </Typography>
+          <div className={cx("about__text--top")}>
+            <AnimatedText text="Supreme BARF Canine es un alimento diseñado por amantes de perros para amantes de perros." />
+          </div>
 
           <div className={cx("about__text--bottom")}>
             <Button
@@ -33,13 +26,14 @@ const About: React.FC = () => {
             </Button>
 
             <Typography variant="p1" color="white">
-              Con ingredientes naturales, ofrece a tu perro beneficios que las
-              croquetas no pueden brindar.
+              {/* Con ingredientes naturales, ofrece a tu perro beneficios que las
+              croquetas no pueden brindar. */}
+              Alimento natural de calidad humana con nutrientes esenciales, que
+              ofrece beneficios únicos.
             </Typography>
           </div>
         </div>
 
-        {/* Lado derecho con la imagen */}
         <div className={cx("about__image")}>
           <Image
             src={aboutImage}
@@ -48,6 +42,7 @@ const About: React.FC = () => {
             fill
             placeholder="blur"
             sizes="(max-width: 1348px) 100vw, (max-width: 1440px) 50vw, 720px"
+            // priority
           />
         </div>
       </div>

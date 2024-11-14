@@ -1,4 +1,4 @@
-@import "../../_styles/variables.scss"; /* Asegúrate de tener las variables definidas */
+@import "../../_styles/variables.scss";
 
 .about {
   background-color: $primary-color;
@@ -9,11 +9,11 @@
   padding: 180px 36px;
 
   @media only screen and (max-width: $xlarge) {
-    padding: 120px 24px;
+    padding: 100px 24px;
   }
 
   @media only screen and (max-width: $medium) {
-    padding: 100px 24px;
+    padding: 88px 24px;
   }
 
   &__content {
@@ -47,7 +47,7 @@
 
     &--top {
       align-self: flex-start;
-      max-width: 600px;
+      max-width: 640px;
       width: 100%;
     }
 
@@ -68,7 +68,7 @@
       }
 
       p {
-        max-width: 446px;
+        max-width: 448px;
       }
     }
   }
