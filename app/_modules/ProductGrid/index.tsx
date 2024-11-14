@@ -123,6 +123,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
           <Button
             href="https://supremebarfcanine.shop/products/formula-de-pollo-perro-adulto-todas-las-razas"
             variant="link-dark"
+            target="_blank"
             icon="right-arrow"
             className={cx("product-grid__button")}
           >
