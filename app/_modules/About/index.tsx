@@ -26,6 +26,7 @@ const About: React.FC = () => {
             <Button
               variant="link-light"
               icon="right-arrow"
+              target="_blank"
               href="https://supremebarfcanine.shop/"
             >
               Visita la tienda
@@ -46,6 +47,7 @@ const About: React.FC = () => {
             className={cx("about__dog")}
             fill
             placeholder="blur"
+            sizes="(max-width: 1348px) 100vw, (max-width: 1440px) 50vw, 720px"
           />
         </div>
       </div>
