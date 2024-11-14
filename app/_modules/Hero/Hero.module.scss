@@ -31,6 +31,7 @@
       align-items: center;
       padding-left: 0;
       padding-inline: 24px;
+      gap: 48px;
     }
   }
 
@@ -124,6 +125,7 @@
       text-align: left;
       width: 100%;
       max-width: 400px;
+      gap: 10px;
     }
   }
 
@@ -155,6 +157,10 @@
 
   &__button {
     margin-top: 24px;
+
+    @media only screen and (max-width: 1280px) {
+      margin-top: 20px !important;
+    }
   }
 
   &__images {
@@ -163,34 +169,35 @@
     align-items: flex-end;
     position: relative;
     width: 50%;
-    will-change: transform;
+    transform: translateZ(0);
     backface-visibility: hidden;
-    transform-style: preserve-3d;
+    perspective: 1000px;
+    will-change: transform;
 
-    @media only screen and (max-width: 1280px) {
-      justify-content: center;
+    @media only screen and (max-width: 768px) {
+      transform: none;
+      will-change: auto;
     }
   }
 
-  &__image--primary,
-  &__image--secondary,
-  &__image--tertiary {
-    display: flex;
-    filter: drop-shadow(0px 8px 20px rgba(153, 115, 90, 0.3));
-    will-change: transform;
-    backface-visibility: hidden;
-
-    img {
-      transition: transform 0.1s linear;
+  &__image {
+    &--primary,
+    &--secondary,
+    &--tertiary {
+      display: flex;
+      filter: drop-shadow(0px 8px 20px rgba(153, 115, 90, 0.3));
+      transform: translateZ(0);
+      backface-visibility: hidden;
       will-change: transform;
-    }
 
-    // Mejoras de rendimiento para dispositivos móviles
-    @media only screen and (max-width: 1280px) {
-      &__image--primary,
-      &__image--secondary,
-      &__image--tertiary {
-        transform: none !important; // Deshabilitar parallax en móvil
+      img {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+      }
+
+      @media only screen and (max-width: 768px) {
+        transform: none !important;
+        will-change: auto;
       }
     }
   }
