@@ -1,7 +1,8 @@
 import { Rating } from "./Rating";
 import { Tags } from "./Tags";
-import Alert from "./Alert";
 import Accordion from "./Accordion";
+import Alert from "./Alert";
+import AnimatedText from "./AnimatedText";
 import Button from "./Button";
 import Card from "./Card";
 import CardListContainer from "./CardListContainer";
@@ -23,8 +24,9 @@ import TextField from "./TextField";
 import Typography from "./Typography";
 
 export {
-  Alert,
   Accordion,
+  Alert,
+  AnimatedText,
   Button,
   Card,
   CardListContainer,

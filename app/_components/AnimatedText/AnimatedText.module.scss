@@ -1,0 +1,37 @@
+.split-word {
+  display: inline-block;
+  // padding-right: 0.2em;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+
+  @media (min-width: 768px) {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+
+  &:last-child {
+    padding-right: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    will-change: auto;
+    transform: none;
+  }
+}
+
+.text-wrapper {
+  overflow: hidden;
+
+  @media (min-width: 768px) {
+    transform: translateZ(0);
+  }
+
+  h3 {
+    margin: 0;
+    padding: 0;
+  }
+}
