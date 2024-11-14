@@ -28,7 +28,7 @@ const About = () => {
             <Typography variant="p1" color="white">
               {/* Con ingredientes naturales, ofrece a tu perro beneficios que las
               croquetas no pueden brindar. */}
-              Alimento natural de calidad humana con nutrientes esenciales, que
+              Alimento natural de calidad humana con nutrientes esenciales que
               ofrece beneficios únicos.
             </Typography>
           </div>
