@@ -8,7 +8,7 @@
     color: $black-color;
     font-size: rem(68);
     font-style: normal;
-    font-weight: 900;
+    font-weight: 800;
     line-height: 106%;
 
     @media only screen and (max-width: 600px) {
@@ -100,7 +100,7 @@
   }
 
   &--p3 {
-    color: $white-color;
+    color: rgba($white-color, 0.98);
     font-size: rem(12);
     font-style: normal;
     font-weight: 700;

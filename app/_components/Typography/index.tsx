@@ -57,7 +57,7 @@ export const Typography: React.FC<
 
   // Mapeo de fuentes según el variant
   const fontMapping: { [key in TypographyVariant]: string } = {
-    h1: raleway.className,
+    h1: poppins.className,
     h2: raleway.className,
     h3: poppins.className,
     h4: poppins.className,
