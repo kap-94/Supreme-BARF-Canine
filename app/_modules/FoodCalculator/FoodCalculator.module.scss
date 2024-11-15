@@ -13,6 +13,10 @@
     min-height: 372px;
     display: flex;
     align-items: center;
+
+    @media only screen and (max-width: 768px) {
+      padding-inline: 16px;
+    }
   }
 
   &__bg-wrapper {
@@ -97,6 +101,10 @@
         transparent 2px,
         transparent 8px
       );
+
+    @media only screen and (max-width: 768px) {
+      padding-inline: 16px;
+    }
   }
 
   &__scroll-indicator {
