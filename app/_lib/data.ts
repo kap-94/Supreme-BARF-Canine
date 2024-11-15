@@ -1,7 +1,7 @@
 import { FooterProps } from "../_components/Footer/Footer";
 import { HeaderProps } from "../_components/Header/interfaces";
 
-export const payloadPrimary: HeaderProps = {
+export const headerData: HeaderProps = {
   frontPageID: "38",
   data: {
     menuDataPrimary: [
@@ -109,7 +109,7 @@ export const payloadPrimary: HeaderProps = {
   },
 };
 
-export const footerPayload: FooterProps = {
+export const footerData: FooterProps = {
   footerMenuDataPrimary: [
     {
       menu_item_id: 1,
@@ -215,4 +215,31 @@ export const footerPayload: FooterProps = {
       },
     ],
   },
+};
+
+export const dogFormOptions = {
+  yearsOptions: Array.from({ length: 20 }, (_, i) => ({
+    value: i.toString(),
+    label: `${i} años`,
+  })),
+  monthsOptions: Array.from({ length: 12 }, (_, i) => ({
+    value: i.toString(),
+    label: `${i} meses`,
+  })),
+  sterilizedOptions: [
+    { value: "Esterilizado", label: "Sí" },
+    { value: "No esterilizado", label: "No" },
+  ],
+  // ... otros options
+  activityLevelOptions: [
+    { value: "Sedentario", label: "Baja" },
+    { value: "Moderado", label: "Media" },
+    { value: "Activo", label: "Alta" },
+  ],
+
+  pregnancyStatusOptions: [
+    { value: "Gestación", label: "Gestación" },
+    { value: "Lactancia", label: "Lactancia" },
+    { value: "No aplica", label: "No aplica" },
+  ],
 };
