@@ -101,10 +101,6 @@
         transparent 2px,
         transparent 8px
       );
-
-    @media only screen and (max-width: 768px) {
-      padding-inline: 16px;
-    }
   }
 
   &__scroll-indicator {
@@ -162,7 +158,7 @@
     }
 
     &__content {
-      padding: 40px 20px;
+      padding: 40px 24px;
     }
   }
 
