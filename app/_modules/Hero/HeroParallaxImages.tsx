@@ -53,6 +53,18 @@ export const HeroParallaxImages = ({
           fastScrollEnd: true,
         };
 
+        // Meat animation
+        gsap.to(meatRef.current, {
+          yPercent: -10,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: 1.5,
+          },
+        });
+
         // Dog animation
         gsap.to(dogRef.current, {
           yPercent: 10,
