@@ -90,17 +90,17 @@ const useCalculateFoodAmount = (values: DogFormValues): CalculationResult => {
         (1850 / 1000);
 
       // Construcción dinámica del mensaje
-      let foodAmountMessage = `Para un perro de <strong>${dogYears} años</strong> y <strong>${dogMonths} meses</strong>, que pesa <strong>${weight} kg</strong>, <strong>${
+      let foodAmountMessage = `Para un perro de ${dogYears} años y ${dogMonths} meses, que pesa ${weight} kg, ${
         sterilized === "Esterilizado" ? "esterilizado" : "no esterilizado"
-      }</strong>, `;
+      }, `;
 
-      // Ajustar la conexión y agregar nivel de actividad
+      // Adjust the connection and add activity level
       if (pregnancyStatus === "No aplica") {
-        foodAmountMessage += `y con un <strong>nivel de actividad ${activityLevel.toLowerCase()}</strong>, la cantidad recomendada de alimento es: </br><strong>${Math.round(
+        foodAmountMessage += `y con un nivel de actividad ${activityLevel.toLowerCase()}, la cantidad recomendada de alimento es: </br><strong>${Math.round(
           totalFoodAmount
         )} gramos al día.</strong>`;
       } else {
-        foodAmountMessage += `con un <strong>nivel de actividad ${activityLevel.toLowerCase()}</strong> y estado de <strong>${pregnancyStatus.toLowerCase()}</strong>, la cantidad recomendada de alimento es: </br><strong>${Math.round(
+        foodAmountMessage += `con un nivel de actividad ${activityLevel.toLowerCase()} y estado de ${pregnancyStatus.toLowerCase()}, la cantidad recomendada de alimento es: </br><strong>${Math.round(
           totalFoodAmount
         )} gramos al día.</strong>`;
       }
