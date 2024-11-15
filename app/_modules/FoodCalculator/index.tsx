@@ -1,76 +1,47 @@
 // FoodCalculator.tsx
-// "use client";
-import React, { useRef } from "react";
+import React from "react";
 import Image from "next/image";
 import classNames from "classnames/bind";
 import { SectionHeader, DogForm } from "@/app/_components";
-import dogIllustrationPrimary from "@/public/dog-illustration-primary.svg";
-import dogIllustrationSecondary from "@/public/dog-illustration-secondary.svg";
+import { ChevronDown } from "lucide-react";
 import styles from "./FoodCalculator.module.scss";
-// import useAnimations from "@/app/_hooks/useAnimations";
 
 const cx = classNames.bind(styles);
 
 const FoodCalculator: React.FC = () => {
-  // const headingRef = useRef<HTMLDivElement>(null);
-
-  // useAnimations([
-  //   {
-  //     ref: headingRef, // El ref del encabezado
-  //     type: "fadeInUp", // Tipo de animación (puedes usar cualquier tipo definido)
-  //     options: {
-  //       duration: 1.2, // Opciones específicas para la animación
-  //       ease: "power2.out",
-  //     },
-  //   },
-  // ]);
-
   return (
-    <section id="food-calculator-section" className={cx("food-calculator")}>
-      <SectionHeader
-        // ref={headingRef}
-        title="Nutrición Ideal para tu Perro"
-        subtitle="Encuentra la cantidad de alimento adecuada"
-      />
+    <section className={cx("food-calculator")}>
+      <div className={cx("food-calculator__hero")}>
+        <div className={cx("food-calculator__bg-wrapper")}>
+          <Image
+            src="/dog-illustration-secondary.svg"
+            alt="Dog illustration"
+            fill
+            // priority
+            sizes="(max-width: 768px) 100vw, 100vw"
+            className={cx("food-calculator__bg-image")}
+          />
+        </div>
+        <div className={cx("food-calculator__hero-content")}>
+          <SectionHeader
+            color="white"
+            title="Calcula la Ración Ideal"
+            subtitle="Para una alimentación precisa y saludable"
+          />
 
-      <div className={cx("food-calculator__content")}>
-        {/* Ilustraciones */}
-        <div className={cx("food-calculator__illustrations")}>
-          {/* Contenedor para la primera ilustración */}
-          <div
-            className={cx(
-              "food-calculator__image-container",
-              "food-calculator__image-container--primary"
-            )}
-          >
-            <Image
-              src={dogIllustrationPrimary}
-              alt="Perro 1"
-              className={cx("food-calculator__dog1")}
-              fill
-              objectFit="contain"
-            />
-          </div>
+          <p className={cx("food-calculator__description")}>
+            Obtén la medida exacta de alimento según la edad, peso y actividad
+            de tu perro
+          </p>
 
-          {/* Contenedor para la segunda ilustración */}
-          <div
-            className={cx(
-              "food-calculator__image-container",
-              "food-calculator__image-container--secondary"
-            )}
-          >
-            <Image
-              src={dogIllustrationSecondary}
-              alt="Perro 2"
-              className={cx("food-calculator__dog2")}
-              fill
-              objectFit="contain"
-            />
+          <div className={cx("food-calculator__scroll-indicator")}>
+            <ChevronDown size={24} />
           </div>
         </div>
+      </div>
 
-        {/* Formulario y resultados */}
-        <div className={cx("food-calculator__form")}>
+      <div className={cx("food-calculator__content")}>
+        <div className={cx("food-calculator__form-container")}>
           <DogForm />
         </div>
       </div>
