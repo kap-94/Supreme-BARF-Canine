@@ -76,6 +76,7 @@ const Hero = () => {
             href="https://supremebarfcanine.shop/products/formula-de-pollo-perro-adulto-todas-las-razas"
             target="_blank"
             rel="noopener noreferrer"
+            style={{ width: "fit-content" }}
           >
             <Button
               variant="accent"
