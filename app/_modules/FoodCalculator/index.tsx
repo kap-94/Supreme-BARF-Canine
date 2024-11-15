@@ -10,7 +10,7 @@ const cx = classNames.bind(styles);
 
 const FoodCalculator: React.FC = () => {
   return (
-    <section className={cx("food-calculator")}>
+    <section id="food-calculator-section" className={cx("food-calculator")}>
       <div className={cx("food-calculator__hero")}>
         <div className={cx("food-calculator__bg-wrapper")}>
           <Image
