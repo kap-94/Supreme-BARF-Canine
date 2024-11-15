@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { raleway } from "@/app/_fonts";
 import { Header, Footer, GoogleAnalytics } from "@/app/_components";
-import { footerPayload, payloadPrimary } from "./_lib/data";
+import { footerData, headerData } from "./_lib/data";
 import "@/app/_styles/globals.scss";
 
 export const metadata: Metadata = {
@@ -27,18 +27,18 @@ export default function RootLayout({
       </head>
       <body className={`${raleway.className}`}>
         <Header
-          data={payloadPrimary.data}
-          frontPageID={payloadPrimary.frontPageID}
+          data={headerData.data}
+          frontPageID={headerData.frontPageID}
           elevation={2}
         />
         {children}
 
         <Footer
-          footerMenuDataPrimary={footerPayload.footerMenuDataPrimary}
-          footerMenuDataSecondary={footerPayload.footerMenuDataSecondary}
-          footerPoliticsData={footerPayload.footerPoliticsData}
-          frontPageID={footerPayload.frontPageID}
-          options={footerPayload.options}
+          footerMenuDataPrimary={footerData.footerMenuDataPrimary}
+          footerMenuDataSecondary={footerData.footerMenuDataSecondary}
+          footerPoliticsData={footerData.footerPoliticsData}
+          frontPageID={footerData.frontPageID}
+          options={footerData.options}
         />
       </body>
     </html>
