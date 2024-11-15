@@ -7,16 +7,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 160px 36px;
-  gap: 90px;
+  padding: 100px 36px;
+  gap: 88px;
 
   @media only screen and (max-width: $xlarge) {
-    padding: 100px 48px 140px;
+    padding: 60px 48px;
     gap: 60px;
   }
 
   @media only screen and (max-width: $medium) {
-    padding: 60px 24px 90px;
+    padding: 60px 24px;
   }
 
   &__content {

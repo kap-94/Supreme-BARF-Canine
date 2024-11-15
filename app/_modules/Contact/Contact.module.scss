@@ -5,18 +5,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 160px 36px;
+  padding: 100px 36px;
   gap: 90px;
   max-width: 1440px;
   margin-inline: auto;
 
   @media only screen and (max-width: $xlarge) {
-    padding: 120px 48px 140px;
+    padding: 60px 48px;
     gap: 60px;
   }
 
   @media only screen and (max-width: $medium) {
-    padding: 60px 24px 90px;
+    padding: 60px 24px 88px;
   }
 
   &__content {
@@ -42,7 +42,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 56px;
+    gap: 40px;
     width: 600px;
 
     @media only screen and (max-width: $xlarge) {
@@ -59,7 +59,7 @@
   &__form-heading {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 22px;
   }
 
   &__captcha-container {
@@ -69,7 +69,9 @@
   }
 
   &__submit-button {
+    margin-top: 16px;
     margin-inline: auto;
+    // padding-inline: 34px;
 
     p {
       display: flex;
@@ -95,7 +97,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 16px;
+
+    @media only screen and (max-width: $xlarge) {
+      margin-top: 8px;
+    }
+
+    @media only screen and (max-width: $medium) {
+      gap: 12px;
+    }
   }
 
   .form {
