@@ -16,7 +16,7 @@
   }
 
   @media only screen and (max-width: $medium) {
-    padding: 60px 16px 88px;
+    padding: 60px 24px 88px;
   }
 
   &__content {
@@ -52,7 +52,6 @@
 
     @media only screen and (max-width: $medium) {
       width: 100%;
-      padding-inline: 16px;
     }
   }
 
