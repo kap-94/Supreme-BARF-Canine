@@ -1,0 +1,115 @@
+@import "../../../../_styles/variables.scss";
+
+.stepper {
+  $self: &;
+  margin: 0 auto 48px;
+  // max-width: 340px;
+
+  &__steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 18px;
+      width: 90%;
+      left: 5%;
+      height: 1px;
+      background: rgba($primary-color, 0.2);
+    }
+  }
+
+  &__step {
+    display: grid;
+    gap: 8px;
+    justify-items: center;
+    position: relative;
+    z-index: 1;
+
+    &-number {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      background-color: $white-color;
+      color: $primary-color;
+      border: 1px solid rgba($primary-color, 0.2);
+      transition: all 0.3s ease;
+      position: relative;
+      border-radius: 8px;
+
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        border: 1px solid transparent;
+        transition: border-color 0.3s ease;
+      }
+    }
+
+    &-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: rgba($black-color, 0.5);
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    &--current {
+      #{$self}__step-number {
+        background: $primary-color;
+        border-color: transparent;
+        color: $white-color;
+        font-weight: 500;
+
+        &::before {
+          border-color: rgba($primary-color, 0.1);
+          inset: -3px;
+        }
+      }
+
+      #{$self}__step-label {
+        color: $primary-color;
+        font-weight: 600;
+      }
+    }
+
+    &--active:not(&--current) {
+      #{$self}__step-number {
+        background: $primary-color;
+        border-color: transparent;
+        color: $white-color;
+
+        &::before {
+          border-color: rgba($primary-color, 0.05);
+          inset: -3px;
+        }
+      }
+
+      #{$self}__step-label {
+        color: rgba($primary-color, 0.9);
+      }
+    }
+
+    &:not(:last-child) {
+      #{$self}__step-number::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: calc(100% + 8px);
+        width: 8px;
+        height: 1px;
+        background: rgba($primary-color, 0.1);
+      }
+    }
+  }
+}
