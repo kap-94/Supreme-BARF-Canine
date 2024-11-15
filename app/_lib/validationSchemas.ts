@@ -31,3 +31,15 @@ export const getContactFormSchema = (isBackend: boolean = false) => {
 
   return schema; // Si no, devolvemos el esquema sin recaptchaToken
 };
+
+
+export const DogFormSchema = Yup.object().shape({
+  dogYears: Yup.string().required("Este campo es requerido"),
+  dogMonths: Yup.string().required("Este campo es requerido"),
+  dogWeight: Yup.number()
+    .min(0.1, "El peso debe ser mayor a 0.1 kg")
+    .required("Este campo es requerido"),
+  sterilized: Yup.string().required("Este campo es requerido"),
+  activityLevel: Yup.string().required("Este campo es requerido"),
+  pregnancyStatus: Yup.string().required("Este campo es requerido"),
+});
