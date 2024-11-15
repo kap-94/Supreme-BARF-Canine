@@ -97,7 +97,9 @@ const Contact: React.FC = () => {
       <div className={cx("contact__content")}>
         <div className={cx("contact__form")}>
           <div className={cx("contact__form-heading")}>
-            <Typography variant="h3">¿Cómo Podemos Ayudarte?</Typography>
+            <Typography variant="h2" align="center">
+              ¿Cómo Podemos Ayudarte?
+            </Typography>
 
             <Typography variant="p1" align="center">
               Contáctanos y te contestaremos a la brevedad
@@ -179,7 +181,8 @@ const Contact: React.FC = () => {
                   size="large"
                   variant="accent"
                   icon="send"
-                  isDisabled={!dirty}
+                  fullWidth
+                  // isDisabled={!dirty}
                   isLoading={isSubmitting}
                   className={cx("contact__submit-button")}
                 >
