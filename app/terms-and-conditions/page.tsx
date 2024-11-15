@@ -222,12 +222,9 @@ const TermsAndConditions: React.FC = () => {
           </Typography>
           <div className={cx("terms-and-conditions__contact")}>
             <Typography variant="p1">
-              Email: info@supremebarfcanine.mx
+              Email: supremebarfcanine@gmail.com
             </Typography>
-            <Typography variant="p1">Teléfono: +52 555 555 5555</Typography>
-            <Typography variant="p1">
-              Dirección: Av. Insurgentes Sur 64, Ciudad de México, México
-            </Typography>
+            <Typography variant="p1">Teléfono: +52 2228938475</Typography>
           </div>
         </section>
       </div>

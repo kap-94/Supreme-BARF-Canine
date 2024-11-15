@@ -153,11 +153,10 @@ const PrivacyPolicy: React.FC = () => {
           </Typography>
 
           <div className={cx("privacy-policy__contact")}>
-            <Typography variant="p1">Email: contacto@tuempresa.com</Typography>
-            <Typography variant="p1">Teléfono: +52 555 555 5555</Typography>
             <Typography variant="p1">
-              Dirección: Calle Falsa 123, Ciudad, País
+              Email: supremebarfcanine@gmail.com
             </Typography>
+            <Typography variant="p1">Teléfono: +52 2228938475</Typography>
           </div>
         </section>
       </div>
