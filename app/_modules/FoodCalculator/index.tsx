@@ -27,6 +27,7 @@ const FoodCalculator: React.FC = () => {
             color="white"
             title="Calcula la Ración Ideal"
             subtitle="Para una alimentación precisa y saludable"
+            className={cx("food-calculator__hero-header")}
           />
 
           <p className={cx("food-calculator__description")}>
