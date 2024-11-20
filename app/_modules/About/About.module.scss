@@ -23,11 +23,13 @@
     max-width: 1440px;
     width: 100%;
     gap: 80px;
+    padding-left: 48px;
 
     @media only screen and (max-width: $xlarge) {
       flex-direction: column;
       gap: 48px;
       max-width: 620px;
+      padding-left: 0;
     }
   }
 
