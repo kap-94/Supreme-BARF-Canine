@@ -159,7 +159,7 @@ export const Button: React.FC<ButtonProps> = React.memo(
           {isLoading ? (
             <Spinner variant="button" className={cx("button__spinner")} />
           ) : (
-            renderIcon(icon, cx("button__icon"), { height: 32, width: 32 })
+            renderIcon(icon, cx("button__icon"), { height: 30, width: 30 })
           )}
         </a>
       );
