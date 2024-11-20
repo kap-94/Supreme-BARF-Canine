@@ -3,6 +3,7 @@ import React, { FC, useState } from "react";
 import classNames from "classnames/bind";
 import Collapsible from "react-collapsible";
 import { Typography } from "@/app/_components";
+import { Plus } from "lucide-react";
 import styles from "./Accordion.module.scss";
 
 const cx = classNames.bind(styles);
@@ -63,6 +64,7 @@ const Accordion: FC<Props> = ({
                   id={`accordion-trigger-${index}`}
                 >
                   <Typography variant="h4">{title}</Typography>
+                  <Plus className={cx("accordion__icon")} size={24} />
                 </div>
                 <Collapsible
                   open={isOpen}
