@@ -2,28 +2,25 @@
 @import "../../_styles/variables.scss";
 
 .benefits {
-  background-color: $secondary-color;
+  background-color: $white-color;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 180px 36px;
-
-  @media only screen and (max-width: $xlarge) {
-    padding: 100px 24px 80px;
-  }
+  padding: 80px 48px 100px;
 
   @media only screen and (max-width: $medium) {
-    padding: 80px 24px;
+    padding: 60px 24px;
   }
 
   &__content {
     display: flex;
+    flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
-    max-width: 1440px;
+    max-width: 1280px;
     width: 100%;
-    gap: 80px;
+    gap: 72px;
 
     @media only screen and (max-width: $xlarge) {
       flex-direction: column-reverse;
