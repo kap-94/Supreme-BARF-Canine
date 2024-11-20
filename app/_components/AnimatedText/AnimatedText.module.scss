@@ -1,6 +1,5 @@
 .split-word {
   display: inline-block;
-  // padding-right: 0.2em;
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
@@ -25,13 +24,22 @@
 
 .text-wrapper {
   overflow: hidden;
+  position: relative;
 
   @media (min-width: 768px) {
     transform: translateZ(0);
   }
 
-  h3 {
+  [class*="typography"] {
     margin: 0;
     padding: 0;
+    will-change: transform, opacity;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [class*="typography"] {
+      will-change: auto;
+      transform: none;
+    }
   }
 }
