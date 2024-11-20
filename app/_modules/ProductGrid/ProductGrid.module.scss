@@ -50,7 +50,6 @@
     background-color: $white-color;
     border-radius: 4px;
     overflow: hidden;
-    box-shadow: $shadow-primary; // Sombra sutil
     border: 1px solid rgba(0, 0, 0, 0.04); // Borde muy sutil
 
     @media only screen and (max-width: $xlarge) {
