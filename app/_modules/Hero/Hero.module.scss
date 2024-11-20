@@ -135,18 +135,50 @@
     border-radius: 12px;
     transition: all 0.3s ease;
     width: 100%;
-
-    &:hover {
-      transform: translateX(8px);
-      background: rgba(255, 255, 255, 0.1);
-
-      @media only screen and (max-width: $medium) {
-        transform: unset;
-      }
-    }
+    cursor: default;
 
     @media only screen and (max-width: 1280px) {
       justify-content: center;
+      width: fit-content;
+      margin-inline: auto;
+    }
+
+    &--delivery {
+      position: relative;
+
+      .hero__benefit-text {
+        padding-right: 30px;
+
+        &::after {
+          content: "*";
+          position: absolute;
+          right: 16px;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 26px;
+          color: $black-color;
+          transition: opacity 0.2s ease;
+        }
+      }
+
+      &:hover {
+        &::after {
+          content: "Consulta disponibilidad de entrega";
+          position: absolute;
+          bottom: -22px;
+          left: 48px;
+          color: rgba($primary-color, 0.8);
+          font-size: 12px;
+          white-space: nowrap;
+          font-weight: 500;
+
+          @media only screen and (max-width: 1280px) {
+            left: 50%;
+            bottom: -18px;
+            transform: translateX(-50%);
+          }
+        }
+      }
     }
   }
 

@@ -56,7 +56,12 @@ const Hero = () => {
                 Alimento 100% natural.
               </Typography>
             </div>
-            <div className={cx("hero__benefit-item")}>
+            <div
+              className={cx(
+                "hero__benefit-item",
+                "hero__benefit-item--delivery"
+              )}
+            >
               <Truck
                 className="w-6 h-6 text-primary stroke-2"
                 strokeLinecap="round"
@@ -67,7 +72,7 @@ const Hero = () => {
                 fontWeight={600}
                 className={cx("hero__benefit-text")}
               >
-                Entrega a domicilio sin costo.
+                Entrega a domicilio sin costo
               </Typography>
             </div>
           </div>
