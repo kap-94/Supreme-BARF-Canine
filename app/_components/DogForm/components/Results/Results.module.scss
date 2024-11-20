@@ -19,12 +19,14 @@
     border-radius: 8px;
     background: rgba($primary-color, 0.02);
     border: 1px solid rgba($primary-color, 0.04);
+    position: relative;
 
     strong {
       color: $primary-color;
       font-weight: 600;
       font-size: 18px;
       position: relative;
+      display: inline-block;
 
       &::after {
         content: "";
@@ -36,6 +38,33 @@
         background: rgba($primary-color, 0.1);
         border-radius: 1px;
       }
+    }
+  }
+
+  &__buy-link {
+    position: absolute;
+    right: 24px;
+    bottom: 20px;
+    text-decoration: underline;
+    color: $primary-color;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+
+    @media only screen and (max-width: $medium) {
+      font-size: 13px;
+    }
+
+    &::before {
+      content: "→";
+      font-size: 16px;
+      margin-right: 6px;
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    &:hover::before {
+      transform: translateX(2px);
     }
   }
 
@@ -75,10 +104,6 @@
         background: $primary-color;
         position: relative;
         transition: width 0.2s ease;
-      }
-
-      &:hover::before {
-        width: 12px;
       }
     }
   }

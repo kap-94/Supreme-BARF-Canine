@@ -1,27 +1,27 @@
 import { useEffect, useState } from "react";
+import { DogFormValues } from "../_components/DogForm";
 
-interface DogFormValues {
-  dogYears: string;
-  dogMonths: string;
-  dogWeight: number | string;
-  sterilized: string;
-  activityLevel: string;
-  pregnancyStatus: string;
+interface DogInfo {
+  dogAgeText: string;
+  weightText: string;
+  sterilizedText: string;
+  activityText: string;
+  pregnancyText: string;
+  foodAmount: number;
 }
 
-interface CalculationResult {
-  foodAmount: string;
-  additionalMessage: string;
-}
-
-const useCalculateFoodAmount = (values: DogFormValues): CalculationResult => {
-  const [result, setResult] = useState<CalculationResult>({
-    foodAmount: "",
-    additionalMessage: "",
+const useCalculateFoodAmount = (values: DogFormValues) => {
+  const [result, setResult] = useState<DogInfo>({
+    dogAgeText: "",
+    weightText: "",
+    sterilizedText: "",
+    activityText: "",
+    pregnancyText: "",
+    foodAmount: 0,
   });
 
   useEffect(() => {
-    const calculateFoodAmount = () => {
+    const calculate = () => {
       const {
         dogYears,
         dogMonths,
@@ -30,90 +30,46 @@ const useCalculateFoodAmount = (values: DogFormValues): CalculationResult => {
         activityLevel,
         pregnancyStatus,
       } = values;
-
-      const dogAgeYears = parseInt(dogYears, 10);
-      const dogAgeMonths = parseInt(dogMonths, 10);
-      const dogAge = dogAgeYears + dogAgeMonths / 12;
+      const dogAge = parseInt(dogYears, 10) + parseInt(dogMonths, 10) / 12;
       const weight = parseFloat(dogWeight as string);
 
-      // Validar si no se ha ingresado una edad válida
-      if (dogAgeYears === 0 && dogAgeMonths === 0) {
-        return {
-          foodAmount: "Por favor, introduzca una edad válida para su perro.",
-          additionalMessage: "",
-        };
-      }
+      const activityMultiplier =
+        {
+          Sedentario: 95,
+          Moderado: 130,
+          Activo: 160,
+        }[activityLevel] || 0;
 
-      // Validar si no se ha ingresado un peso válido o si está vacío
-      if (!dogWeight || weight <= 0) {
-        return {
-          foodAmount: "Por favor, introduzca un peso válido para su perro.",
-          additionalMessage: "",
-        };
-      }
+      const ageMultiplier = dogAge < 1 ? 1.5 : dogAge < 7 ? 1 : 0.8;
+      const sterilizedMultiplier = sterilized === "Esterilizado" ? 0.85 : 1;
+      const pregnancyMultiplier =
+        {
+          Gestación: 1.25,
+          Lactancia: 1.5,
+          "No aplica": 1,
+        }[pregnancyStatus] || 0;
 
-      // Fórmulas específicas basadas en los datos proporcionados
-      // Nivel de actividad
-      let activityLevelMultiplier =
-        activityLevel === "Sedentario"
-          ? 95
-          : activityLevel === "Moderado"
-          ? 130
-          : activityLevel === "Activo"
-          ? 160
-          : 0;
-
-      // Edad
-      let ageMultiplier =
-        dogAge < 1 ? 1.5 : dogAge < 7 ? 1 : dogAge > 7 ? 0.8 : 0;
-
-      // Esterilización
-      let sterilizedMultiplier = sterilized === "Esterilizado" ? 0.85 : 1;
-
-      // Gestación o lactancia
-      let pregnancyMultiplier =
-        pregnancyStatus === "Gestación"
-          ? 1.25
-          : pregnancyStatus === "Lactancia"
-          ? 1.5
-          : pregnancyStatus === "No aplica"
-          ? 1
-          : 0;
-
-      // Cálculo final
-      let totalFoodAmount =
+      const totalFood = Math.round(
         (Math.pow(weight, 0.75) *
-          activityLevelMultiplier *
+          activityMultiplier *
           ageMultiplier *
           sterilizedMultiplier *
           pregnancyMultiplier) /
-        (1850 / 1000);
-
-      // Construcción dinámica del mensaje
-      let foodAmountMessage = `Para un perro de ${dogYears} años y ${dogMonths} meses, que pesa ${weight} kg, ${
-        sterilized === "Esterilizado" ? "esterilizado" : "no esterilizado"
-      }, `;
-
-      // Adjust the connection and add activity level
-      if (pregnancyStatus === "No aplica") {
-        foodAmountMessage += `y con un nivel de actividad ${activityLevel.toLowerCase()}, la cantidad recomendada de alimento es: </br><strong>${Math.round(
-          totalFoodAmount
-        )} gramos al día.</strong>`;
-      } else {
-        foodAmountMessage += `con un nivel de actividad ${activityLevel.toLowerCase()} y estado de ${pregnancyStatus.toLowerCase()}, la cantidad recomendada de alimento es: </br><strong>${Math.round(
-          totalFoodAmount
-        )} gramos al día.</strong>`;
-      }
-
-      const additionalMessage = `Recuerda que dividir la ración diaria en dos o tres comidas puede mejorar la digestión de tu perro. Además, siempre proporciona agua fresca para mantener su hidratación.`;
+          (1850 / 1000)
+      );
 
       return {
-        foodAmount: foodAmountMessage,
-        additionalMessage,
+        dogAgeText: `${dogYears} años y ${dogMonths} meses`,
+        weightText: `${weight} kg`,
+        sterilizedText:
+          sterilized === "Esterilizado" ? "esterilizado" : "no esterilizado",
+        activityText: activityLevel.toLowerCase(),
+        pregnancyText: pregnancyStatus.toLowerCase(),
+        foodAmount: totalFood,
       };
     };
 
-    setResult(calculateFoodAmount());
+    setResult(calculate());
   }, [values]);
 
   return result;

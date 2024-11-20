@@ -9,15 +9,40 @@ const cx = classNames.bind(styles);
 
 interface ResultsProps {
   values: DogFormValues;
-  foodAmount: string;
+  dogInfo: {
+    dogAgeText: string;
+    weightText: string;
+    sterilizedText: string;
+    activityText: string;
+    pregnancyText: string;
+    foodAmount: number;
+  };
   onReset: () => void;
 }
 
 export const Results: React.FC<ResultsProps> = ({
   values,
-  foodAmount,
+  dogInfo,
   onReset,
 }) => {
+  const renderMessage = () => {
+    const baseMessage = `Para un perro de ${dogInfo.dogAgeText}, que pesa ${dogInfo.weightText}, ${dogInfo.sterilizedText}, `;
+
+    const activityMessage =
+      values.pregnancyStatus === "No aplica"
+        ? `y con un nivel de actividad ${dogInfo.activityText}`
+        : `con un nivel de actividad ${dogInfo.activityText} y estado de ${dogInfo.pregnancyText}`;
+
+    return `${baseMessage}${activityMessage}, la cantidad recomendada de alimento es: </br>
+      <strong>${dogInfo.foodAmount} gramos al día</strong>
+      <a href="https://supremebarfcanine.shop/products/formula-de-pollo-perro-adulto-todas-las-razas" 
+         class="${cx("results__buy-link")}" 
+         target="_blank" 
+         rel="noopener noreferrer">
+        Comprar ahora
+      </a>`;
+  };
+
   return (
     <div className={cx("results")}>
       <FormHeader
@@ -28,7 +53,7 @@ export const Results: React.FC<ResultsProps> = ({
       <div className={cx("results__content")}>
         <div
           className={cx("results__message")}
-          dangerouslySetInnerHTML={{ __html: foodAmount }}
+          dangerouslySetInnerHTML={{ __html: renderMessage() }}
         />
 
         <div className={cx("results__tips")}>

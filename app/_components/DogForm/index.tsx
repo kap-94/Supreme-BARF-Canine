@@ -52,7 +52,7 @@ const DogForm: React.FC = () => {
         onSubmit={handleSubmit}
       >
         {({ values, setFieldValue }) => {
-          const { foodAmount } = useCalculateFoodAmount(values);
+          const dogInfo = useCalculateFoodAmount(values);
 
           return (
             <Form className={cx("dog-form__container")}>
@@ -76,6 +76,7 @@ const DogForm: React.FC = () => {
               {activeStep === 3 && (
                 <Results
                   values={values}
+                  dogInfo={dogInfo}
                   onReset={() => {
                     setActiveStep(1);
                     Object.keys(INITIAL_VALUES).forEach((key) => {
@@ -85,7 +86,6 @@ const DogForm: React.FC = () => {
                       );
                     });
                   }}
-                  foodAmount={foodAmount}
                 />
               )}
             </Form>
