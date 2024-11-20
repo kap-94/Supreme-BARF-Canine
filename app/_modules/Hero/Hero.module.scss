@@ -1,11 +1,7 @@
 @import "../../_styles/variables.scss";
 
 .hero {
-  background: linear-gradient(
-    90deg,
-    $secondary-color 55%,
-    $secondary-color-light 45%
-  );
+  background: $secondary-color;
   display: flex;
   height: 100vh;
   justify-content: center;
