@@ -85,7 +85,7 @@
         background: rgba(255, 255, 255, 0.9);
         border-radius: 50%;
         color: $primary-color;
-        // display: none;
+        visibility: hidden;
         transition: all 0.3s ease-out;
 
         &::after {
@@ -143,6 +143,7 @@
         .swiper-button-next,
         .swiper-button-prev {
           opacity: 1;
+          visibility: visible;
         }
       }
     }
@@ -283,12 +284,18 @@
     }
   }
 
-  &__tab-content {
-    height: 256px; // Altura fija basada en el contenido más extenso
-    overflow-y: auto;
-    padding-right: 16px; // Espacio para el scrollbar
-    margin-right: -16px; // Compensar el padding
+  &__tab-content-wrapper {
     position: relative;
+    height: 256px;
+  }
+
+  &__tab-content {
+    overflow-y: auto;
+    position: relative;
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 16px;
+    margin-right: -16px;
 
     // Estilizar scrollbar para navegadores webkit
     &::-webkit-scrollbar {
@@ -315,28 +322,25 @@
     // Ocultar scrollbar en Firefox
     scrollbar-width: thin;
     scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
+  }
 
-    // Fade out en el borde inferior cuando hay scroll
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 16px; // Compensar el scrollbar
-      height: 20px;
-      background: linear-gradient(to top, $white-color, transparent);
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
+  &__fade-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 32px;
+    background: linear-gradient(
+      to top,
+      $white-color 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 
-    &:not([data-scroll="bottom"]):after {
+    &[data-visible="true"] {
       opacity: 1;
-    }
-
-    @media only screen and (max-width: $medium) {
-      padding-right: 12px;
-      margin-right: -12px;
     }
   }
 
@@ -344,7 +348,6 @@
     flex-direction: column;
     display: flex;
     gap: 16px;
-    height: 100%;
   }
 
   &__text {
@@ -399,7 +402,6 @@
 
   &__button {
     width: 200px;
-    // max-width: 300px;
     justify-content: center;
 
     @media only screen and (max-width: $xlarge) {
