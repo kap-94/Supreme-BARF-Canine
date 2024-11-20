@@ -16,16 +16,16 @@ export const headerData: HeaderProps = {
       {
         menu_item_id: 739,
         menu_item_parent: 0,
-        title: "Beneficios",
+        title: "Producto",
+        url: "#product-section",
         target: "_self",
-        url: "#benefits-section",
       },
       {
         menu_item_id: 740,
         menu_item_parent: 0,
-        title: "Productos",
-        url: "#product-section",
+        title: "Beneficios",
         target: "_self",
+        url: "#benefits-section",
       },
       {
         menu_item_id: 741,
@@ -122,15 +122,15 @@ export const footerData: FooterProps = {
     {
       menu_item_id: 2,
       menu_item_parent: 0,
-      title: "Beneficios",
-      url: "#benefits-section",
+      title: "Producto",
+      url: "#product-section",
       target: "_self",
     },
     {
       menu_item_id: 3,
       menu_item_parent: 0,
-      title: "Productos",
-      url: "#product-section",
+      title: "Beneficios",
+      url: "#benefits-section",
       target: "_self",
     },
     {
@@ -138,7 +138,7 @@ export const footerData: FooterProps = {
       menu_item_parent: 0,
       title: "Calculadora de alimento",
       url: "#food-calculator",
-      target: "#food-calculator",
+      target: "_self",
     },
     {
       menu_item_id: 5,
