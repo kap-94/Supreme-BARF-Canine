@@ -10,9 +10,9 @@ const PromoSnackbar: React.FC = () => {
 
   // Lista de anuncios para el slider
   const announcements = [
-    "30% de descuento en el primer pedido!",
-    "Envío gratis en compras superiores a $50",
-    "¡Nuevas recetas para el bienestar de tu perro!",
+    "20% de descuento en el primer pedido!",
+    // "Envío gratis en compras superiores a $50",
+    // "¡Nuevas recetas para el bienestar de tu perro!",
   ];
 
   //   // Cambiar anuncio cada 5 segundos (5000ms)
