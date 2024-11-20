@@ -78,28 +78,28 @@ export const headerData: HeaderProps = {
     ],
     logos: {
       defaultLogo: {
-        url: "/logo-full.png",
+        url: "/logo.png",
         href: "/#",
         alt: "logo",
         width: 74,
         height: 80,
       },
       light: {
-        url: "/logo-full.png",
+        url: "/logo.png",
         href: "/#",
         alt: "logo",
         width: 64,
         height: 64,
       },
       lightMobile: {
-        url: "/logo-full.png",
+        url: "/logo.png",
         href: "/#",
         alt: "logo",
         height: 46,
         width: 46,
       },
       dark: {
-        url: "/logo-full.png",
+        url: "/logo.png",
         href: "/#",
         alt: "logo",
         height: 46,
@@ -197,7 +197,7 @@ export const footerData: FooterProps = {
     copyright_name:
       " Supreme BARF Canine. All rights reserved. | Built By KAgency",
     logo: {
-      url: "/logo-full.png",
+      url: "/logo.png",
       alt: "Supreme BARF Canine",
       width: 74,
       height: 80,
