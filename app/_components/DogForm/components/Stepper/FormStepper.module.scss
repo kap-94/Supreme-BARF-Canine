@@ -71,12 +71,11 @@
     &--current {
       #{$self}__step-number {
         background: $primary-color;
-        border-color: transparent;
         color: $white-color;
         font-weight: 500;
 
         &::before {
-          border-color: rgba($primary-color, 0.1);
+          border: none;
           inset: -3px;
         }
       }
@@ -94,7 +93,8 @@
         color: $white-color;
 
         &::before {
-          border-color: rgba($primary-color, 0.05);
+          border: none;
+
           inset: -3px;
         }
       }
