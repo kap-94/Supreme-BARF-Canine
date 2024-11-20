@@ -20,8 +20,8 @@ export default function Home() {
       <main>
         <Hero />
         <About />
-        <Benefits />
         <ProductGrid />
+        <Benefits />
         <FoodCalculator />
         <FrequentAskedQuestions />
         <Contact />
