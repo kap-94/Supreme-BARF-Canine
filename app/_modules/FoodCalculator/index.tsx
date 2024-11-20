@@ -14,7 +14,7 @@ const FoodCalculator: React.FC = () => {
       <div className={cx("food-calculator__hero")}>
         <div className={cx("food-calculator__bg-wrapper")}>
           <Image
-            src="/dog-illustration-secondary.svg"
+            src="/dog-illustration.svg"
             alt="Dog illustration"
             fill
             // priority
@@ -26,14 +26,16 @@ const FoodCalculator: React.FC = () => {
           <SectionHeader
             color="white"
             title="Calcula la Ración Ideal"
-            subtitle="Para una alimentación precisa y saludable"
+            // subtitle="Para una alimentación precisa y saludable"
+            subtitle=" Obtén la medida exacta de alimento según la edad, peso y actividad
+            de tu perro"
             className={cx("food-calculator__hero-header")}
           />
 
-          <p className={cx("food-calculator__description")}>
+          {/* <p className={cx("food-calculator__description")}>
             Obtén la medida exacta de alimento según la edad, peso y actividad
             de tu perro
-          </p>
+          </p> */}
 
           <div className={cx("food-calculator__scroll-indicator")}>
             <ChevronDown size={24} />
