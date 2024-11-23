@@ -56,7 +56,9 @@ const shippingInfo = [
   },
   {
     title: "Envío Gratuito",
-    details: "En compras superiores a $299",
+    // details: "En compras superiores a $299",
+    details:
+      "Dependiendo del lugar de entrega podríamos solicítar un pedido mínimo",
     time: "Solo área metropolitana",
   },
 ] as const;
@@ -115,11 +117,10 @@ const ProductGrid: React.FC<ProductGridProps> = ({
             <Typography variant="p2" className={cx("product-grid__text")}>
               Supreme BARF destaca por su formulación premium elaborada con
               ingredientes de calidad de consumo humano, incluyendo huesos
-              carnosos de pollo perfectamente molidos, combinados con órganos
-              selectos como hígado, molleja y corazón de pollo. Esta exclusiva
-              mezcla se complementa con harina de maíz, zanahoria, manzana y
-              aceite de salmón, garantizando una nutrición completa para tu
-              mascota.
+              carnosos de pollo perfectamente molidos, hígados, molleja y
+              corazón de pollo. Esta exclusiva mezcla se complementa con harina
+              de maíz, zanahoria, manzana y aceite de salmón, garantizando una
+              nutrición completa para tu mascota.
             </Typography>
 
             <Typography variant="p2" className={cx("product-grid__text")}>
@@ -272,15 +273,23 @@ const ProductGrid: React.FC<ProductGridProps> = ({
           </div>
 
           <div className={cx("product-grid__cta")}>
-            <Button
+            <a
               href="https://supremebarfcanine.shop/products/formula-de-pollo-perro-adulto-todas-las-razas"
-              variant="link-dark"
               target="_blank"
-              icon="right-arrow"
-              className={cx("product-grid__button")}
+              rel="noopener noreferrer"
+              style={{ width: "fit-content" }}
             >
-              Comprar Ahora
-            </Button>
+              <Button
+                // href="https://supremebarfcanine.shop/products/formula-de-pollo-perro-adulto-todas-las-razas"
+                variant="primary"
+                // target="_blank"
+                // icon="right-arrow"
+                className={cx("product-grid__button")}
+                icon={{ source: "lucide", name: "arrowRight" }}
+              >
+                Comprar Ahora
+              </Button>
+            </a>
           </div>
         </div>
       </div>

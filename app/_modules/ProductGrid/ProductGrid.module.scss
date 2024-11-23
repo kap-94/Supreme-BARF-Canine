@@ -353,6 +353,7 @@
   &__text {
     color: $black-color;
     line-height: 1.6;
+    font-weight: 400;
   }
 
   &__shipping-info {
@@ -398,6 +399,10 @@
     // margin-top: 16px;
     padding-top: 24px;
     border-top: 1.6px solid rgba(0, 0, 0, 0.1);
+
+    @media only screen and (max-width: $xlarge) {
+      align-items: center;
+    }
   }
 
   &__button {
