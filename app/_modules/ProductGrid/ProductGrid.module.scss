@@ -32,9 +32,6 @@
     max-width: 1280px;
     margin-inline: auto;
     align-items: start;
-    // Asegurarnos que el contenido respete los límites
-    overflow: hidden;
-    width: 100%;
 
     @media only screen and (max-width: $xlarge) {
       grid-template-columns: 1fr;
@@ -53,7 +50,7 @@
     background-color: $white-color;
     border-radius: 4px;
     overflow: hidden;
-    border: 1px solid rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.04); // Borde muy sutil
 
     @media only screen and (max-width: $xlarge) {
       max-width: 600px;
@@ -62,12 +59,6 @@
 
     @media only screen and (max-width: $medium) {
       height: fit-content !important;
-      position: relative;
-      top: 0;
-      // Asegurar que el contenedor del gallery no tenga overflow
-      width: calc(100% + 48px);
-      margin-left: -24px;
-      margin-right: -24px;
     }
   }
 
@@ -81,8 +72,6 @@
 
     @media only screen and (max-width: $medium) {
       height: 400px;
-      // Ajustar el padding para compensar los márgenes negativos
-      padding: 0 24px;
     }
 
     :global {
@@ -98,10 +87,6 @@
         color: $primary-color;
         visibility: hidden;
         transition: all 0.3s ease-out;
-
-        @media only screen and (max-width: $medium) {
-          display: none;
-        }
 
         &::after {
           font-size: 16px;
@@ -153,7 +138,6 @@
         }
       }
     }
-
     &:hover {
       :global {
         .swiper-button-next,
@@ -172,7 +156,6 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    overflow: hidden; // Añadir esto
   }
 
   &__image-wrapper::after {
@@ -252,6 +235,10 @@
       &::-webkit-scrollbar {
         display: none;
       }
+    }
+
+    @media only screen and (max-width: $small) {
+      max-width: 320px;
     }
   }
 
