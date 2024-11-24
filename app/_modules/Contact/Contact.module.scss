@@ -97,6 +97,7 @@
     justify-content: center;
     align-items: center;
     gap: 16px;
+    position: relative; // Añadido para el contenedor de imagen
 
     @media only screen and (max-width: $xlarge) {
       margin-top: 8px;
@@ -104,6 +105,30 @@
 
     @media only screen and (max-width: $medium) {
       gap: 12px;
+    }
+  }
+
+  &__image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 530/340;
+
+    @media only screen and (max-width: $xlarge) {
+      max-width: 400px;
+      margin-inline: auto;
+    }
+
+    @media only screen and (max-width: $medium) {
+      max-width: 300px;
+    }
+  }
+
+  &__image {
+    top: 32px !important;
+    object-fit: contain;
+
+    @media only screen and (max-width: $medium) {
+      top: 18px !important;
     }
   }
 

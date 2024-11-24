@@ -1,10 +1,14 @@
 "use client";
 import React, { useState } from "react";
+import Image from "next/image";
+import classNames from "classnames/bind";
 import { Formik, Form } from "formik";
 import {
   GoogleReCaptchaProvider,
   useGoogleReCaptcha,
 } from "react-google-recaptcha-v3";
+import { sendContactForm } from "@/app/_lib/api";
+import { getContactFormSchema } from "@/app/_lib/validationSchemas";
 import {
   Alert,
   Button,
@@ -13,10 +17,8 @@ import {
   TextField,
   Typography,
 } from "@/app/_components";
-import { sendContactForm } from "@/app/_lib/api";
+import dogIllustration from "@/public/novak-2.png";
 import styles from "./Contact.module.scss";
-import classNames from "classnames/bind";
-import { getContactFormSchema } from "@/app/_lib/validationSchemas";
 
 const cx = classNames.bind(styles);
 
@@ -195,13 +197,16 @@ const Contact: React.FC = () => {
 
         {/* Información de contacto */}
         <div className={cx("contact__info")}>
-          {/* <Image
-            src={logo}
-            height={240}
-            width={240}
-            className={cx("contact__logo")}
-            alt="Supreme BARF Canine"
-          /> */}
+          <div className={cx("contact__image-wrapper")}>
+            <Image
+              src={dogIllustration}
+              fill
+              sizes="(max-width: 768px) 300px, (max-width: 1280px) 400px, 530px"
+              className={cx("contact__image")}
+              alt="Supreme BARF Canine"
+              priority
+            />
+          </div>
           <Typography variant="h2" align="center">
             SUPREME <span style={{ fontWeight: 600 }}>BARF</span> CANINE
           </Typography>
