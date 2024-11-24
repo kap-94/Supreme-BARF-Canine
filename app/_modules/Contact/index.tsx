@@ -237,15 +237,22 @@ const Contact: React.FC = () => {
 // Envolvemos el componente Contact con el proveedor de reCAPTCHA
 const ContactWithReCaptcha: React.FC = () => {
   return (
-    <GoogleReCaptchaProvider
-      reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
-      scriptProps={{
-        async: true, // Carga asíncrona del script
-        defer: true, // Deferir la carga del script
-      }}
-    >
-      <Contact />
-    </GoogleReCaptchaProvider>
+    <>
+      <GoogleReCaptchaProvider
+        reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+        scriptProps={{
+          async: true,
+          defer: true,
+        }}
+      >
+        <Contact />
+      </GoogleReCaptchaProvider>
+      <style jsx global>{`
+        .grecaptcha-badge {
+          z-index: 1000 !important;
+        }
+      `}</style>
+    </>
   );
 };
 
