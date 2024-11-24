@@ -64,7 +64,7 @@ const BENEFITS_DATA: BenefitProps[] = [
 
 const MEDIA_ITEMS = [
   {
-    src: "/Raza mediana 2.webp",
+    src: "/dog-blue-bg.webp",
     alt: "Perro sonriendo",
   },
   {
