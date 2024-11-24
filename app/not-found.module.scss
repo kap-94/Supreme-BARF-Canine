@@ -1,0 +1,68 @@
+// not-found.module.scss
+@import "./_styles/variables.scss";
+
+.not-found {
+  padding: 240px 24px 120px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $white-color;
+
+  &__content {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+
+    h1 {
+      font-size: 120px;
+      font-weight: 800;
+      color: $primary-color;
+      line-height: 1;
+    }
+
+    h2 {
+      color: $black-color;
+    }
+  }
+
+  &__message {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+    max-width: 500px;
+  }
+
+  &__button-wrapper {
+    text-decoration: none;
+  }
+
+  &__button {
+    min-width: 200px;
+  }
+
+  @media only screen and (max-width: $medium) {
+    padding: 120px 24px;
+
+    &__header {
+      h1 {
+        font-size: 80px;
+      }
+    }
+
+    &__content {
+      gap: 32px;
+    }
+  }
+}
