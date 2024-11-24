@@ -20,7 +20,7 @@ const Hero = () => {
             </Typography>
           </div>
           <Typography variant="h1" className={cx("hero__title")}>
-            ALIMENTO NATURAL PARA PARA EL BIENESTAR DE TU PERRO
+            ALIMENTO NATURAL PARA EL BIENESTAR DE TU PERRO
           </Typography>
           <Typography variant="p1" className={cx("hero__paragraph")}>
             Dile adiós a las croquetas y comienza a darle a tu perro un alimento
