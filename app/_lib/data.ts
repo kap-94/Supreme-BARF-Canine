@@ -194,8 +194,7 @@ export const footerData: FooterProps = {
   ],
   frontPageID: "12345",
   options: {
-    copyright_name:
-      " Supreme BARF Canine. All rights reserved. | Built By KAgency",
+    copyright_name: " Supreme BARF Canine. All rights reserved.",
     logo: {
       url: "/logo.png",
       alt: "Supreme BARF Canine",
