@@ -1,0 +1,141 @@
+@import "../../_styles/variables.scss";
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 36px;
+  gap: 90px;
+  max-width: 1440px;
+  margin-inline: auto;
+
+  @media only screen and (max-width: $xlarge) {
+    padding: 60px 48px;
+    gap: 60px;
+  }
+
+  @media only screen and (max-width: $medium) {
+    padding: 60px 24px 88px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 80px;
+
+    @media only screen and (max-width: $xlarge) {
+      flex-direction: column-reverse;
+      gap: 72px;
+      max-width: 620px;
+    }
+
+    @media only screen and (max-width: $medium) {
+      max-width: unset;
+      width: 100%;
+    }
+  }
+
+  &__form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    width: 600px;
+
+    @media only screen and (max-width: $xlarge) {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+
+    @media only screen and (max-width: $medium) {
+      width: 100%;
+    }
+  }
+
+  &__form-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  &__captcha-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__submit-button {
+    margin-top: 16px;
+    margin-inline: auto;
+    // padding-inline: 34px;
+
+    p {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    img {
+      transform: translateY(-3px);
+      height: 30px;
+      width: 30px;
+    }
+  }
+
+  &__input {
+    background-color: rgba(#e7dfd9, 0.3);
+    padding: 16px;
+  }
+
+  &__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    position: relative; // Añadido para el contenedor de imagen
+
+    @media only screen and (max-width: $xlarge) {
+      margin-top: 8px;
+    }
+
+    @media only screen and (max-width: $medium) {
+      gap: 12px;
+    }
+  }
+
+  &__image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 530/340;
+
+    @media only screen and (max-width: $xlarge) {
+      max-width: 400px;
+      margin-inline: auto;
+    }
+
+    @media only screen and (max-width: $medium) {
+      max-width: 300px;
+    }
+  }
+
+  &__image {
+    top: 32px !important;
+    object-fit: contain;
+
+    @media only screen and (max-width: $medium) {
+      top: 16px !important;
+    }
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 24px;
+  }
+}

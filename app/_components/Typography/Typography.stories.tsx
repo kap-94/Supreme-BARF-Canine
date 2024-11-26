@@ -1,88 +1,136 @@
 import React from "react";
-import { StoryFn, Meta } from "@storybook/react";
-import Typography from ".";
-import "@/app/styles/globals.scss";
-import Layout from "@/app/components/layouts/Layout";
+import { Meta, StoryObj } from "@storybook/react";
+import { Typography } from "@/app/_components";
+import { TypographyVariant, TypographyColor } from "./interfaces";
 
-export default {
+const meta: Meta<typeof Typography> = {
   title: "Components/Typography",
   component: Typography,
-} as Meta<typeof Typography>;
-
-const Template: StoryFn<typeof Typography> = (args) => {
-  return (
-    <>
-      <Layout>
-        <Typography {...args}>
-          Hello, this is the typography component with the&nbsp;
-          {args.variant || "normal"} variant and with the&nbsp;
-          {args.color || "normal"} color.
-        </Typography>
-      </Layout>
-    </>
-  );
+  argTypes: {
+    variant: {
+      control: { type: "select" },
+      options: [
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "p1",
+        "p2",
+        "p3",
+        "button",
+        "overline",
+      ],
+    },
+    color: {
+      control: { type: "select" },
+      options: [
+        "inherit",
+        "initial",
+        "primary",
+        "normal",
+        "secondaryElements",
+        "blue",
+        "white",
+        "light",
+        "error",
+        "secondary",
+      ],
+    },
+    align: {
+      control: { type: "select" },
+      options: ["inherit", "left", "center", "right", "justify"],
+    },
+    fontFamily: {
+      control: { type: "select" },
+      options: ["raleway", "poppins"],
+    },
+    fontWeight: {
+      control: { type: "select" },
+      options: ["400", "500", "600", "700", "800", "900"],
+    },
+    gutterBottom: { control: "boolean" },
+    paragraph: { control: "boolean" },
+    textTransform: {
+      control: { type: "select" },
+      options: ["none", "capitalize", "uppercase", "lowercase"],
+    },
+    children: { control: "text" },
+  },
 };
 
-export const Normal = Template.bind({});
+export default meta;
 
-Normal.args = {
-  color: "initial",
+// Template base
+type Story = StoryObj<typeof Typography>;
+
+export const Default: Story = {
+  args: {
+    variant: "p1",
+    children: "This is a default paragraph (p1)",
+    color: "initial",
+    align: "inherit",
+    fontFamily: "raleway",
+    fontWeight: 400,
+    gutterBottom: false,
+    paragraph: false,
+    textTransform: "none",
+  },
 };
 
-export const Primary = Template.bind({});
-
-Primary.args = {
-  color: "primary",
-  variant: "h1",
+// Variantes de Typography
+export const Heading1: Story = {
+  args: {
+    variant: "h1",
+    children: "This is Heading 1",
+    fontFamily: "raleway",
+  },
 };
 
-export const SecondaryCenterUppercase = Template.bind({});
-
-SecondaryCenterUppercase.args = {
-  color: "secondaryElements",
-  align: "center",
-  fontWeight: 400,
-  variant: "p1",
-  textTransform: "uppercase",
-};
-export const SecondaryCenterLowercase = Template.bind({});
-
-SecondaryCenterLowercase.args = {
-  color: "secondaryElements",
-  align: "center",
-  fontWeight: 400,
-  variant: "p1",
-  textTransform: "lowercase",
-  gutterBottom: true,
+export const Heading2: Story = {
+  args: {
+    variant: "h2",
+    children: "This is Heading 2",
+    fontFamily: "raleway",
+  },
 };
 
-export const Error = Template.bind({});
-
-Error.args = {
-  color: "error",
-  variant: "button",
+export const Heading3: Story = {
+  args: {
+    variant: "h3",
+    children: "This is Heading 3",
+    fontFamily: "poppins",
+  },
 };
 
-export const Light = Template.bind({});
-
-Light.args = {
-  color: "light",
-  variant: "overline",
+export const Paragraph1: Story = {
+  args: {
+    variant: "p1",
+    children: "This is Paragraph 1",
+    fontFamily: "raleway",
+  },
 };
 
-export const Blue = Template.bind({});
-
-Blue.args = {
-  color: "blue",
-  fontWeight: 700,
-  variant: "p3",
+export const Paragraph2: Story = {
+  args: {
+    variant: "p2",
+    children: "This is Paragraph 2",
+    fontFamily: "raleway",
+  },
 };
 
-export const InheritColor = Template.bind({});
+export const ButtonText: Story = {
+  args: {
+    variant: "button",
+    children: "Button Text",
+    fontFamily: "raleway",
+  },
+};
 
-InheritColor.args = {
-  color: "inherit",
-  fontWeight: 500,
-  variant: "h5",
-  align: "right",
+export const OverlineText: Story = {
+  args: {
+    variant: "overline",
+    children: "Overline Text",
+    fontFamily: "raleway",
+  },
 };

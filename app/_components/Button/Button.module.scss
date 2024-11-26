@@ -1,28 +1,36 @@
+// Button.module.scss
 @import "../../_styles/variables.scss";
 @import "../../_styles/mixins.scss";
 
 .button {
-  display: inline-flex;
   align-items: center;
-  justify-content: center;
+  border-radius: 6px;
   border: none;
-  border-radius: 4px;
   cursor: pointer;
-  transition: all 0.2s ease-in;
-  text-wrap: nowrap;
+  display: inline-flex;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap; /* Reemplaza text-wrap: nowrap; */
   width: fit-content;
+  overflow: hidden;
 
-  &:hover {
-    transform: translateY(-3px);
-  }
-
-  &:active,
-  &:focus {
-    box-shadow: 0 5px 12.5px rgba(0, 0, 0, 0.07);
-    transform: translateY(-1px);
+  &__text {
+    margin-right: 12px !important;
   }
 
   &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0;
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
+  }
+
+  &__spinner {
     display: flex;
     align-items: center;
   }
@@ -35,12 +43,6 @@
       border-radius: 16px;
     }
 
-    .button__icon {
-      margin-right: 6px;
-      height: 14px;
-      width: 12px;
-    }
-
     .button__text {
       font-size: rem(12);
       font-weight: 600;
@@ -50,16 +52,10 @@
   }
 
   &--medium {
-    padding: 13px 16px;
+    padding: 17px 16px;
 
     &.button--pill {
       border-radius: 20px;
-    }
-
-    .button__icon {
-      margin-right: 8px;
-      height: 18px;
-      width: 15px;
     }
 
     .button__text {
@@ -71,16 +67,14 @@
   }
 
   &--large {
-    padding: 18px;
+    padding: 20px 32px;
+
+    @media only screen and (max-width: 768px) {
+      padding: 18px 24px;
+    }
 
     &.button--pill {
       border-radius: 24px;
-    }
-
-    .button__icon {
-      margin-right: 8px;
-      height: 22px;
-      width: 18px;
     }
 
     .button__text {
@@ -92,43 +86,39 @@
   }
 
   &--primary {
-    background-color: $primary;
+    background: $primary-color;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        120deg,
+        transparent,
+        rgba($white-color, 0.1),
+        transparent
+      );
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
 
     &:hover {
+      transform: translateY(-1px);
       filter: brightness(1.1);
-      // background-color: $ui-aqua;
     }
 
-    &[disabled] {
-      opacity: 0.6;
-      cursor: not-allowed;
+    &:hover::before {
+      transform: translateX(100%);
     }
 
-    // .button__text {
-    //   color: $white;
-    // }
-
-    .button__icon {
-      filter: brightness(0) invert(100%) sepia(33%) saturate(3729%)
-        hue-rotate(180deg) brightness(104%) contrast(113%);
-    }
-  }
-
-  &--accent {
-    background-color: $accent;
-
-    &:hover {
-      filter: brightness(1.1);
-      // background-color: $ui-aqua;
-    }
-
-    &[disabled] {
+    &[disabled],
+    &[aria-disabled="true"] {
       opacity: 0.6;
       cursor: not-allowed;
     }
 
     .button__text {
-      color: $white;
+      color: $white-color;
     }
 
     .button__icon {
@@ -138,32 +128,92 @@
   }
 
   &--secondary {
-    background-color: $secondary;
+    background: rgba($primary-color, 0.1);
 
     &:hover {
-      background-color: $secondary-light;
+      transform: translateY(-1px);
+      filter: brightness(1.1);
     }
 
-    &[disabled] {
-      opacity: 0.6;
-      cursor: not-allowed;
+    .button__text {
+      color: darken($primary-color, 5%);
     }
-
-    // .button__text {
-    //   color: $black;
-    //   opacity: 0.72;
-    // }
 
     .button__icon {
-      filter: brightness(0) invert(25%) sepia(16%) saturate(1346%)
-        hue-rotate(194deg) brightness(96%) contrast(98%);
+      filter: brightness(0) saturate(100%) hue-rotate(190deg);
     }
   }
 
-  &--link {
+  &--accent {
+    background-color: $accent-color;
+    // box-shadow: 6px 6px 12px rgba(darken($accent-color, 20%), 0.2),
+    //   -6px -6px 12px rgba(lighten($accent-color, 20%), 0.1);
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        120deg,
+        transparent,
+        rgba($white-color, 0.1),
+        transparent
+      );
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+
+    &:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.1);
+    }
+
+    &:hover::before {
+      transform: translateX(100%);
+    }
+
+    // &:hover {
+    //   background-color: lighten($accent-color, 3%);
+    //   box-shadow: 8px 8px 16px rgba(darken($accent-color, 20%), 0.25),
+    //     -8px -8px 16px rgba(lighten($accent-color, 20%), 0.15);
+    // }
+
+    &:active {
+      background-color: darken($accent-color, 3%);
+      box-shadow: inset 4px 4px 8px rgba(darken($accent-color, 20%), 0.2),
+        inset -4px -4px 8px rgba(lighten($accent-color, 20%), 0.1);
+    }
+
+    &[disabled],
+    &[aria-disabled="true"] {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+
+      &::before,
+      &::after {
+        display: none;
+      }
+    }
+
+    .button__text {
+      color: $white-color !important;
+      position: relative;
+      z-index: 1;
+    }
+
+    .button__icon {
+      filter: brightness(0) invert(1);
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  &--link-light {
     background-color: transparent;
     border-radius: 0;
-    // border-bottom: 2px solid $white;
+    border-bottom: 2px solid $white-color;
     padding: 8px 0;
     display: flex;
     gap: 12px;
@@ -177,7 +227,7 @@
     }
 
     .button__text {
-      color: $white;
+      color: $white-color;
       font-size: 15px;
       font-weight: 600;
     }
@@ -188,10 +238,38 @@
     }
   }
 
+  &--link-dark {
+    background-color: transparent;
+    border-radius: 0;
+    border-bottom: 2px solid $black-color;
+    padding: 8px 0;
+    display: flex;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:active,
+    &:focus {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .button__text {
+      color: $black-color;
+      font-size: 15px;
+    }
+
+    .button__icon {
+      filter: brightness(0);
+      transform: rotate(-45deg);
+    }
+  }
+
   &--full-width {
     width: 100%;
   }
 
+  // Elevation sizes
   &--elevation-0 {
     @include elevation(0);
   }

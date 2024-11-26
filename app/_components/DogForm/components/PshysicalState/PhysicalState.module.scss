@@ -1,0 +1,22 @@
+@import "../../../../_styles/variables.scss";
+
+.physical-state {
+  display: grid;
+  gap: 28px;
+  padding: 32px 28px 38px;
+
+  &__fields {
+    display: grid;
+    gap: 20px;
+  }
+
+  &__buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+
+    @media (max-width: $medium) {
+      grid-template-columns: 1fr;
+    }
+  }
+}

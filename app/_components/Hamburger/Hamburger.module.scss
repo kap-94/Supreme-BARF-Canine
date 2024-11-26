@@ -37,7 +37,7 @@
 .hamburger.isActive .hamburgerInner,
 .hamburger.isActive .hamburgerInner::before,
 .hamburger.isActive .hamburgerInner::after {
-  background-color: $black;
+  background-color: $black-color;
 }
 
 .hamburgerBox {
@@ -57,7 +57,7 @@
 .hamburgerInner::after {
   width: rem(40);
   height: rem(4);
-  background-color: $black;
+  background-color: $black-color;
   border-radius: rem(4);
   position: absolute;
   transition-property: transform, background-color !important;
@@ -68,14 +68,14 @@
   .hamburgerInner,
   .hamburgerInner::before,
   .hamburgerInner::after {
-    background-color: $primary;
+    background-color: $primary-color;
   }
 }
 .dark {
   &.hamburger.isActive .hamburgerInner,
   &.hamburger.isActive .hamburgerInner::before,
   &.hamburger.isActive .hamburgerInner::after {
-    background-color: $black;
+    background-color: $black-color;
   }
 }
 .hamburgerInner::before,

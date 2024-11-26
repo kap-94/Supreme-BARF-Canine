@@ -1,0 +1,26 @@
+@import "../../../../_styles/variables.scss";
+
+.basic-info {
+  display: grid;
+  gap: 28px;
+  padding: 32px 28px 38px;
+
+  &__fields {
+    display: grid;
+    gap: 20px;
+  }
+
+  &__field-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+
+    @media (max-width: $medium) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__text-field {
+    border: 1px solid rgba($black-color, 0.2) !important;
+  }
+}

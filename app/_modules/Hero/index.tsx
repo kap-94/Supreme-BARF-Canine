@@ -1,58 +1,52 @@
-import React from "react";
-import classNames from "classnames/bind";
+import { Typography, Button } from "../../_components";
+import { Dog, Truck, UtensilsCrossed } from "lucide-react";
+import { HeroParallaxImages } from "./HeroParallaxImages";
 import heroDog from "@/public/dog.png";
 import heroMeat from "@/public/meat.png";
+import heroDogFood from "@/public/dog-food.png";
 import styles from "./Hero.module.scss";
-import Image from "next/image";
-import { Typography, Icon } from "../../_components";
-import Button from "../../_components/Button";
+import classNames from "classnames/bind";
 
 const cx = classNames.bind(styles);
 
-const Hero: React.FC = () => {
+const Hero = () => {
   return (
     <section id="hero" className={cx("hero")}>
       <div className={cx("hero__content")}>
         <div className={cx("hero__text")}>
-          <Typography variant="h5" className={cx("hero__eyebrow")}>
-            SUPREME BARF CANINE
-          </Typography>
+          <div className={cx("hero__eyebrow-container")}>
+            <Typography variant="h5" className={cx("hero__eyebrow")}>
+              SUPREME BARF CANINE
+            </Typography>
+          </div>
           <Typography variant="h1" className={cx("hero__title")}>
-            ALIMENTO SUPERIOR PARA PERROS
+            ALIMENTO NATURAL PARA EL BIENESTAR DE TU PERRO
           </Typography>
           <Typography variant="p1" className={cx("hero__paragraph")}>
             Dile adiós a las croquetas y comienza a darle a tu perro un alimento
             de verdad.
           </Typography>
 
-          {/* Contenedor de beneficios con íconos */}
           <div className={cx("hero__benefits")}>
-            {/* Primera línea con ícono */}
             <div className={cx("hero__benefit-item")}>
-              <Icon
-                icon="check-large"
-                width={24}
-                height={24}
-                className={cx("hero__benefit-icon")}
-                color="primary"
+              <Dog
+                className="w-6 h-6 text-primary stroke-2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <Typography
                 variant="p1"
                 fontWeight={600}
                 className={cx("hero__benefit-text")}
               >
-                Entrega a domicilio sin costo.
+                Para todas las edades y razas.
               </Typography>
             </div>
-
-            {/* Segunda línea con ícono */}
             <div className={cx("hero__benefit-item")}>
-              <Icon
-                icon="check-large"
-                width={24}
-                height={24}
-                className={cx("hero__benefit-icon")}
-                color="primary"
+              <UtensilsCrossed
+                className="w-6 h-6 text-primary stroke-2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <Typography
                 variant="p1"
@@ -62,41 +56,50 @@ const Hero: React.FC = () => {
                 Alimento 100% natural.
               </Typography>
             </div>
+            <div
+              className={cx(
+                "hero__benefit-item",
+                "hero__benefit-item--delivery"
+              )}
+            >
+              <Truck
+                className="w-6 h-6 text-primary stroke-2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <Typography
+                variant="p1"
+                fontWeight={600}
+                className={cx("hero__benefit-text")}
+              >
+                Entrega a domicilio sin costo
+              </Typography>
+            </div>
           </div>
 
-          {/* Botón */}
-          <Button
-            variant="accent"
-            elevation={2}
-            size="large"
-            className={cx("hero__button")}
-            icon="right-arrow"
+          <a
+            href="https://supremebarfcanine.shop/products/formula-de-pollo-perro-adulto-todas-las-razas"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ width: "fit-content" }}
           >
-            Haz tu pedido
-          </Button>
+            <Button
+              variant="accent"
+              elevation={2}
+              size="large"
+              className={cx("hero__button")}
+              icon={{ source: "lucide", name: "arrowRight" }}
+            >
+              Haz tu pedido
+            </Button>
+          </a>
         </div>
 
-        {/* Contenedor de las imágenes */}
-        <div className={cx("hero__images")}>
-          {/* Imagen secundaria (heroMeat) */}
-          <div className={cx("hero__image", "hero__image--secondary")}>
-            <Image
-              src={heroMeat}
-              fill
-              className={cx("hero__meat")}
-              alt="Carne fresca para perros"
-            />
-          </div>
-          {/* Imagen primaria (heroDog) */}
-          <div className={cx("hero__image", "hero__image--primary")}>
-            <Image
-              src={heroDog}
-              fill
-              className={cx("hero__dog")}
-              alt="Perro alimentado con BARF"
-            />
-          </div>
-        </div>
+        <HeroParallaxImages
+          dogImage={heroDog}
+          meatImage={heroMeat}
+          foodImage={heroDogFood}
+        />
       </div>
     </section>
   );

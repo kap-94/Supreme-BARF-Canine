@@ -9,9 +9,10 @@ import Menulist from "../MenuList";
 // import PopUpNotification from "../PopUpNotification/PopUpNotification";
 import { Button, Typography } from "@/app/_components";
 import HeaderLogo from "@/app/_components/Header/HeaderLogo";
-import { Option } from "@/app/_components/Dropdown/Dropdown";
+import { Option } from "@/app/_components/Dropdown";
 
 import styles from "./Header.module.scss";
+import PromoSnackbar from "../PromoSnackbar";
 
 const cx = classnames.bind(styles);
 
@@ -155,6 +156,7 @@ const Header: FC<HeaderProps> = ({
               frontPageID={1}
               data={menuDataSecondary}
               onClick={closeMenu}
+              useActiveStyle
               // frontPageID={frontPageID}
             />
           )}
@@ -171,17 +173,6 @@ const Header: FC<HeaderProps> = ({
           )} */}
         </div>
         {/* </div> */}
-        {currentVariant === "scrolled" && buttonMapping["sign-in"] && (
-          <Button
-            size="small"
-            key={buttonMapping["sign-in"].id}
-            icon="user"
-            className={cx("header__sign-in-button")}
-          >
-            {buttonMapping["sign-in"].children}
-            {/* {currentVariant !== "scrolled" && buttonMapping["sign-in"].children} */}
-          </Button>
-        )}
       </div>
 
       <div className={cx("mobile")}>
@@ -221,16 +212,8 @@ const Header: FC<HeaderProps> = ({
       </div>
 
       {/* <PopUpNotification props={props} /> */}
-      <div className={cx("snackbar")}>
-        <Typography
-          variant="p1"
-          color="white"
-          fontWeight={600}
-          style={{ fontStyle: "italic" }}
-        >
-          30% de descuento en el primer pedido!
-        </Typography>
-      </div>
+
+      <PromoSnackbar />
     </header>
   );
 };

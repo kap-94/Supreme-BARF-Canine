@@ -1,0 +1,78 @@
+@import "../../_styles/variables.scss";
+@import "../../_styles/functions.scss";
+
+.accordion {
+  margin: auto;
+  padding: 0 32px;
+
+  &__title {
+    font-size: rem(40px);
+    font-weight: 400;
+    color: $black-color;
+    margin-bottom: 24px;
+  }
+
+  &__content {
+    .accordion__item {
+      border-top: 1px solid rgba($black-color, 0.3);
+      padding: 24px 0;
+
+      &:last-child {
+        border-bottom: 1px solid rgba($black-color, 0.3);
+      }
+
+      .accordion__trigger {
+        font-weight: 700;
+        font-size: rem(18px);
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        color: $primary-color;
+
+        .accordion__icon {
+          transition: transform 0.3s ease;
+          stroke-width: 3;
+        }
+
+        &--opened {
+          .accordion__icon {
+            transform: rotate(45deg);
+          }
+        }
+      }
+
+      .accordion__answer {
+        margin-top: 24px;
+        max-width: 680px;
+
+        > * {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .accordion {
+    padding: 0;
+
+    &__title {
+      font-size: rem(32px);
+    }
+
+    &__content {
+      .accordion__item {
+        .accordion__trigger {
+          font-size: rem(16px);
+        }
+
+        .accordion__answer {
+          font-size: rem(14px);
+        }
+      }
+    }
+  }
+}

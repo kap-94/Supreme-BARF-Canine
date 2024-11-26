@@ -1,0 +1,19 @@
+.whatsapp-float {
+  position: fixed;
+  width: 64px;
+  height: 64px;
+  bottom: 90px;
+  right: 4px;
+  z-index: 100;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0px 8px 20px rgba(153, 115, 90, 0.3));
+
+  img {
+    object-fit: cover;
+  }
+
+  &:hover {
+    transform: scale(1.1); // Efecto al pasar el mouse sobre el ícono
+  }
+}

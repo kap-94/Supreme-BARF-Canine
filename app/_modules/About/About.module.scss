@@ -1,15 +1,19 @@
-@import "../../_styles/variables.scss"; /* Asegúrate de tener las variables definidas */
+@import "../../_styles/variables.scss";
 
 .about {
-  background-color: $primary;
+  background-color: $primary-color;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 180px 36px;
+  padding: 120px 36px;
 
-  @media only screen and (max-width: 1348px) {
-    padding: 120px 24px;
+  @media only screen and (max-width: $xlarge) {
+    padding: 100px 24px;
+  }
+
+  @media only screen and (max-width: $medium) {
+    padding: 88px 24px;
   }
 
   &__content {
@@ -19,11 +23,13 @@
     max-width: 1440px;
     width: 100%;
     gap: 80px;
+    padding-left: 48px;
 
-    @media only screen and (max-width: 1348px) {
+    @media only screen and (max-width: $xlarge) {
       flex-direction: column;
       gap: 48px;
       max-width: 620px;
+      padding-left: 0;
     }
   }
 
@@ -32,9 +38,9 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 500px;
+    height: 520px;
 
-    @media only screen and (max-width: 1348px) {
+    @media only screen and (max-width: $xlarge) {
       justify-content: unset;
       gap: 36px;
       height: unset;
@@ -43,7 +49,7 @@
 
     &--top {
       align-self: flex-start;
-      max-width: 586px;
+      max-width: 640px;
       width: 100%;
     }
 
@@ -51,29 +57,22 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      // flex-wrap: wrap-reverse;
       gap: 36px;
 
-      @media only screen and (max-width: 1348px) {
+      @media only screen and (max-width: $xlarge) {
         flex-direction: column-reverse;
         align-items: flex-start;
         width: 100%;
       }
 
+      a {
+        margin-bottom: 8px;
+      }
+
       p {
-        max-width: 446px;
+        max-width: 448px;
       }
     }
-
-    // @media (max-width: 768px) {
-    //   width: 100%;
-    //   text-align: center;
-
-    //   &--top,
-    //   &--bottom {
-    //     align-self: center;
-    //   }
-    // }
   }
 
   &__image {
@@ -82,7 +81,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 5px solid $white;
+    border: 5px solid $white-color;
     border-radius: 4px;
     aspect-ratio: 1 / 1;
 

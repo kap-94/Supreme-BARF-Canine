@@ -22,7 +22,7 @@ export const CardTitle: React.FC<CardTitleProps> = ({
   const { data } = useContext(CardContext);
 
   const customStyle: React.CSSProperties = {
-    color: colorMapping[color || "normal"],
+    color: colorMapping[color || "initial"],
     display: paragraph ? "block" : undefined,
     marginBottom: gutterBottom ? "0.35em" : undefined,
     textAlign: align,

@@ -16,9 +16,13 @@ body {
 
 body {
   // font-family: $geometria, sans-serif;
-  background-color: $secondary;
+  background-color: $secondary-color;
   box-sizing: border-box;
   font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
 }

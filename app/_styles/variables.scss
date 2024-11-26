@@ -1,15 +1,5 @@
 @import "functions.scss";
 
-// @font-face {
-//   font-family: Kepler;
-//   src: url(../fonts/Kepler/Kepler-Std-Display_26108.ttf) format("truetype");
-// }
-
-// @font-face {
-//   font-family: Raleway;
-//   src: url(../fonts/Raleway/Raleway-Medium.ttf) format("truetype");
-// }
-
 $root-size: 16;
 $grid-width: rem(calc(1120 + 64));
 $column-gap: rem(32);
@@ -17,23 +7,25 @@ $column-gap: rem(32);
 // Breakpoints
 $small: 480px;
 $medium: 768px;
-$large: 1024px;
-$xlarge: 1200px;
-$xxlarge: 1440px;
+$xlarge: 1348px;
 
-// // Typography
-
-// Colors
-$primary: #1f3a41;
-$secondary: #f9f1eb;
-$secondary-light: #fef8f4;
-$accent: #ec863b;
-$white: #fdfdff;
-$black: #111;
-$error: #c92a07;
+// Colors (También deben ser asignados en el componente Typography)
+$primary-color: #1f3a41;
+$secondary-color: #f9f1eb;
+$secondary-color-light: #fef8f4;
+$secondary-color-dark: #e3c9b7;
+$accent-color: #ec863b;
+$white-color: #fdfdff;
+$black-color: #222;
+$success-color: #4bb050;
+$warning-color: #e1b667;
+$information-color: #2196f3;
+$error-color: #c92a07;
 
 // Border Radious
-$card-radious: 14px;
+$card-radious: 6px;
+$input-radious: 4px;
 
 // Box Shadows
 $shadow-primary: 0 15px 35px rgba(0, 0, 0, 0.1);
+$shadow-brown: 0px 8px 20px rgba(153, 115, 90, 0.3);

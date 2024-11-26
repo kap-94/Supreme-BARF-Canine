@@ -70,6 +70,7 @@ export type IconName =
   | "search"
   | "security"
   | "selfie"
+  | "send"
   | "services"
   | "shopping-cart"
   | "snacks"

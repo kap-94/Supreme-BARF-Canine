@@ -12,7 +12,7 @@ export const CardDescription: React.FC<CardDescriptionProps> = ({
   description,
   align = "inherit",
   className = "",
-  color = "secondaryElements",
+  color = "initial",
   gutterBottom = false,
   paragraph = false,
   style,
