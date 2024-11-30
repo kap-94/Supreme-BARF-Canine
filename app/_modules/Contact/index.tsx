@@ -214,7 +214,7 @@ const Contact: React.FC = () => {
             supremebarfcanine@gmail.com
           </Typography>
           <Typography variant="p1" fontWeight={600} align="center">
-            +52 2228938475
+            +52 5649395148
           </Typography>
         </div>
       </div>
