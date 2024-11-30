@@ -25,6 +25,7 @@ export default function RootLayout({
       <head>
         <GoogleAnalytics />
       </head>
+
       <body className={`${raleway.className}`}>
         <Header
           data={headerData.data}
@@ -32,7 +33,6 @@ export default function RootLayout({
           elevation={2}
         />
         {children}
-
         <Footer
           footerMenuDataPrimary={footerData.footerMenuDataPrimary}
           footerMenuDataSecondary={footerData.footerMenuDataSecondary}
