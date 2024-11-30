@@ -224,7 +224,7 @@ const TermsAndConditions: React.FC = () => {
             <Typography variant="p1">
               Email: supremebarfcanine@gmail.com
             </Typography>
-            <Typography variant="p1">Teléfono: +52 2228938475</Typography>
+            <Typography variant="p1">Teléfono: +52 5649395148</Typography>
           </div>
         </section>
       </div>

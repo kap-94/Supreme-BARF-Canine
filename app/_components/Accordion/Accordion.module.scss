@@ -34,6 +34,11 @@
         .accordion__icon {
           transition: transform 0.3s ease;
           stroke-width: 3;
+          min-width: 24px; // Asegura el ancho mínimo
+          min-height: 24px; // Asegura el alto mínimo
+          width: 24px !important; // Fuerza el ancho
+          height: 24px !important; // Fuerza el alto
+          flex-shrink: 0; // Previene que el icono se encoja
         }
 
         &--opened {
@@ -53,9 +58,14 @@
       }
     }
   }
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+  }
 }
 
-@media (max-width: 768px) {
+@media (max-width: $medium) {
   .accordion {
     padding: 0;
 
@@ -67,6 +77,11 @@
       .accordion__item {
         .accordion__trigger {
           font-size: rem(16px);
+
+          .accordion__icon {
+            width: 20px !important;
+            height: 20px !important;
+          }
         }
 
         .accordion__answer {

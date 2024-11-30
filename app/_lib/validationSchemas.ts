@@ -14,7 +14,7 @@ export const getContactFormSchema = (isBackend: boolean = false) => {
       .required("Este campo es requerido")
       .matches(
         /^(\+?\d{1,3}[-.\s]?)?(\(?\d{2,4}\)?[-.\s]?)?\d{6,10}$/,
-        "Formato de teléfono inválido. Ejemplos: 222222222, (222) 222-2222"
+        "Formato de teléfono inválido. Ejemplo: 222222222"
       ),
     message: Yup.string()
       .required("Este campo es requerido")
@@ -31,7 +31,6 @@ export const getContactFormSchema = (isBackend: boolean = false) => {
 
   return schema; // Si no, devolvemos el esquema sin recaptchaToken
 };
-
 
 export const DogFormSchema = Yup.object().shape({
   dogYears: Yup.string().required("Este campo es requerido"),
