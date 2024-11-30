@@ -81,6 +81,8 @@
           .accordion__icon {
             width: 20px !important;
             height: 20px !important;
+            min-width: 20px !important;
+            min-height: 20px !important;
           }
         }
 
@@ -89,5 +91,14 @@
         }
       }
     }
+  }
+}
+
+@media only screen and (max-width: $small) {
+  .accordion__icon {
+    width: 18px !important;
+    height: 18px !important;
+    min-width: 18px !important;
+    min-height: 18px !important;
   }
 }
