@@ -3,7 +3,6 @@ import React from "react";
 import Image from "next/image";
 import classNames from "classnames/bind";
 import { SectionHeader, DogForm } from "@/app/_components";
-import { ChevronDown } from "lucide-react";
 import styles from "./FoodCalculator.module.scss";
 
 const cx = classNames.bind(styles);
@@ -17,7 +16,6 @@ const FoodCalculator: React.FC = () => {
             src="/dog-illustration.svg"
             alt="Dog illustration"
             fill
-            // priority
             sizes="(max-width: 768px) 100vw, 100vw"
             className={cx("food-calculator__bg-image")}
           />
@@ -26,20 +24,9 @@ const FoodCalculator: React.FC = () => {
           <SectionHeader
             color="white"
             title="Calcula la Ración Ideal"
-            // subtitle="Para una alimentación precisa y saludable"
             subtitle=" Obtén la medida exacta de alimento según la edad, peso y actividad
             de tu perro"
-            className={cx("food-calculator__hero-header")}
           />
-
-          {/* <p className={cx("food-calculator__description")}>
-            Obtén la medida exacta de alimento según la edad, peso y actividad
-            de tu perro
-          </p> */}
-
-          <div className={cx("food-calculator__scroll-indicator")}>
-            <ChevronDown size={24} />
-          </div>
         </div>
       </div>
 
