@@ -1,6 +1,7 @@
 @import "../../_styles/variables.scss";
 
 .contact {
+  background: $secondary-color;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,7 +17,7 @@
   }
 
   @media only screen and (max-width: $medium) {
-    padding: 48px 24px 88px;
+    padding: 48px 24px 60px;
   }
 
   &__content {
