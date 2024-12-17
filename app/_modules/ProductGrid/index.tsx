@@ -270,7 +270,11 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                 })}
                 onClick={() => setActiveTab(tab.id as typeof activeTab)}
               >
-                <Typography variant="p3" fontWeight={600}>
+                <Typography
+                  variant="p3"
+                  fontWeight={600}
+                  className={cx("product-grid__tab-text")}
+                >
                   {tab.label}
                 </Typography>
               </button>
