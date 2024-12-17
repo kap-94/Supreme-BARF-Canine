@@ -244,6 +244,10 @@
         display: none;
       }
     }
+
+    @media only screen and (max-width: $small) {
+      max-width: 320px;
+    }
   }
 
   &__tab {
