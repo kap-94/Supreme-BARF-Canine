@@ -228,7 +228,7 @@
     }
 
     @media only screen and (max-width: $medium) {
-      overflow-x: auto;
+      overflow-x: scroll;
       overflow-y: hidden; // Explícitamente ocultar scroll vertical
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
