@@ -28,10 +28,10 @@
   &__content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 72px;
+    gap: 60px;
     max-width: 1280px;
     margin-inline: auto;
-    align-items: start;
+    align-items: center;
 
     @media only screen and (max-width: $xlarge) {
       grid-template-columns: 1fr;
@@ -182,7 +182,7 @@
   &__info {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 24px;
 
     @media only screen and (max-width: $xlarge) {
       width: 100%;
@@ -192,7 +192,6 @@
   }
 
   &__info-header {
-    padding: 24px 0 0;
     position: relative;
   }
 
@@ -210,12 +209,12 @@
   }
 
   &__subtitle {
-    font-size: 17px;
-    font-weight: 400;
-    font-style: italic;
+    font-size: 16px;
+    // font-style: italic;
+    margin-left: 1px;
 
     @media only screen and (max-width: $xlarge) {
-      font-size: 16px;
+      font-size: 14px;
     }
   }
 
@@ -246,14 +245,9 @@
     padding: 12px 24px;
     border: none;
     background: none;
-    color: $black-color;
     cursor: pointer;
     transition: all 0.2s ease;
     position: relative;
-
-    p {
-      font-size: 14px;
-    }
 
     &::after {
       content: "";
@@ -274,7 +268,6 @@
     &--active {
       p {
         color: $primary-color !important;
-        font-weight: 700 !important;
       }
 
       &::after {
@@ -355,8 +348,9 @@
   }
 
   &__text {
-    color: $black-color;
-    line-height: 1.6;
+    color: rgba($black-color, 0.9);
+    line-height: 1.55;
+    max-width: 548px;
     font-weight: 400;
   }
 
@@ -380,8 +374,12 @@
     margin-bottom: 6px;
   }
 
+  &__shipping-title {
+    color: rgba($black-color, 0.9);
+  }
+
   &__shipping-time {
-    color: $primary-color;
+    color: rgba($black-color, 0.9);
     font-size: 14px;
   }
 
@@ -410,7 +408,7 @@
   }
 
   &__button {
-    width: 200px;
+    // width: 200px;
     justify-content: center;
 
     @media only screen and (max-width: $xlarge) {

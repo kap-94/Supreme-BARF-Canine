@@ -16,7 +16,7 @@
   overflow: hidden;
 
   &__text {
-    margin-right: 12px !important;
+    margin-right: 10px !important;
   }
 
   &__icon {
@@ -36,41 +36,53 @@
   }
 
   &--small {
-    padding: 12px;
-    gap: 4px;
+    padding: 12px 20px;
 
     &.button--pill {
       border-radius: 16px;
     }
 
     .button__text {
-      font-size: rem(12);
-      font-weight: 600;
+      font-size: rem(14);
+      font-weight: 600 !important;
       line-height: rem(15);
       letter-spacing: rem(0.036);
+    }
+
+    .button__icon {
+      width: 23px;
+      height: 23px;
     }
   }
 
   &--medium {
-    padding: 17px 16px;
+    padding: 16px 24px;
 
     &.button--pill {
       border-radius: 20px;
     }
 
     .button__text {
-      font-size: rem(14);
-      font-weight: 600;
-      line-height: rem(17);
+      font-size: rem(16);
+      line-height: 1.6;
       letter-spacing: rem(0.042);
+    }
+
+    .button__icon {
+      width: 23px;
+      height: 23px;
     }
   }
 
   &--large {
-    padding: 20px 32px;
+    padding: 20px 30px;
 
     @media only screen and (max-width: 768px) {
-      padding: 18px 24px;
+      padding: 16px 24px;
+
+      .button__text {
+        font-size: rem(16);
+      }
     }
 
     &.button--pill {
@@ -78,10 +90,12 @@
     }
 
     .button__text {
-      font-size: rem(16);
-      font-weight: 700;
+      font-size: rem(18);
       line-height: rem(20);
-      letter-spacing: rem(0.048);
+
+      @media only screen and (max-width: 768px) {
+        font-size: rem(16);
+      }
     }
   }
 
@@ -213,7 +227,7 @@
   &--link-light {
     background-color: transparent;
     border-radius: 0;
-    border-bottom: 2px solid $white-color;
+    // border-bottom: 2px solid $white-color;
     padding: 8px 0;
     display: flex;
     gap: 12px;
@@ -226,9 +240,13 @@
       box-shadow: none;
     }
 
+    &:hover {
+      transform: translateY(-2px);
+    }
+
     .button__text {
       color: $white-color;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 600;
     }
 
@@ -241,7 +259,7 @@
   &--link-dark {
     background-color: transparent;
     border-radius: 0;
-    border-bottom: 2px solid $black-color;
+    // border-bottom: 2px solid $black-color;
     padding: 8px 0;
     display: flex;
     gap: 12px;
@@ -256,7 +274,7 @@
 
     .button__text {
       color: $black-color;
-      font-size: 15px;
+      font-size: 16px;
     }
 
     .button__icon {

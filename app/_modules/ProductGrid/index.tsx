@@ -114,16 +114,24 @@ const ProductGrid: React.FC<ProductGridProps> = ({
       case "description":
         return (
           <div className={cx("product-grid__description")}>
-            <Typography variant="p2" className={cx("product-grid__text")}>
-              Supreme BARF destaca por su formulación premium elaborada con
-              ingredientes de calidad de consumo humano, incluyendo huesos
+            <Typography
+              variant="p2"
+              fontWeight={500}
+              className={cx("product-grid__text")}
+            >
+              Supreme BARF Canine destaca por su formulación premium elaborada
+              con ingredientes de calidad de consumo humano, incluyendo huesos
               carnosos de pollo perfectamente molidos, hígados, molleja y
               corazón de pollo. Esta exclusiva mezcla se complementa con harina
               de maíz, zanahoria, manzana y aceite de salmón, garantizando una
               nutrición completa para tu mascota.
             </Typography>
 
-            <Typography variant="p2" className={cx("product-grid__text")}>
+            <Typography
+              variant="p2"
+              fontWeight={500}
+              className={cx("product-grid__text")}
+            >
               Desarrollado por expertos veterinarios e ingenieros especializados
               en nutrición canina, este alimento natural proporciona proteínas
               de alta calidad con todos los aminoácidos esenciales y ácidos
@@ -143,12 +151,16 @@ const ProductGrid: React.FC<ProductGridProps> = ({
             {shippingInfo.map((info, index) => (
               <div key={index} className={cx("product-grid__shipping-item")}>
                 <div className={cx("product-grid__shipping-header")}>
-                  <Typography variant="p2" fontWeight={600}>
+                  <Typography
+                    variant="p2"
+                    fontWeight={600}
+                    className={cx("product-grid__shipping-title")}
+                  >
                     {info.title}
                   </Typography>
                   <Typography
                     variant="p2"
-                    fontWeight={500}
+                    fontWeight={600}
                     className={cx("product-grid__shipping-time")}
                   >
                     {info.time}
@@ -156,6 +168,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                 </div>
                 <Typography
                   variant="p2"
+                  fontWeight={500}
                   className={cx("product-grid__shipping-details")}
                 >
                   {info.details}
@@ -165,6 +178,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
             <Typography
               variant="p3"
               color="black"
+              fontWeight={600}
               className={cx("product-grid__shipping-note")}
             >
               * Por el momento solo realizamos entregas en Puebla y su zona
@@ -198,7 +212,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
   return (
     <section className={cx("product-grid")} id={customAnchorId}>
       <SectionHeader
-        title="Nuestro Producto"
+        title="Producto"
         subtitle="La mejor comida natural para el bienestar de tu mascota"
         align="center"
         className={cx("product-grid__header")}
@@ -222,8 +236,8 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                 </div>
               </SwiperSlide>
             ))}
-            <div className="swiper-button-prev" />
-            <div className="swiper-button-next" />
+            {/* <div className="swiper-button-prev" />
+            <div className="swiper-button-next" /> */}
             <div className="swiper-pagination" />
           </Swiper>
         </div>
@@ -231,10 +245,15 @@ const ProductGrid: React.FC<ProductGridProps> = ({
         <div className={cx("product-grid__info")}>
           <div className={cx("product-grid__info-header")}>
             <Typography variant="h4" className={cx("product-grid__title")}>
-              Supreme BARF - Fórmula Premium
+              Alimento Natural Premium
             </Typography>
-            <Typography variant="h5" className={cx("product-grid__subtitle")}>
-              Alimento Natural para Perros - 1.25 kg
+            <Typography
+              variant="p3"
+              color="black"
+              fontWeight={400}
+              className={cx("product-grid__subtitle")}
+            >
+              Fórmula BARF Veterinaria - 1.25 kg
             </Typography>
           </div>
 
@@ -251,7 +270,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                 })}
                 onClick={() => setActiveTab(tab.id as typeof activeTab)}
               >
-                <Typography variant="p3" color="black" fontWeight={500}>
+                <Typography variant="p3" fontWeight={600}>
                   {tab.label}
                 </Typography>
               </button>
@@ -283,7 +302,6 @@ const ProductGrid: React.FC<ProductGridProps> = ({
                 // href="https://supremebarfcanine.shop/products/formula-de-pollo-perro-adulto-todas-las-razas"
                 variant="primary"
                 // target="_blank"
-                // icon="right-arrow"
                 className={cx("product-grid__button")}
                 icon={{ source: "lucide", name: "arrowRight" }}
               >

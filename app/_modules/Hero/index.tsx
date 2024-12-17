@@ -20,7 +20,7 @@ const Hero = () => {
             </Typography>
           </div>
           <Typography variant="h1" className={cx("hero__title")}>
-            ALIMENTO NATURAL PARA EL BIENESTAR DE TU PERRO
+            Alimento natural para el bienestar de tu perro
           </Typography>
           <Typography variant="p1" className={cx("hero__paragraph")}>
             Dile adiós a las croquetas y comienza a darle a tu perro un alimento
@@ -33,12 +33,9 @@ const Hero = () => {
                 className="w-6 h-6 text-primary stroke-2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                strokeWidth={1.75}
               />
-              <Typography
-                variant="p1"
-                fontWeight={600}
-                className={cx("hero__benefit-text")}
-              >
+              <Typography variant="p1" className={cx("hero__benefit-text")}>
                 Para todas las edades y razas.
               </Typography>
             </div>
@@ -47,12 +44,9 @@ const Hero = () => {
                 className="w-6 h-6 text-primary stroke-2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                strokeWidth={1.75}
               />
-              <Typography
-                variant="p1"
-                fontWeight={600}
-                className={cx("hero__benefit-text")}
-              >
+              <Typography variant="p1" className={cx("hero__benefit-text")}>
                 Alimento 100% natural.
               </Typography>
             </div>
@@ -66,12 +60,9 @@ const Hero = () => {
                 className="w-6 h-6 text-primary stroke-2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                strokeWidth={1.75}
               />
-              <Typography
-                variant="p1"
-                fontWeight={600}
-                className={cx("hero__benefit-text")}
-              >
+              <Typography variant="p1" className={cx("hero__benefit-text")}>
                 Entrega a domicilio sin costo
               </Typography>
             </div>

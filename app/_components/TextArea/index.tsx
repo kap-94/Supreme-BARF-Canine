@@ -1,7 +1,6 @@
 "use client";
 import React, { FC, TextareaHTMLAttributes, useState } from "react";
 import { useField } from "formik";
-import { raleway } from "@/app/_fonts";
 import classNames from "classnames/bind";
 import styles from "./TextArea.module.scss";
 
@@ -49,25 +48,16 @@ export const TextArea: FC<TextAreaProps> = ({
     <div className={containerClasses}>
       <div className={cx("form-control__input-container")}>
         <label
-          className={cx(
-            "form-control__label",
-            raleway.className,
-            labelClassName,
-            {
-              "form-control__label--focused": focused || field.value,
-            }
-          )}
+          className={cx("form-control__label", labelClassName, {
+            "form-control__label--focused": focused || field.value,
+          })}
           htmlFor={name}
         >
           {label}
         </label>
 
         <textarea
-          className={cx(
-            "form-control__input",
-            raleway.className,
-            inputClassName
-          )}
+          className={cx("form-control__input", inputClassName)}
           {...field}
           {...props}
           placeholder={variant === "primary" ? placeholder : ""}
@@ -77,13 +67,7 @@ export const TextArea: FC<TextAreaProps> = ({
         />
 
         {meta.touched && meta.error && (
-          <div
-            className={cx(
-              "form-control__error",
-              raleway.className,
-              errorClassName
-            )}
-          >
+          <div className={cx("form-control__error", errorClassName)}>
             {meta.error}
           </div>
         )}

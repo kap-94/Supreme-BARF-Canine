@@ -225,12 +225,7 @@ const Contact: React.FC = () => {
         autoHideDuration={6000}
       >
         <Alert variant="filled" severity={snackbar.severity}>
-          <Typography
-            variant="p2"
-            fontFamily="poppins"
-            color="white"
-            fontWeight={600}
-          >
+          <Typography variant="p2" color="white" fontWeight={600}>
             {snackbar.message}
           </Typography>
         </Alert>

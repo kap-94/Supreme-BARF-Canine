@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { raleway } from "@/app/_fonts";
 import { Header, Footer, GoogleAnalytics } from "@/app/_components";
 import { footerData, headerData } from "./_lib/data";
 import "@/app/_styles/globals.scss";
@@ -24,9 +23,13 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <GoogleAnalytics />
+        <link
+          rel="stylesheet"
+          href="https://use.typekit.net/vvp5ave.css"
+        ></link>
       </head>
 
-      <body className={`${raleway.className}`}>
+      <body>
         <Header
           data={headerData.data}
           frontPageID={headerData.frontPageID}

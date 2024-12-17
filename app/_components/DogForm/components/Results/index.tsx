@@ -91,7 +91,11 @@ export const Results: React.FC<ResultsProps> = ({
         </div>
 
         <div className={cx("results__tips")}>
-          <Typography variant="h5" className={cx("results__tips-title")}>
+          <Typography
+            variant="h5"
+            fontWeight={800}
+            className={cx("results__tips-title")}
+          >
             Recomendaciones
           </Typography>
           <ul className={cx("results__tips-list")}>
