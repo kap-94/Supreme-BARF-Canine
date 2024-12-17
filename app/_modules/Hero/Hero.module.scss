@@ -12,7 +12,8 @@
   @media only screen and (max-width: 1280px) {
     background: $secondary-color;
     height: auto;
-    margin-top: 232px;
+    margin-top: unset;
+    padding-top: 232px;
     max-height: unset;
   }
 
@@ -111,6 +112,10 @@
 
     @media only screen and (max-width: 1280px) {
       margin-left: unset;
+    }
+
+    @media only screen and (max-width: $medium) {
+      font-size: 18px;
     }
   }
 

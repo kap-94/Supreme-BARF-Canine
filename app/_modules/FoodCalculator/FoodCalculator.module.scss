@@ -72,19 +72,9 @@
   }
 
   &__content {
+    background: $secondary-color;
     padding: 48px 24px 60px;
     position: relative;
-    // background: linear-gradient(
-    //     rgba($secondary-color, 0.92),
-    //     rgba($secondary-color, 0.92)
-    //   ),
-    //   repeating-linear-gradient(
-    //     45deg,
-    //     rgba($primary-color, 0.3) 0px,
-    //     rgba($primary-color, 0.3) 2px,
-    //     transparent 2px,
-    //     transparent 8px
-    //   );
   }
 
   &__scroll-indicator {

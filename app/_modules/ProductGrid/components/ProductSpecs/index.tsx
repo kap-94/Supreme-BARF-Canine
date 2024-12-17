@@ -26,22 +26,22 @@ const ProductSpecs = () => {
   };
 
   const nutritionalData = [
-    { name: "Proteínas", value: 40.7, color: colors.primary, icon: "🥩" },
-    { name: "Grasas", value: 28.3, color: colors.accent1, icon: "🫧" },
-    { name: "Carbohidratos", value: 22.7, color: colors.accent2, icon: "🌾" },
-    { name: "Fibra", value: 3.2, color: colors.accent3, icon: "🥕" },
-    { name: "Minerales", value: 5.1, color: colors.accent4, icon: "🧂" },
+    { name: "Proteínas", value: 40.7, color: colors.primary },
+    { name: "Grasas", value: 28.3, color: colors.accent1 },
+    { name: "Carbohidratos", value: 22.7, color: colors.accent2 },
+    { name: "Fibra", value: 3.2, color: colors.accent3 },
+    { name: "Minerales", value: 5.1, color: colors.accent4 },
   ];
 
   const specs = [
-    { label: "Calorías totales", value: "1705.35", unit: "kcal", icon: "⚡" },
-    { label: "Proteína total", value: "138.59", unit: "g", icon: "🥩" },
-    { label: "Grasas totales", value: "96.43", unit: "g", icon: "🫧" },
-    { label: "Carbohidratos totales", value: "77.48", unit: "g", icon: "🌾" },
-    { label: "Fibra total", value: "10.80", unit: "g", icon: "🥕" },
-    { label: "Omega 6:3", value: "5.43:1", unit: "", icon: "🐟" },
-    { label: "Por porción", value: "1000", unit: "g", icon: "⚖️" },
-    { label: "Minerales totales", value: "17.47", unit: "g", icon: "🧂" },
+    { label: "Calorías totales", value: "1705.35", unit: "kcal" },
+    { label: "Proteína total", value: "138.59", unit: "g" },
+    { label: "Grasas totales", value: "96.43", unit: "g" },
+    { label: "Carbohidratos totales", value: "77.48", unit: "g" },
+    { label: "Fibra total", value: "10.80", unit: "g" },
+    { label: "Omega 6:3", value: "5.43:1", unit: "" },
+    { label: "Por porción", value: "1000", unit: "g" },
+    { label: "Minerales totales", value: "17.47", unit: "g" },
   ];
 
   const renderCustomizedLabel = ({
@@ -146,9 +146,6 @@ const ProductSpecs = () => {
         {specs.map((spec, index) => (
           <div key={index} className={cx("product-specs__item")}>
             <div className={cx("product-specs__item-header")}>
-              <span className={cx("product-specs__item-icon")}>
-                {spec.icon}
-              </span>
               <Typography
                 variant="p3"
                 className={cx("product-specs__item-label")}
@@ -157,7 +154,8 @@ const ProductSpecs = () => {
               </Typography>
             </div>
             <Typography
-              variant="p2"
+              variant="p3"
+              fontWeight={600}
               className={cx("product-specs__item-value")}
             >
               {spec.value}
