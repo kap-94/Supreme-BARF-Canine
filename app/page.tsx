@@ -15,7 +15,6 @@ import { Metadata } from "next";
 
 const cx = classNames.bind(styles);
 
-// Metadata para SEO
 export const metadata: Metadata = {
   title: "Supreme BARF Canine | Alimento Natural para Perros",
   description:
@@ -38,14 +37,6 @@ export const metadata: Metadata = {
       "Alimentación natural y saludable para perros. Dieta BARF de alta calidad, elaborada por expertos veterinarios.",
     url: "https://www.supremebarfcanine.com",
     siteName: "Supreme BARF Canine",
-    images: [
-      {
-        url: "/logo.png",
-        width: 1200,
-        height: 630,
-        alt: "Supreme BARF Canine",
-      },
-    ],
     locale: "es_MX",
     type: "website",
   },
@@ -54,7 +45,6 @@ export const metadata: Metadata = {
     title: "Supreme BARF Canine | Alimento Natural para Perros",
     description:
       "Alimentación natural y saludable para perros. Dieta BARF de alta calidad.",
-    images: ["/logo.png"],
   },
   alternates: {
     canonical: "https://www.supremebarfcanine.com",
