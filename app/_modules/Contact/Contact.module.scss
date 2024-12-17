@@ -8,8 +8,6 @@
   align-items: center;
   padding: 100px 36px;
   gap: 90px;
-  max-width: 1440px;
-  margin-inline: auto;
 
   @media only screen and (max-width: $xlarge) {
     padding: 60px 48px;
@@ -25,6 +23,8 @@
     flex-direction: row;
     justify-content: space-between;
     gap: 80px;
+    max-width: 1440px;
+    margin-inline: auto;
 
     @media only screen and (max-width: $xlarge) {
       flex-direction: column-reverse;
