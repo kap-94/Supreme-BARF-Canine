@@ -11,7 +11,6 @@ interface UseAnimationsProps {
   itemsRef: React.MutableRefObject<(HTMLDivElement | null)[]>;
   cx: (...args: any[]) => string;
 }
-
 export const useAnimations = ({
   sectionRef,
   headerRef,
@@ -19,9 +18,10 @@ export const useAnimations = ({
   cx,
 }: UseAnimationsProps) => {
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const isMobile = window.innerWidth <= 768;
+    // Check if it's mobile early and return if so
+    if (window.innerWidth <= 768) return;
 
+    const ctx = gsap.context(() => {
       // Header Animation
       if (headerRef.current) {
         const title = headerRef.current.querySelector("h2");
@@ -38,8 +38,6 @@ export const useAnimations = ({
             start: "top bottom",
             end: "bottom top",
             toggleActions: "play reverse restart reverse",
-            // Alternativa más suave:
-            // toggleActions: "restart pause resume reset",
           },
         });
 
@@ -61,18 +59,6 @@ export const useAnimations = ({
       );
 
       items.forEach((item, index) => {
-        if (isMobile) {
-          gsap.from(item, {
-            opacity: 0,
-            duration: 0.5,
-            scrollTrigger: {
-              trigger: item,
-              start: "top bottom",
-            },
-          });
-          return;
-        }
-
         const timeline = gsap.timeline({
           scrollTrigger: {
             trigger: item,
@@ -99,7 +85,6 @@ export const useAnimations = ({
           return;
 
         const direction = index % 2 === 0 ? -30 : 30;
-
         gsap.set(elements.number, { opacity: 0 });
         gsap.set(elements.icon, { opacity: 0, scale: 0 });
         gsap.set([elements.title, elements.description], {
