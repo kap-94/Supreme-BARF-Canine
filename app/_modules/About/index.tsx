@@ -1,14 +1,130 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import Image from "next/image";
-import { AnimatedText, Button, Typography } from "@/app/_components";
-import aboutImage from "@/public/about-image.jpg";
+import { AnimatedText, Button } from "@/app/_components";
 import classNames from "classnames/bind";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import aboutImage from "@/public/about-image.jpg";
 import styles from "./About.module.scss";
 
 const cx = classNames.bind(styles);
 
 const About = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+  const textBottomRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (
+      !containerRef.current ||
+      !buttonRef.current ||
+      !imageRef.current ||
+      !textBottomRef.current
+    )
+      return;
+
+    const mm = gsap.matchMedia();
+    const imageElement = imageRef.current;
+    const buttonContainer = buttonRef.current;
+    const cleanupFunctions: (() => void)[] = [];
+
+    mm.add("(min-width: 768px)", () => {
+      // Create a main timeline for the scroll-triggered animations
+      const scrollTrigger = {
+        trigger: containerRef.current,
+        start: "top 60%",
+        end: "bottom 60%",
+        toggleActions: "play reverse play reverse",
+      };
+
+      // Set initial states
+      gsap.set([buttonContainer, imageElement], {
+        opacity: 0,
+        scale: 0.98,
+        y: 20,
+      });
+
+      gsap.set(textBottomRef.current, {
+        opacity: 0,
+        y: 20,
+      });
+
+      // Main animation timeline
+      const mainTimeline = gsap.timeline({ scrollTrigger });
+
+      mainTimeline
+        .to(imageElement, {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          duration: 1.2,
+          ease: "power3.out",
+        })
+        .to(
+          textBottomRef.current,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out",
+          },
+          "-=0.8"
+        )
+        .to(
+          buttonContainer,
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          "-=0.8"
+        );
+
+      // Button hover animation
+      const buttonElement = buttonContainer.querySelector("a, button");
+      if (buttonElement instanceof HTMLElement) {
+        const buttonHoverAnimation = {
+          scale: 1.02,
+          duration: 0.3,
+          ease: "power2.out",
+        };
+
+        const handleButtonEnter = () => {
+          gsap.to(buttonElement, buttonHoverAnimation);
+        };
+
+        const handleButtonLeave = () => {
+          gsap.to(buttonElement, {
+            ...buttonHoverAnimation,
+            scale: 1,
+          });
+        };
+
+        buttonElement.addEventListener("mouseenter", handleButtonEnter);
+        buttonElement.addEventListener("mouseleave", handleButtonLeave);
+
+        cleanupFunctions.push(() => {
+          buttonElement.removeEventListener("mouseenter", handleButtonEnter);
+          buttonElement.removeEventListener("mouseleave", handleButtonLeave);
+        });
+      }
+    });
+
+    return () => {
+      // Clean up all event listeners
+      cleanupFunctions.forEach((cleanup) => cleanup());
+      // Clean up GSAP
+      mm.revert();
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  }, []);
+
   return (
-    <section id="about-section" className={cx("about")}>
+    <section id="about-section" className={cx("about")} ref={containerRef}>
       <div className={cx("about__content")}>
         <div className={cx("about__text")}>
           <div className={cx("about__text--top")}>
@@ -20,15 +136,17 @@ const About = () => {
             />
           </div>
 
-          <div className={cx("about__text--bottom")}>
-            <Button
-              variant="link-light"
-              icon="right-arrow"
-              target="_blank"
-              href="https://supremebarfcanine.shop/"
-            >
-              Visita la tienda
-            </Button>
+          <div className={cx("about__text--bottom")} ref={textBottomRef}>
+            <div ref={buttonRef}>
+              <Button
+                variant="link-light"
+                icon="right-arrow"
+                target="_blank"
+                href="https://supremebarfcanine.shop/"
+              >
+                Visita la tienda
+              </Button>
+            </div>
 
             <AnimatedText
               text="Alimento natural de calidad humana con nutrientes esenciales que ofrece beneficios únicos."
@@ -39,7 +157,7 @@ const About = () => {
           </div>
         </div>
 
-        <div className={cx("about__image")}>
+        <div className={cx("about__image")} ref={imageRef}>
           <Image
             src={aboutImage}
             alt="Cute dog"

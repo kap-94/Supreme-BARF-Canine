@@ -150,7 +150,6 @@ export const Button: React.FC<ButtonProps> = React.memo(
         >
           <Typography
             variant="p1"
-            fontFamily="raleway"
             fontWeight={800}
             className={cx("button__text")}
           >
@@ -177,7 +176,6 @@ export const Button: React.FC<ButtonProps> = React.memo(
       >
         <Typography
           variant="p1"
-          fontFamily="poppins"
           fontWeight={700}
           className={cx("button__text")}
         >

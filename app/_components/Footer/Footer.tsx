@@ -48,13 +48,6 @@ const Footer: FC<FooterProps> = ({
 }) => {
   const year = new Date().getFullYear();
 
-  // Renderizar enlaces sociales
-  const socialLinks = social_links?.map((link, i) => (
-    <Link key={i} href={link.link} target="_blank" rel="noreferrer">
-      <CustomIcon icon={link.icon} width={24} height={24} color="white" />
-    </Link>
-  ));
-
   return (
     <div id="footer" className={cx("footer__container")}>
       <footer className={cx("footer")}>
@@ -68,7 +61,7 @@ const Footer: FC<FooterProps> = ({
             />
           )}
           <div className={cx("footer__copyright")}>
-            <Typography variant="p3">
+            <Typography variant="p3" color="white">
               © {year}
               {copyright_name}
             </Typography>
@@ -96,62 +89,7 @@ const Footer: FC<FooterProps> = ({
           )}
         </div>
 
-        {/* Formulario de suscripción al newsletter con ícono de envío */}
         <div className={cx("footer__legal")}>
-          {/* <Typography
-            variant="p3"
-            textTransform="uppercase"
-            className={cx("newsletter__title")}
-          >
-            Subscríbete a nuestro newsletter
-          </Typography>
-
-          <Formik
-            initialValues={{ email: "" }}
-            validationSchema={Yup.object({
-              email: Yup.string()
-                .email("Email inválido")
-                .required("Este campo es obligatorio"),
-            })}
-            onSubmit={(values, { setSubmitting, resetForm }) => {
-              // Manejar el envío del formulario
-              console.log("Email suscrito:", values.email);
-              // Aquí puedes hacer la llamada a tu API para procesar la suscripción
-              resetForm();
-              setSubmitting(false);
-            }}
-          >
-            {({ isSubmitting }) => (
-              <Form className={cx("newsletter__form")}>
-                <div className={cx("newsletter__input-wrapper")}>
-                  <Field
-                    type="email"
-                    name="email"
-                    placeholder="Tu correo electrónico"
-                    className={cx("newsletter__input")}
-                  />
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className={cx("newsletter__icon-button")}
-                  >
-                    <CustomIcon
-                      icon="right-arrow" // Asegúrate de tener un icono llamado 'send' en tu componente CustomIcon
-                      width={24}
-                      height={24}
-                      color="white"
-                    />
-                  </button>
-                </div>
-                <ErrorMessage
-                  name="email"
-                  component="div"
-                  className={cx("newsletter__error")}
-                />
-              </Form>
-            )}
-          </Formik> */}
-
           {footerPoliticsData.length > 0 && (
             <MenuList
               data={footerPoliticsData}
@@ -161,9 +99,6 @@ const Footer: FC<FooterProps> = ({
             />
           )}
         </div>
-
-        {/* Puedes descomentar esto si quieres mostrar los íconos sociales */}
-        {/* <ul className={cx("footer__icons")}>{socialLinks}</ul> */}
       </footer>
     </div>
   );

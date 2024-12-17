@@ -37,7 +37,7 @@ export const headerData: HeaderProps = {
       {
         menu_item_id: 742,
         menu_item_parent: 0,
-        title: "Preguntas Frecuentes",
+        title: "Preguntas frecuentes",
         target: "_self",
         url: "#faq-section",
       },
@@ -51,6 +51,7 @@ export const headerData: HeaderProps = {
         title: "Tienda en línea",
         target: "_blank",
         url: "https://supremebarfcanine.shop/",
+        icon: "store",
       },
       {
         menu_item_id: 744,
@@ -58,6 +59,7 @@ export const headerData: HeaderProps = {
         title: "Contacto",
         target: "_self",
         url: "#contact-section",
+        icon: "phone",
       },
     ],
     dropdownItems: [
@@ -81,8 +83,8 @@ export const headerData: HeaderProps = {
         url: "/logo.png",
         href: "/#",
         alt: "logo",
-        width: 74,
-        height: 80,
+        width: 68,
+        height: 72,
       },
       light: {
         url: "/logo.png",

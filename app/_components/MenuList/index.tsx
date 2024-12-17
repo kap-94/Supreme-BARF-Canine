@@ -267,13 +267,13 @@ const MenuList: React.FC<MenuListProps> = ({
             <Icon
               icon={menuItem.icon}
               className={cx("menu__icon")}
-              width={16}
-              height={16}
+              width={16.5}
+              height={16.5}
               color="white"
             />
           )}
           {/* Renderizar el título del elemento de menú */}
-          <Typography variant="p3" textTransform="uppercase">
+          <Typography variant="p2" color="white" fontWeight={500}>
             {menuItem.title}
           </Typography>
           {/* Renderizar icono de dropdown si hay un submenú y no está explícitamente oculto */}
@@ -314,8 +314,8 @@ const MenuList: React.FC<MenuListProps> = ({
                       <Icon
                         icon={submenuItem.icon}
                         className={cx("submenu__icon")}
-                        width={16}
-                        height={16}
+                        width={16.5}
+                        height={16.5}
                       />
                     )}
                     {/* Renderizar el título del elemento del submenú */}

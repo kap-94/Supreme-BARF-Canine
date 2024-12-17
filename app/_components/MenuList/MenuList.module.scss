@@ -4,10 +4,10 @@
 
 .menu {
   display: flex;
-  flex-direction: row; // Default horizontal orientation
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: var(--menu-gap, 24px); // Use the CSS variable for gap
+  gap: var(--menu-gap, 24px);
   position: relative;
   z-index: 1;
   flex-wrap: wrap;
@@ -112,13 +112,15 @@
     display: flex;
     gap: 8px;
     padding: 16px 0;
-    width: auto; // Adjust width to auto
-    justify-content: center; // Center the content
+    width: auto;
+    justify-content: center;
     text-wrap: nowrap;
     text-decoration: none;
+    font-weight: 400 !important;
 
     .icon {
-      flex: 0; // Adjust flex to prevent stretching
+      flex: 0;
+      transform: translateY(22px);
     }
 
     img {

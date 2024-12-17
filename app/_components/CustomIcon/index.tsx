@@ -75,6 +75,7 @@ export type IconName =
   | "shopping-cart"
   | "snacks"
   | "spa"
+  | "store"
   | "surf"
   | "tiktok"
   | "trash"
