@@ -1,4 +1,6 @@
+import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import classNames from "classnames/bind";
 import whatsappImage from "@/public/whatsapp.png";
 import {
@@ -11,7 +13,6 @@ import {
   Contact,
 } from "./_modules";
 import styles from "@/app/page.module.scss";
-import { Metadata } from "next";
 
 const cx = classNames.bind(styles);
 
@@ -64,14 +65,14 @@ export default function Home() {
         <Contact />
       </main>
 
-      <a
+      <Link
         href="https://wa.me/+5215649395148"
-        className={cx("whatsapp-float")}
         target="_blank"
         rel="noopener noreferrer"
+        className={cx("whatsapp-float")}
       >
-        <Image src={whatsappImage} alt="WhatsApp" fill />
-      </a>
+        <Image src={whatsappImage} alt="WhatsApp" fill sizes="10vw" />
+      </Link>
     </div>
   );
 }

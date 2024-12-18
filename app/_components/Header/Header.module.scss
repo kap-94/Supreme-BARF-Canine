@@ -18,7 +18,7 @@
     padding: 12px 56px;
     position: relative;
 
-    @media only screen and (max-width: 1220px) {
+    @media only screen and (max-width: 1290px) {
       justify-content: space-between;
       flex-direction: row-reverse;
     }
@@ -34,7 +34,7 @@
     z-index: 2;
     // transform: translateX(8px);
 
-    @media only screen and (max-width: 1220px) {
+    @media only screen and (max-width: 1290px) {
       justify-content: center;
     }
   }
@@ -45,7 +45,7 @@
     border: 1px solid rgba(244, 247, 246, 0.5);
     z-index: 10000000;
 
-    @media only screen and (max-width: 1220px) {
+    @media only screen and (max-width: 1290px) {
       display: flex;
       width: fit-content;
     }
@@ -79,7 +79,7 @@
     //   z-index: 1;
     justify-content: center;
 
-    @media only screen and (max-width: 1220px) {
+    @media only screen and (max-width: 1290px) {
       display: none;
     }
   }
@@ -92,7 +92,7 @@
     z-index: 1;
     margin-left: auto !important;
 
-    @media only screen and (max-width: 1220px) {
+    @media only screen and (max-width: 1290px) {
       display: none;
     }
   }
