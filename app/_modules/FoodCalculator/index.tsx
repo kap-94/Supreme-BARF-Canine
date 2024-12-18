@@ -1,6 +1,5 @@
 // FoodCalculator.tsx
 import React from "react";
-import Image from "next/image";
 import classNames from "classnames/bind";
 import { SectionHeader, DogForm } from "@/app/_components";
 import styles from "./FoodCalculator.module.scss";
@@ -11,7 +10,7 @@ const FoodCalculator: React.FC = () => {
   return (
     <section id="food-calculator-section" className={cx("food-calculator")}>
       <div className={cx("food-calculator__hero")}>
-        <div className={cx("food-calculator__bg-wrapper")}>
+        {/* <div className={cx("food-calculator__bg-wrapper")}>
           <Image
             src="/dog-illustration.svg"
             alt="Dog illustration"
@@ -19,7 +18,7 @@ const FoodCalculator: React.FC = () => {
             sizes="(max-width: 768px) 100vw, 100vw"
             className={cx("food-calculator__bg-image")}
           />
-        </div>
+        </div> */}
         <div className={cx("food-calculator__hero-content")}>
           <SectionHeader
             color="white"
