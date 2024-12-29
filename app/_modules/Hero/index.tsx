@@ -30,10 +30,10 @@ const Hero = () => {
           <div className={cx("hero__benefits")}>
             <div className={cx("hero__benefit-item")}>
               <Dog
-                className="w-6 h-6 text-primary stroke-2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth={1.75}
+                strokeWidth={2.4}
+                className={cx("hero__benefit-icon")}
               />
               <Typography variant="p1" className={cx("hero__benefit-text")}>
                 Para todas las edades y razas.
@@ -41,10 +41,10 @@ const Hero = () => {
             </div>
             <div className={cx("hero__benefit-item")}>
               <UtensilsCrossed
-                className="w-6 h-6 text-primary stroke-2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth={1.75}
+                strokeWidth={2.4}
+                className={cx("hero__benefit-icon")}
               />
               <Typography variant="p1" className={cx("hero__benefit-text")}>
                 Alimento 100% natural.
@@ -57,10 +57,10 @@ const Hero = () => {
               )}
             >
               <Truck
-                className="w-6 h-6 text-primary stroke-2"
+                className={cx("hero__benefit-icon")}
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth={1.75}
+                strokeWidth={2.4}
               />
               <Typography variant="p1" className={cx("hero__benefit-text")}>
                 Entrega a domicilio sin costo
