@@ -23,7 +23,7 @@ export const ScrollButton = ({ className }: ScrollButtonProps): JSX.Element => {
       className={className}
       icon={{ source: "lucide", name: "arrowRight" }}
     >
-      Calcula la cantidad
+      Calcula su porción
     </Button>
   );
 };
