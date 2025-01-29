@@ -12,7 +12,11 @@
     font-weight: 900 !important;
     font-style: normal;
     // letter-spacing: 0.01em;
-    line-height: 1.15;
+    line-height: 1.125;
+
+    @media only screen and (max-width: 1280px) {
+      font-size: rem(64);
+    }
 
     @media only screen and (max-width: 600px) {
       font-size: rem(52);
