@@ -3,9 +3,10 @@
 .hero {
   background: $secondary-color;
   display: flex;
-  height: 100vh;
   justify-content: center;
-  margin-top: 108px;
+  flex-shrink: 1;
+  margin-top: 88px;
+  min-height: 880px;
   max-height: 980px;
   overflow: hidden;
 
@@ -28,7 +29,7 @@
       align-items: center;
       padding-left: 0;
       padding-inline: 24px;
-      gap: 48px;
+      gap: 40px;
     }
   }
 
@@ -195,7 +196,9 @@
   }
 
   &__benefit-icon {
-    opacity: 0.75;
+    // opacity: 0.75;
+    width: 22px;
+    height: 22px;
 
     @media only screen and (max-width: 1280px) {
       width: 20px;
@@ -204,11 +207,11 @@
   }
 
   &__benefit-text {
-    opacity: 0.9;
+    // opacity: 0.9;
     font-size: 20px;
     font-weight: 600 !important;
     letter-spacing: 0.01em;
-    line-height: 1.6;
+    line-height: 1.5;
 
     @media only screen and (max-width: 1280px) {
       font-size: 16px !important;
@@ -309,6 +312,8 @@
 
     @media only screen and (max-width: 1280px) {
       height: 100% !important;
+      max-width: 400px;
+      margin-inline: auto;
       transform: translateY(40px);
     }
   }

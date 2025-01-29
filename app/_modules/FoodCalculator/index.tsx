@@ -19,7 +19,10 @@ const FoodCalculator: React.FC = () => {
             className={cx("food-calculator__bg-image")}
           />
         </div> */}
-        <div className={cx("food-calculator__hero-content")}>
+        <div
+          id="food-calculator"
+          className={cx("food-calculator__hero-content")}
+        >
           <SectionHeader
             color="white"
             title="Calcula la Ración Ideal"

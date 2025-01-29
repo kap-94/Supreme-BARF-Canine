@@ -1,11 +1,12 @@
-import { Typography, Button } from "../../_components";
-import { Dog, Truck, UtensilsCrossed } from "lucide-react";
+import classNames from "classnames/bind";
+import { CheckCheckIcon } from "lucide-react";
 import { HeroParallaxImages } from "./HeroParallaxImages";
+import { Typography } from "@/app/_components";
+import { ScrollButton } from "@/app/_components/ScrollButton";
 import heroDog from "@/public/dog.png";
 import heroMeat from "@/public/meat.png";
 import heroDogFood from "@/public/dog-food.png";
 import styles from "./Hero.module.scss";
-import classNames from "classnames/bind";
 
 const cx = classNames.bind(styles);
 
@@ -29,10 +30,11 @@ const Hero = () => {
 
           <div className={cx("hero__benefits")}>
             <div className={cx("hero__benefit-item")}>
-              <Dog
+              {/* <CheckCircle2Icon */}
+              <CheckCheckIcon
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth={2.4}
+                strokeWidth={2.5}
                 className={cx("hero__benefit-icon")}
               />
               <Typography variant="p1" className={cx("hero__benefit-text")}>
@@ -40,10 +42,11 @@ const Hero = () => {
               </Typography>
             </div>
             <div className={cx("hero__benefit-item")}>
-              <UtensilsCrossed
+              {/* <CheckCircle2Icon */}
+              <CheckCheckIcon
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth={2.4}
+                strokeWidth={2.5}
                 className={cx("hero__benefit-icon")}
               />
               <Typography variant="p1" className={cx("hero__benefit-text")}>
@@ -56,11 +59,12 @@ const Hero = () => {
                 "hero__benefit-item--delivery"
               )}
             >
-              <Truck
+              {/* <CheckCircle2Icon */}
+              <CheckCheckIcon
                 className={cx("hero__benefit-icon")}
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth={2.4}
+                strokeWidth={2.5}
               />
               <Typography variant="p1" className={cx("hero__benefit-text")}>
                 Entrega a domicilio sin costo
@@ -68,22 +72,7 @@ const Hero = () => {
             </div>
           </div>
 
-          <a
-            href="https://supremebarfcanine.shop/products/formula-de-pollo-perro-adulto-todas-las-razas"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ width: "fit-content" }}
-          >
-            <Button
-              variant="accent"
-              elevation={2}
-              size="large"
-              className={cx("hero__button")}
-              icon={{ source: "lucide", name: "arrowRight" }}
-            >
-              Haz tu pedido
-            </Button>
-          </a>
+          <ScrollButton className={cx("hero__button")} />
         </div>
 
         <HeroParallaxImages
