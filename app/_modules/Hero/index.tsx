@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import { CheckCheckIcon } from "lucide-react";
+import { CheckCheckIcon, CheckIcon } from "lucide-react";
 import { HeroParallaxImages } from "./HeroParallaxImages";
 import { Typography } from "@/app/_components";
 import { ScrollButton } from "@/app/_components/ScrollButton";
@@ -30,8 +30,7 @@ const Hero = () => {
 
           <div className={cx("hero__benefits")}>
             <div className={cx("hero__benefit-item")}>
-              {/* <CheckCircle2Icon */}
-              <CheckCheckIcon
+              <CheckIcon
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2.5}
@@ -42,8 +41,7 @@ const Hero = () => {
               </Typography>
             </div>
             <div className={cx("hero__benefit-item")}>
-              {/* <CheckCircle2Icon */}
-              <CheckCheckIcon
+              <CheckIcon
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2.5}
@@ -59,12 +57,11 @@ const Hero = () => {
                 "hero__benefit-item--delivery"
               )}
             >
-              {/* <CheckCircle2Icon */}
-              <CheckCheckIcon
-                className={cx("hero__benefit-icon")}
+              <CheckIcon
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2.5}
+                className={cx("hero__benefit-icon")}
               />
               <Typography variant="p1" className={cx("hero__benefit-text")}>
                 Entrega a domicilio sin costo
