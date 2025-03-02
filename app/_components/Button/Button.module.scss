@@ -4,7 +4,7 @@
 
 .button {
   align-items: center;
-  border-radius: 6px;
+  border-radius: 8px;
   border: none;
   cursor: pointer;
   display: inline-flex;
@@ -16,7 +16,7 @@
   overflow: hidden;
 
   &__text {
-    margin-right: 10px !important;
+    margin-right: 12px !important;
   }
 
   &__icon {
@@ -27,7 +27,7 @@
     flex-shrink: 0;
     width: 24px;
     height: 24px;
-    stroke-width: 2;
+    stroke-width: 2.2;
   }
 
   &__spinner {
