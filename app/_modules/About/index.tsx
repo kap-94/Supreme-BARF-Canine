@@ -141,10 +141,10 @@ const About = () => {
               <Button
                 variant="link-light"
                 icon="right-arrow"
-                target="_blank"
-                href="https://supremebarfcanine.shop/"
+                target="_self"
+                href="#product-section"
               >
-                Visita la tienda
+                Compra ahora
               </Button>
             </div>
 
