@@ -63,6 +63,7 @@ export type IconName =
   | "plus"
   | "left-arrow"
   | "preview"
+  | "question"
   | "reading"
   | "restaurant"
   | "restroom"
