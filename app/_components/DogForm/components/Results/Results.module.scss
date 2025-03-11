@@ -1,156 +1,122 @@
 @import "../../../../_styles/variables.scss";
 
 .results {
-  display: grid;
-  gap: 28px;
-  padding: 32px 28px 38px;
+  padding: 24px;
 
   &__content {
-    display: grid;
-    gap: 24px;
+    padding: 24px 0;
   }
 
   &__message {
-    text-align: left;
-    line-height: 1.6;
-    font-size: 14px;
-    color: rgba($black-color, 0.75);
-    padding: 18px 20px;
-    border-radius: 8px;
-    background: rgba($primary-color, 0.02);
-    border: 1px solid rgba($primary-color, 0.04);
-    position: relative;
+    // background-color: rgba($accent-color, 0.05);
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+  }
 
-    p {
-      font-size: 14px;
-
-      @media only screen and (max-width: $small) {
-        font-size: 12px;
-      }
-    }
-
-    strong {
-      color: $primary-color;
-      // font-weight: 600;
-      font-size: 18px;
-      position: relative;
-      display: inline-block;
-      margin-top: 12px;
-
-      @media only screen and (max-width: $small) {
-        margin-top: 10px;
-      }
-
-      &::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: -1px;
-        height: 2px;
-        background: rgba($primary-color, 0.1);
-        border-radius: 1px;
-      }
-    }
+  &__amount {
+    display: block;
+    font-size: 24px;
+    color: $primary-color;
+    margin: 16px 0 0;
+    font-weight: 700;
   }
 
   &__cta {
     display: flex;
-    align-items: center;
-    margin-top: 4px;
-
-    @media only screen and (max-width: $small) {
-      flex-direction: column;
-      align-items: flex-start;
-    }
+    flex-direction: column;
+    gap: 12px;
   }
 
   &__bags {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin: 10px 0 8px;
     color: $primary-color;
-
-    @media only screen and (max-width: $small) {
-      margin-top: 12px;
-    }
+    // background-color: rgba($primary-color, 0.08);
+    padding: 8px 0;
+    border-radius: 6px;
 
     &-icon {
-      stroke: currentColor;
+      color: $primary-color;
     }
   }
 
-  &__buy-link {
-    position: absolute;
-    right: 24px;
-    text-decoration: underline;
-    color: $primary-color;
-    font-size: 14px;
-    font-weight: 500;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+  &__add-to-cart {
+    // width: 100%;
+    // padding: 12px 24px;
+    transition: all 0.3s ease;
 
-    @media only screen and (max-width: $medium) {
-      font-size: 13px;
+    p {
+      letter-spacing: 0.01em !important;
     }
 
-    @media only screen and (max-width: $small) {
-      position: unset;
-    }
-
-    &-icon {
-      transition: transform 0.2s ease;
-    }
-
-    &:hover &-icon {
-      transform: translateX(2px);
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
     }
   }
 
   &__tips {
-    display: grid;
-    gap: 16px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
     padding: 20px;
-    border-radius: 8px;
-    border: 1px solid rgba($primary-color, 0.04);
 
-    @media only screen and (max-width: $small) {
-      padding: 20px 12px;
+    &-title {
+      margin-bottom: 16px;
+      color: $primary-color;
+    }
+
+    &-list {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        position: relative;
+        padding-left: 24px;
+        margin-bottom: 12px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        &::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 8px;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: $primary-color;
+        }
+      }
     }
   }
+}
 
-  &__tips-title {
-    font-size: 14px;
-    color: rgba($black-color, 0.85);
-    font-weight: 500;
-    letter-spacing: -0.1px;
-  }
+// Responsive adjustments
+@media (max-width: $medium) {
+  .results {
+    padding: 16px;
 
-  &__tips-list {
-    display: grid;
-    gap: 8px;
+    &__content {
+      padding: 16px 0;
+    }
 
-    li {
-      display: grid;
-      grid-template-columns: 16px 1fr;
-      gap: 4px;
-      align-items: start;
-      font-size: 14px;
-      color: rgba($black-color, 0.7);
-      line-height: 1.5;
+    &__message {
+      padding: 16px;
+    }
 
-      &::before {
-        content: "";
-        width: 8px;
-        height: 2px;
-        margin-top: 11px;
-        background: $primary-color;
-        position: relative;
-        transition: width 0.2s ease;
-      }
+    &__amount {
+      font-size: 24px;
+      margin: 12px 0;
+    }
+
+    &__tips {
+      padding: 16px;
     }
   }
 }

@@ -1,9 +1,12 @@
 import classNames from "classnames/bind";
-import { ArrowRight, CheckIcon, ShoppingBag } from "lucide-react";
+import { ArrowRight, CheckIcon, ShoppingBag, ShoppingCart } from "lucide-react";
 import { DogFormValues } from "../..";
 import { FormHeader } from "../FormHeader";
 import { Button, Typography } from "@/app/_components";
 import styles from "./Results.module.scss";
+import { useCart } from "@/app/_context/CartContext";
+import { useEffect, useState } from "react";
+import { getProductVariantByHandle } from "@/app/_actions/shopify-actions";
 
 const cx = classNames.bind(styles);
 
@@ -25,24 +28,63 @@ export const Results: React.FC<ResultsProps> = ({
   dogInfo,
   onReset,
 }) => {
+  const { addItem } = useCart();
+  const [variantId, setVariantId] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isAdded, setIsAdded] = useState(false);
+
+  // Cargar el ID de la variante del producto cuando el componente se monta
+  useEffect(() => {
+    const loadVariantId = async () => {
+      try {
+        const productHandle = "formula-de-pollo-perro-adulto-todas-las-razas";
+        const id = await getProductVariantByHandle(productHandle);
+        setVariantId(id);
+      } catch (error) {
+        console.error("Error loading product variant:", error);
+      }
+    };
+
+    loadVariantId();
+  }, []);
+
   const calculateMonthlyBags = () => {
     const gramsPerBag = 1250;
     const monthlyGrams = dogInfo.foodAmount * 30;
     const bagsNeeded = monthlyGrams / gramsPerBag;
-    return bagsNeeded.toFixed(1);
+    return bagsNeeded;
+  };
+
+  // Calcular bolsas redondeadas hacia arriba
+  const getRecommendedBags = () => {
+    const monthlyBags = calculateMonthlyBags();
+    return Math.ceil(monthlyBags);
+  };
+
+  const handleAddToCart = async () => {
+    if (!variantId) return;
+
+    setIsLoading(true);
+    try {
+      const quantity = getRecommendedBags();
+      await addItem(variantId, quantity);
+      setIsAdded(true);
+
+      // Resetear el estado después de 3 segundos
+      setTimeout(() => {
+        setIsAdded(false);
+      }, 3000);
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const getActivityMessage = () => {
     return values.pregnancyStatus === "No aplica"
       ? `y con un nivel de actividad ${dogInfo.activityText}`
       : `con un nivel de actividad ${dogInfo.activityText} y estado de ${dogInfo.pregnancyText}`;
-  };
-
-  const getProductUrl = () => {
-    const baseUrl =
-      "https://supremebarfcanine.shop/products/formula-de-pollo-perro-adulto-todas-las-razas";
-    const monthlyBags = calculateMonthlyBags();
-    return `${baseUrl}?quantity=${monthlyBags}`;
   };
 
   return (
@@ -63,30 +105,34 @@ export const Results: React.FC<ResultsProps> = ({
 
           <div className={cx("results__cta")}>
             <div className={cx("results__bags")}>
-              <ShoppingBag
-                size={18}
-                strokeWidth={2}
-                className={cx("results__bags-icon")}
-              />
               <Typography variant="p3" color="primary">
-                {calculateMonthlyBags()} bolsas al mes
+                {calculateMonthlyBags().toFixed(1)} bolsa
+                {calculateMonthlyBags() > 1 ? "s" : ""} al mes
               </Typography>
-            </div>
-
-            <a
-              href={getProductUrl()}
-              className={cx("results__buy-link")}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <ArrowRight
+              {/* <ShoppingBag
                 size={16}
                 strokeWidth={2}
-                width={20}
-                className={cx("results__buy-link-icon")}
-              />
-              Comprar ahora
-            </a>
+                className={cx("results__bags-icon")}
+              /> */}
+            </div>
+
+            <Button
+              // variant="secondary"
+              size="small"
+              onClick={handleAddToCart}
+              disabled={isLoading || !variantId || isAdded}
+              className={cx("results__add-to-cart")}
+              icon={{
+                source: "lucide",
+                name: isAdded ? "check" : "shoppingCart",
+              }}
+            >
+              {isAdded
+                ? "¡Añadido!"
+                : isLoading
+                ? "Añadiendo..."
+                : `Añadir ${getRecommendedBags()} bolsas al carrito`}
+            </Button>
           </div>
         </div>
 
@@ -118,7 +164,7 @@ export const Results: React.FC<ResultsProps> = ({
         </div>
       </div>
 
-      <Button type="button" fullWidth onClick={onReset}>
+      <Button type="button" variant="secondary" fullWidth onClick={onReset}>
         Calcular de nuevo
       </Button>
     </div>
