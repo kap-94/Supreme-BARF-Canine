@@ -30,36 +30,20 @@ export const headerData: HeaderProps = {
       {
         menu_item_id: 741,
         menu_item_parent: 0,
-        title: "Calculadora de alimento",
+        title: "Calcula su porción ideal",
         url: "#food-calculator-section",
         target: "_self",
-      },
-      {
-        menu_item_id: 742,
-        menu_item_parent: 0,
-        title: "Preguntas frecuentes",
-        target: "_self",
-        url: "#faq-section",
       },
 
       // Submenu items for "Destinations"
     ],
     menuDataSecondary: [
       {
-        menu_item_id: 743,
+        menu_item_id: 742,
         menu_item_parent: 0,
-        title: "Tienda en línea",
-        target: "_blank",
-        url: "https://supremebarfcanine.shop/",
-        icon: "store",
-      },
-      {
-        menu_item_id: 744,
-        menu_item_parent: 0,
-        title: "Contacto",
+        title: "Ayuda",
         target: "_self",
-        url: "#contact-section",
-        icon: "phone",
+        url: "#faq-section",
       },
     ],
     dropdownItems: [
@@ -138,14 +122,14 @@ export const footerData: FooterProps = {
     {
       menu_item_id: 4,
       menu_item_parent: 0,
-      title: "Calculadora de alimento",
+      title: "Calcula su porción ideal",
       url: "#food-calculator",
       target: "_self",
     },
     {
       menu_item_id: 5,
       menu_item_parent: 0,
-      title: "Preguntas Frecuentes",
+      title: "Ayuda",
       url: "#faq-section",
       target: "_self",
     },
