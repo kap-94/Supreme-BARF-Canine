@@ -21,6 +21,7 @@ import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import "swiper/css/autoplay";
 import ProductSpecs from "./components/ProductSpecs";
+import ProductVariantLoader from "@/app/_components/ProductVariantLoader/ProductVariantLoader";
 
 const cx = classNames.bind(styles);
 
@@ -245,7 +246,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
         <div className={cx("product-grid__info")}>
           <div className={cx("product-grid__info-header")}>
             <Typography variant="h4" className={cx("product-grid__title")}>
-              Alimento Natural Premium
+              Bolsa de Alimento Natural
             </Typography>
             <Typography
               variant="p3"
@@ -296,22 +297,26 @@ const ProductGrid: React.FC<ProductGridProps> = ({
           </div>
 
           <div className={cx("product-grid__cta")}>
-            <a
-              href="https://supremebarfcanine.shop/products/formula-de-pollo-perro-adulto-todas-las-razas"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ width: "fit-content" }}
-            >
-              <Button
-                // href="https://supremebarfcanine.shop/products/formula-de-pollo-perro-adulto-todas-las-razas"
-                variant="primary"
-                // target="_blank"
-                className={cx("product-grid__button")}
-                icon={{ source: "lucide", name: "arrowRight" }}
-              >
-                Comprar Ahora
-              </Button>
-            </a>
+            <ProductVariantLoader
+              productHandle="formula-de-pollo-perro-adulto-todas-las-razas"
+              className={cx("product-grid__add-to-cart")}
+              fallbackButton={
+                <a
+                  href="https://supremebarfcanine.shop/products/formula-de-pollo-perro-adulto-todas-las-razas"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ width: "fit-content" }}
+                >
+                  <Button
+                    variant="primary"
+                    className={cx("product-grid__button")}
+                    icon={{ source: "lucide", name: "arrowRight" }}
+                  >
+                    Ver en Tienda
+                  </Button>
+                </a>
+              }
+            />
           </div>
         </div>
       </div>

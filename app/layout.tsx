@@ -1,7 +1,10 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import { Header, Footer, GoogleAnalytics } from "@/app/_components";
+import ClientCartProvider from "@/app/_components/ClientCartProvider";
 import { footerData, headerData } from "./_lib/data";
 import "@/app/_styles/globals.scss";
+import CartDrawer from "./_components/CartDrawer";
 
 export const metadata: Metadata = {
   title: {
@@ -30,19 +33,23 @@ export default function RootLayout({
       </head>
 
       <body>
-        <Header
-          data={headerData.data}
-          frontPageID={headerData.frontPageID}
-          elevation={2}
-        />
-        {children}
-        <Footer
-          footerMenuDataPrimary={footerData.footerMenuDataPrimary}
-          footerMenuDataSecondary={footerData.footerMenuDataSecondary}
-          footerPoliticsData={footerData.footerPoliticsData}
-          frontPageID={footerData.frontPageID}
-          options={footerData.options}
-        />
+        <ClientCartProvider>
+          <Header
+            data={headerData.data}
+            frontPageID={headerData.frontPageID}
+            elevation={1}
+          />
+          {children}
+          <Footer
+            footerMenuDataPrimary={footerData.footerMenuDataPrimary}
+            footerMenuDataSecondary={footerData.footerMenuDataSecondary}
+            footerPoliticsData={footerData.footerPoliticsData}
+            frontPageID={footerData.frontPageID}
+            options={footerData.options}
+          />
+
+          <CartDrawer />
+        </ClientCartProvider>
       </body>
     </html>
   );

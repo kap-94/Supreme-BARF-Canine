@@ -35,7 +35,7 @@
 
     @media only screen and (max-width: $xlarge) {
       grid-template-columns: 1fr;
-      gap: 40px;
+      gap: 48px;
     }
 
     @media only screen and (max-width: $medium) {
@@ -225,6 +225,7 @@
 
     @media only screen and (max-width: $xlarge) {
       justify-content: space-around;
+      margin-inline: 24px;
     }
 
     @media only screen and (max-width: $medium) {
@@ -301,6 +302,10 @@
   &__tab-content-wrapper {
     position: relative;
     height: 256px;
+
+    @media only screen and (max-width: $xlarge) {
+      padding-inline: 24px;
+    }
   }
 
   &__tab-content {
@@ -412,15 +417,13 @@
 
   &__cta {
     display: flex;
-    flex-direction: column;
     align-items: flex-start;
     gap: 12px;
-    // margin-top: 16px;
     padding-top: 24px;
     border-top: 1.6px solid rgba(0, 0, 0, 0.1);
 
     @media only screen and (max-width: $xlarge) {
-      align-items: center;
+      padding-top: 28px;
     }
   }
 
