@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import classNames from "classnames/bind";
 import { Formik, Form } from "formik";
@@ -43,6 +43,56 @@ const Contact: React.FC = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { executeRecaptcha } = useGoogleReCaptcha();
+
+  // Add useEffect to control reCAPTCHA badge visibility
+  useEffect(() => {
+    // Add inline style to head to hide badge immediately
+    const styleTag = document.createElement("style");
+    styleTag.innerHTML = `.grecaptcha-badge { visibility: hidden !important; opacity: 0 !important; }`;
+    document.head.appendChild(styleTag);
+
+    // Function to handle reCAPTCHA badge
+    const setupRecaptchaBadge = () => {
+      const badge = document.querySelector(".grecaptcha-badge") as HTMLElement;
+      if (badge) {
+        // Change position from fixed to absolute for the badge
+        badge.style.position = "absolute";
+        badge.style.bottom = "20px"; // Adjust as needed
+        badge.style.right = "20px"; // Adjust as needed
+
+        // Move the badge element into our contact section container
+        const contactSection = document.getElementById("contact-section");
+        if (contactSection) {
+          contactSection.appendChild(badge);
+          // Only after it's moved into our section, make it visible
+          setTimeout(() => {
+            badge.style.visibility = "visible";
+            badge.style.opacity = "1";
+          }, 100);
+        }
+      }
+    };
+
+    // Set a delay to ensure reCAPTCHA has loaded
+    const timeoutId = setTimeout(setupRecaptchaBadge, 1000);
+
+    return () => {
+      clearTimeout(timeoutId);
+      // Remove the style tag on unmount
+      if (styleTag.parentNode) {
+        styleTag.parentNode.removeChild(styleTag);
+      }
+
+      // When unmounting, move the badge back to body and hide it
+      const badge = document.querySelector(".grecaptcha-badge") as HTMLElement;
+      if (badge) {
+        badge.style.visibility = "hidden";
+        badge.style.opacity = "0";
+        // Reset position to fixed (original state)
+        badge.style.position = "fixed";
+      }
+    };
+  }, []);
 
   const initialValues: ContactFormValues = {
     name: "",
@@ -113,6 +163,7 @@ const Contact: React.FC = () => {
             validationSchema={getContactFormSchema(false)} // Para el frontend, sin el token reCAPTCHA
             onSubmit={(values, { resetForm }) => {
               handleFormSubmit(values);
+              resetForm();
             }}
           >
             {({
@@ -190,6 +241,30 @@ const Contact: React.FC = () => {
                 >
                   Enviar Mensaje
                 </Button>
+
+                {/* Declaración de reCAPTCHA movida debajo del botón */}
+                <div className={cx("recaptcha-terms")}>
+                  <Typography variant="p3">
+                    Este sitio está protegido por reCAPTCHA y se aplican la
+                    <a
+                      href="https://policies.google.com/privacy"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {" "}
+                      Política de Privacidad{" "}
+                    </a>
+                    y los{" "}
+                    <a
+                      href="https://policies.google.com/terms"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Términos de Servicio
+                    </a>{" "}
+                    de Google.
+                  </Typography>
+                </div>
               </Form>
             )}
           </Formik>
@@ -237,22 +312,16 @@ const Contact: React.FC = () => {
 // Envolvemos el componente Contact con el proveedor de reCAPTCHA
 const ContactWithReCaptcha: React.FC = () => {
   return (
-    <>
-      <GoogleReCaptchaProvider
-        reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
-        scriptProps={{
-          async: true,
-          defer: true,
-        }}
-      >
-        <Contact />
-      </GoogleReCaptchaProvider>
-      <style jsx global>{`
-        .grecaptcha-badge {
-          z-index: 1000 !important;
-        }
-      `}</style>
-    </>
+    <GoogleReCaptchaProvider
+      reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
+      scriptProps={{
+        async: true,
+        defer: true,
+        appendTo: "head", // Agrega el script al head en lugar del body
+      }}
+    >
+      <Contact />
+    </GoogleReCaptchaProvider>
   );
 };
 
