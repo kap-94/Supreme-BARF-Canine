@@ -1,16 +1,26 @@
+"use client";
+
 import classNames from "classnames/bind";
-import { CheckCheckIcon, CheckIcon } from "lucide-react";
-import { HeroParallaxImages } from "./HeroParallaxImages";
-import { Typography } from "@/app/_components";
+import { Button, Typography } from "@/app/_components";
 import { ScrollButton } from "@/app/_components/ScrollButton";
-import heroDog from "@/public/dog.png";
-import heroMeat from "@/public/meat.png";
-import heroDogFood from "@/public/dog-food.png";
+import heroDog from "@/public/dog-2.png";
+import Image from "next/image";
 import styles from "./Hero.module.scss";
 
 const cx = classNames.bind(styles);
 
 const Hero = () => {
+  const handleProductScroll = (): void => {
+    document
+      .getElementById("product-section")
+      ?.scrollIntoView({ behavior: "smooth" });
+  };
+  const handleCalculatorScroll = (): void => {
+    document
+      .getElementById("food-calculator")
+      ?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <section id="hero" className={cx("hero")}>
       <div className={cx("hero__content")}>
@@ -23,60 +33,47 @@ const Hero = () => {
           <Typography variant="h1" className={cx("hero__title")}>
             Alimento natural para el bienestar de tu perro
           </Typography>
-          <Typography variant="p1" className={cx("hero__paragraph")}>
+          <Typography
+            variant="p1"
+            fontWeight={400}
+            className={cx("hero__paragraph")}
+          >
             Dile adiós a las croquetas y comienza a darle a tu perro un alimento
-            de verdad.
+            100% natural, ideal para todas las edades y razas, con entrega a
+            domicilio.
+            {/* Dile adiós a las croquetas y dale a tu perro un alimento 100%
+            natural, para todas las edades y razas. */}
           </Typography>
 
-          <div className={cx("hero__benefits")}>
-            <div className={cx("hero__benefit-item")}>
-              <CheckIcon
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2.5}
-                className={cx("hero__benefit-icon")}
-              />
-              <Typography variant="p1" className={cx("hero__benefit-text")}>
-                Para todas las edades y razas.
-              </Typography>
-            </div>
-            <div className={cx("hero__benefit-item")}>
-              <CheckIcon
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2.5}
-                className={cx("hero__benefit-icon")}
-              />
-              <Typography variant="p1" className={cx("hero__benefit-text")}>
-                Alimento 100% natural.
-              </Typography>
-            </div>
-            <div
-              className={cx(
-                "hero__benefit-item",
-                "hero__benefit-item--delivery"
-              )}
+          <div style={{ display: "flex", gap: "16px" }}>
+            <Button
+              variant="accent"
+              elevation={1}
+              size="large"
+              onClick={handleProductScroll}
+              className={cx("hero__button")}
             >
-              <CheckIcon
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2.5}
-                className={cx("hero__benefit-icon")}
-              />
-              <Typography variant="p1" className={cx("hero__benefit-text")}>
-                Entrega a domicilio sin costo
-              </Typography>
-            </div>
+              Comprar Ahora
+            </Button>
+            <Button
+              variant="secondary"
+              elevation={1}
+              size="large"
+              onClick={handleCalculatorScroll}
+              className={cx("hero__button")}
+            >
+              Ver Más
+            </Button>
           </div>
-
-          <ScrollButton className={cx("hero__button")} />
         </div>
 
-        <HeroParallaxImages
-          dogImage={heroDog}
-          meatImage={heroMeat}
-          foodImage={heroDogFood}
-        />
+        <div className={cx("hero__image")}>
+          <Image
+            src={heroDog}
+            alt="Perro saludable"
+            className={cx("hero__dog")}
+          />
+        </div>
       </div>
     </section>
   );
