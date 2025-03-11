@@ -1,23 +1,19 @@
-// Button.module.scss
 @import "../../_styles/variables.scss";
 @import "../../_styles/mixins.scss";
 
 .button {
   align-items: center;
-  border-radius: 8px;
+  border-radius: 6px;
   border: none;
   cursor: pointer;
   display: inline-flex;
   justify-content: center;
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  white-space: nowrap; /* Reemplaza text-wrap: nowrap; */
+  white-space: nowrap; // Reemplaza text-wrap: nowrap;
   width: fit-content;
   overflow: hidden;
-
-  &__text {
-    margin-right: 12px !important;
-  }
+  gap: 12px;
 
   &__icon {
     display: flex;
@@ -143,14 +139,15 @@
 
   &--secondary {
     background: rgba($primary-color, 0.1);
+    background: #e4dfdb;
 
     &:hover {
       transform: translateY(-1px);
-      filter: brightness(1.1);
+      // filter: brightness(1.1);
     }
 
     .button__text {
-      color: darken($primary-color, 5%);
+      color: $primary-color;
     }
 
     .button__icon {
@@ -160,8 +157,6 @@
 
   &--accent {
     background-color: $accent-color;
-    // box-shadow: 6px 6px 12px rgba(darken($accent-color, 20%), 0.2),
-    //   -6px -6px 12px rgba(lighten($accent-color, 20%), 0.1);
 
     &::before {
       content: "";
@@ -185,12 +180,6 @@
     &:hover::before {
       transform: translateX(100%);
     }
-
-    // &:hover {
-    //   background-color: lighten($accent-color, 3%);
-    //   box-shadow: 8px 8px 16px rgba(darken($accent-color, 20%), 0.25),
-    //     -8px -8px 16px rgba(lighten($accent-color, 20%), 0.15);
-    // }
 
     &:active {
       background-color: darken($accent-color, 3%);
@@ -227,7 +216,6 @@
   &--link-light {
     background-color: transparent;
     border-radius: 0;
-    // border-bottom: 2px solid $white-color;
     padding: 8px 0;
     display: flex;
     gap: 12px;
@@ -259,7 +247,6 @@
   &--link-dark {
     background-color: transparent;
     border-radius: 0;
-    // border-bottom: 2px solid $black-color;
     padding: 8px 0;
     display: flex;
     gap: 12px;
