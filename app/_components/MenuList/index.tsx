@@ -267,8 +267,8 @@ const MenuList: React.FC<MenuListProps> = ({
             <Icon
               icon={menuItem.icon}
               className={cx("menu__icon")}
-              width={16.5}
-              height={16.5}
+              width={18}
+              height={18}
               color="white"
             />
           )}
