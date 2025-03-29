@@ -79,8 +79,8 @@ const ProductSpecs = () => {
     <div className={cx("product-specs__container")}>
       <div className={cx("product-specs__chart-section")}>
         <div className={cx("product-specs__chart-header")}>
-          <Typography variant="h5" className={cx("product-specs__chart-title")}>
-            Distribución Nutricional
+          <Typography variant="p3" className={cx("product-specs__chart-title")}>
+            Distribución nutricional
           </Typography>
           <Typography
             variant="p3"
