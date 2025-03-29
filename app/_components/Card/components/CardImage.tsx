@@ -51,7 +51,7 @@ export const CardImage: React.FC<CardImageProps> = ({
       />
       {title && subtitle && (
         <div className={cx("card__image-overlay")}>
-          <Typography variant="h5" color="white">
+          <Typography variant="p3" color="white">
             {title}
           </Typography>
           <Typography variant="p1" color="white">
