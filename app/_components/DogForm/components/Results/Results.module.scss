@@ -1,32 +1,71 @@
-@import "../../../../_styles/variables.scss";
+@import "@/app/_styles/variables.scss";
 
 .results {
-  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  max-width: 480px;
+  max-height: 500px;
+  height: 500px;
+  width: 100%;
+  box-sizing: border-box;
 
   &__content {
-    padding: 24px 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+    padding: 0;
   }
 
   &__message {
-    // background-color: rgba($accent-color, 0.05);
     background-color: #f9f9f9;
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 24px;
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  &__summary {
+    &-text {
+      // line-height: 1.5;
+    }
+  }
+
+  &__data {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-direction: column;
+    padding-bottom: 8px;
+
+    @media (max-width: $medium) {
+      gap: 14px;
+    }
+
+    @media (max-width: $small) {
+      gap: 12px;
+    }
+  }
+
+  &__quantity,
+  &__monthly {
+    flex: 1;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  &__label {
+    opacity: 0.9;
+    font-size: 15px !important;
   }
 
   &__amount {
     display: block;
-    font-size: 24px;
+    font-size: 18px;
     color: $primary-color;
-    margin: 16px 0 0;
-    font-weight: 700;
-  }
-
-  &__cta {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
   }
 
   &__bags {
@@ -34,89 +73,57 @@
     align-items: center;
     gap: 8px;
     color: $primary-color;
-    // background-color: rgba($primary-color, 0.08);
-    padding: 8px 0;
-    border-radius: 6px;
+
+    p {
+      font-size: 18px;
+    }
 
     &-icon {
       color: $primary-color;
     }
   }
 
-  &__add-to-cart {
-    // width: 100%;
-    // padding: 12px 24px;
-    transition: all 0.3s ease;
+  &__recommendations {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    color: rgba($primary-color, 0.8) !important;
+    font-style: italic;
+    border-top: 1px solid rgba($primary-color, 0.1);
+    padding-block: 28px 16px;
+    max-width: 90%;
+  }
 
-    p {
-      letter-spacing: 0.01em !important;
-    }
+  &__footer {
+    margin-top: auto;
+    padding-top: 24px;
+  }
 
-    &:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
+  &__buttons {
+    display: flex;
+    gap: 10px;
+
+    @media (max-width: $medium) {
+      flex-direction: column-reverse;
     }
   }
 
-  &__tips {
-    background-color: #f9f9f9;
-    border-radius: 12px;
-    padding: 20px;
-
-    &-title {
-      margin-bottom: 16px;
-      color: $primary-color;
-    }
-
-    &-list {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-
-      li {
-        position: relative;
-        padding-left: 24px;
-        margin-bottom: 12px;
-
-        &:last-child {
-          margin-bottom: 0;
-        }
-
-        &::before {
-          content: "";
-          position: absolute;
-          left: 0;
-          top: 8px;
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-          background-color: $primary-color;
-        }
-      }
-    }
-  }
-}
-
-// Responsive adjustments
-@media (max-width: $medium) {
-  .results {
-    padding: 16px;
-
-    &__content {
-      padding: 16px 0;
-    }
+  @media (max-width: $medium) {
+    max-height: none;
+    height: auto;
 
     &__message {
       padding: 16px;
+      gap: 18px;
     }
 
-    &__amount {
-      font-size: 24px;
-      margin: 12px 0;
+    &__recommendations {
+      font-size: 13px !important;
+      padding-block: 20px 12px;
+      max-width: 100%;
     }
 
-    &__tips {
-      padding: 16px;
+    &__footer {
+      padding-top: 20px;
     }
   }
 }

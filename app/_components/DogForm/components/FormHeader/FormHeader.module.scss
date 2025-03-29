@@ -1,11 +1,12 @@
-@import "../../../../_styles/variables.scss";
+@import "@/app/_styles/variables.scss";
 
 .form-header {
   display: flex;
   align-items: center;
   gap: 16px;
   position: relative;
-  padding-bottom: 20px;
+  padding-block: 20px;
+  margin-bottom: 20px;
 
   &::after {
     content: "";
@@ -26,14 +27,49 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: rgba($primary-color, 0.06);
+    width: 36px;
+    height: 36px;
     border-radius: 9px;
     color: $primary-color;
   }
 
   &__title {
-    font-size: 22px;
+    font-size: 20px;
+  }
+
+  @media (max-width: $medium) {
+    padding-block: 16px;
+    margin-bottom: 16px;
+    gap: 12px;
+
+    &__icon {
+      width: 22px;
+      height: 22px;
+
+      svg {
+        width: 22px;
+        height: 22px;
+      }
+    }
+
+    &__title {
+      font-size: 18px;
+    }
+  }
+
+  @media (max-width: $small) {
+    &__icon {
+      width: 20px;
+      height: 20px;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    &__title {
+      font-size: 17px;
+    }
   }
 }

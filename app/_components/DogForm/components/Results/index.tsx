@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import { ArrowRight, CheckIcon, ShoppingBag, ShoppingCart } from "lucide-react";
+import { CheckIcon, ShoppingBag } from "lucide-react";
 import { DogFormValues } from "../..";
 import { FormHeader } from "../FormHeader";
 import { Button, Typography } from "@/app/_components";
@@ -93,80 +93,92 @@ export const Results: React.FC<ResultsProps> = ({
 
       <div className={cx("results__content")}>
         <div className={cx("results__message")}>
-          <Typography variant="p3" color="primary" fontWeight={600}>
-            Para un perro de {dogInfo.dogAgeText}, que pesa {dogInfo.weightText}
-            , {dogInfo.sterilizedText}, {getActivityMessage()}, la cantidad
-            recomendada de alimento es:
-          </Typography>
+          <div className={cx("results__summary")}>
+            <Typography
+              variant="p2"
+              color="primary"
+              fontWeight={500}
+              className={cx("results__summary-text")}
+            >
+              Para un perro de {dogInfo.dogAgeText}, que pesa{" "}
+              {dogInfo.weightText}, {dogInfo.sterilizedText},{" "}
+              {getActivityMessage()}
+            </Typography>
+          </div>
 
-          <strong className={cx("results__amount")}>
-            {dogInfo.foodAmount} gramos al día
-          </strong>
-
-          <div className={cx("results__cta")}>
-            <div className={cx("results__bags")}>
-              <Typography variant="p3" color="primary">
-                {calculateMonthlyBags().toFixed(1)} bolsa
-                {calculateMonthlyBags() > 1 ? "s" : ""} al mes
+          <div className={cx("results__data")}>
+            <div className={cx("results__quantity")}>
+              <Typography
+                variant="p2"
+                color="primary"
+                fontWeight={500}
+                className={cx("results__label")}
+              >
+                Ración diaria:
               </Typography>
-              {/* <ShoppingBag
-                size={16}
-                strokeWidth={2}
-                className={cx("results__bags-icon")}
-              /> */}
+              <Typography
+                variant="p2"
+                className={cx("results__amount")}
+                color="primary"
+                fontWeight={600}
+              >
+                {dogInfo.foodAmount} gramos
+              </Typography>
             </div>
 
-            <Button
-              // variant="secondary"
-              size="small"
-              onClick={handleAddToCart}
-              disabled={isLoading || !variantId || isAdded}
-              className={cx("results__add-to-cart")}
-              icon={{
-                source: "lucide",
-                name: isAdded ? "check" : "shoppingCart",
-              }}
-            >
-              {isAdded
-                ? "¡Añadido!"
-                : isLoading
-                ? "Añadiendo..."
-                : `Añadir ${getRecommendedBags()} bolsas al carrito`}
-            </Button>
+            <div className={cx("results__monthly")}>
+              <Typography
+                variant="p2"
+                color="primary"
+                fontWeight={500}
+                className={cx("results__label")}
+              >
+                Consumo mensual:
+              </Typography>
+              <div className={cx("results__bags")}>
+                <Typography variant="p2" color="primary" fontWeight={600}>
+                  {calculateMonthlyBags().toFixed(1)} bolsa
+                  {calculateMonthlyBags() > 1 ? "s" : ""}
+                </Typography>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div className={cx("results__tips")}>
           <Typography
-            variant="h5"
-            fontWeight={800}
-            className={cx("results__tips-title")}
+            variant="p3"
+            color="primary"
+            className={cx("results__recommendations")}
           >
-            Recomendaciones
+            Divide la ración en 2-3 comidas diarias, mantén agua fresca siempre
+            disponible y ajusta la cantidad según la actividad de tu mascota.
           </Typography>
-          <ul className={cx("results__tips-list")}>
-            <li>
-              <Typography variant="p2" fontWeight={500}>
-                Divide la ración en 2-3 comidas diarias
-              </Typography>
-            </li>
-            <li>
-              <Typography variant="p2" fontWeight={500}>
-                Mantén agua fresca siempre disponible
-              </Typography>
-            </li>
-            <li>
-              <Typography variant="p2" fontWeight={500}>
-                Ajusta la cantidad según la actividad
-              </Typography>
-            </li>
-          </ul>
         </div>
       </div>
 
-      <Button type="button" variant="secondary" fullWidth onClick={onReset}>
-        Calcular de nuevo
-      </Button>
+      <div className={cx("results__footer")}>
+        <div className={cx("results__buttons")}>
+          <Button type="button" variant="secondary" fullWidth onClick={onReset}>
+            Calcular de nuevo
+          </Button>
+          <Button
+            type="button"
+            variant="primary"
+            fullWidth
+            onClick={handleAddToCart}
+            disabled={isLoading || !variantId || isAdded}
+            icon={{
+              source: "lucide",
+              name: isAdded ? "check" : "shoppingCart",
+            }}
+          >
+            {isAdded
+              ? "¡Añadido!"
+              : isLoading
+              ? "Añadiendo..."
+              : `Añadir bolsas al carrito`}
+          </Button>
+        </div>
+      </div>
     </div>
   );
 };

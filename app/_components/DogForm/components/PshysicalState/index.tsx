@@ -25,57 +25,61 @@ export const PhysicalState: React.FC<PhysicalStateProps> = ({
     <div className={cx("physical-state")}>
       <FormHeader icon={<ActivitySquare size={24} />} title="Estado Físico" />
 
-      <div className={cx("physical-state__fields")}>
-        <Dropdown
-          label="Nivel de actividad"
-          id="activityLevel"
-          options={dogFormOptions.activityLevelOptions}
-          selected={
-            dogFormOptions.activityLevelOptions.find(
-              (option) => option.value === values.activityLevel
-            )!
-          }
-          onSelectedChange={(option) =>
-            setFieldValue("activityLevel", option.value)
-          }
-        />
+      <div className={cx("physical-state__content")}>
+        <div className={cx("physical-state__fields")}>
+          <Dropdown
+            label="Nivel de actividad"
+            id="activityLevel"
+            options={dogFormOptions.activityLevelOptions}
+            selected={
+              dogFormOptions.activityLevelOptions.find(
+                (option) => option.value === values.activityLevel
+              )!
+            }
+            onSelectedChange={(option) =>
+              setFieldValue("activityLevel", option.value)
+            }
+          />
 
-        <Dropdown
-          label="¿Está esterilizado?"
-          id="sterilized"
-          options={dogFormOptions.sterilizedOptions}
-          selected={
-            dogFormOptions.sterilizedOptions.find(
-              (option) => option.value === values.sterilized
-            )!
-          }
-          onSelectedChange={(option) =>
-            setFieldValue("sterilized", option.value)
-          }
-        />
+          <Dropdown
+            label="¿Está esterilizado?"
+            id="sterilized"
+            options={dogFormOptions.sterilizedOptions}
+            selected={
+              dogFormOptions.sterilizedOptions.find(
+                (option) => option.value === values.sterilized
+              )!
+            }
+            onSelectedChange={(option) =>
+              setFieldValue("sterilized", option.value)
+            }
+          />
 
-        <Dropdown
-          label="Estado especial"
-          id="pregnancyStatus"
-          options={dogFormOptions.pregnancyStatusOptions}
-          selected={
-            dogFormOptions.pregnancyStatusOptions.find(
-              (option) => option.value === values.pregnancyStatus
-            )!
-          }
-          onSelectedChange={(option) =>
-            setFieldValue("pregnancyStatus", option.value)
-          }
-        />
+          <Dropdown
+            label="Estado especial"
+            id="pregnancyStatus"
+            options={dogFormOptions.pregnancyStatusOptions}
+            selected={
+              dogFormOptions.pregnancyStatusOptions.find(
+                (option) => option.value === values.pregnancyStatus
+              )!
+            }
+            onSelectedChange={(option) =>
+              setFieldValue("pregnancyStatus", option.value)
+            }
+          />
+        </div>
       </div>
 
-      <div className={cx("physical-state__buttons")}>
-        <Button type="button" fullWidth variant="secondary" onClick={onPrev}>
-          Anterior
-        </Button>
-        <Button type="button" fullWidth variant="primary" onClick={onNext}>
-          Calcular
-        </Button>
+      <div className={cx("physical-state__footer")}>
+        <div className={cx("physical-state__buttons")}>
+          <Button type="button" fullWidth variant="secondary" onClick={onPrev}>
+            Anterior
+          </Button>
+          <Button type="button" fullWidth variant="primary" onClick={onNext}>
+            Calcular
+          </Button>
+        </div>
       </div>
     </div>
   );

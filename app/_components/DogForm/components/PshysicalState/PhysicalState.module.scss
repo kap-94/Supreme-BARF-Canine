@@ -1,13 +1,31 @@
-@import "../../../../_styles/variables.scss";
+@import "@/app/_styles/variables.scss";
 
 .physical-state {
-  display: grid;
-  gap: 28px;
-  padding: 32px 28px 38px;
+  display: flex;
+  flex-direction: column;
+  max-width: 480px;
+  max-height: 500px;
+  height: 500px;
+  width: 100%;
+  box-sizing: border-box;
+
+  &__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+    padding: 16px 0;
+  }
 
   &__fields {
     display: grid;
     gap: 20px;
+  }
+
+  &__footer {
+    margin-top: auto;
+    padding-top: 24px;
   }
 
   &__buttons {
@@ -17,6 +35,23 @@
 
     @media (max-width: $medium) {
       grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: $medium) {
+    max-height: none;
+    height: auto;
+
+    &__content {
+      padding: 12px 0;
+    }
+
+    &__fields {
+      gap: 16px;
+    }
+
+    &__footer {
+      padding-top: 20px;
     }
   }
 }
