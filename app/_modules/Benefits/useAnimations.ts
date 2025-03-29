@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { AnimationElements } from "./types";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -9,122 +8,247 @@ interface UseAnimationsProps {
   sectionRef: React.RefObject<HTMLElement>;
   headerRef: React.RefObject<HTMLDivElement>;
   itemsRef: React.MutableRefObject<(HTMLDivElement | null)[]>;
+  dividerRef: React.RefObject<HTMLDivElement>;
+  verticalDividerRef: React.RefObject<HTMLDivElement>;
+  mediaGridRef: React.RefObject<HTMLDivElement>;
   cx: (...args: any[]) => string;
 }
+
 export const useAnimations = ({
   sectionRef,
   headerRef,
   itemsRef,
+  dividerRef,
+  verticalDividerRef,
+  mediaGridRef,
   cx,
 }: UseAnimationsProps) => {
   useEffect(() => {
-    // Check if it's mobile early and return if so
-    if (window.innerWidth <= 768) return;
+    // Asegurarnos de que estamos en un entorno de navegador
+    if (typeof window === "undefined") return;
 
-    const ctx = gsap.context(() => {
-      // Header Animation
-      if (headerRef.current) {
-        const title = headerRef.current.querySelector("h2");
-        const subtitle = headerRef.current.querySelector("p");
+    // Verificar que el ref principal está disponible
+    if (!sectionRef.current) return;
 
-        gsap.set([title, subtitle], {
-          opacity: 0,
-          y: 50,
-        });
+    // Detectar el tamaño de pantalla para aplicar las animaciones correctas
+    const screenWidth = window.innerWidth;
+    const isTablet = screenWidth <= 1280 && screenWidth > 768;
+    const isMobile = screenWidth <= 768;
 
-        const headerTimeline = gsap.timeline({
-          scrollTrigger: {
-            trigger: headerRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            toggleActions: "play reverse restart reverse",
-          },
-        });
+    // Función para animaciones (se ejecutará después de un pequeño retraso)
+    const runAnimations = () => {
+      // Crear un contexto GSAP
+      const ctx = gsap.context(() => {
+        // 1. ANIMACIÓN DEL ENCABEZADO
+        if (headerRef.current) {
+          const title = headerRef.current.querySelector("h2");
+          const subtitle = headerRef.current.querySelector("p");
 
-        headerTimeline.to([title, subtitle], {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: "power3.out",
-          stagger: {
-            amount: 0.2,
-            ease: "power1.inOut",
-          },
-        });
-      }
+          if (title && subtitle) {
+            gsap.set([title, subtitle], {
+              opacity: 0,
+              y: 30,
+            });
 
-      // Benefits Items Animation
-      const items = itemsRef.current.filter(
-        (item): item is HTMLDivElement => item !== null
-      );
+            gsap.to([title, subtitle], {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: "power3.out",
+              stagger: 0.2,
+              scrollTrigger: {
+                trigger: headerRef.current,
+                start: "top bottom",
+                toggleActions: "play none none reverse",
+              },
+            });
+          }
+        }
 
-      items.forEach((item, index) => {
-        const timeline = gsap.timeline({
-          scrollTrigger: {
-            trigger: item,
-            start: "top bottom-=100",
-            toggleActions: "play none none reverse",
-          },
-        });
+        // 2. ANIMACIÓN DEL DIVISOR HORIZONTAL (sólo en desktop)
+        if (dividerRef.current && !isTablet && !isMobile) {
+          const divider = dividerRef.current.querySelector(
+            `.${cx("benefits__divider")}`
+          );
 
-        const elements = {
-          number: item.querySelector(`.${cx("benefits__item-number")}`),
-          icon: item.querySelector(`.${cx("benefits__item-icon-wrapper")}`),
-          title: item.querySelector(`.${cx("benefits__item-title")}`),
-          description: item.querySelector(
+          if (divider) {
+            gsap.set(divider, {
+              scaleX: 0,
+              opacity: 0,
+            });
+
+            gsap.to(divider, {
+              scaleX: 1,
+              opacity: 1,
+              duration: 1,
+              ease: "power2.inOut",
+              scrollTrigger: {
+                trigger: dividerRef.current,
+                start: "top bottom-=100",
+                toggleActions: "play none none reverse",
+              },
+            });
+          }
+        }
+
+        // 3. ANIMACIÓN DEL DIVISOR VERTICAL (sólo en tablet)
+        if (verticalDividerRef.current && isTablet) {
+          gsap.set(verticalDividerRef.current, {
+            scaleY: 0,
+            opacity: 0,
+          });
+
+          gsap.to(verticalDividerRef.current, {
+            scaleY: 1,
+            opacity: 1,
+            duration: 1,
+            ease: "power2.inOut",
+            scrollTrigger: {
+              trigger: verticalDividerRef.current,
+              start: "top bottom-=100",
+              toggleActions: "play none none reverse",
+            },
+          });
+        }
+
+        // 4. ANIMACIÓN DE LOS ÍTEMS DE BENEFICIOS
+        // Obtenemos los ítems que están visibles según el breakpoint
+        let visibleItems;
+        if (!isTablet && !isMobile) {
+          visibleItems = document.querySelectorAll(
+            `.${cx("benefits__grid-wrapper--desktop")} .${cx("benefits__item")}`
+          );
+        } else if (isTablet && !isMobile) {
+          visibleItems = document.querySelectorAll(
+            `.${cx("benefits__grid-wrapper--tablet")} .${cx("benefits__item")}`
+          );
+        } else {
+          visibleItems = document.querySelectorAll(
+            `.${cx("benefits__grid-wrapper--mobile")} .${cx("benefits__item")}`
+          );
+        }
+
+        // Animamos cada ítem visible
+        visibleItems.forEach((item) => {
+          const index = parseInt(item.getAttribute("data-index") || "0", 10);
+
+          // Elementos a animar dentro del ítem
+          const numberEl = item.querySelector(
+            `.${cx("benefits__item-number")}`
+          );
+          const iconWrapperEl = item.querySelector(
+            `.${cx("benefits__item-icon-wrapper")}`
+          );
+          const titleEl = item.querySelector(`.${cx("benefits__item-title")}`);
+          const descEl = item.querySelector(
             `.${cx("benefits__item-description")}`
-          ),
-        };
+          );
 
-        if (
-          !elements.number ||
-          !elements.icon ||
-          !elements.title ||
-          !elements.description
-        )
-          return;
+          if (!numberEl || !iconWrapperEl || !titleEl || !descEl) return;
 
-        const direction = index % 2 === 0 ? -30 : 30;
-        gsap.set(elements.number, { opacity: 0 });
-        gsap.set(elements.icon, { opacity: 0, scale: 0 });
-        gsap.set([elements.title, elements.description], {
-          opacity: 0,
-          x: direction,
-        });
+          // Establecer estado inicial
+          gsap.set(numberEl, { opacity: 0, scale: 0.8 });
+          gsap.set(iconWrapperEl, { opacity: 0, scale: 0 });
+          gsap.set(titleEl, { opacity: 0, y: 20 });
+          gsap.set(descEl, { opacity: 0, y: 20 });
 
-        timeline
-          .to(elements.number, {
+          // Calcular delay basado en el índice
+          const delay = (index % 3) * 0.1 + Math.floor(index / 3) * 0.2;
+
+          // Crear timeline para este ítem
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: item,
+              start: "top bottom-=100",
+              toggleActions: "play none none reverse",
+            },
+          });
+
+          tl.to(numberEl, {
             opacity: 0.07,
             scale: 1,
             duration: 0.6,
             ease: "power2.out",
+            delay: delay,
           })
-          .to(
-            elements.icon,
-            {
-              opacity: 1,
-              scale: 1,
-              duration: 0.6,
-              ease: "back.out(1.7)",
-            },
-            "-=0.3"
-          )
-          .to(
-            [elements.title, elements.description],
-            {
-              opacity: 1,
-              x: 0,
-              duration: 0.6,
-              stagger: 0.1,
-              ease: "power2.out",
-            },
-            "-=0.3"
+            .to(
+              iconWrapperEl,
+              {
+                opacity: 1,
+                scale: 1,
+                duration: 0.6,
+                ease: "back.out(1.7)",
+              },
+              "-=0.3"
+            )
+            .to(
+              titleEl,
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "power2.out",
+              },
+              "-=0.4"
+            )
+            .to(
+              descEl,
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "power2.out",
+              },
+              "-=0.5"
+            );
+        });
+
+        // 5. ANIMACIÓN SIMPLIFICADA DE LAS IMÁGENES
+        if (mediaGridRef.current) {
+          const mediaItems = mediaGridRef.current.querySelectorAll(
+            `.${cx("benefits__media-grid-item")}`
           );
 
-        timeline.delay(index * 0.1);
-      });
-    }, sectionRef);
+          if (mediaItems.length) {
+            // Configuración inicial simple
+            gsap.set(mediaItems, {
+              opacity: 0,
+            });
 
-    return () => ctx.revert();
-  }, [sectionRef, headerRef, itemsRef, cx]);
+            // Animación simple de fade-in con pequeño movimiento vertical
+            gsap.to(mediaItems, {
+              opacity: 1,
+              duration: 0.7,
+              stagger: 0.15,
+              ease: "power1.out",
+              scrollTrigger: {
+                trigger: mediaGridRef.current,
+                start: "top bottom-=50",
+                toggleActions: "play none none none",
+              },
+            });
+          }
+        }
+      }, sectionRef);
+
+      return () => ctx.revert();
+    };
+
+    // Ejecutar animaciones después de un pequeño retraso
+    // para garantizar que todos los elementos estén renderizados
+    const animationTimer = setTimeout(runAnimations, 150);
+
+    // Limpieza
+    return () => {
+      clearTimeout(animationTimer);
+    };
+  }, [
+    sectionRef,
+    headerRef,
+    itemsRef,
+    dividerRef,
+    verticalDividerRef,
+    mediaGridRef,
+    cx,
+  ]);
 };

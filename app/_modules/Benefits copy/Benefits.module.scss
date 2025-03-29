@@ -1,0 +1,291 @@
+@import "../../_styles/variables.scss";
+
+.benefits {
+  $self: &;
+  background-color: $white-color;
+  width: 100%;
+  padding: 90px 48px 120px;
+  overflow: hidden;
+
+  @media only screen and (max-width: $medium) {
+    padding: 48px 24px 80px;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1280px;
+    margin: 0 auto;
+    gap: 60px;
+
+    @media only screen and (max-width: $xlarge) {
+      flex-direction: column-reverse;
+      max-width: 100%;
+      align-items: center;
+    }
+  }
+
+  // Media Grid
+  &__media-grid {
+    width: 45%;
+    position: sticky;
+    top: 100px;
+
+    @media only screen and (max-width: $xlarge) {
+      width: 100%;
+    }
+
+    &-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      padding: 24px;
+
+      @media only screen and (max-width: $xlarge) {
+        padding: unset;
+      }
+    }
+
+    &-item {
+      position: relative;
+      border-radius: 4px;
+      overflow: hidden;
+      transition: transform 0.5s ease;
+      aspect-ratio: 16/11;
+
+      @media only screen and (max-width: $xlarge) {
+        display: none;
+
+        &:last-child {
+          display: block;
+          width: 100%;
+          max-width: 600px;
+          margin: 0 auto;
+        }
+      }
+
+      // Overlay sutil para homogeneizar las imágenes
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.02) 0%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        mix-blend-mode: overlay;
+        pointer-events: none;
+      }
+    }
+
+    &-image {
+      object-fit: cover;
+      transition: all 0.5s ease;
+      // Filtros base para todas las imágenes
+      filter: brightness(0.98) // Ligera reducción de brillo
+        contrast(1.02) // Sutil aumento de contraste
+        saturate(0.95) // Ligera desaturación
+        brightness(1.02); // Compensación final de brillo
+
+      // Efecto de viñeta sutil usando mix-blend-mode
+      mix-blend-mode: multiply;
+
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at center,
+          transparent 40%,
+          rgba(0, 0, 0, 0.03) 100%
+        );
+        pointer-events: none;
+      }
+    }
+  }
+
+  // Content Area
+  &__content {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+
+    @media only screen and (max-width: $xlarge) {
+      width: 100%;
+      max-width: 600px;
+      margin-inline: auto;
+      align-items: center;
+    }
+  }
+
+  &__header {
+    h2 {
+      font-weight: 800;
+    }
+  }
+
+  // Grid Layout
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 64px 40px;
+    position: relative;
+
+    & > div:nth-child(2n) {
+      margin-top: 80px;
+    }
+
+    @media only screen and (max-width: $xlarge) {
+      grid-template-columns: 1fr;
+      gap: 48px;
+
+      & > div:nth-child(n) {
+        margin-top: 0;
+      }
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      height: 100%;
+      width: 1px;
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba($black-color, 0.1) 15%,
+        rgba($black-color, 0.1) 85%,
+        transparent
+      );
+
+      @media only screen and (max-width: $xlarge) {
+        display: none;
+      }
+    }
+  }
+
+  // Item Styles
+  &__item {
+    $item: &;
+    position: relative;
+    transition: transform 0.3s ease;
+    padding-top: 38px;
+
+    @media only screen and (max-width: $xlarge) {
+      padding-top: 48px;
+    }
+
+    &--right {
+      text-align: right;
+
+      #{$self}__item-icon-wrapper {
+        right: 74px;
+        left: unset;
+
+        @media only screen and (max-width: $medium) {
+          right: 60px;
+        }
+      }
+
+      #{$self}__item-content {
+        align-items: flex-end;
+      }
+
+      #{$self}__item-text {
+        align-items: flex-end;
+      }
+
+      #{$self}__item-number {
+        right: -8px;
+        left: auto;
+      }
+    }
+  }
+
+  &__item-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    position: relative;
+
+    @media only screen and (max-width: $xlarge) {
+      align-items: center;
+    }
+  }
+
+  &__item-icon-wrapper {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -54px;
+    left: 74px;
+    filter: brightness(0) invert(16%) sepia(7%) saturate(3594%)
+      hue-rotate(146deg) brightness(92%) contrast(84%);
+
+    @media only screen and (max-width: $medium) {
+      left: 60px;
+    }
+  }
+
+  &__item-icon {
+    font-size: 24px;
+    opacity: 0.9;
+  }
+
+  &__item-number {
+    position: absolute;
+    top: -40px;
+    left: -8px;
+    font-size: 56px;
+    font-weight: 800;
+    color: $primary-color;
+    opacity: 0.07;
+    transition: all 0.3s ease;
+    pointer-events: none;
+
+    @media only screen and (max-width: $medium) {
+      top: -20px;
+      font-size: 44px;
+    }
+  }
+
+  &__item-text {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__item-title {
+    // font-family: "forma-djr-micro", sans-serif !important;
+    font-family: "neue-haas-grotesk-display", sans-serif;
+    font-size: 20px;
+    color: rgba($black-color, 0.99);
+    line-height: 1.5;
+
+    @media only screen and (max-width: $medium) {
+      font-size: 18px;
+    }
+  }
+
+  &__item-description {
+    line-height: 1.6;
+    color: rgba($black-color, 0.9);
+    max-width: 90%;
+
+    @media only screen and (max-width: $xlarge) {
+      max-width: 80%;
+    }
+  }
+}
