@@ -1,40 +1,61 @@
-// FoodCalculator.tsx
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
+import Image from "next/image";
 import classNames from "classnames/bind";
-import { SectionHeader, DogForm } from "@/app/_components";
+import { DogForm, SectionHeader } from "@/app/_components";
+import Typography from "@/app/_components/Typography";
+import dogImage from "@/public/food-calculator-dog.png";
 import styles from "./FoodCalculator.module.scss";
 
 const cx = classNames.bind(styles);
 
 const FoodCalculator: React.FC = () => {
+  const [showTooltip, setShowTooltip] = useState(false);
+
   return (
     <section id="food-calculator-section" className={cx("food-calculator")}>
-      <div className={cx("food-calculator__hero")}>
-        {/* <div className={cx("food-calculator__bg-wrapper")}>
-          <Image
-            src="/dog-illustration.svg"
-            alt="Dog illustration"
-            fill
-            sizes="(max-width: 768px) 100vw, 100vw"
-            className={cx("food-calculator__bg-image")}
-          />
-        </div> */}
-        <div
-          id="food-calculator"
-          className={cx("food-calculator__hero-content")}
-        >
-          <SectionHeader
-            color="white"
-            title="Calcula la Ración Ideal"
-            subtitle=" Obtén la medida exacta de alimento según la edad, peso y actividad
-            de tu perro"
-          />
-        </div>
-      </div>
+      <div className={cx("food-calculator__container")}>
+        <div className={cx("food-calculator__form-wrapper")}>
+          <div className={cx("food-calculator__form-heading")}>
+            <SectionHeader
+              title="Calcula la ración ideal"
+              subtitle="Ingresa los datos para obtener la medida exacta"
+              align="center"
+            />
 
-      <div className={cx("food-calculator__content")}>
-        <div className={cx("food-calculator__form-container")}>
-          <DogForm />
+            <div
+              className={cx("food-calculator__info-icon")}
+              onMouseEnter={() => setShowTooltip(true)}
+              onMouseLeave={() => setShowTooltip(false)}
+            >
+              <span>i</span>
+              {showTooltip && (
+                <div className={cx("food-calculator__tooltip")}>
+                  <Typography variant="p3">
+                    Nuestra calculadora está basada en estándares veterinarios y
+                    nutricionales para garantizar una alimentación óptima para
+                    tu mascota.
+                  </Typography>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className={cx("food-calculator__form")}>
+            <DogForm stepperVariant="minimal" />
+          </div>
+        </div>
+
+        <div className={cx("food-calculator__image-wrapper")}>
+          <Image
+            alt="Dog waiting to eat"
+            className={cx("food-calculator__image")}
+            fill
+            src={dogImage}
+            sizes="(max-width: 992px) 100vw, 50vw"
+            priority
+          />
         </div>
       </div>
     </section>
