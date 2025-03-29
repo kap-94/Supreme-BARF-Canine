@@ -1,10 +1,10 @@
-@import "../../_styles/variables.scss"; // Importa tus variables y breakpoints
+@import "@/app/_styles/variables.scss"; // Importa tus variables y breakpoints
 
 .section-header {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  // justify-content: center;
+  // align-items: center;
 
   &--left {
     align-items: flex-start;
@@ -26,14 +26,14 @@
   }
 
   &__subtitle {
-    font-size: 18px;
-
-    @media only screen and (max-width: $xlarge) {
-      font-size: 16px;
+    font-size: 20px;
+    // opacity: 0.9;
+    @media only screen and (max-width: $large) {
+      font-size: 18px;
     }
 
-    @media only screen and (max-width: 680px) {
-      font-size: 14px;
+    @media only screen and (max-width: $small) {
+      font-size: 16px;
     }
   }
 }

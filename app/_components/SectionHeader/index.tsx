@@ -18,10 +18,10 @@ const SectionHeader = forwardRef<HTMLDivElement, SectionHeaderProps>(
     return (
       <div
         ref={ref}
-        className={cx("section-header", className, `section-header--${align}`)}
+        className={cx("section-header", `section-header--${align}`, className)}
       >
         <Typography
-          variant="h2"
+          variant="h3"
           className={cx("section-header__title")}
           color={color}
         >
@@ -30,6 +30,7 @@ const SectionHeader = forwardRef<HTMLDivElement, SectionHeaderProps>(
         {subtitle && (
           <Typography
             variant="p1"
+            fontWeight={400}
             className={cx("section-header__subtitle")}
             color={color}
           >
