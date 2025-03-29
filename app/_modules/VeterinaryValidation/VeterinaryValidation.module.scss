@@ -1,0 +1,196 @@
+@import "@/app/_styles/functions.scss";
+@import "@/app/_styles/variables.scss";
+
+.veterinary-validation {
+  $self: &;
+  background-color: $white-color;
+  width: 100%;
+  padding: 48px;
+  overflow: hidden;
+
+  @media only screen and (max-width: $xlarge) {
+    padding: 24px 48px 48px;
+  }
+
+  @media only screen and (max-width: $medium) {
+    padding: 24px 24px 40px;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 1280px;
+    margin: 0 auto;
+    gap: 72px;
+
+    @media only screen and (max-width: $xlarge) {
+      gap: 64px;
+    }
+
+    @media only screen and (max-width: $medium) {
+      gap: 48px;
+    }
+
+    @media only screen and (max-width: $small) {
+      gap: 32px;
+    }
+  }
+
+  &__header-wrapper {
+    width: 100%;
+    max-width: 800px;
+    text-align: left;
+  }
+
+  // Validación de veterinarios
+  &__validation {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+  }
+
+  &__validation-header {
+    text-align: left;
+    max-width: 800px;
+  }
+
+  &__validation-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    width: 100%;
+
+    @media only screen and (max-width: $xlarge) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    @media only screen and (max-width: $medium) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__validation-item {
+    background-color: rgba($black-color, 0.02);
+    border-radius: 4px;
+    border: 1px solid rgba($black-color, 0.05);
+    height: 350px;
+    display: flex;
+    overflow: hidden;
+
+    @media only screen and (max-width: $medium) {
+      height: 320px;
+    }
+
+    @media only screen and (max-width: $medium) {
+      height: 270px;
+    }
+  }
+
+  &__validation-content {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+
+    @media only screen and (max-width: $medium) {
+      padding: 24px;
+    }
+  }
+
+  &__validation-quote {
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  &__validation-text {
+    color: rgba($black-color, 0.75);
+    max-height: 320px;
+    overflow-y: auto;
+    font-style: italic;
+    padding-right: 10px;
+
+    /* Custom scrollbar styles */
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba($black-color, 0.05);
+      border-radius: 2px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba($primary-color, 0.3);
+      border-radius: 2px;
+    }
+  }
+
+  &__validation-expert {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid rgba($black-color, 0.05);
+
+    @media only screen and (max-width: $medium) {
+      margin-top: 16px;
+      padding-top: 16px;
+    }
+  }
+
+  &__validation-photo-container {
+    width: 72px;
+    height: 72px;
+    flex-shrink: 0;
+  }
+
+  &__validation-photo-placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: rgba($primary-color, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $primary-color;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 3px 8px rgba($black-color, 0.05);
+  }
+
+  &__validation-photo {
+    object-fit: cover;
+  }
+
+  &__validation-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__validation-name {
+    color: $black-color;
+  }
+
+  &__validation-credential {
+    color: $primary-color;
+  }
+
+  &__validation-organization {
+    color: rgba($black-color, 0.6);
+    text-wrap: nowrap;
+
+    @media only screen and (max-width: $medium) {
+      display: none;
+    }
+  }
+}
