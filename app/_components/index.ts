@@ -15,7 +15,7 @@ import Header from "./Header";
 import Icon from "./CustomIcon";
 import IconButton from "./IconButton";
 import MenuList from "./MenuList";
-import ProductCard from "./ProductCard";
+import ProductCard from "./ProductCard2";
 import SectionHeader from "./SectionHeader";
 import Snackbar from "./Snackbar";
 import Spinner from "./Spinner";
