@@ -1,151 +1,122 @@
-@import "../../_styles/variables.scss";
-@import "../../_styles/mixins.scss";
+@import "@/app/_styles/variables.scss";
+@import "@/app/_styles/mixins.scss";
+
+// Base font size
+$base-font-size: 16 !default;
+
+@function rem($pixels) {
+  @return #{$pixels / $base-font-size}rem;
+}
+
+// Función para crear un valor clamp responsive
+@function fluid-type($min-size, $max-size) {
+  $min-size-rem: rem($min-size);
+  $max-size-rem: rem($max-size);
+
+  @return clamp(
+    #{$min-size-rem},
+    calc(
+      #{$min-size-rem} + (#{$max-size} - #{$min-size}) * ((100vw - 320px) /
+            (1200 - 320))
+    ),
+    #{$max-size-rem}
+  );
+}
 
 .typography {
   margin: 0;
 
   &--h1 {
     color: $black-color;
-    font-size: rem(70);
+    font-size: fluid-type(36, 70);
     font-style: normal;
-    font-family: griffith-gothic, sans-serif !important;
-    font-weight: 900 !important;
-    font-style: normal;
-    // letter-spacing: 0.01em;
-    line-height: 1.12;
-
-    @media only screen and (max-width: 1280px) {
-      font-size: rem(64);
-    }
-
-    @media only screen and (max-width: 600px) {
-      font-size: rem(52);
-    }
+    letter-spacing: -0.01em;
+    font-family: "komet", sans-serif;
+    line-height: 1.05;
+    font-weight: 800;
   }
 
   &--h2 {
-    font-family: griffith-gothic, sans-serif !important;
-
+    font-family: "komet", sans-serif;
     color: $black-color;
-    font-size: rem(46);
+    font-size: fluid-type(32, 46);
     font-style: normal;
-    font-weight: 900;
+    font-weight: 600;
+    letter-spacing: -0.01em;
     line-height: 106%;
-
-    @media only screen and (max-width: 600px) {
-      font-size: rem(32);
-      line-height: 110%;
-    }
   }
 
   &--h3 {
     color: rgba($black-color, 0.9);
-    font-size: rem(36);
+    font-size: fluid-type(24, 36);
     font-style: normal;
-    font-weight: 700;
-    letter-spacing: rem(0.096);
+    font-weight: 600;
     line-height: 1.45;
-    font-family: griffith-gothic, sans-serif !important;
-
-    @media only screen and (max-width: 600px) {
-      font-size: rem(24);
-      letter-spacing: rem(0.072);
-    }
+    font-family: "komet", sans-serif;
+    letter-spacing: -0.005em;
   }
 
   &--h4 {
     color: $black-color;
-    font-size: rem(24);
+    font-size: fluid-type(20, 24);
     font-style: normal;
     font-weight: 600;
     line-height: 1.5;
-    // letter-spacing: 0.01em;
-    font-family: griffith-gothic, sans-serif !important;
-
-    @media only screen and (max-width: 600px) {
-      line-height: 1.3;
-      font-size: rem(20);
-      letter-spacing: rem(0.06);
-    }
+    font-family: "komet", sans-serif;
   }
 
   &--h5 {
-    font-size: rem(14);
+    font-size: fluid-type(16, 20);
     color: $black-color;
     font-style: normal;
-    font-weight: 800;
     line-height: 1.5;
     letter-spacing: rem(0.06);
-    font-family: griffith-gothic, sans-serif !important;
-
-    @media only screen and (max-width: 600px) {
-      font-size: rem(13);
-      letter-spacing: rem(0.048);
-    }
+    font-family: "sofia-pro", sans-serif;
+    font-weight: 500;
   }
 
   &--p1 {
     color: rgba($black-color, 0.9);
-    // font-family: "novel-sans-pro", sans-serif;
-    font-family: "forma-djr-micro", sans-serif;
-    font-family: "neue-haas-grotesk-display", sans-serif;
-    font-family: "sofia-pro", sans-serif;
-
-    font-size: rem(18);
+    font-family: "sofia-pro", sans-serif !important;
+    font-size: fluid-type(16, 18);
     font-style: normal;
     font-weight: 400;
-    line-height: 1.5;
-    // letter-spacing: 0.01em;
-
-    @media only screen and (max-width: 600px) {
-      font-size: rem(16);
-      font-weight: 500;
-      letter-spacing: rem(0.042);
-    }
+    line-height: 1.6;
   }
 
   &--p2 {
-    color: $black-color;
-    font-family: "neue-haas-grotesk-display", sans-serif;
     font-family: "sofia-pro", sans-serif;
-    font-size: rem(16);
+    font-size: fluid-type(14, 16);
     font-style: normal;
-    line-height: 1.5;
-    letter-spacing: rem(0.24);
-    letter-spacing: 0.02em;
-
-    @media only screen and (max-width: 600px) {
-      font-size: rem(14);
-      letter-spacing: rem(0.036);
-    }
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    color: rgba($black-color, 0.9);
   }
 
   &--p3 {
     color: $black-color;
-    font-family: "neue-haas-grotesk-display", sans-serif;
-    font-size: rem(14);
+    font-family: "sofia-pro", sans-serif;
+    font-size: fluid-type(12, 14);
     font-style: normal;
     font-weight: 500;
-    line-height: 1.5;
-    letter-spacing: 0.015em;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
   }
 
   &--button {
-    font-size: rem(16);
+    font-size: fluid-type(14, 16);
     font-weight: bold;
     text-transform: uppercase;
     color: $black-color;
     letter-spacing: 0.01em;
-
     font-family: "neue-haas-grotesk-display", sans-serif;
   }
 
   &--overline {
-    font-size: rem(14);
+    font-size: fluid-type(12, 14);
     text-transform: uppercase;
     color: $black-color;
     font-family: "neue-haas-grotesk-display", sans-serif;
-
     letter-spacing: 0.01em;
   }
 }
