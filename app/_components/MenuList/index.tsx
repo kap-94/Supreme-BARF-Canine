@@ -176,21 +176,64 @@ const MenuList: React.FC<MenuListProps> = ({
     }
   }, [isMobile]);
 
-  // Efecto para actualizar el elemento de menú activo basado en la posición de scroll
+  // Efecto para actualizar el elemento de menú activo basado en la ruta actual
   useEffect(() => {
+    // Primero verificar secciones activas en la página actual
     if (activeSectionId) {
       const activeItem = data.find(
         (item) => item.url === `#${activeSectionId}`
       );
       if (activeItem) {
         setActiveIndex(activeItem.menu_item_id);
+        return;
+      }
+    }
+
+    // Si no hay una sección activa, verificar si la ruta actual coincide con algún elemento del menú
+    if (pathname) {
+      // Verificar si la ruta actual coincide con algún elemento del menú de nivel superior
+      const matchingItem = topMenuItems.find((item) => {
+        const itemPath = getPath(item, frontPageID);
+        // Verificar si la ruta actual es exactamente igual al path del item
+        // o si es una ruta root como "/productos"
+        return (
+          pathname === itemPath ||
+          (pathname.startsWith(itemPath) && itemPath !== "/")
+        );
+      });
+
+      if (matchingItem) {
+        setActiveIndex(matchingItem.menu_item_id);
       } else {
-        setActiveIndex(null);
+        // Si no se encontró una coincidencia en los elementos de nivel superior,
+        // buscar en los elementos del submenú
+        const matchingSubmenuItem = submenuItems.find((item) => {
+          const itemPath = getPath(item, frontPageID);
+          return (
+            pathname === itemPath ||
+            (pathname.startsWith(itemPath) && itemPath !== "/")
+          );
+        });
+
+        if (matchingSubmenuItem) {
+          // Si encontramos una coincidencia en el submenú, activar el elemento padre
+          setActiveIndex(matchingSubmenuItem.menu_item_parent);
+        } else {
+          // Si no hay coincidencias, desactivar todos los elementos
+          setActiveIndex(null);
+        }
       }
     } else {
       setActiveIndex(null);
     }
-  }, [activeSectionId, data]);
+  }, [
+    pathname,
+    activeSectionId,
+    data,
+    topMenuItems,
+    submenuItems,
+    frontPageID,
+  ]);
 
   // Efecto para manejar el desplazamiento a la sección cuando la URL tiene un hash
   useEffect(() => {
