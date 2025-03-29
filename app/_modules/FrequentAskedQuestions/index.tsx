@@ -7,7 +7,7 @@ import styles from "./FrequentAskedQuestions.module.scss";
 const cx = classNames.bind(styles);
 
 const accordionData = {
-  title: "Preguntas Frecuentes",
+  title: "Preguntas frecuentes",
   subtitle: "Encuentra respuestas a las dudas más comunes",
   questions: [
     {
@@ -58,7 +58,7 @@ const FrequentAskedQuestions: React.FC<FAQProps> = ({
       <SectionHeader
         title={accordionData.title}
         subtitle={accordionData.subtitle}
-        align="center"
+        align="left"
         className={cx("faq__header")}
       />
 
