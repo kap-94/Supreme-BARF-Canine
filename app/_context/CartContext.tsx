@@ -1,4 +1,3 @@
-// app/_context/CartContext.tsx
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
@@ -20,6 +19,7 @@ interface CartContextType {
   addItem: (variantId: string, quantity: number) => Promise<void>;
   updateItem: (lineId: string, quantity: number) => Promise<void>;
   removeItem: (lineId: string) => Promise<void>;
+  setCart: (cart: ShopifyCart) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -137,6 +137,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     addItem,
     updateItem,
     removeItem,
+    setCart, // Exponemos setCart para poder actualizarlo desde componentes
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
