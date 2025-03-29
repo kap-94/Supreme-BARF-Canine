@@ -25,71 +25,119 @@
     }
   }
 
-  &__content {
+  // New cards container
+  &__cards-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
     max-width: 1280px;
     margin-inline: auto;
-    align-items: center;
 
     @media only screen and (max-width: $xlarge) {
-      grid-template-columns: 1fr;
-      gap: 48px;
+      grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+      gap: 32px;
     }
 
     @media only screen and (max-width: $medium) {
-      gap: 36px;
+      grid-template-columns: 1fr;
+      gap: 64px;
+    }
+  }
+
+  // Card styles
+  &__card {
+    display: flex;
+    flex-direction: column;
+    background-color: $white-color;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    height: 100%;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    &--subscription {
+      border: 2px solid $primary-color;
+      position: relative;
+    }
+  }
+
+  // Subscription Badge
+  &__subscription-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background-color: $primary-color;
+    color: $white-color;
+    padding: 6px 12px;
+    border-radius: 24px;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+    p {
+      color: $white-color !important;
+      font-size: 12px;
+      letter-spacing: 0.5px;
     }
   }
 
   &__gallery {
-    position: sticky;
-    top: 32px;
+    position: relative;
     width: 100%;
     background-color: $white-color;
-    border-radius: 4px;
+    border-radius: 4px 4px 0 0;
     overflow: hidden;
-    border: 1px solid rgba(0, 0, 0, 0.04); // Borde muy sutil
-
-    @media only screen and (max-width: $xlarge) {
-      max-width: 600px;
-      margin-inline: auto;
-    }
-
-    @media only screen and (max-width: $medium) {
-      height: fit-content !important;
-    }
   }
 
   &__swiper {
     width: 100%;
-    height: 620px;
-
-    @media only screen and (max-width: $xlarge) {
-      height: 564px;
-    }
+    height: 300px;
 
     @media only screen and (max-width: $medium) {
-      height: 400px;
+      height: 250px;
     }
 
     :global {
+      .swiper-pagination {
+        bottom: 16px !important;
+
+        &-bullet {
+          width: 8px;
+          height: 8px;
+          margin: 0 4px;
+          background: rgba(255, 255, 255, 0.4);
+          transition: all 0.3s ease;
+          opacity: 1;
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.6);
+          }
+
+          &-active {
+            width: 20px;
+            border-radius: 4px;
+            background: #ffffff;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+          }
+        }
+      }
+
       .swiper-button-next,
       .swiper-button-prev {
-        width: 44px;
-        height: 44px;
+        width: 36px;
+        height: 36px;
         margin: 0;
-        opacity: 0;
-        transform: translateY(-50%);
-        background: rgba(255, 255, 255, 0.9);
+        background: rgba(255, 255, 255, 0.8);
         border-radius: 50%;
         color: $primary-color;
-        visibility: hidden;
         transition: all 0.3s ease-out;
 
         &::after {
-          font-size: 16px;
+          font-size: 14px;
           font-weight: bold;
         }
 
@@ -100,51 +148,11 @@
       }
 
       .swiper-button-prev {
-        left: 16px;
+        left: 10px;
       }
 
       .swiper-button-next {
-        right: 16px;
-      }
-
-      .swiper-pagination {
-        bottom: 32px !important; /* Aumentado para mejor separación del borde */
-
-        &-bullet {
-          width: 10px; /* Reducido para mejor proporción */
-          height: 10px;
-          margin: 0 6px; /* Aumentado para mejor espaciado */
-          background: rgba(
-            255,
-            255,
-            255,
-            0.4
-          ); /* Cambiado a blanco con transparencia */
-          // border: 1px solid rgba(255, 255, 255, 0.8); /* Borde para mejor visibilidad */
-          transition: all 0.3s ease;
-          opacity: 1;
-
-          &:hover {
-            background: rgba(255, 255, 255, 0.6); /* Efecto hover sutil */
-          }
-
-          &-active {
-            width: 24px;
-            border-radius: 4px;
-            background: #ffffff; /* Blanco sólido para el activo */
-            border-color: #ffffff; /* Borde blanco sólido */
-            box-shadow: 0 0 4px rgba(0, 0, 0, 0.2); /* Sombra sutil */
-          }
-        }
-      }
-    }
-    &:hover {
-      :global {
-        .swiper-button-next,
-        .swiper-button-prev {
-          opacity: 1;
-          visibility: visible;
-        }
+        right: 10px;
       }
     }
   }
@@ -164,100 +172,63 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 120px;
+    height: 80px;
     background: linear-gradient(
       to top,
-      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.4) 0%,
       rgba(0, 0, 0, 0) 100%
     );
     pointer-events: none;
   }
 
-  &__image {
-    // @media only screen and (max-width: $xlarge) {
-    object-fit: cover !important;
-    // }
-  }
-
   &__info {
     display: flex;
     flex-direction: column;
-    gap: 24px;
-
-    @media only screen and (max-width: $xlarge) {
-      width: 100%;
-      max-width: 600px;
-      margin: 0 auto;
-    }
+    gap: 20px;
+    padding: 24px;
+    flex: 1;
   }
 
   &__info-header {
     position: relative;
   }
 
-  &__title,
-  &__subtitle {
-    @media only screen and (max-width: $xlarge) {
-      text-align: center !important;
-    }
-  }
-
   &__title {
-    font-size: 26px;
+    font-size: 22px;
     color: #333;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
 
   &__subtitle {
-    font-size: 16px;
-    // font-style: italic;
+    font-size: 14px;
     margin-left: 1px;
-
-    @media only screen and (max-width: $xlarge) {
-      font-size: 14px;
-    }
   }
 
   &__tabs {
     display: flex;
-    gap: 4px;
-    border-bottom: 1.6px solid rgba(0, 0, 0, 0.1);
+    gap: 2px;
+    border-bottom: 1.5px solid rgba(0, 0, 0, 0.1);
+    margin-top: 8px;
 
-    @media only screen and (max-width: $xlarge) {
-      justify-content: space-around;
-      margin-inline: 24px;
-    }
-
-    @media only screen and (max-width: $medium) {
-      overflow-x: scroll;
-      overflow-y: hidden; // Explícitamente ocultar scroll vertical
-      -webkit-overflow-scrolling: touch;
+    @media only screen and (max-width: $small) {
+      overflow-x: auto;
       scrollbar-width: none;
-      overscroll-behavior-y: none; // Prevenir scroll vertical
-      touch-action: pan-x; // Permitir solo scroll horizontal
-      -ms-touch-action: pan-x;
-
-      // Asegurar que el contenedor se mantenga en su lugar
-      position: relative;
-      z-index: 1;
+      -webkit-overflow-scrolling: touch;
 
       &::-webkit-scrollbar {
         display: none;
       }
     }
-
-    @media only screen and (max-width: $small) {
-      max-width: 320px;
-    }
   }
 
   &__tab {
-    padding: 12px 24px;
+    padding: 10px 16px;
     border: none;
     background: none;
     cursor: pointer;
     transition: all 0.2s ease;
     position: relative;
+    white-space: nowrap;
 
     &::after {
       content: "";
@@ -269,10 +240,6 @@
       background-color: $primary-color;
       transform: scaleX(0);
       transition: transform 0.2s ease;
-
-      @media only screen and (max-width: $medium) {
-        height: 2.5px;
-      }
     }
 
     &:hover {
@@ -289,23 +256,15 @@
       }
     }
 
-    @media only screen and (max-width: $medium) {
-      white-space: nowrap;
-      padding: 12px 16px;
-    }
-
     &-text {
       color: rgba($black-color, 0.8);
+      font-size: 13px;
     }
   }
 
   &__tab-content-wrapper {
     position: relative;
-    height: 256px;
-
-    @media only screen and (max-width: $xlarge) {
-      padding-inline: 24px;
-    }
+    height: 220px;
   }
 
   &__tab-content {
@@ -313,10 +272,10 @@
     position: relative;
     height: 100%;
     overflow-y: auto;
-    padding-right: 16px;
-    margin-right: -16px;
+    padding-right: 10px;
+    margin-right: -10px;
 
-    // Estilizar scrollbar para navegadores webkit
+    // Scrollbar styling
     &::-webkit-scrollbar {
       width: 4px;
       height: 4px;
@@ -335,10 +294,7 @@
       }
     }
 
-    // Scroll suave
     scroll-behavior: smooth;
-
-    // Ocultar scrollbar en Firefox
     scrollbar-width: thin;
     scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
   }
@@ -366,24 +322,33 @@
   &__description {
     flex-direction: column;
     display: flex;
-    gap: 16px;
+    gap: 12px;
   }
 
   &__text {
-    color: rgba($black-color, 0.9);
+    color: rgba($black-color, 0.85);
     line-height: 1.55;
-    max-width: 548px;
+    font-size: 14px;
     font-weight: 400;
+  }
+
+  &__subscription-note {
+    margin-top: 8px;
+    padding: 8px 12px;
+    background-color: rgba($primary-color, 0.08);
+    border-left: 3px solid $primary-color;
+    border-radius: 0 4px 4px 0;
+    color: $primary-color !important;
   }
 
   &__shipping-info {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
   }
 
   &__shipping-item {
-    padding: 16px;
+    padding: 12px;
     border-radius: 4px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     transition: border-color 0.2s ease;
@@ -398,54 +363,40 @@
 
   &__shipping-title {
     color: rgba($black-color, 0.9);
+    font-size: 14px;
   }
 
   &__shipping-time {
     color: rgba($black-color, 0.9);
-    font-size: 14px;
+    font-size: 12px;
   }
 
   &__shipping-details {
     color: $black-color;
     line-height: 1.5;
+    font-size: 13px;
   }
 
   &__shipping-note {
     margin-top: 8px;
     font-style: italic;
+    font-size: 12px;
   }
 
   &__cta {
     display: flex;
     align-items: flex-start;
-    gap: 12px;
-    padding-top: 24px;
-    border-top: 1.6px solid rgba(0, 0, 0, 0.1);
-
-    @media only screen and (max-width: $xlarge) {
-      padding-top: 28px;
-    }
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1.5px solid rgba(0, 0, 0, 0.1);
   }
 
   &__button {
-    // width: 200px;
+    width: 100%;
     justify-content: center;
-
-    @media only screen and (max-width: $xlarge) {
-      margin-top: 16px;
-      margin-inline: auto;
-    }
-
-    @media only screen and (max-width: $medium) {
-      max-width: none;
-    }
   }
 
-  &__shipping {
-    color: $black-color;
-    font-size: 14px;
-  }
-
+  // Animation for tab content
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -461,6 +412,7 @@
     animation: fadeIn 0.3s ease forwards;
   }
 
+  // Global swiper styles
   :global {
     .swiper-fade {
       .swiper-slide {
