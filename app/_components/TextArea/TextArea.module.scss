@@ -20,7 +20,7 @@ $form-control-transition-duration: 0.3s;
   &__input {
     align-items: flex-start;
     border-radius: $input-radious;
-    border: solid 1.7px rgba($black-color, 0.7);
+    border: solid 1.7px rgba($black-color, 0.65);
     color: $black-color;
     letter-spacing: rem(0.042);
     font-size: rem(16);
@@ -32,8 +32,8 @@ $form-control-transition-duration: 0.3s;
     resize: none;
 
     &::placeholder {
-      color: rgba($black-color, 0.7);
-      font-family: "neue-haas-grotesk-display", sans-serif;
+      color: rgba($black-color, 0.725);
+      font-family: "sofia-pro", sans-serif;
       letter-spacing: 0.01em;
     }
   }
@@ -49,6 +49,11 @@ $form-control-transition-duration: 0.3s;
       position: static;
       transform: none;
       transition: none;
+    }
+
+    .form-control__input {
+      background: $secondary-color-light;
+      opacity: 0.9;
     }
   }
 
@@ -97,7 +102,7 @@ $form-control-transition-duration: 0.3s;
 
   &--focused {
     .form-control__input {
-      border-color: $black-color;
+      border-color: rgba($black-color, 0.9);
     }
   }
 
