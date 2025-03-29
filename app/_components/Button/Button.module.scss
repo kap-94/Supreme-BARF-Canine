@@ -3,7 +3,7 @@
 
 .button {
   align-items: center;
-  border-radius: 6px;
+  border-radius: 4px;
   border: none;
   cursor: pointer;
   display: inline-flex;
@@ -71,14 +71,14 @@
   }
 
   &--large {
-    padding: 20px 30px;
+    padding: 20px 28px;
 
-    @media only screen and (max-width: 768px) {
-      padding: 16px 24px;
+    @media only screen and (max-width: $medium) {
+      padding: 16px 22px;
+    }
 
-      .button__text {
-        font-size: rem(16);
-      }
+    @media only screen and (max-width: $small) {
+      padding: 16px 22px;
     }
 
     &.button--pill {
@@ -89,8 +89,12 @@
       font-size: rem(18);
       line-height: rem(20);
 
-      @media only screen and (max-width: 768px) {
+      @media only screen and (max-width: $medium) {
         font-size: rem(16);
+      }
+
+      @media only screen and (max-width: $small) {
+        // font-size: rem(15);
       }
     }
   }
@@ -147,7 +151,7 @@
     }
 
     .button__text {
-      color: $primary-color;
+      color: $black-color;
     }
 
     .button__icon {
@@ -156,8 +160,8 @@
   }
 
   &--accent {
+    position: relative;
     background-color: $accent-color;
-
     &::before {
       content: "";
       position: absolute;
