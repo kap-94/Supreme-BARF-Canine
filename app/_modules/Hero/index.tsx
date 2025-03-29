@@ -1,56 +1,57 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 import classNames from "classnames/bind";
 import { Button, Typography } from "@/app/_components";
-import { ScrollButton } from "@/app/_components/ScrollButton";
-import heroDog from "@/public/dog-2.png";
-import Image from "next/image";
+import CreativeImageGrid from "@/app/_components/CreativeImageGrid";
+import { ShieldCheck } from "lucide-react";
+import novakEating from "@/public/hero-gallery-novak.gif";
+import dogEatingImage from "@/public/hero-gallery-dog-eating.jpg";
+import dogInGrassImage from "@/public/hero-gallery-dog-grass.png";
+import bulldogImage from "@/public/hero-gallery-bulldog.jpg";
+import dogWithWomanImage from "@/public/hero-gallery-women-with-dog.jpg";
 import styles from "./Hero.module.scss";
 
 const cx = classNames.bind(styles);
 
 const Hero = () => {
-  const handleProductScroll = (): void => {
-    document
-      .getElementById("product-section")
-      ?.scrollIntoView({ behavior: "smooth" });
+  const router = useRouter();
+
+  const handleProductNavigation = (): void => {
+    router.push("/productos");
   };
-  const handleCalculatorScroll = (): void => {
-    document
-      .getElementById("food-calculator")
-      ?.scrollIntoView({ behavior: "smooth" });
+
+  const handleAboutNavigation = (): void => {
+    router.push("/acerca-del-alimento");
   };
 
   return (
     <section id="hero" className={cx("hero")}>
       <div className={cx("hero__content")}>
         <div className={cx("hero__text")}>
-          <div className={cx("hero__eyebrow-container")}>
-            <Typography variant="h5" className={cx("hero__eyebrow")}>
-              SUPREME BARF CANINE
-            </Typography>
-          </div>
-          <Typography variant="h1" className={cx("hero__title")}>
+          <Typography
+            variant="h1"
+            fontWeight={900}
+            className={cx("hero__title")}
+          >
             Alimento natural para el bienestar de tu perro
           </Typography>
           <Typography
             variant="p1"
-            fontWeight={400}
+            fontWeight={500}
             className={cx("hero__paragraph")}
           >
             Dile adiós a las croquetas y comienza a darle a tu perro un alimento
-            100% natural, ideal para todas las edades y razas, con entrega a
-            domicilio.
-            {/* Dile adiós a las croquetas y dale a tu perro un alimento 100%
-            natural, para todas las edades y razas. */}
+            100% natural y delicioso, apto para todas las edades y razas.
           </Typography>
 
-          <div style={{ display: "flex", gap: "16px" }}>
+          <div className={cx("hero__buttons")}>
             <Button
               variant="accent"
               elevation={1}
               size="large"
-              onClick={handleProductScroll}
+              onClick={handleProductNavigation}
               className={cx("hero__button")}
             >
               Comprar Ahora
@@ -59,21 +60,73 @@ const Hero = () => {
               variant="secondary"
               elevation={1}
               size="large"
-              onClick={handleCalculatorScroll}
+              onClick={handleAboutNavigation}
               className={cx("hero__button")}
             >
-              Ver Más
+              Descubre Más
             </Button>
+          </div>
+
+          <div className={cx("hero__features")}>
+            <div className={cx("hero__feature")}>
+              <ShieldCheck />
+              <Typography variant="p3" fontWeight={500}>
+                Creado por expertos en nutrición canina
+              </Typography>
+            </div>
           </div>
         </div>
 
-        <div className={cx("hero__image")}>
+        <CreativeImageGrid
+          variant="scattered"
+          className={cx("hero__gallery")}
+          animate={true}
+          maxImages={5}
+        >
           <Image
-            src={heroDog}
-            alt="Perro saludable"
-            className={cx("hero__dog")}
+            alt="Dog eating a portion of supreme barf canine natural dog food"
+            className={cx("hero__image", "hero__image--first")}
+            fill
+            src={novakEating}
+            unoptimized
+            sizes="(max-width: 768px) 100%, 33.333%"
           />
-        </div>
+          <Image
+            alt="Cute dog profile"
+            className={cx("hero__image")}
+            src={dogEatingImage}
+            fill
+            // style={{ opacity: 0.9 }}
+            // placeholder="blur"
+            sizes="(max-width: 768px) 100%, 33.333%"
+          />
+
+          <Image
+            alt="Cute dog"
+            className={cx("hero__image")}
+            style={{ opacity: 0.9 }}
+            fill
+            // placeholder="blur"
+            src={dogInGrassImage}
+            sizes="(max-width: 768px) 100%, 33.333%"
+          />
+          <Image
+            alt="Cute dog profile"
+            className={cx("hero__image")}
+            src={bulldogImage}
+            fill
+            // placeholder="blur"
+            sizes="(max-width: 768px) 100%, 33.333%"
+          />
+          <Image
+            src={dogWithWomanImage}
+            alt="Cute dog close-up"
+            className={cx("hero__image")}
+            fill
+            // placeholder="blur"
+            sizes="(max-width: 768px) 100%, 33.333%"
+          />
+        </CreativeImageGrid>
       </div>
     </section>
   );
