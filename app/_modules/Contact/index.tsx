@@ -7,11 +7,13 @@ import {
   GoogleReCaptchaProvider,
   useGoogleReCaptcha,
 } from "react-google-recaptcha-v3";
+import { Mail, Phone } from "lucide-react";
 import { sendContactForm } from "@/app/_lib/api";
 import { getContactFormSchema } from "@/app/_lib/validationSchemas";
 import {
   Alert,
   Button,
+  SectionHeader,
   Snackbar,
   TextArea,
   TextField,
@@ -148,15 +150,12 @@ const Contact: React.FC = () => {
     <section id="contact-section" className={cx("contact")}>
       <div className={cx("contact__content")}>
         <div className={cx("contact__form")}>
-          <div className={cx("contact__form-heading")}>
-            <Typography variant="h2" align="center">
-              ¿Cómo Podemos Ayudarte?
-            </Typography>
-
-            <Typography variant="p1" align="center">
-              Contáctanos y te contestaremos a la brevedad
-            </Typography>
-          </div>
+          <SectionHeader
+            title="¿Cómo podemos ayudarte?"
+            subtitle="Contáctanos y te contestaremos a la brevedad"
+            align="center"
+            className={cx("contact__form-heading")}
+          />
 
           <Formik
             initialValues={initialValues}
@@ -235,7 +234,6 @@ const Contact: React.FC = () => {
                   variant="accent"
                   icon="send"
                   fullWidth
-                  // isDisabled={!dirty}
                   isLoading={isSubmitting}
                   className={cx("contact__submit-button")}
                 >
@@ -282,15 +280,34 @@ const Contact: React.FC = () => {
               priority
             />
           </div>
-          <Typography variant="h2" align="center">
-            SUPREME <span style={{ fontWeight: 600 }}>BARF</span> CANINE
+
+          <Typography
+            variant="h2"
+            align="center"
+            className={cx("contact__company-name")}
+          >
+            SUPREME <span style={{ fontWeight: 400 }}>BARF</span> CANINE
           </Typography>
-          <Typography variant="p1" fontWeight={600} align="center">
-            supremebarfcanine@gmail.com
-          </Typography>
-          <Typography variant="p1" fontWeight={600} align="center">
-            +52 5649395148
-          </Typography>
+
+          <div className={cx("contact__details")}>
+            <div className={cx("contact__detail-item")}>
+              <div className={cx("contact__detail-icon")}>
+                <Mail />
+              </div>
+              <Typography variant="p1" fontWeight={500}>
+                supremebarfcanine@gmail.com
+              </Typography>
+            </div>
+
+            <div className={cx("contact__detail-item")}>
+              <div className={cx("contact__detail-icon")}>
+                <Phone /> {/* Lucide React Phone Icon */}
+              </div>
+              <Typography variant="p1" fontWeight={500}>
+                +52 5649395148
+              </Typography>
+            </div>
+          </div>
         </div>
       </div>
 
