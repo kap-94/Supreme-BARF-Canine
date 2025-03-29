@@ -1,0 +1,3661 @@
+@import "../../_styles/variables.scss";
+
+.creative-grid {
+  width: 100%;
+  position: relative;
+  margin-bottom: 40px;
+
+  // Estilos comunes para todos los elementos
+  &__item {
+    border: 5.5px solid $white-color;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative;
+
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      z-index: 10; // Asegurar que al hacer hover, la imagen esté por encima de las demás
+    }
+
+    & > * {
+      // Asegurar que las imágenes y otros contenidos se ajusten al contenedor
+      width: 100%;
+      height: 100%;
+      position: relative;
+      object-fit: cover; // Mantener la relación de aspecto
+    }
+  }
+
+  /* ====== Variante 1: Cascade (Cascada) ====== */
+  &--cascade {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-auto-rows: minmax(180px, auto);
+    gap: 16px;
+    padding: 20px 0;
+
+    @media (max-width: $medium) {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-auto-rows: minmax(150px, auto);
+      gap: 12px;
+    }
+
+    // Ajustes específicos para cada cantidad de imágenes
+    &.creative-grid--count-1 {
+      display: block;
+      .creative-grid__item {
+        height: 360px;
+      }
+    }
+
+    &.creative-grid--count-2 {
+      grid-template-columns: 1.5fr 1fr;
+      @media (max-width: $medium) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    &.creative-grid--count-3 {
+      grid-template-columns: 1.2fr 0.9fr 0.9fr;
+      @media (max-width: $medium) {
+        grid-template-columns: 1fr 1fr;
+        .creative-grid__item--3 {
+          grid-column: span 2;
+        }
+      }
+    }
+
+    &.creative-grid--count-4 {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 200px);
+      .creative-grid__item--1 {
+        grid-column: 1;
+        grid-row: 1;
+        transform: translateY(-10px) translateX(10px) rotate(-1deg);
+      }
+      .creative-grid__item--2 {
+        grid-column: 2;
+        grid-row: 1;
+        transform: translateY(10px) translateX(-10px) rotate(1deg);
+      }
+      .creative-grid__item--3 {
+        grid-column: 1;
+        grid-row: 2;
+        transform: translateY(10px) translateX(15px) rotate(1.5deg);
+      }
+      .creative-grid__item--4 {
+        grid-column: 2;
+        grid-row: 2;
+        transform: translateY(-5px) translateX(-15px) rotate(-1.5deg);
+      }
+
+      @media (max-width: $medium) {
+        grid-template-rows: repeat(2, 180px);
+        .creative-grid__item {
+          transform: none !important;
+        }
+      }
+    }
+
+    &.creative-grid--count-5,
+    &.creative-grid--count-6,
+    &.creative-grid--count-7,
+    &.creative-grid--count-8 {
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 180px;
+
+      @media (max-width: $medium) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (max-width: $small) {
+        grid-template-columns: 1fr;
+      }
+
+      .creative-grid__item {
+        &:nth-child(3n + 1) {
+          transform: rotate(-1deg);
+        }
+        &:nth-child(3n + 2) {
+          transform: rotate(1.5deg);
+        }
+        &:nth-child(3n) {
+          transform: rotate(-0.5deg);
+        }
+
+        @media (max-width: $medium) {
+          transform: none !important;
+        }
+      }
+    }
+
+    // Efecto de cascada con posiciones escalonadas
+    @media (min-width: $medium) {
+      .creative-grid__item--2 {
+        margin-top: 15px;
+      }
+      .creative-grid__item--3 {
+        margin-top: 30px;
+      }
+      .creative-grid__item--4 {
+        margin-top: -20px;
+      }
+      .creative-grid__item--5 {
+        margin-top: 10px;
+      }
+    }
+  }
+
+  /* ====== Variante 2: Mosaic (Mosaico) ====== */
+  &--mosaic {
+    display: grid;
+    gap: 16px;
+    padding: 16px 0;
+
+    @media (max-width: $medium) {
+      gap: 12px;
+    }
+
+    &.creative-grid--count-1 {
+      grid-template-columns: 1fr;
+      .creative-grid__item {
+        height: 350px;
+      }
+    }
+
+    &.creative-grid--count-2 {
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: 300px;
+      @media (max-width: $medium) {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, 200px);
+      }
+    }
+
+    &.creative-grid--count-3 {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 200px 240px;
+      .creative-grid__item--1 {
+        grid-column: span 2;
+      }
+      @media (max-width: $medium) {
+        grid-template-rows: repeat(3, 180px);
+        .creative-grid__item--1 {
+          grid-column: 1;
+        }
+      }
+    }
+
+    &.creative-grid--count-4 {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 180px 220px;
+      .creative-grid__item--1 {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+      .creative-grid__item--2 {
+        grid-column: 3 / span 2;
+      }
+      @media (max-width: $medium) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 180px);
+        .creative-grid__item--1 {
+          grid-column: span 2;
+          grid-row: 1;
+        }
+        .creative-grid__item--2 {
+          grid-column: 1;
+          grid-row: 2;
+        }
+      }
+      @media (max-width: $small) {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 180px);
+        .creative-grid__item {
+          grid-column: 1 !important;
+        }
+      }
+    }
+
+    &.creative-grid--count-5 {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 220px 180px 160px;
+      .creative-grid__item--1 {
+        grid-column: 1 / span 2;
+        grid-row: 1;
+      }
+      .creative-grid__item--2 {
+        grid-column: 3;
+        grid-row: 1 / span 2;
+      }
+      .creative-grid__item--5 {
+        grid-column: 2 / span 2;
+        grid-row: 3;
+      }
+      @media (max-width: $medium) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 180px);
+        .creative-grid__item {
+          grid-column: span 1 !important;
+          grid-row: span 1 !important;
+        }
+        .creative-grid__item--1 {
+          grid-column: span 2 !important;
+        }
+      }
+      @media (max-width: $small) {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(5, 180px);
+        .creative-grid__item {
+          grid-column: 1 !important;
+        }
+      }
+    }
+
+    &.creative-grid--count-6,
+    &.creative-grid--count-7,
+    &.creative-grid--count-8 {
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 160px;
+
+      .creative-grid__item--1 {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+
+      .creative-grid__item--2 {
+        grid-column: 3 / span 2;
+        grid-row: 1;
+      }
+
+      @media (max-width: $medium) {
+        grid-template-columns: repeat(2, 1fr);
+        .creative-grid__item {
+          grid-column: span 1 !important;
+          grid-row: span 1 !important;
+        }
+        .creative-grid__item--1 {
+          grid-column: span 2 !important;
+          grid-row: span 1 !important;
+        }
+      }
+
+      @media (max-width: $small) {
+        grid-template-columns: 1fr;
+        .creative-grid__item {
+          grid-column: 1 !important;
+        }
+      }
+    }
+  }
+
+  /* ====== Variante 3: Pavilion (Pabellón) ====== */
+  &--pavilion {
+    display: grid;
+    gap: 16px;
+    padding: 16px 0;
+
+    @media (max-width: $medium) {
+      gap: 12px;
+    }
+
+    &.creative-grid--count-1 {
+      grid-template-columns: 1fr;
+      .creative-grid__item {
+        height: 350px;
+      }
+    }
+
+    &.creative-grid--count-2 {
+      grid-template-columns: 5fr 3fr;
+      grid-template-rows: 320px;
+      @media (max-width: $medium) {
+        grid-template-columns: 1fr;
+        grid-template-rows: 280px 200px;
+      }
+    }
+
+    &.creative-grid--count-3 {
+      grid-template-columns: 5fr 3fr;
+      grid-template-rows: 200px 180px;
+      .creative-grid__item--1 {
+        grid-column: 1;
+        grid-row: span 2;
+        height: 100%;
+      }
+      @media (max-width: $medium) {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, 180px);
+        .creative-grid__item--1 {
+          grid-row: 1;
+        }
+      }
+    }
+
+    &.creative-grid--count-4,
+    &.creative-grid--count-5 {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 1fr 0.7fr;
+      aspect-ratio: 16/9;
+
+      .creative-grid__item--1 {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        z-index: 2;
+      }
+
+      .creative-grid__item--2 {
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      .creative-grid__item--3 {
+        grid-column: 3;
+        grid-row: 1;
+      }
+
+      .creative-grid__item--4 {
+        grid-column: 1 / span 3;
+        grid-row: 2;
+        margin-top: -20px;
+        z-index: 1;
+      }
+
+      @media (max-width: $medium) {
+        aspect-ratio: auto;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(3, 180px);
+
+        .creative-grid__item--1 {
+          grid-column: span 2;
+          grid-row: 1;
+        }
+
+        .creative-grid__item--2,
+        .creative-grid__item--3 {
+          grid-row: 2;
+        }
+
+        .creative-grid__item--4 {
+          grid-column: span 2;
+          grid-row: 3;
+          margin-top: 0;
+        }
+      }
+
+      @media (max-width: $small) {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 180px);
+
+        .creative-grid__item {
+          grid-column: 1 !important;
+          grid-row: auto !important;
+        }
+      }
+    }
+
+    &.creative-grid--count-6,
+    &.creative-grid--count-7,
+    &.creative-grid--count-8 {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 1fr 0.7fr 0.7fr;
+      aspect-ratio: 16/9;
+
+      .creative-grid__item--1 {
+        grid-column: 2;
+        grid-row: 1 / span 3;
+        z-index: 5;
+      }
+
+      @media (max-width: $medium) {
+        aspect-ratio: auto;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, auto);
+
+        .creative-grid__item--1 {
+          grid-column: span 2;
+          grid-row: 1;
+          height: 250px;
+        }
+
+        .creative-grid__item {
+          grid-column: span 1;
+          height: 180px;
+        }
+      }
+
+      @media (max-width: $small) {
+        grid-template-columns: 1fr;
+
+        .creative-grid__item {
+          grid-column: 1 !important;
+        }
+      }
+    }
+  }
+
+  /* ====== Variante 4: Orbit (Órbita) ====== */
+  &--orbit {
+    position: relative;
+    height: 500px;
+    margin: 30px 0;
+
+    @media (max-width: $medium) {
+      height: auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: $small) {
+      grid-template-columns: 1fr;
+    }
+
+    &.creative-grid--count-1 {
+      height: 350px;
+
+      .creative-grid__item {
+        position: relative;
+        width: 80%;
+        height: 100%;
+        margin: 0 auto;
+      }
+
+      @media (max-width: $medium) {
+        height: 280px;
+        display: block;
+      }
+    }
+
+    &.creative-grid--count-2 {
+      .creative-grid__item--1 {
+        position: absolute;
+        width: 45%;
+        height: 60%;
+        top: 20%;
+        left: 0;
+        z-index: 2;
+
+        @media (max-width: $medium) {
+          position: relative;
+          width: 100%;
+          height: 250px;
+          top: auto;
+          left: auto;
+        }
+      }
+
+      .creative-grid__item--2 {
+        position: absolute;
+        width: 65%;
+        height: 75%;
+        top: 10%;
+        right: 0;
+        z-index: 1;
+
+        @media (max-width: $medium) {
+          position: relative;
+          width: 100%;
+          height: 220px;
+          top: auto;
+          right: auto;
+        }
+      }
+    }
+
+    &.creative-grid--count-3 {
+      .creative-grid__item--1 {
+        position: absolute;
+        width: 50%;
+        height: 60%;
+        top: 20%;
+        left: 25%;
+        z-index: 4;
+
+        @media (max-width: $medium) {
+          position: relative;
+          width: 100%;
+          height: 250px;
+          top: auto;
+          left: auto;
+          grid-column: span 2;
+        }
+
+        @media (max-width: $small) {
+          grid-column: 1;
+        }
+      }
+
+      .creative-grid__item--2 {
+        position: absolute;
+        width: 35%;
+        height: 45%;
+        top: 5%;
+        left: 5%;
+        z-index: 3;
+        transform: rotate(-3deg);
+
+        &:hover {
+          transform: rotate(-3deg) scale(1.02);
+        }
+
+        @media (max-width: $medium) {
+          position: relative;
+          width: 100%;
+          height: 180px;
+          top: auto;
+          left: auto;
+          transform: none;
+
+          &:hover {
+            transform: scale(1.02);
+          }
+        }
+      }
+
+      .creative-grid__item--3 {
+        position: absolute;
+        width: 30%;
+        height: 40%;
+        bottom: 10%;
+        right: 10%;
+        z-index: 2;
+        transform: rotate(2deg);
+
+        &:hover {
+          transform: rotate(2deg) scale(1.02);
+        }
+
+        @media (max-width: $medium) {
+          position: relative;
+          width: 100%;
+          height: 180px;
+          bottom: auto;
+          right: auto;
+          transform: none;
+
+          &:hover {
+            transform: scale(1.02);
+          }
+        }
+      }
+    }
+
+    &.creative-grid--count-4,
+    &.creative-grid--count-5 {
+      .creative-grid__item--1 {
+        position: absolute;
+        width: 40%;
+        height: 50%;
+        top: 25%;
+        left: 30%;
+        z-index: 5;
+
+        @media (max-width: $medium) {
+          position: relative;
+          width: 100%;
+          height: 240px;
+          top: auto;
+          left: auto;
+          grid-column: span 2;
+        }
+
+        @media (max-width: $small) {
+          grid-column: 1;
+        }
+      }
+
+      .creative-grid__item--2 {
+        position: absolute;
+        width: 30%;
+        height: 40%;
+        top: 5%;
+        left: 10%;
+        z-index: 3;
+        transform: rotate(-3deg);
+
+        &:hover {
+          transform: rotate(-3deg) scale(1.02);
+        }
+
+        @media (max-width: $medium) {
+          position: relative;
+          width: 100%;
+          height: 180px;
+          top: auto;
+          left: auto;
+          transform: none;
+
+          &:hover {
+            transform: scale(1.02);
+          }
+        }
+      }
+
+      .creative-grid__item--3 {
+        position: absolute;
+        width: 25%;
+        height: 35%;
+        top: 15%;
+        right: 15%;
+        z-index: 2;
+        transform: rotate(2deg);
+
+        &:hover {
+          transform: rotate(2deg) scale(1.02);
+        }
+
+        @media (max-width: $medium) {
+          position: relative;
+          width: 100%;
+          height: 180px;
+          top: auto;
+          right: auto;
+          transform: none;
+
+          &:hover {
+            transform: scale(1.02);
+          }
+        }
+      }
+
+      .creative-grid__item--4 {
+        position: absolute;
+        width: 28%;
+        height: 38%;
+        bottom: 10%;
+        left: 10%;
+        z-index: 1;
+        transform: rotate(-1deg);
+
+        &:hover {
+          transform: rotate(-1deg) scale(1.02);
+        }
+
+        @media (max-width: $medium) {
+          position: relative;
+          width: 100%;
+          height: 180px;
+          bottom: auto;
+          left: auto;
+          transform: none;
+
+          &:hover {
+            transform: scale(1.02);
+          }
+        }
+      }
+
+      .creative-grid__item--5 {
+        position: absolute;
+        width: 30%;
+        height: 42%;
+        bottom: 5%;
+        right: 5%;
+        z-index: 2;
+        transform: rotate(1.5deg);
+
+        &:hover {
+          transform: rotate(1.5deg) scale(1.02);
+        }
+
+        @media (max-width: $medium) {
+          position: relative;
+          width: 100%;
+          height: 180px;
+          bottom: auto;
+          right: auto;
+          transform: none;
+
+          &:hover {
+            transform: scale(1.02);
+          }
+        }
+      }
+    }
+
+    &.creative-grid--count-6,
+    &.creative-grid--count-7,
+    &.creative-grid--count-8 {
+      .creative-grid__item--1 {
+        position: absolute;
+        width: 40%;
+        height: 50%;
+        top: 25%;
+        left: 30%;
+        z-index: 5;
+
+        @media (max-width: $medium) {
+          position: relative;
+          width: 100%;
+          height: 240px;
+          top: auto;
+          left: auto;
+          grid-column: span 2;
+        }
+
+        @media (max-width: $small) {
+          grid-column: 1;
+        }
+      }
+
+      // Posicionar las imágenes restantes orbitando alrededor de la principal
+      @for $i from 2 through 8 {
+        .creative-grid__item--#{$i} {
+          position: absolute;
+          // Calcular el ángulo basado en el índice, distribuyendo equitativamente alrededor de 360 grados
+          $angle: ($i - 2) * (360 / 7);
+          // Calcular posiciones usando seno y coseno
+          $radius-x: 35%;
+          $radius-y: 30%;
+          $radian: ($angle * 3.14159) / 180;
+          $left: 50% + (sin($radian) * $radius-x) - 15%;
+          $top: 50% + (cos($radian) * $radius-y) - 15%;
+
+          width: 25%;
+          height: 35%;
+          top: $top;
+          left: $left;
+          z-index: if($i == 1, 5, 1);
+          transform: rotate(($i % 3 - 1) * 2deg);
+
+          &:hover {
+            transform: rotate(($i % 3 - 1) * 2deg) scale(1.02);
+          }
+
+          @media (max-width: $medium) {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            top: auto;
+            left: auto;
+            transform: none;
+
+            &:hover {
+              transform: scale(1.02);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /* ====== Variante 5: Gallery (Galería) ====== */
+  &--gallery {
+    display: grid;
+    gap: 16px;
+    padding: 20px 0;
+
+    @media (max-width: $medium) {
+      gap: 12px;
+    }
+
+    &.creative-grid--count-1 {
+      grid-template-columns: 1fr;
+      .creative-grid__item {
+        height: 400px;
+      }
+    }
+
+    &.creative-grid--count-2 {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 320px;
+
+      @media (max-width: $medium) {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, 240px);
+      }
+    }
+
+    &.creative-grid--count-3 {
+      height: 600px;
+      position: relative;
+
+      .creative-grid__item--1 {
+        position: absolute;
+        width: 55%;
+        height: 60%;
+        top: 5%;
+        left: 5%;
+        z-index: 1;
+      }
+
+      .creative-grid__item--2 {
+        position: absolute;
+        width: 35%;
+        height: 40%;
+        top: 15%;
+        right: 5%;
+        z-index: 2;
+      }
+
+      .creative-grid__item--3 {
+        position: absolute;
+        width: 45%;
+        height: 50%;
+        bottom: 5%;
+        right: 15%;
+        z-index: 3;
+      }
+
+      @media (max-width: $medium) {
+        height: auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, 220px);
+        gap: 16px;
+
+        .creative-grid__item {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          top: auto;
+          left: auto;
+          right: auto;
+          bottom: auto;
+        }
+      }
+    }
+
+    &.creative-grid--count-4 {
+      height: 600px;
+      position: relative;
+
+      .creative-grid__item--1 {
+        position: absolute;
+        width: 45%;
+        height: 55%;
+        top: 0;
+        left: 0;
+      }
+
+      .creative-grid__item--2 {
+        position: absolute;
+        width: 50%;
+        height: 45%;
+        top: 0;
+        right: 0;
+      }
+
+      .creative-grid__item--3 {
+        position: absolute;
+        width: 30%;
+        height: 40%;
+        bottom: 0;
+        left: 0;
+      }
+
+      .creative-grid__item--4 {
+        position: absolute;
+        width: 65%;
+        height: 50%;
+        bottom: 0;
+        right: 0;
+      }
+
+      @media (max-width: $medium) {
+        height: auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 200px);
+        gap: 12px;
+
+        .creative-grid__item {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          top: auto;
+          left: auto;
+          right: auto;
+          bottom: auto;
+        }
+      }
+
+      @media (max-width: $small) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    &.creative-grid--count-5 {
+      height: 650px;
+      position: relative;
+
+      .creative-grid__item--1 {
+        position: absolute;
+        width: 35%;
+        height: 50%;
+        top: 5%;
+        left: 10%;
+      }
+
+      .creative-grid__item--2 {
+        position: absolute;
+        width: 30%;
+        height: 40%;
+        top: 15%;
+        right: 10%;
+      }
+
+      .creative-grid__item--3 {
+        position: absolute;
+        width: 25%;
+        height: 35%;
+        bottom: 15%;
+        left: 5%;
+      }
+
+      .creative-grid__item--4 {
+        position: absolute;
+        width: 20%;
+        height: 30%;
+        top: 60%;
+        left: 35%;
+      }
+
+      .creative-grid__item--5 {
+        position: absolute;
+        width: 35%;
+        height: 45%;
+        bottom: 5%;
+        right: 5%;
+      }
+
+      @media (max-width: $medium) {
+        height: auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 180px;
+        gap: 12px;
+
+        .creative-grid__item {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          top: auto;
+          left: auto;
+          right: auto;
+          bottom: auto;
+        }
+
+        .creative-grid__item--5 {
+          grid-column: span 2;
+        }
+      }
+
+      @media (max-width: $small) {
+        grid-template-columns: 1fr;
+
+        .creative-grid__item--5 {
+          grid-column: 1;
+        }
+      }
+    }
+
+    &.creative-grid--count-6,
+    &.creative-grid--count-7,
+    &.creative-grid--count-8 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 180px;
+      gap: 16px;
+
+      // Establecer diferentes tamaños para crear interés visual
+      .creative-grid__item--1 {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+
+      .creative-grid__item--4 {
+        grid-column: span 2;
+      }
+
+      @media (max-width: $medium) {
+        grid-template-columns: repeat(2, 1fr);
+
+        .creative-grid__item--1 {
+          grid-column: span 2;
+          grid-row: span 1;
+        }
+
+        .creative-grid__item--4 {
+          grid-column: span 1;
+        }
+      }
+
+      @media (max-width: $small) {
+        grid-template-columns: 1fr;
+
+        .creative-grid__item {
+          grid-column: 1 !important;
+        }
+      }
+    }
+  }
+  /* ====== Variante 6: Showcase (Vitrina de Presentación) ====== */
+  &--showcase {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+
+    // Contenedor principal para centrarse en la imagen destacada
+    .creative-grid__item--1 {
+      position: absolute;
+      width: 60%;
+      height: 75%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 5;
+      border-width: 8px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1),
+        box-shadow 0.6s ease;
+
+      &:hover {
+        transform: translate(-50%, -50%) scale(1.02);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+      }
+
+      @media (max-width: $medium) {
+        width: 85%;
+        height: 60%;
+      }
+    }
+
+    // Imágenes secundarias que flotan en el espacio
+    @for $i from 2 through 8 {
+      .creative-grid__item--#{$i} {
+        position: absolute;
+        opacity: 0.9;
+        border-width: 6px;
+        transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+          box-shadow 0.6s ease;
+
+        @if $i == 2 {
+          width: 35%;
+          height: 40%;
+          top: 5%;
+          left: 0;
+          transform: rotate(-5deg);
+          z-index: 2;
+
+          &:hover {
+            transform: rotate(-5deg) scale(1.05) translateY(-10px);
+          }
+        } @else if $i == 3 {
+          width: 30%;
+          height: 35%;
+          top: 10%;
+          right: 5%;
+          transform: rotate(3deg);
+          z-index: 3;
+
+          &:hover {
+            transform: rotate(3deg) scale(1.05) translateY(-10px);
+          }
+        } @else if $i == 4 {
+          width: 28%;
+          height: 32%;
+          bottom: 5%;
+          left: 10%;
+          transform: rotate(4deg);
+          z-index: 1;
+
+          &:hover {
+            transform: rotate(4deg) scale(1.05) translateY(-10px);
+          }
+        } @else if $i == 5 {
+          width: 25%;
+          height: 30%;
+          bottom: 10%;
+          right: 0;
+          transform: rotate(-3deg);
+          z-index: 2;
+
+          &:hover {
+            transform: rotate(-3deg) scale(1.05) translateY(-10px);
+          }
+        } @else {
+          // Para 6, 7, 8, posiciones y tamaños aleatorios
+          $rand1: random(20) + 5;
+          $rand2: random(20) + 5;
+          width: 20% + random(10) + 1%;
+          height: 25% + random(10) + 1%;
+          top: if(random(100) > 50, $rand1 + 1%, auto);
+          bottom: if(top == auto, $rand2 + 1%, auto);
+          left: if(random(100) > 50, $rand1 + 1%, auto);
+          right: if(left == auto, $rand2 + 1%, auto);
+          transform: rotate(random(6) - 3 + deg);
+          z-index: 1;
+
+          &:hover {
+            transform: rotate(random(6) - 3 + deg)
+              scale(1.05)
+              translateY(-10px);
+          }
+        }
+
+        @media (max-width: $medium) {
+          display: none; // Ocultar imágenes adicionales en móvil para enfocarse en la principal
+
+          &.creative-grid__item--2 {
+            display: block;
+            width: 45%;
+            height: 35%;
+            top: auto;
+            bottom: 3%;
+            left: 3%;
+            right: auto;
+          }
+
+          &.creative-grid__item--3 {
+            display: block;
+            width: 40%;
+            height: 30%;
+            top: auto;
+            bottom: 5%;
+            left: auto;
+            right: 5%;
+          }
+        }
+
+        @media (max-width: $small) {
+          &.creative-grid__item--2,
+          &.creative-grid__item--3 {
+            width: 70%;
+            height: 20%;
+          }
+
+          &.creative-grid__item--2 {
+            bottom: 25%;
+            left: -10%;
+          }
+
+          &.creative-grid__item--3 {
+            bottom: 28%;
+            right: -10%;
+          }
+        }
+      }
+    }
+  }
+
+  /* ====== Variante 7: Perspective (Perspectiva) ====== */
+  &--perspective {
+    position: relative;
+    height: 90vh;
+    min-height: 600px;
+    perspective: 1200px;
+    perspective-origin: center;
+    transform-style: preserve-3d;
+    overflow: hidden;
+
+    // Todos los items tienen diseño 3D
+    .creative-grid__item {
+      position: absolute;
+      transition: transform 0.75s cubic-bezier(0.19, 1, 0.22, 1),
+        box-shadow 0.6s ease;
+      backface-visibility: hidden;
+      transform-style: preserve-3d;
+      transform-origin: center center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+
+      &:hover {
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    // Imagen central en el "escenario"
+    .creative-grid__item--1 {
+      width: 50%;
+      height: 70%;
+      top: 50%;
+      left: 50%;
+      transform: translate3d(-50%, -50%, 0) rotateX(0deg);
+      z-index: 5;
+
+      &:hover {
+        transform: translate3d(-50%, -50%, 30px) rotateX(0deg);
+      }
+    }
+
+    // Imagen a la izquierda inclinada
+    .creative-grid__item--2 {
+      width: 40%;
+      height: 55%;
+      top: 40%;
+      left: 10%;
+      transform: translate3d(0, -50%, -50px) rotateY(25deg);
+      z-index: 4;
+
+      &:hover {
+        transform: translate3d(0, -50%, -20px) rotateY(20deg);
+      }
+    }
+
+    // Imagen a la derecha inclinada
+    .creative-grid__item--3 {
+      width: 40%;
+      height: 55%;
+      top: 60%;
+      right: 10%;
+      transform: translate3d(0, -50%, -50px) rotateY(-25deg);
+      z-index: 3;
+
+      &:hover {
+        transform: translate3d(0, -50%, -20px) rotateY(-20deg);
+      }
+    }
+
+    // Imagen en el fondo izquierdo
+    .creative-grid__item--4 {
+      width: 35%;
+      height: 45%;
+      top: 25%;
+      left: 5%;
+      transform: translate3d(0, 0, -120px) rotateY(30deg) rotateX(5deg);
+      z-index: 2;
+      opacity: 0.9;
+
+      &:hover {
+        transform: translate3d(0, 0, -100px) rotateY(28deg) rotateX(5deg);
+        opacity: 1;
+      }
+    }
+
+    // Imagen en el fondo derecho
+    .creative-grid__item--5 {
+      width: 35%;
+      height: 45%;
+      top: 75%;
+      right: 5%;
+      transform: translate3d(0, -100%, -120px) rotateY(-30deg) rotateX(-5deg);
+      z-index: 1;
+      opacity: 0.9;
+
+      &:hover {
+        transform: translate3d(0, -100%, -100px) rotateY(-28deg) rotateX(-5deg);
+        opacity: 1;
+      }
+    }
+
+    // Para imágenes adicionales, colocarlas en el fondo
+    @for $i from 6 through 8 {
+      .creative-grid__item--#{$i} {
+        width: 30%;
+        height: 35%;
+        opacity: 0.8;
+
+        @if $i == 6 {
+          top: 15%;
+          right: 15%;
+          transform: translate3d(0, 0, -200px) rotateY(-15deg) rotateX(10deg);
+
+          &:hover {
+            transform: translate3d(0, 0, -180px) rotateY(-15deg) rotateX(10deg);
+          }
+        } @else if $i == 7 {
+          bottom: 10%;
+          left: 20%;
+          transform: translate3d(0, 0, -200px) rotateY(15deg) rotateX(-10deg);
+
+          &:hover {
+            transform: translate3d(0, 0, -180px) rotateY(15deg) rotateX(-10deg);
+          }
+        } @else {
+          bottom: 20%;
+          right: 25%;
+          transform: translate3d(0, 0, -250px) rotateY(-10deg) rotateX(-5deg);
+
+          &:hover {
+            transform: translate3d(0, 0, -230px) rotateY(-10deg) rotateX(-5deg);
+          }
+        }
+      }
+    }
+
+    @media (max-width: $medium) {
+      perspective: 800px;
+      height: 80vh;
+
+      .creative-grid__item--1 {
+        width: 70%;
+        height: 50%;
+      }
+
+      .creative-grid__item--2 {
+        width: 50%;
+        height: 35%;
+        top: 25%;
+        left: 5%;
+      }
+
+      .creative-grid__item--3 {
+        width: 50%;
+        height: 35%;
+        top: 75%;
+        right: 5%;
+      }
+
+      .creative-grid__item--4,
+      .creative-grid__item--5 {
+        display: none;
+      }
+    }
+
+    @media (max-width: $small) {
+      height: 100vh;
+
+      .creative-grid__item--1 {
+        width: 90%;
+        height: 40%;
+      }
+
+      .creative-grid__item--2,
+      .creative-grid__item--3 {
+        width: 60%;
+        height: 25%;
+      }
+    }
+  }
+
+  /* ====== Variante 8: Cinematic (Cinematográfica) ====== */
+  &--cinematic {
+    position: relative;
+    height: 100vh;
+    min-height: 650px;
+    overflow: hidden;
+    background-color: #000; // Fondo negro para efecto cinematográfico
+
+    // Todos los elementos tienen proporción panorámica
+    .creative-grid__item {
+      position: absolute;
+      overflow: hidden;
+      border-radius: 2px; // Menos redondeado para aspecto cinematográfico
+      border-width: 0; // Sin bordes
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+
+      // Efecto de vignette en hover
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(0, 0, 0, 0) 50%,
+          rgba(0, 0, 0, 0.5) 100%
+        );
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+      }
+
+      &:hover {
+        transform: scale(1.02);
+        box-shadow: 0 25px 45px rgba(0, 0, 0, 0.4);
+
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+
+    // Imagen principal - pantalla completa con letterbox
+    .creative-grid__item--1 {
+      width: 100%;
+      height: 80%;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+
+      // Aspecto letterbox 2.35:1 (anamórfico)
+      & > * {
+        object-fit: cover;
+        object-position: center;
+      }
+
+      &:hover {
+        transform: translateY(-50%) scale(1.01); // Leve zoom para no exceder los bordes
+      }
+    }
+
+    // Imagen secundaria en superposición - escena 1
+    .creative-grid__item--2 {
+      width: 30%;
+      height: 50%;
+      top: 15%;
+      left: 10%;
+      z-index: 2;
+      transform: translateY(0) rotate(-2deg);
+      transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+
+      &:hover {
+        transform: translateY(-5px) rotate(-1deg) scale(1.04);
+        z-index: 5;
+      }
+    }
+
+    // Imagen secundaria en superposición - escena 2
+    .creative-grid__item--3 {
+      width: 25%;
+      height: 45%;
+      top: 25%;
+      right: 15%;
+      z-index: 3;
+      transform: translateY(0) rotate(1deg);
+      transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+
+      &:hover {
+        transform: translateY(-5px) rotate(0.5deg) scale(1.04);
+        z-index: 5;
+      }
+    }
+
+    // Imagen secundaria en superposición - primer plano
+    .creative-grid__item--4 {
+      width: 22%;
+      height: 40%;
+      bottom: 15%;
+      left: 20%;
+      z-index: 4;
+      transform: translateY(0) rotate(1.5deg);
+      transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+
+      &:hover {
+        transform: translateY(-5px) rotate(0.75deg) scale(1.04);
+        z-index: 5;
+      }
+    }
+
+    // Imagen secundaria en superposición - detalle
+    .creative-grid__item--5 {
+      width: 28%;
+      height: 35%;
+      bottom: 18%;
+      right: 8%;
+      z-index: 3;
+      transform: translateY(0) rotate(-1.5deg);
+      transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+
+      &:hover {
+        transform: translateY(-5px) rotate(-0.75deg) scale(1.04);
+        z-index: 5;
+      }
+    }
+
+    // Para las imágenes adicionales, añadir como fotogramas más pequeños
+    @for $i from 6 through 8 {
+      .creative-grid__item--#{$i} {
+        width: 15%;
+        height: 25%;
+        transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+
+        &:hover {
+          z-index: 6;
+        }
+
+        @if $i == 6 {
+          top: 5%;
+          left: 40%;
+          transform: translateY(0) rotate(-1deg);
+
+          &:hover {
+            transform: translateY(-5px) rotate(-0.5deg) scale(1.04);
+          }
+        } @else if $i == 7 {
+          bottom: 5%;
+          left: 45%;
+          transform: translateY(0) rotate(1deg);
+
+          &:hover {
+            transform: translateY(-5px) rotate(0.5deg) scale(1.04);
+          }
+        } @else {
+          top: 40%;
+          right: 5%;
+          transform: translateY(0) rotate(-0.5deg);
+
+          &:hover {
+            transform: translateY(-5px) rotate(-0.25deg) scale(1.04);
+          }
+        }
+      }
+    }
+
+    @media (max-width: $medium) {
+      .creative-grid__item--1 {
+        height: 60%;
+      }
+
+      .creative-grid__item--2 {
+        width: 40%;
+        height: 30%;
+        top: 10%;
+        left: 5%;
+      }
+
+      .creative-grid__item--3 {
+        width: 35%;
+        height: 25%;
+        top: 15%;
+        right: 5%;
+      }
+
+      .creative-grid__item--4 {
+        width: 40%;
+        height: 30%;
+        bottom: 10%;
+        left: 8%;
+      }
+
+      .creative-grid__item--5 {
+        width: 35%;
+        height: 25%;
+        bottom: 15%;
+        right: 5%;
+      }
+
+      .creative-grid__item--6,
+      .creative-grid__item--7,
+      .creative-grid__item--8 {
+        display: none;
+      }
+    }
+
+    @media (max-width: $small) {
+      min-height: 500px;
+
+      .creative-grid__item--1 {
+        height: 50%;
+      }
+
+      .creative-grid__item--2,
+      .creative-grid__item--3,
+      .creative-grid__item--4,
+      .creative-grid__item--5 {
+        display: none;
+      }
+    }
+  }
+
+  /* ====== Variante: Parallax (Efecto de Profundidad) ====== */
+  &--parallax {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(0, 0, 0, 0.1) 100%
+      );
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    // Imagen principal (capa más cercana)
+    .creative-grid__item--1 {
+      position: absolute;
+      width: 60%;
+      height: 70%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 4;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+
+      &:hover {
+        transform: translate(-50%, -50%) scale(1.02);
+      }
+
+      @media (max-width: $medium) {
+        width: 90%;
+        height: 60%;
+      }
+    }
+
+    // Capa 2 (profundidad media)
+    .creative-grid__item--2 {
+      position: absolute;
+      width: 40%;
+      height: 50%;
+      top: 20%;
+      left: 10%;
+      z-index: 3;
+      filter: brightness(0.95);
+
+      &:hover {
+        filter: brightness(1);
+      }
+
+      @media (max-width: $medium) {
+        top: 12%;
+        width: 45%;
+      }
+    }
+
+    .creative-grid__item--3 {
+      position: absolute;
+      width: 35%;
+      height: 45%;
+      top: 25%;
+      right: 5%;
+      z-index: 3;
+      filter: brightness(0.95);
+
+      &:hover {
+        filter: brightness(1);
+      }
+
+      @media (max-width: $medium) {
+        right: 3%;
+        width: 40%;
+      }
+    }
+
+    // Capa 3 (fondo)
+    .creative-grid__item--4,
+    .creative-grid__item--5 {
+      position: absolute;
+      width: 30%;
+      height: 40%;
+      z-index: 2;
+      filter: brightness(0.9);
+
+      &:hover {
+        filter: brightness(0.95);
+      }
+    }
+
+    .creative-grid__item--4 {
+      bottom: 15%;
+      left: 15%;
+
+      @media (max-width: $medium) {
+        bottom: 10%;
+        left: 5%;
+      }
+    }
+
+    .creative-grid__item--5 {
+      bottom: 10%;
+      right: 15%;
+
+      @media (max-width: $medium) {
+        bottom: 8%;
+        right: 5%;
+      }
+    }
+
+    // Capa 4 (el fondo más lejano)
+    .creative-grid__item--6,
+    .creative-grid__item--7,
+    .creative-grid__item--8 {
+      position: absolute;
+      width: 25%;
+      height: 30%;
+      z-index: 1;
+      filter: brightness(0.85) blur(1px);
+
+      &:hover {
+        filter: brightness(0.9) blur(0);
+      }
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--6 {
+      top: 5%;
+      left: 30%;
+    }
+
+    .creative-grid__item--7 {
+      bottom: 5%;
+      left: 40%;
+    }
+
+    .creative-grid__item--8 {
+      top: 15%;
+      right: 25%;
+    }
+  }
+
+  /* ====== Variante: Editorial (Estilo Revista) ====== */
+  &--editorial {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 2rem;
+    padding: 2rem;
+    min-height: 90vh;
+    background-color: #f8f8f8;
+
+    @media (max-width: $medium) {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+    }
+
+    .creative-grid__item {
+      position: relative;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      border: none;
+      border-radius: 0;
+      overflow: hidden;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+        pointer-events: none;
+      }
+
+      &:hover {
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      }
+    }
+
+    // Imagen principal destacada
+    .creative-grid__item--1 {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+      height: 100%;
+      min-height: 70vh;
+
+      @media (max-width: $medium) {
+        grid-row: 1;
+        min-height: 50vh;
+      }
+    }
+
+    // Imagen secundaria
+    .creative-grid__item--2 {
+      grid-column: 2;
+      grid-row: 1;
+      min-height: 40vh;
+
+      @media (max-width: $medium) {
+        grid-column: 1;
+        grid-row: 2;
+        min-height: 30vh;
+      }
+    }
+
+    // Tercer imagen o grupo de imágenes
+    .creative-grid__item--3 {
+      grid-column: 2;
+      grid-row: 2;
+      min-height: 30vh;
+
+      @media (max-width: $medium) {
+        grid-column: 1;
+        grid-row: 3;
+      }
+    }
+
+    // Para las imágenes adicionales, crear una sección de galerías
+    .creative-grid__item--4,
+    .creative-grid__item--5,
+    .creative-grid__item--6,
+    .creative-grid__item--7,
+    .creative-grid__item--8 {
+      @media (min-width: $medium) {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 1rem;
+        height: auto !important;
+      }
+
+      @media (max-width: $medium) {
+        grid-column: 1;
+        min-height: 25vh;
+      }
+    }
+  }
+
+  /* ====== Variante: Immersive (Diseño Inmersivo) ====== */
+  &--immersive {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+
+    // Imagen principal a pantalla completa
+    .creative-grid__item--1 {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      border: none;
+      border-radius: 0;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.3) 0%,
+          rgba(0, 0, 0, 0) 30%,
+          rgba(0, 0, 0, 0) 70%,
+          rgba(0, 0, 0, 0.3) 100%
+        );
+        pointer-events: none;
+      }
+
+      &:hover {
+        transform: scale(1.03);
+      }
+    }
+
+    // Imágenes flotantes superpuestas
+    @for $i from 2 through 8 {
+      .creative-grid__item--#{$i} {
+        position: absolute;
+        border-radius: 4px;
+        border-width: 4px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        z-index: 2;
+        transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+          box-shadow 0.6s ease;
+
+        &:hover {
+          z-index: 3;
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+        }
+      }
+    }
+
+    .creative-grid__item--2 {
+      width: 30%;
+      height: 40%;
+      top: 20%;
+      left: 15%;
+
+      &:hover {
+        transform: scale(1.05) translateY(-10px);
+      }
+
+      @media (max-width: $medium) {
+        width: 40%;
+        height: 30%;
+        top: 15%;
+        left: 10%;
+      }
+    }
+
+    .creative-grid__item--3 {
+      width: 25%;
+      height: 35%;
+      top: 30%;
+      right: 15%;
+
+      &:hover {
+        transform: scale(1.05) translateY(-10px);
+      }
+
+      @media (max-width: $medium) {
+        width: 35%;
+        height: 25%;
+        top: 20%;
+        right: 10%;
+      }
+    }
+
+    .creative-grid__item--4 {
+      width: 20%;
+      height: 30%;
+      bottom: 15%;
+      left: 25%;
+
+      &:hover {
+        transform: scale(1.05) translateY(-10px);
+      }
+
+      @media (max-width: $medium) {
+        width: 30%;
+        height: 20%;
+        bottom: 15%;
+        left: 15%;
+      }
+    }
+
+    .creative-grid__item--5,
+    .creative-grid__item--6,
+    .creative-grid__item--7,
+    .creative-grid__item--8 {
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--5 {
+      width: 18%;
+      height: 25%;
+      bottom: 20%;
+      right: 20%;
+
+      &:hover {
+        transform: scale(1.05) translateY(-10px);
+      }
+    }
+
+    .creative-grid__item--6 {
+      width: 15%;
+      height: 20%;
+      top: 10%;
+      left: 40%;
+
+      &:hover {
+        transform: scale(1.05) translateY(-10px);
+      }
+    }
+
+    .creative-grid__item--7 {
+      width: 12%;
+      height: 18%;
+      top: 15%;
+      right: 35%;
+
+      &:hover {
+        transform: scale(1.05) translateY(-10px);
+      }
+    }
+
+    .creative-grid__item--8 {
+      width: 14%;
+      height: 22%;
+      bottom: 10%;
+      right: 40%;
+
+      &:hover {
+        transform: scale(1.05) translateY(-10px);
+      }
+    }
+  }
+
+  /* ====== Variante: Portrait (Estilo Retrato) ====== */
+  &--portrait {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(300px, auto);
+    gap: 2rem;
+    padding: 2rem;
+    perspective: 1000px;
+
+    @media (max-width: $medium) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: $small) {
+      grid-template-columns: 1fr;
+    }
+
+    .creative-grid__item {
+      position: relative;
+      transform-style: preserve-3d;
+      border-radius: 0;
+      border: none;
+      padding: 1rem;
+      background-color: #fff;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05);
+      transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+        box-shadow 0.6s ease;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+        z-index: 2;
+        pointer-events: none;
+      }
+
+      & > * {
+        transform-style: preserve-3d;
+        transform: translateZ(10px);
+      }
+
+      &:hover {
+        transform: translateY(-10px) rotateX(5deg) rotateY(-5deg);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15),
+          0 0 0 1px rgba(0, 0, 0, 0.05);
+      }
+    }
+
+    &.creative-grid--count-1 {
+      .creative-grid__item {
+        grid-column: 1 / span 3;
+        grid-row: 1;
+        height: 70vh;
+
+        @media (max-width: $medium) {
+          grid-column: 1 / span 2;
+        }
+
+        @media (max-width: $small) {
+          grid-column: 1;
+        }
+      }
+    }
+
+    &.creative-grid--count-2 {
+      .creative-grid__item--1 {
+        grid-column: 1 / span 2;
+        grid-row: 1;
+
+        @media (max-width: $medium) {
+          grid-column: 1 / span 2;
+        }
+
+        @media (max-width: $small) {
+          grid-column: 1;
+        }
+      }
+
+      .creative-grid__item--2 {
+        grid-column: 3;
+        grid-row: 1;
+
+        @media (max-width: $medium) {
+          grid-column: 1 / span 2;
+          grid-row: 2;
+        }
+
+        @media (max-width: $small) {
+          grid-column: 1;
+        }
+      }
+    }
+
+    &.creative-grid--count-3 {
+      .creative-grid__item--1 {
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      .creative-grid__item--2 {
+        grid-column: 2;
+        grid-row: 1;
+      }
+
+      .creative-grid__item--3 {
+        grid-column: 3;
+        grid-row: 1;
+
+        @media (max-width: $medium) {
+          grid-column: 1 / span 2;
+          grid-row: 2;
+        }
+
+        @media (max-width: $small) {
+          grid-column: 1;
+        }
+      }
+    }
+
+    &.creative-grid--count-4,
+    &.creative-grid--count-5,
+    &.creative-grid--count-6,
+    &.creative-grid--count-7,
+    &.creative-grid--count-8 {
+      // Con más imágenes, crear una cuadrícula dinámica
+      .creative-grid__item--1 {
+        grid-column: 1 / span 2;
+        grid-row: 1 / span 2;
+
+        @media (max-width: $medium) {
+          grid-column: 1 / span 2;
+          grid-row: 1;
+        }
+
+        @media (max-width: $small) {
+          grid-column: 1;
+        }
+      }
+
+      .creative-grid__item--2 {
+        grid-column: 3;
+        grid-row: 1;
+
+        @media (max-width: $medium) {
+          grid-column: 1;
+          grid-row: 2;
+        }
+      }
+
+      .creative-grid__item--3 {
+        grid-column: 3;
+        grid-row: 2;
+
+        @media (max-width: $medium) {
+          grid-column: 2;
+          grid-row: 2;
+        }
+
+        @media (max-width: $small) {
+          grid-column: 1;
+          grid-row: 3;
+        }
+      }
+
+      // Para el resto, crear una fila adicional
+      @for $i from 4 through 8 {
+        .creative-grid__item--#{$i} {
+          grid-row: 3;
+
+          @media (max-width: $medium) {
+            grid-row: 3 + floor(($i - 4) / 2);
+          }
+
+          @media (max-width: $small) {
+            grid-row: $i;
+          }
+        }
+      }
+
+      .creative-grid__item--4 {
+        grid-column: 1;
+
+        @media (max-width: $medium) {
+          grid-column: 1;
+        }
+      }
+
+      .creative-grid__item--5 {
+        grid-column: 2;
+
+        @media (max-width: $medium) {
+          grid-column: 2;
+        }
+
+        @media (max-width: $small) {
+          grid-column: 1;
+        }
+      }
+
+      .creative-grid__item--6 {
+        grid-column: 3;
+
+        @media (max-width: $medium) {
+          grid-column: 1;
+        }
+      }
+
+      .creative-grid__item--7 {
+        grid-column: 1;
+        grid-row: 4;
+
+        @media (max-width: $medium) {
+          grid-column: 2;
+          grid-row: 4;
+        }
+
+        @media (max-width: $small) {
+          grid-column: 1;
+          grid-row: 7;
+        }
+      }
+
+      .creative-grid__item--8 {
+        grid-column: 2;
+        grid-row: 4;
+
+        @media (max-width: $medium) {
+          grid-column: 1;
+          grid-row: 5;
+        }
+
+        @media (max-width: $small) {
+          grid-column: 1;
+          grid-row: 8;
+        }
+      }
+    }
+  }
+  /* ====== Variante: Floating (Elementos Flotantes) ====== */
+  &--floating {
+    position: relative;
+    height: 100vh;
+    min-height: 650px;
+    padding: 3rem;
+    background: transparent;
+    overflow: visible;
+
+    // Todos los elementos tienen fondos transparentes y bordes sutiles
+    .creative-grid__item {
+      position: absolute;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      background-color: transparent;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      border-radius: 10px;
+      transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transform-origin: center center;
+
+      // Contenido dentro del item
+      & > * {
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      &:hover {
+        border-color: rgba(255, 255, 255, 0.6);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25),
+          0 0 0 1px rgba(255, 255, 255, 0.1);
+        transform: scale(1.05) translateY(-10px);
+        z-index: 10;
+      }
+    }
+
+    // Primer elemento - tamaño grande
+    .creative-grid__item--1 {
+      width: 60%;
+      height: 75%;
+      left: 20%;
+      top: 15%;
+      z-index: 5;
+
+      @media (max-width: $medium) {
+        width: 80%;
+        height: 60%;
+        left: 10%;
+        top: 20%;
+      }
+    }
+
+    // Segundo elemento - tamaño medio-grande, posición alterna
+    .creative-grid__item--2 {
+      width: 45%;
+      height: 50%;
+      left: 5%;
+      top: 25%;
+      z-index: 4;
+
+      @media (max-width: $medium) {
+        width: 55%;
+        height: 40%;
+        left: 5%;
+        top: 10%;
+      }
+
+      @media (max-width: $small) {
+        display: none;
+      }
+    }
+
+    // Tercer elemento - tamaño medio, posición alterna
+    .creative-grid__item--3 {
+      width: 35%;
+      height: 40%;
+      right: 5%;
+      top: 35%;
+      z-index: 3;
+
+      @media (max-width: $medium) {
+        width: 45%;
+        height: 35%;
+        right: 5%;
+        top: 65%;
+      }
+
+      @media (max-width: $small) {
+        display: none;
+      }
+    }
+
+    // Cuarto elemento - posición más extrema
+    .creative-grid__item--4 {
+      width: 25%;
+      height: 35%;
+      left: 15%;
+      bottom: 10%;
+      z-index: 2;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    // Quinto elemento - posición más extrema
+    .creative-grid__item--5 {
+      width: 30%;
+      height: 35%;
+      right: 15%;
+      top: 10%;
+      z-index: 2;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    // Elementos adicionales - tamaños pequeños
+    .creative-grid__item--6,
+    .creative-grid__item--7,
+    .creative-grid__item--8 {
+      width: 20%;
+      height: 25%;
+      z-index: 1;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--6 {
+      left: 40%;
+      bottom: 5%;
+    }
+
+    .creative-grid__item--7 {
+      right: 35%;
+      bottom: 15%;
+    }
+
+    .creative-grid__item--8 {
+      left: 45%;
+      top: 5%;
+    }
+  }
+
+  /* ====== Variante: Staggered (Escalonado) ====== */
+  &--staggered {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    background: transparent;
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    // Todos los elementos tienen marcos traslúcidos
+    .creative-grid__item {
+      position: absolute;
+      border: 3px solid rgba(255, 255, 255, 0.15);
+      background-color: transparent;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      border-radius: 2px;
+      overflow: hidden;
+      transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+
+      // Estilo interior para imágenes
+      & > * {
+        border-radius: 0;
+      }
+
+      &:hover {
+        border-color: rgba(255, 255, 255, 0.5);
+        transform: scale(1.03) translateY(-15px);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+        z-index: 10;
+      }
+    }
+
+    // Distribuir elementos en un patrón escalonado con espaciado significativo
+    .creative-grid__item--1 {
+      width: 50%;
+      height: 60%;
+      top: 20%;
+      left: 10%;
+      z-index: 5;
+
+      @media (max-width: $medium) {
+        width: 70%;
+        height: 50%;
+        left: 15%;
+      }
+    }
+
+    .creative-grid__item--2 {
+      width: 35%;
+      height: 45%;
+      top: 10%;
+      right: 15%;
+      z-index: 4;
+
+      @media (max-width: $medium) {
+        width: 50%;
+        height: 35%;
+        top: auto;
+        bottom: 15%;
+      }
+
+      @media (max-width: $small) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--3 {
+      width: 30%;
+      height: 35%;
+      bottom: 12%;
+      left: 25%;
+      z-index: 3;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--4 {
+      width: 25%;
+      height: 30%;
+      bottom: 20%;
+      right: 5%;
+      z-index: 2;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--5 {
+      width: 20%;
+      height: 30%;
+      top: 15%;
+      left: 5%;
+      z-index: 1;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    // Elementos adicionales - tamaños más pequeños y posiciones más extremas
+    .creative-grid__item--6,
+    .creative-grid__item--7,
+    .creative-grid__item--8 {
+      width: 18%;
+      height: 22%;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--6 {
+      top: 5%;
+      left: 40%;
+    }
+
+    .creative-grid__item--7 {
+      bottom: 5%;
+      right: 30%;
+    }
+
+    .creative-grid__item--8 {
+      top: 50%;
+      right: 5%;
+    }
+  }
+
+  /* ====== Variante: Scattered (Disperso) ====== */
+  &--scattered {
+    position: relative;
+    height: 120vh; // Más alto para permitir más espaciado vertical
+    min-height: 800px;
+    background: transparent;
+    padding: 5rem;
+    overflow: visible;
+
+    // Estilo común para todos los elementos
+    .creative-grid__item {
+      position: absolute;
+      background-color: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+      // Contenido dentro del elemento
+      & > * {
+        filter: brightness(1.05); // Ligeramente más brillante
+      }
+
+      // Destello en los bordes al hacer hover
+      &::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        border: 2px solid rgba(255, 255, 255, 0);
+        z-index: 1;
+        pointer-events: none;
+        transition: border-color 0.5s ease;
+      }
+
+      &:hover {
+        transform: scale(1.08) translateY(-10px) rotate(0deg) !important;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        z-index: 10;
+
+        &::before {
+          border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        & > * {
+          filter: brightness(1.1);
+        }
+      }
+    }
+
+    // Tamaños y posiciones extremadamente variados
+    .creative-grid__item--1 {
+      width: 40%;
+      height: 55%;
+      top: 25%;
+      left: 30%;
+      transform: rotate(-3deg);
+      z-index: 5;
+
+      @media (max-width: $medium) {
+        width: 70%;
+        height: 45%;
+        top: 10%;
+        left: 15%;
+      }
+    }
+
+    .creative-grid__item--2 {
+      width: 30%;
+      height: 40%;
+      top: 5%;
+      left: 10%;
+      transform: rotate(5deg);
+      z-index: 4;
+
+      @media (max-width: $medium) {
+        width: 60%;
+        height: 35%;
+        top: auto;
+        bottom: 10%;
+        left: 20%;
+      }
+
+      @media (max-width: $small) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--3 {
+      width: 25%;
+      height: 35%;
+      top: 15%;
+      right: 15%;
+      transform: rotate(-5deg);
+      z-index: 3;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--4 {
+      width: 20%;
+      height: 28%;
+      bottom: 10%;
+      left: 15%;
+      transform: rotate(2deg);
+      z-index: 2;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--5 {
+      width: 28%;
+      height: 38%;
+      bottom: 15%;
+      right: 10%;
+      transform: rotate(-1deg);
+      z-index: 3;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    // Elementos adicionales con posiciones más extremas
+    .creative-grid__item--6 {
+      width: 18%;
+      height: 22%;
+      top: 35%;
+      right: 5%;
+      transform: rotate(6deg);
+      z-index: 1;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--7 {
+      width: 15%;
+      height: 25%;
+      bottom: 30%;
+      left: 5%;
+      transform: rotate(-4deg);
+      z-index: 1;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--8 {
+      width: 22%;
+      height: 20%;
+      top: 60%;
+      left: 55%;
+      transform: rotate(3deg);
+      z-index: 1;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+  }
+  /* ====== Variante: Geometric (Formas Geométricas) ====== */
+  &--geometric {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    padding: 4rem;
+    background: transparent;
+
+    // Estilo base para todos los elementos
+    .creative-grid__item {
+      position: absolute;
+      background-color: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+      &:hover {
+        border-color: rgba(255, 255, 255, 0.5);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        transform: translateY(-10px);
+        z-index: 10;
+      }
+    }
+
+    // Aplicar diferentes formas según la posición
+    @for $i from 1 through 8 {
+      .creative-grid__item--#{$i} {
+        @if $i % 3 == 1 {
+          // Elementos cuadrados
+          width: 30%;
+          height: 30%;
+          aspect-ratio: 1/1;
+          border-radius: 4px;
+        } @else if $i % 3 == 2 {
+          // Elementos horizontales (rectangulares)
+          width: 45%;
+          height: 20%;
+          border-radius: 3px;
+        } @else {
+          // Elementos verticales (rectangulares)
+          width: 22%;
+          height: 45%;
+          border-radius: 3px;
+        }
+      }
+    }
+
+    // Posicionamiento específico para cada elemento
+    .creative-grid__item--1 {
+      // Cuadrado principal central
+      left: 35%;
+      top: 30%;
+      width: 30%;
+      height: 30%;
+      z-index: 5;
+
+      @media (max-width: $medium) {
+        left: 20%;
+        top: 20%;
+        width: 60%;
+        height: 60%;
+      }
+    }
+
+    .creative-grid__item--2 {
+      // Rectángulo horizontal arriba
+      left: 25%;
+      top: 10%;
+      z-index: 4;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--3 {
+      // Rectángulo vertical derecha
+      right: 15%;
+      top: 25%;
+      z-index: 4;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--4 {
+      // Cuadrado izquierda
+      left: 10%;
+      top: 40%;
+      z-index: 3;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--5 {
+      // Rectángulo horizontal abajo
+      left: 35%;
+      bottom: 10%;
+      z-index: 3;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--6 {
+      // Rectángulo vertical izquierda
+      left: 15%;
+      bottom: 20%;
+      z-index: 2;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--7 {
+      // Cuadrado pequeño arriba derecha
+      right: 10%;
+      top: 15%;
+      width: 15%;
+      height: 15%;
+      z-index: 2;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--8 {
+      // Rectángulo horizontal pequeño abajo derecha
+      right: 20%;
+      bottom: 15%;
+      width: 35%;
+      height: 18%;
+      z-index: 1;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+  }
+
+  /* ====== Variante: Dynamic (Rectángulos Dinámicos) ====== */
+  &--dynamic {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    background: transparent;
+    padding: 0;
+    overflow: visible;
+
+    // Base para todos los elementos
+    .creative-grid__item {
+      position: absolute;
+      background-color: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+      overflow: hidden;
+      transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+
+      &:hover {
+        border-width: 2px;
+        border-color: rgba(255, 255, 255, 0.7);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.18);
+        transform: scale(1.05) translateY(-10px);
+        z-index: 10;
+      }
+    }
+
+    // Alternar entre rectángulos horizontales y verticales
+    @for $i from 1 through 8 {
+      .creative-grid__item--#{$i} {
+        @if $i % 2 == 1 {
+          // Rectángulos horizontales
+          width: 38%;
+          height: 22%;
+          border-radius: 4px;
+        } @else {
+          // Rectángulos verticales
+          width: 22%;
+          height: 38%;
+          border-radius: 4px;
+        }
+      }
+    }
+
+    // Layout específico para crear patrones dinámicos
+    .creative-grid__item--1 {
+      // Rectángulo horizontal principal grande
+      left: 20%;
+      top: 20%;
+      width: 45%;
+      height: 25%;
+      z-index: 5;
+
+      @media (max-width: $medium) {
+        left: 10%;
+        width: 80%;
+        height: 30%;
+      }
+    }
+
+    .creative-grid__item--2 {
+      // Rectángulo vertical grande
+      right: 15%;
+      top: 15%;
+      width: 25%;
+      height: 45%;
+      z-index: 4;
+
+      @media (max-width: $medium) {
+        top: auto;
+        bottom: 15%;
+        right: 10%;
+        width: 30%;
+        height: 40%;
+      }
+
+      @media (max-width: $small) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--3 {
+      // Rectángulo horizontal medio
+      left: 10%;
+      bottom: 30%;
+      width: 35%;
+      height: 20%;
+      z-index: 3;
+
+      @media (max-width: $medium) {
+        left: 5%;
+        bottom: 15%;
+        width: 50%;
+        height: 25%;
+      }
+
+      @media (max-width: $small) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--4 {
+      // Rectángulo vertical mediano
+      left: 55%;
+      bottom: 20%;
+      width: 20%;
+      height: 35%;
+      z-index: 2;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--5 {
+      // Rectángulo horizontal pequeño
+      left: 15%;
+      top: 55%;
+      width: 25%;
+      height: 15%;
+      z-index: 2;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--6 {
+      // Rectángulo vertical pequeño
+      right: 45%;
+      top: 10%;
+      width: 15%;
+      height: 25%;
+      z-index: 1;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--7 {
+      // Rectángulo horizontal extra
+      right: 10%;
+      bottom: 10%;
+      width: 30%;
+      height: 18%;
+      z-index: 1;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--8 {
+      // Rectángulo vertical extra
+      left: 75%;
+      top: 48%;
+      width: 18%;
+      height: 30%;
+      z-index: 1;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+  }
+
+  /* ====== Variante: Modular (Elementos Modulares) ====== */
+  &--modular {
+    position: relative;
+    height: 100vh;
+    min-height: 750px;
+    background: transparent;
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    gap: 1.5rem;
+
+    @media (max-width: $medium) {
+      gap: 1rem;
+      height: auto;
+      min-height: 600px;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: repeat(6, 100px);
+    }
+
+    // Estilo base común
+    .creative-grid__item {
+      position: relative;
+      background-color: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+      border-radius: 6px;
+
+      // Crear efecto de borde interior
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 2px solid transparent;
+        border-radius: 4px;
+        pointer-events: none;
+        transition: border-color 0.4s ease;
+      }
+
+      &:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        border-color: rgba(255, 255, 255, 0.3);
+        z-index: 10;
+
+        &::after {
+          border-color: rgba(255, 255, 255, 0.2);
+        }
+      }
+    }
+
+    // Posicionamiento modular con grid
+
+    // Módulo grande (4x4)
+    .creative-grid__item--1 {
+      grid-column: 3 / span 4;
+      grid-row: 3 / span 4;
+      z-index: 5;
+
+      @media (max-width: $medium) {
+        grid-column: 1 / span 6;
+        grid-row: 1 / span 3;
+      }
+    }
+
+    // Módulo horizontal (3x2)
+    .creative-grid__item--2 {
+      grid-column: 7 / span 3;
+      grid-row: 4 / span 2;
+      z-index: 4;
+
+      @media (max-width: $medium) {
+        grid-column: 1 / span 3;
+        grid-row: 4 / span 1;
+      }
+
+      @media (max-width: $small) {
+        grid-column: 1 / span 6;
+        grid-row: 4 / span 1;
+      }
+    }
+
+    // Módulo vertical (2x3)
+    .creative-grid__item--3 {
+      grid-column: 8 / span 2;
+      grid-row: 6 / span 3;
+      z-index: 3;
+
+      @media (max-width: $medium) {
+        grid-column: 4 / span 3;
+        grid-row: 4 / span 2;
+      }
+
+      @media (max-width: $small) {
+        grid-column: 1 / span 6;
+        grid-row: 5 / span 1;
+      }
+    }
+
+    // Módulo cuadrado (2x2)
+    .creative-grid__item--4 {
+      grid-column: 3 / span 2;
+      grid-row: 7 / span 2;
+      z-index: 3;
+
+      @media (max-width: $medium) {
+        grid-column: 1 / span 3;
+        grid-row: 5 / span 1;
+      }
+
+      @media (max-width: $small) {
+        display: none;
+      }
+    }
+
+    // Módulo horizontal largo (5x1)
+    .creative-grid__item--5 {
+      grid-column: 2 / span 5;
+      grid-row: 1 / span 1;
+      z-index: 2;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    // Módulo vertical largo (1x5)
+    .creative-grid__item--6 {
+      grid-column: 1 / span 1;
+      grid-row: 3 / span 5;
+      z-index: 2;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    // Módulo horizontal medio (3x1)
+    .creative-grid__item--7 {
+      grid-column: 5 / span 3;
+      grid-row: 9 / span 1;
+      z-index: 1;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    // Módulo cuadrado pequeño (2x2)
+    .creative-grid__item--8 {
+      grid-column: 10 / span 2;
+      grid-row: 2 / span 2;
+      z-index: 1;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+  }
+
+  /* ====== Variante: Mondrian (Formas Geométricas) ====== */
+  &--mondrian {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    padding: 4rem;
+    background: transparent;
+
+    // Estilo base para todos los elementos
+    .creative-grid__item {
+      position: absolute;
+      background-color: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+      &:hover {
+        border-color: rgba(255, 255, 255, 0.5);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        transform: translateY(-10px);
+        z-index: 10;
+      }
+    }
+
+    // Aplicar diferentes formas según la posición
+    @for $i from 1 through 8 {
+      .creative-grid__item--#{$i} {
+        @if $i % 3 == 1 {
+          // Elementos cuadrados
+          width: 30%;
+          height: 30%;
+          aspect-ratio: 1/1;
+          border-radius: 4px;
+        } @else if $i % 3 == 2 {
+          // Elementos horizontales (rectangulares)
+          width: 45%;
+          height: 20%;
+          border-radius: 3px;
+        } @else {
+          // Elementos verticales (rectangulares)
+          width: 22%;
+          height: 45%;
+          border-radius: 3px;
+        }
+      }
+    }
+
+    // Posicionamiento específico para cada elemento
+    .creative-grid__item--1 {
+      // Cuadrado principal central
+      left: 35%;
+      top: 30%;
+      width: 30%;
+      height: 30%;
+      z-index: 5;
+
+      @media (max-width: $medium) {
+        left: 20%;
+        top: 20%;
+        width: 60%;
+        height: 60%;
+      }
+    }
+
+    .creative-grid__item--2 {
+      // Rectángulo horizontal arriba
+      left: 25%;
+      top: 10%;
+      z-index: 4;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--3 {
+      // Rectángulo vertical derecha
+      right: 15%;
+      top: 25%;
+      z-index: 4;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--4 {
+      // Cuadrado izquierda
+      left: 10%;
+      top: 40%;
+      z-index: 3;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--5 {
+      // Rectángulo horizontal abajo
+      left: 35%;
+      bottom: 10%;
+      z-index: 3;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--6 {
+      // Rectángulo vertical izquierda
+      left: 15%;
+      bottom: 20%;
+      z-index: 2;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--7 {
+      // Cuadrado pequeño arriba derecha
+      right: 10%;
+      top: 15%;
+      width: 15%;
+      height: 15%;
+      z-index: 2;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--8 {
+      // Rectángulo horizontal pequeño abajo derecha
+      right: 20%;
+      bottom: 15%;
+      width: 35%;
+      height: 18%;
+      z-index: 1;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+  }
+
+  /* ====== Variante: Blueprint (Rectángulos Arquitectónicos) ====== */
+  &--blueprint {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    background: transparent;
+    padding: 0;
+    overflow: visible;
+
+    // Base para todos los elementos
+    .creative-grid__item {
+      position: absolute;
+      background-color: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+      overflow: hidden;
+      transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+
+      &:hover {
+        border-width: 2px;
+        border-color: rgba(255, 255, 255, 0.7);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.18);
+        transform: scale(1.05) translateY(-10px);
+        z-index: 10;
+      }
+    }
+
+    // Alternar entre rectángulos horizontales y verticales
+    @for $i from 1 through 8 {
+      .creative-grid__item--#{$i} {
+        @if $i % 2 == 1 {
+          // Rectángulos horizontales
+          width: 38%;
+          height: 22%;
+          border-radius: 4px;
+        } @else {
+          // Rectángulos verticales
+          width: 22%;
+          height: 38%;
+          border-radius: 4px;
+        }
+      }
+    }
+
+    // Layout específico para crear patrones arquitectónicos
+    .creative-grid__item--1 {
+      // Rectángulo horizontal principal grande
+      left: 20%;
+      top: 20%;
+      width: 45%;
+      height: 25%;
+      z-index: 5;
+
+      @media (max-width: $medium) {
+        left: 10%;
+        width: 80%;
+        height: 30%;
+      }
+    }
+
+    .creative-grid__item--2 {
+      // Rectángulo vertical grande
+      right: 15%;
+      top: 15%;
+      width: 25%;
+      height: 45%;
+      z-index: 4;
+
+      @media (max-width: $medium) {
+        top: auto;
+        bottom: 15%;
+        right: 10%;
+        width: 30%;
+        height: 40%;
+      }
+
+      @media (max-width: $small) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--3 {
+      // Rectángulo horizontal medio
+      left: 10%;
+      bottom: 30%;
+      width: 35%;
+      height: 20%;
+      z-index: 3;
+
+      @media (max-width: $medium) {
+        left: 5%;
+        bottom: 15%;
+        width: 50%;
+        height: 25%;
+      }
+
+      @media (max-width: $small) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--4 {
+      // Rectángulo vertical mediano
+      left: 55%;
+      bottom: 20%;
+      width: 20%;
+      height: 35%;
+      z-index: 2;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--5 {
+      // Rectángulo horizontal pequeño
+      left: 15%;
+      top: 55%;
+      width: 25%;
+      height: 15%;
+      z-index: 2;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--6 {
+      // Rectángulo vertical pequeño
+      right: 45%;
+      top: 10%;
+      width: 15%;
+      height: 25%;
+      z-index: 1;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--7 {
+      // Rectángulo horizontal extra
+      right: 10%;
+      bottom: 10%;
+      width: 30%;
+      height: 18%;
+      z-index: 1;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    .creative-grid__item--8 {
+      // Rectángulo vertical extra
+      left: 75%;
+      top: 48%;
+      width: 18%;
+      height: 30%;
+      z-index: 1;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+  }
+
+  /* ====== Variante: Tetris (Bloques que encajan) ====== */
+  &--tetris {
+    position: relative;
+    height: 100vh;
+    min-height: 750px;
+    background: transparent;
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    gap: 1.5rem;
+
+    @media (max-width: $medium) {
+      gap: 1rem;
+      height: auto;
+      min-height: 600px;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: repeat(6, 100px);
+    }
+
+    // Estilo base común
+    .creative-grid__item {
+      position: relative;
+      background-color: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+      border-radius: 6px;
+
+      // Crear efecto de borde interior
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 2px solid transparent;
+        border-radius: 4px;
+        pointer-events: none;
+        transition: border-color 0.4s ease;
+      }
+
+      &:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        border-color: rgba(255, 255, 255, 0.3);
+        z-index: 10;
+
+        &::after {
+          border-color: rgba(255, 255, 255, 0.2);
+        }
+      }
+    }
+
+    // Posicionamiento modular con grid
+
+    // Bloque cuadrado (4x4)
+    .creative-grid__item--1 {
+      grid-column: 3 / span 4;
+      grid-row: 3 / span 4;
+      z-index: 5;
+
+      @media (max-width: $medium) {
+        grid-column: 1 / span 6;
+        grid-row: 1 / span 3;
+      }
+    }
+
+    // Bloque horizontal (3x2)
+    .creative-grid__item--2 {
+      grid-column: 7 / span 3;
+      grid-row: 4 / span 2;
+      z-index: 4;
+
+      @media (max-width: $medium) {
+        grid-column: 1 / span 3;
+        grid-row: 4 / span 1;
+      }
+
+      @media (max-width: $small) {
+        grid-column: 1 / span 6;
+        grid-row: 4 / span 1;
+      }
+    }
+
+    // Bloque vertical (2x3)
+    .creative-grid__item--3 {
+      grid-column: 8 / span 2;
+      grid-row: 6 / span 3;
+      z-index: 3;
+
+      @media (max-width: $medium) {
+        grid-column: 4 / span 3;
+        grid-row: 4 / span 2;
+      }
+
+      @media (max-width: $small) {
+        grid-column: 1 / span 6;
+        grid-row: 5 / span 1;
+      }
+    }
+
+    // Bloque cuadrado (2x2)
+    .creative-grid__item--4 {
+      grid-column: 3 / span 2;
+      grid-row: 7 / span 2;
+      z-index: 3;
+
+      @media (max-width: $medium) {
+        grid-column: 1 / span 3;
+        grid-row: 5 / span 1;
+      }
+
+      @media (max-width: $small) {
+        display: none;
+      }
+    }
+
+    // Bloque horizontal largo (5x1)
+    .creative-grid__item--5 {
+      grid-column: 2 / span 5;
+      grid-row: 1 / span 1;
+      z-index: 2;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    // Bloque vertical largo (1x5)
+    .creative-grid__item--6 {
+      grid-column: 1 / span 1;
+      grid-row: 3 / span 5;
+      z-index: 2;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    // Bloque horizontal medio (3x1)
+    .creative-grid__item--7 {
+      grid-column: 5 / span 3;
+      grid-row: 9 / span 1;
+      z-index: 1;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+
+    // Bloque cuadrado pequeño (2x2)
+    .creative-grid__item--8 {
+      grid-column: 10 / span 2;
+      grid-row: 2 / span 2;
+      z-index: 1;
+
+      @media (max-width: $medium) {
+        display: none;
+      }
+    }
+  }
+}

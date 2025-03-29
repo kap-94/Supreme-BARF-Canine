@@ -1,0 +1,182 @@
+@import "@/app/_styles/variables.scss";
+
+/* ====== Variante: Scattered (Disperso) ====== */
+.creative-grid--scattered {
+  position: relative;
+  min-height: 100vh;
+  background: transparent;
+  overflow: visible;
+
+  @media only screen and (max-width: $xlarge) {
+    min-height: 70vh;
+  }
+
+  @media only screen and (max-width: $large) {
+    min-height: 60vh;
+  }
+
+  @media only screen and (max-width: $medium) {
+    min-height: 50vh;
+  }
+
+  // Estilo común para todos los elementos
+  .creative-grid__item {
+    position: absolute;
+    background-color: transparent;
+    border: 3.5px solid $white-color;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    // Contenido dentro del elemento
+    & > * {
+      filter: brightness(1.05); // Ligeramente más brillante
+    }
+
+    // Destello en los bordes al hacer hover
+    &::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border: 2px solid rgba(255, 255, 255, 0);
+      z-index: 1;
+      pointer-events: none;
+      transition: border-color 0.5s ease;
+    }
+
+    // &:hover {
+    //   transform: scale(1.08) translateY(-10px) rotate(0deg) !important;
+    //   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+    //   z-index: 10;
+
+    //   &::before {
+    //     border-color: rgba(255, 255, 255, 0.5);
+    //   }
+
+    //   & > * {
+    //     filter: brightness(1.1);
+    //   }
+    // }
+  }
+
+  // Tamaños y posiciones extremadamente variados
+  .creative-grid__item--1 {
+    width: 40%;
+    height: 55%;
+    top: 25%;
+    left: 30%;
+    transform: rotate(-3deg);
+    z-index: 5;
+
+    @media (max-width: $medium) {
+      width: 55%;
+      height: 50%;
+      top: 20%;
+      left: 22%;
+      transform: rotate(-2deg);
+    }
+  }
+
+  .creative-grid__item--2 {
+    width: 30%;
+    height: 40%;
+    top: 5%;
+    left: 10%;
+    transform: rotate(5deg) !important;
+    z-index: 4;
+
+    @media (max-width: $medium) {
+      width: 40%;
+      height: 35%;
+      top: 5%;
+      left: 5%;
+      transform: rotate(3deg) !important;
+    }
+  }
+
+  .creative-grid__item--3 {
+    width: 25%;
+    height: 35%;
+    top: 15%;
+    right: 15%;
+    transform: rotate(-5deg);
+    z-index: 3;
+
+    @media (max-width: $medium) {
+      width: 35%;
+      height: 30%;
+      top: 12%;
+      right: 8%;
+      transform: rotate(-4deg);
+    }
+  }
+
+  .creative-grid__item--4 {
+    width: 20%;
+    height: 28%;
+    bottom: 10%;
+    left: 15%;
+    transform: rotate(2deg) !important;
+    z-index: 2;
+
+    @media (max-width: $medium) {
+      display: none;
+    }
+  }
+
+  .creative-grid__item--5 {
+    width: 28%;
+    height: 38%;
+    bottom: 15%;
+    right: 10%;
+    transform: rotate(-1deg) !important;
+    z-index: 3;
+
+    @media (max-width: $medium) {
+      display: none;
+    }
+  }
+
+  // Elementos adicionales con posiciones más extremas
+  .creative-grid__item--6 {
+    width: 18%;
+    height: 22%;
+    top: 35%;
+    right: 5%;
+    transform: rotate(6deg);
+    z-index: 1;
+
+    @media (max-width: $medium) {
+      display: none;
+    }
+  }
+
+  .creative-grid__item--7 {
+    width: 15%;
+    height: 25%;
+    bottom: 30%;
+    left: 5%;
+    transform: rotate(-4deg);
+    z-index: 1;
+
+    @media (max-width: $medium) {
+      display: none;
+    }
+  }
+
+  .creative-grid__item--8 {
+    width: 22%;
+    height: 20%;
+    top: 60%;
+    left: 55%;
+    transform: rotate(3deg);
+    z-index: 1;
+
+    @media (max-width: $medium) {
+      display: none;
+    }
+  }
+}
