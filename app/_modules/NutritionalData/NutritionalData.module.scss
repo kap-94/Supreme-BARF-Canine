@@ -1,0 +1,614 @@
+@import "@/app/_styles/functions.scss";
+@import "@/app/_styles/variables.scss";
+
+.nutritional-data {
+  $self: &;
+  background-color: $white-color;
+
+  width: 100%;
+  padding: 48px 48px 100px;
+  overflow: hidden;
+
+  @media only screen and (max-width: $medium) {
+    padding: 32px 24px 48px;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 1280px;
+    margin: 0 auto;
+    gap: 72px;
+    background-color: rgba($black-color, 0.02);
+    border: 1px solid rgba($black-color, 0.05);
+
+    @media only screen and (max-width: $xlarge) {
+      gap: 60px;
+    }
+
+    @media only screen and (max-width: $large) {
+      gap: 54px;
+      border: none;
+    }
+
+    @media only screen and (max-width: $medium) {
+      gap: 48px;
+    }
+  }
+
+  // Chart Section
+  &__chart-section {
+    width: 100%;
+    border-radius: 4px;
+  }
+
+  &__chart-title {
+    color: $primary-color;
+    margin-bottom: 64px;
+
+    @media only screen and (max-width: $xlarge) {
+      margin-bottom: 32px;
+    }
+
+    @media only screen and (max-width: $small) {
+      margin-bottom: 24px;
+    }
+  }
+
+  &__chart-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    padding: 0 24px 54px;
+
+    @media only screen and (max-width: $large) {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+
+    @media only screen and (max-width: $medium) {
+      padding: 0 24px 48px;
+      gap: 40px;
+    }
+
+    @media only screen and (max-width: $small) {
+      padding: 0 16px 48px;
+    }
+  }
+
+  // Nueva clase para cada columna de gráfico
+  &__chart-column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &__chart-column-header {
+    // text-align: center;
+  }
+
+  &__pie-container,
+  &__bar-container {
+    width: 100%;
+    padding: 32px;
+    border-radius: 4px;
+    background-color: $white-color;
+    border: 1px solid rgba($black-color, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media only screen and (max-width: $large) {
+      padding: 24px 16px;
+    }
+
+    @media only screen and (max-width: $medium) {
+      padding: 16px 8px;
+    }
+
+    @media only screen and (max-width: $small) {
+      padding: 16px 0;
+    }
+  }
+
+  // Contenedor de aspect ratio para mantener la proporción de los gráficos
+  &__aspect-ratio-box {
+    position: relative;
+    width: 100%;
+    padding-top: 75%; /* Relación de aspecto 4:3 */
+
+    @media only screen and (max-width: $large) {
+      padding-top: 45%; /* 60% de la altura original (75% * 0.6 = 45%) cuando es una columna */
+    }
+
+    @media only screen and (max-width: $medium) {
+      padding-top: 60%; /* Un poco más alto en pantallas medianas para mejor visualización */
+    }
+
+    @media only screen and (max-width: $small) {
+      padding-top: 75%; /* Vuelve a ser más alto en pantallas muy pequeñas */
+    }
+  }
+
+  &__aspect-ratio-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  // Estilos para el eje X del gráfico de barras
+  &__bar-x-axis {
+    font-family: "sofia-pro", sans-serif !important;
+    font-size: 13px !important;
+
+    @media only screen and (max-width: $xlarge),
+      only screen and (max-width: $large) {
+      font-size: 12px !important;
+    }
+
+    @media only screen and (max-width: $medium) {
+      font-size: 12px !important;
+    }
+
+    @media only screen and (max-width: $small) {
+      font-size: 11px !important;
+    }
+  }
+
+  &__chart-legend-item {
+    color: $black-color;
+    margin-left: 4px;
+    display: flex;
+    align-items: center;
+
+    @media only screen and (max-width: $medium) {
+      font-size: 12px !important;
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+
+  &__chart-legend-name {
+    width: 85px; /* Ancho reducido para los nombres */
+
+    @media only screen and (max-width: $medium) {
+      width: 80px;
+    }
+
+    @media only screen and (max-width: $small) {
+      width: 70px;
+    }
+  }
+
+  &__chart-legend-percentage {
+    color: $primary-color;
+    font-weight: 600;
+    margin-left: 2px; /* Espacio reducido */
+    width: 35px; /* Ancho reducido para los porcentajes */
+    text-align: right;
+
+    @media only screen and (max-width: $medium) {
+      font-size: 11px !important;
+    }
+  }
+
+  &__chart-legend {
+    font-size: 14px;
+
+    @media only screen and (max-width: $medium) {
+      font-size: 12px !important;
+    }
+
+    &.bar-legend {
+      display: flex;
+      justify-content: center !important;
+
+      .recharts-legend-wrapper {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        bottom: 0 !important;
+      }
+
+      .recharts-default-legend {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center !important;
+        float: none !important;
+        margin: 0 auto !important;
+      }
+
+      .recharts-legend-item {
+        float: none !important;
+        display: inline-flex !important;
+        margin: 0 12px !important;
+        padding: 0 !important;
+      }
+    }
+
+    &.pie-legend {
+      .recharts-legend-item {
+        margin-bottom: 2px !important; /* Espacio reducido entre items de la leyenda */
+      }
+    }
+  }
+
+  // Custom Tooltip Styles
+  &__custom-tooltip {
+    background-color: white;
+    border-radius: 4px;
+    padding: 10px 14px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border: none;
+    min-width: 180px;
+
+    &-label {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: $primary-color;
+      font-size: 13px;
+    }
+
+    &-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 4px 0;
+      font-size: 12px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &-name {
+      font-weight: 500;
+    }
+
+    &-value {
+      font-weight: 600;
+    }
+  }
+
+  // Specifications Section
+  &__specs-section {
+    width: 100%;
+    border-radius: 4px;
+  }
+
+  &__specs-header {
+    padding: 90px 32px 0;
+    margin-bottom: 64px;
+
+    @media only screen and (max-width: $xlarge) {
+      padding: 64px 24px 0;
+      margin-bottom: 32px;
+    }
+
+    @media only screen and (max-width: $medium) {
+      padding: 48px 24px 0;
+    }
+
+    @media only screen and (max-width: $small) {
+      padding-inline: 16px;
+      margin-bottom: 24px;
+    }
+  }
+
+  &__specs-title {
+    color: $primary-color;
+  }
+
+  &__specs-subtitle {
+    color: rgba($black-color, 0.6);
+  }
+
+  &__specs-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    padding: 0 32px;
+
+    @media only screen and (max-width: $xlarge) {
+      column-gap: 24px;
+      padding: 0 24px;
+      row-gap: 16px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media only screen and (max-width: $medium) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media only screen and (max-width: $small) {
+      column-gap: 16px;
+      row-gap: 12px;
+      padding: 0 16px;
+      // grid-template-columns: 1fr;
+    }
+  }
+
+  &__specs-item {
+    border: 1px solid rgba($black-color, 0.05);
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 16px;
+    border-radius: 4px;
+    border-left: 3px solid rgba($primary-color, 0.9);
+    background-color: $white-color;
+
+    @media only screen and (max-width: $small) {
+      border-left: 2.5px solid rgba($primary-color, 0.9);
+    }
+
+    &-header {
+      margin-bottom: 12px;
+
+      @media only screen and (max-width: $small) {
+        margin-bottom: 8px;
+      }
+    }
+
+    &-label {
+      color: rgba($black-color, 0.7);
+    }
+
+    &-value {
+      color: $primary-color;
+    }
+
+    &-unit {
+      margin-left: 4px;
+    }
+  }
+
+  // Divider
+  &__divider-row {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    @media only screen and (max-width: $medium) {
+      display: none;
+    }
+  }
+
+  &__divider {
+    height: 1px;
+    width: 100%;
+    max-width: 800px;
+    background: linear-gradient(
+      to right,
+      rgba($primary-color, 0.3),
+      rgba($primary-color, 0.1) 85%,
+      transparent
+    );
+  }
+
+  // Recharts Global Styles
+  :global {
+    // Estilos para los textos del eje X
+    .recharts-cartesian-axis.recharts-xAxis text {
+      font-family: "sofia-pro", sans-serif !important;
+      font-size: 14px !important;
+
+      @media only screen and (max-width: $xlarge) {
+        font-size: 12px !important;
+      }
+
+      @media only screen and (max-width: $large) {
+        font-size: 14px !important;
+      }
+
+      @media only screen and (max-width: $medium) {
+        font-size: 12px !important;
+      }
+    }
+
+    .recharts-legend-wrapper {
+      .recharts-legend-item {
+        padding: 4px 8px !important;
+        border-radius: 4px;
+
+        @media only screen and (max-width: $medium) {
+          padding: 2px 6px !important; /* Padding reducido */
+        }
+      }
+    }
+
+    // Override para leyendas de barras para que estén una junto a otra
+    .bar-legend {
+      .recharts-legend-wrapper {
+        left: 0 !important;
+        bottom: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+        margin: 0 auto !important;
+        position: relative !important;
+
+        .recharts-default-legend {
+          display: inline-flex !important;
+          flex-direction: row !important;
+          flex-wrap: nowrap !important;
+          justify-content: center !important;
+          text-align: center !important;
+          width: auto !important;
+          margin: 0 auto !important;
+
+          .recharts-legend-item {
+            display: inline-flex !important;
+            float: none !important;
+            padding: 0 !important;
+            margin: 0 12px !important;
+          }
+        }
+      }
+    }
+
+    // Estilos con mayor especificidad para forzar leyendas horizontales
+    .nutritional-data__bar-chart {
+      .recharts-cartesian-axis.recharts-xAxis text {
+        font-family: "sofia-pro", sans-serif !important;
+        font-size: 14px !important;
+
+        @media only screen and (max-width: $xlarge) {
+          font-size: 12px !important;
+        }
+
+        @media only screen and (max-width: $large) {
+          font-size: 14px !important;
+        }
+
+        @media only screen and (max-width: $medium) {
+          font-size: 12px !important;
+        }
+
+        @media only screen and (max-width: $small) {
+          font-size: 11px !important;
+        }
+      }
+
+      .recharts-legend-wrapper {
+        position: absolute !important;
+        left: 0 !important;
+        width: 100% !important;
+        text-align: center !important;
+        display: flex !important;
+        justify-content: center !important;
+        bottom: 8px !important;
+
+        @media only screen and (max-width: $large) {
+          width: fit-content !important;
+          text-align: left !important;
+          justify-content: flex-start !important;
+          bottom: 16px !important;
+        }
+
+        @media only screen and (max-width: $medium) {
+          bottom: 32px !important;
+        }
+
+        ul.recharts-default-legend {
+          display: flex !important;
+          flex-direction: row !important;
+          justify-content: center !important;
+          margin: 0 auto !important;
+          padding: 0 !important;
+
+          li.recharts-legend-item {
+            float: none !important;
+            display: inline-flex !important;
+            gap: 3px !important;
+            margin: 0 6px !important;
+          }
+        }
+      }
+    }
+
+    .recharts-default-legend {
+      .recharts-legend-item-text {
+        color: $black-color !important;
+        font-family: "sofia-pro", sans-serif !important;
+        font-size: 14px !important;
+
+        @media only screen and (max-width: $xlarge) {
+          font-size: 12px !important;
+        }
+
+        @media only screen and (max-width: $large) {
+          font-size: 14px !important;
+        }
+
+        @media only screen and (max-width: $medium) {
+          font-size: 12px !important;
+        }
+      }
+    }
+
+    .recharts-legend-item-text {
+      color: $black-color !important;
+      font-family: "sofia-pro", sans-serif !important;
+      display: flex;
+      align-items: center;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: $black-color !important;
+      }
+
+      @media only screen and (max-width: $medium) {
+        font-size: 12px !important;
+      }
+    }
+
+    // Para mejorar alineación de leyenda con íconos
+    .recharts-legend-item {
+      display: flex !important;
+      align-items: center !important;
+    }
+
+    // Ajustes para ejes en tamaños medianos
+    .recharts-cartesian-axis-tick-value {
+      @media only screen and (max-width: $medium) {
+        font-size: 12px !important;
+      }
+    }
+
+    // Para los valores del tooltip
+    .recharts-tooltip-label,
+    .recharts-tooltip-item-value,
+    .recharts-tooltip-item-name {
+      @media only screen and (max-width: $medium) {
+        font-size: 11px !important;
+      }
+    }
+
+    // Remover borde de selección
+    .recharts-wrapper {
+      .recharts-sector {
+        outline: none !important;
+        stroke: none !important;
+
+        &:focus,
+        &:hover,
+        &:active {
+          outline: none !important;
+          stroke: none !important;
+        }
+      }
+    }
+
+    // Asegurar que no haya bordes en ningún estado
+    .recharts-pie-sector {
+      outline: none !important;
+
+      &:focus,
+      &:hover,
+      &:active {
+        outline: none !important;
+      }
+    }
+
+    // Estilo para el tooltip
+    .recharts-tooltip-wrapper {
+      .recharts-default-tooltip {
+        background-color: white !important;
+        border: none !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+      }
+    }
+  }
+}
