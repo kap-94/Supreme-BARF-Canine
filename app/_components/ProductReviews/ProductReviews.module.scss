@@ -1,0 +1,194 @@
+@import "@/app/_styles/functions.scss";
+@import "@/app/_styles/variables.scss";
+
+.product-reviews {
+  &__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 48px 24px 60px;
+  }
+
+  &__header {
+    margin-bottom: 48px;
+    text-align: left;
+  }
+
+  &__title {
+    margin-bottom: 0;
+    font-size: 28px;
+
+    @media only screen and (max-width: $medium) {
+      font-size: 24px;
+    }
+  }
+
+  &__slider-container {
+    position: relative;
+    // padding: 0 40px;
+
+    @media only screen and (max-width: $small) {
+      // padding: 0 20px;
+    }
+  }
+
+  &__slider {
+    width: 100%;
+
+    :global {
+      .swiper-button-next,
+      .swiper-button-prev {
+        width: 36px;
+        height: 36px;
+        background-color: $primary-color;
+        border-radius: 50%;
+        color: #ffffff;
+
+        &::after {
+          font-size: 14px;
+          font-weight: bold;
+        }
+
+        &:hover {
+          background-color: darken($primary-color, 5%);
+        }
+      }
+
+      .swiper-button-prev {
+        left: 0;
+      }
+
+      .swiper-button-next {
+        right: 0;
+      }
+    }
+  }
+
+  &__slide {
+    width: 400px !important;
+    height: auto;
+
+    // @media only screen and (max-width: $large) {
+    //   width: 350px !important;
+    // }
+
+    @media only screen and (max-width: $medium) {
+      width: 300px !important;
+    }
+
+    @media only screen and (max-width: $small) {
+      width: 100% !important; // Cambia aquí para que ocupe todo el ancho
+      max-width: 100%; // Añade esta línea
+    }
+  }
+
+  &__review-card {
+    background-color: $white-color;
+    border-radius: 12px;
+    padding: 20px;
+    height: 200px;
+    overflow-y: auto;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+
+    &::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+    }
+
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
+  }
+
+  &__review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+
+    @media only screen and (max-width: $small) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+  }
+
+  &__author-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: rgba($primary-color, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $primary-color;
+    color: $white-color;
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+
+  &__author-name {
+    color: $black-color;
+    margin-bottom: 2px;
+    font-size: 15px;
+  }
+
+  &__date {
+    color: rgba($black-color, 0.6);
+    font-size: 12px;
+  }
+
+  &__rating {
+    display: flex;
+    gap: 2px;
+  }
+
+  &__star {
+    font-size: 16px;
+    color: #d1d1d1;
+
+    &--filled {
+      color: #ffd700;
+    }
+  }
+
+  &__content {
+    color: rgba($black-color, 0.85);
+    line-height: 1.5;
+    font-size: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}

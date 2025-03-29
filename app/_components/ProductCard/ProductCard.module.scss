@@ -1,125 +1,214 @@
-@import "../../_styles/functions.scss";
-@import "../../_styles/variables.scss";
+@import "@/app/_styles/functions.scss";
+@import "@/app/_styles/variables.scss";
 
-.product-card {
+.featured-product-card {
+  max-width: 310px;
+  height: 372px;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  max-width: 680px;
-  width: 580px;
-  transition: all 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
 
-  @media only screen and (max-width: 1380px) {
-    width: 100%;
+  &--with-hover {
+    // &:hover {
+    //   transform: translateY(-5px);
+    //   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+    // }
+  }
+
+  &--compact {
+    height: 260px;
+
+    .featured-product-card__image-container {
+      flex: 0 0 160px;
+    }
+
+    .featured-product-card__content {
+      padding: 10px;
+    }
+
+    .featured-product-card__title {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+  }
+
+  &--subscription {
+    // border: 1px solid rgba($accent-color, 0.3);
+  }
+
+  // -- Contenedor Imagen --
+  &__image-container {
+    flex: 0 0 50%;
+    position: relative;
+    background-color: #fafafa;
+    overflow: hidden;
+    text-align: center;
+
+    .featured-product-card__image {
+      object-fit: cover; // Llena el contenedor
+      object-position: center;
+    }
+  }
+
+  &__badge {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    // width: 30%;
+    // height: 44px;
+    // border-radius: 50%;
+    background-color: $accent-color;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    // justify-content: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.18);
+    }
+
+    &-text {
+      color: #fff !important;
+      font-size: 12px;
+      font-weight: 600 !important;
+      letter-spacing: 0.5px;
+    }
   }
 
   &__header {
-    position: relative;
-    height: 620px;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    flex-direction: column;
-    margin-bottom: 24px;
-    padding: 60px 36px 36px;
-    background-color: $secondary-color-dark;
-    border: 5px solid $white-color;
-    border-radius: $card-radious;
-
-    @media only screen and (max-width: 1200px) {
-      height: 546px;
-      margin-bottom: 20px;
-      padding: 60px 36px 20px;
-    }
-
-    @media only screen and (max-width: 680px) {
-      height: 346px;
-      margin-bottom: 24px;
-      padding: 60px 32px 24px;
-    }
+    justify-content: space-between;
+    margin-bottom: 6px;
   }
 
-  &__image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform: scale(1.02);
-    filter: brightness(1.1) drop-shadow(0px 8px 20px rgba(153, 115, 90, 0.3));
-  }
-
-  &__title {
-    font-size: rem(28) !important;
-
-    @media only screen and (max-width: 680px) {
-      font-size: rem(24) !important;
-      letter-spacing: rem(0.06) !important;
-    }
-  }
-
-  &__textbox {
-    position: relative;
-    z-index: 1;
-    text-align: center;
+  // -- Contenido --
+  &__content {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    padding: 12px;
+  }
 
-    @media only screen and (max-width: 680px) {
-      gap: 16px;
+  // -- Título --
+  &__title {
+    margin-bottom: 6px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-family: "sofia-pro", sans-serif !important;
+  }
+
+  &__subtitle {
+    font-size: 14px;
+    color: rgba($black-color, 0.7);
+    margin-bottom: 6px;
+  }
+
+  // -- Descripción --
+  &__description {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-top: 12px;
+    color: #007185;
+    text-decoration: none;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 12px;
+    font-family: "sofia-pro", sans-serif !important;
+
+    &:hover {
+      text-decoration: underline;
     }
   }
 
-  &__body {
-    padding: 0 40px;
-    margin-bottom: 32px;
+  // -- Contenedor Precio --
+  &__price-container {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-top: auto;
+  }
 
-    @media only screen and (max-width: 1200px) {
-      margin-bottom: 24px;
+  &__price,
+  &__discounted-price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #b12704;
+  }
+
+  &__original-price {
+    font-size: 14px;
+    color: #767676;
+    text-decoration: line-through;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .featured-product-card {
+    max-width: 100%;
+  }
+}
+
+/* Media Query para dispositivos móviles */
+@media only screen and (max-width: 768px) {
+  .featured-product-card {
+    height: auto;
+
+    &--compact {
+      height: auto;
+      max-height: 300px;
     }
   }
 
-  &__button {
-    p {
-      color: $black-color !important;
+  .featured-product-card__image-container {
+    flex: 0 0 240px; // Fija la altura del contenedor de imagen en móviles
+
+    .featured-product-card--compact & {
+      flex: 0 0 140px;
     }
   }
 
-  &__excerpt {
+  .featured-product-card__content {
+    padding: 16px;
+
+    .featured-product-card--compact & {
+      padding: 12px;
+    }
+  }
+
+  .featured-product-card__title {
     font-size: 16px;
-    line-height: 1.5;
-    text-align: center;
   }
 
-  &__footer {
-    align-self: center;
-    padding-inline: 28px;
-    margin-bottom: 32px;
+  .featured-product-card__description {
+    font-size: 14px;
+  }
 
-    @media only screen and (max-width: 1200px) {
-      margin-bottom: 24px;
+  .featured-product-card__price,
+  .featured-product-card__discounted-price {
+    font-size: 18px;
+  }
+
+  .featured-product-card__original-price {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .featured-product-card__image-container {
+    flex: 0 0 200px; // Fija la altura del contenedor de imagen en móviles
+
+    .featured-product-card--compact & {
+      flex: 0 0 120px;
     }
   }
-
-  @media only screen and (max-width: 680px) {
-    & {
-      min-width: unset;
-      max-width: unset;
-      width: 100%;
-    }
-  }
-
-  //   &__overlay {
-  //     background: linear-gradient(
-  //       0deg,
-  //       rgba(0, 0, 0, 0.65),
-  //       rgba(0, 0, 0, 0) 50%
-  //     );
-  //     position: absolute;
-  //     top: 0;
-  //     left: 0;
-  //     right: 0;
-  //     bottom: 0;
-  //   }
 }
