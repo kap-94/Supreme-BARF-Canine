@@ -1,52 +1,22 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { AnimatedText, Button } from "@/app/_components";
-
 import classNames from "classnames/bind";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import aboutImage from "@/public/about-image.jpg";
-import dogAndBanana from "@/public/dog-and-banana.jpg";
-import dogPov from "@/public/dog-pov.jpg";
 import styles from "./About.module.scss";
-import ImageGrid, { ImageGridVariant } from "@/app/_components/ImageGrid";
 
 const cx = classNames.bind(styles);
 
-// Lista de variantes disponibles para el grid
-const gridVariants: ImageGridVariant[] = [
-  "masonry",
-  "diagonal",
-  "stepped",
-  "cinematic",
-  "filmstrip",
-  "overlapping",
-  "rotated",
-  "asymmetric",
-  "staggered",
-  "geometric",
-  "dynamic-spacing",
-];
-
 const About = () => {
-  // La variante predeterminada puede cambiarse según tu preferencia
-  const [gridVariant, setGridVariant] =
-    useState<ImageGridVariant>("dynamic-spacing");
-
   const containerRef = useRef<HTMLDivElement>(null);
-  const headingRef = useRef<HTMLDivElement>(null);
-  const buttonWrapperRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLDivElement>(null);
-
-  // Función para cambiar a la siguiente variante (solo para demostración)
-  const changeGridVariant = () => {
-    const currentIndex = gridVariants.indexOf(gridVariant);
-    const nextIndex = (currentIndex + 1) % gridVariants.length;
-    setGridVariant(gridVariants[nextIndex]);
-  };
+  const imageRef = useRef<HTMLDivElement>(null);
+  const textBottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Register ScrollToPlugin
@@ -54,9 +24,9 @@ const About = () => {
 
     if (
       !containerRef.current ||
-      !headingRef.current ||
-      !buttonWrapperRef.current ||
-      !buttonRef.current
+      !buttonRef.current ||
+      !imageRef.current ||
+      !textBottomRef.current
     )
       return;
 
@@ -74,12 +44,13 @@ const About = () => {
       };
 
       // Set initial states
-      gsap.set(headingRef.current, {
+      gsap.set([buttonContainer], {
         opacity: 0,
+        scale: 0.98,
         y: 20,
       });
 
-      gsap.set(buttonWrapperRef.current, {
+      gsap.set(textBottomRef.current, {
         opacity: 0,
         y: 20,
       });
@@ -89,7 +60,7 @@ const About = () => {
 
       mainTimeline
         .to(
-          headingRef.current,
+          textBottomRef.current,
           {
             opacity: 1,
             y: 0,
@@ -99,14 +70,14 @@ const About = () => {
           0
         )
         .to(
-          buttonWrapperRef.current,
+          buttonContainer,
           {
             opacity: 1,
             y: 0,
             duration: 0.8,
             ease: "power3.out",
           },
-          0.9
+          0.2
         );
 
       // Button hover animation
@@ -170,15 +141,17 @@ const About = () => {
   return (
     <section id="about-section" className={cx("about")} ref={containerRef}>
       <div className={cx("about__content")}>
-        <div className={cx("about__heading")} ref={headingRef}>
-          <AnimatedText
-            text="Supreme BARF Canine es un alimento diseñado por amantes de perros para amantes de perros."
-            variant="h3"
-            color="white"
-            animationType="words"
-          />
+        <div className={cx("about__text")}>
+          <div className={cx("about__text--top")}>
+            <AnimatedText
+              text="Supreme BARF Canine es un alimento diseñado por amantes de perros para amantes de perros."
+              variant="h3"
+              color="white"
+              animationType="words"
+            />
+          </div>
 
-          <div className={cx("about__button-wrapper")} ref={buttonWrapperRef}>
+          <div className={cx("about__text--bottom")} ref={textBottomRef}>
             <div ref={buttonRef}>
               <Button
                 variant="link-light"
@@ -190,53 +163,27 @@ const About = () => {
                 Conoce los beneficios
               </Button>
             </div>
+
+            <AnimatedText
+              text="Alimento natural de calidad humana que ofrece beneficios únicos."
+              variant="p1"
+              fontWeight={500}
+              color="white"
+              animationType="block"
+            />
           </div>
         </div>
 
-        <ImageGrid
-          variant={gridVariant}
-          className={cx("about__gallery")}
-          animate={true}
-        >
+        <div className={cx("about__image")} ref={imageRef}>
           <Image
+            src={aboutImage}
             alt="Cute dog"
             className={cx("about__dog")}
             fill
             placeholder="blur"
-            src={aboutImage}
-            sizes="(max-width: 768px) 100%, 33.333%"
+            sizes="(max-width: 1348px) 100vw, (max-width: 1440px) 50vw, 720px"
           />
-          <Image
-            alt="Cute dog profile"
-            className={cx("about__dog")}
-            src={dogAndBanana}
-            fill
-            style={{ opacity: 0.9 }}
-            placeholder="blur"
-            sizes="(max-width: 768px) 100%, 33.333%"
-          />
-          <Image
-            src={dogPov}
-            alt="Cute dog close-up"
-            style={{ opacity: 0.9 }}
-            className={cx("about__dog")}
-            fill
-            placeholder="blur"
-            sizes="(max-width: 768px) 100%, 33.333%"
-          />
-        </ImageGrid>
-
-        {/* Botón para cambiar la variante (solo para demostración, en entorno de desarrollo) */}
-        {/* {process.env.NODE_ENV === "development" && (
-          <div className={cx("about__dev-controls")}>
-            <button
-              onClick={changeGridVariant}
-              className={cx("about__variant-button")}
-            >
-              Cambiar variante (Actual: {gridVariant})
-            </button>
-          </div>
-        )} */}
+        </div>
       </div>
     </section>
   );

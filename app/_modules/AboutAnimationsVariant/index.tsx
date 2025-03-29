@@ -3,16 +3,13 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { AnimatedText, Button } from "@/app/_components";
-
+import ImageGrid, { ImageGridVariant } from "@/app/_components/ImageGrid2";
 import classNames from "classnames/bind";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import aboutImage from "@/public/about-image.jpg";
-import dogAndBanana from "@/public/dog-and-banana.jpg";
-import dogPov from "@/public/dog-pov.jpg";
 import styles from "./About.module.scss";
-import ImageGrid, { ImageGridVariant } from "@/app/_components/ImageGrid";
 
 const cx = classNames.bind(styles);
 
@@ -28,13 +25,10 @@ const gridVariants: ImageGridVariant[] = [
   "asymmetric",
   "staggered",
   "geometric",
-  "dynamic-spacing",
 ];
 
 const About = () => {
-  // La variante predeterminada puede cambiarse según tu preferencia
-  const [gridVariant, setGridVariant] =
-    useState<ImageGridVariant>("dynamic-spacing");
+  const [gridVariant, setGridVariant] = useState<ImageGridVariant>("masonry");
 
   const containerRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLDivElement>(null);
@@ -170,55 +164,51 @@ const About = () => {
   return (
     <section id="about-section" className={cx("about")} ref={containerRef}>
       <div className={cx("about__content")}>
+        {/* Heading */}
         <div className={cx("about__heading")} ref={headingRef}>
-          <AnimatedText
-            text="Supreme BARF Canine es un alimento diseñado por amantes de perros para amantes de perros."
-            variant="h3"
-            color="white"
-            animationType="words"
-          />
-
-          <div className={cx("about__button-wrapper")} ref={buttonWrapperRef}>
-            <div ref={buttonRef}>
-              <Button
-                variant="link-light"
-                icon="right-arrow"
-                target="_self"
-                href="#benefits-section"
-                className={cx("about__button")}
-              >
-                Conoce los beneficios
-              </Button>
-            </div>
+          <div className={cx("about__heading-text")}>
+            <AnimatedText
+              text="Supreme BARF Canine es un alimento diseñado por amantes de perros para amantes de perros."
+              variant="h3"
+              color="white"
+              animationType="words"
+            />
+            <AnimatedText
+              text="Alimento natural de calidad humana que ofrece beneficios únicos."
+              variant="p1"
+              fontWeight={600}
+              color="white"
+              className={cx("about__heading-subtitle")}
+              animationType="block"
+            />
           </div>
         </div>
 
+        {/* Implementación del componente ImageGrid con la variante seleccionada */}
         <ImageGrid
           variant={gridVariant}
           className={cx("about__gallery")}
           animate={true}
         >
           <Image
+            src={aboutImage}
             alt="Cute dog"
             className={cx("about__dog")}
             fill
             placeholder="blur"
-            src={aboutImage}
             sizes="(max-width: 768px) 100%, 33.333%"
           />
           <Image
+            src={aboutImage}
             alt="Cute dog profile"
             className={cx("about__dog")}
-            src={dogAndBanana}
             fill
-            style={{ opacity: 0.9 }}
             placeholder="blur"
             sizes="(max-width: 768px) 100%, 33.333%"
           />
           <Image
-            src={dogPov}
+            src={aboutImage}
             alt="Cute dog close-up"
-            style={{ opacity: 0.9 }}
             className={cx("about__dog")}
             fill
             placeholder="blur"
@@ -226,8 +216,8 @@ const About = () => {
           />
         </ImageGrid>
 
-        {/* Botón para cambiar la variante (solo para demostración, en entorno de desarrollo) */}
-        {/* {process.env.NODE_ENV === "development" && (
+        {/* Botón para cambiar la variante (solo para demostración) */}
+        {process.env.NODE_ENV === "development" && (
           <div className={cx("about__dev-controls")}>
             <button
               onClick={changeGridVariant}
@@ -236,7 +226,22 @@ const About = () => {
               Cambiar variante (Actual: {gridVariant})
             </button>
           </div>
-        )} */}
+        )}
+
+        {/* Button - Debajo de la galería */}
+        <div className={cx("about__button-wrapper")} ref={buttonWrapperRef}>
+          <div ref={buttonRef}>
+            <Button
+              variant="link-light"
+              icon="right-arrow"
+              target="_self"
+              href="#benefits-section"
+              className={cx("about__button")}
+            >
+              Conoce los beneficios
+            </Button>
+          </div>
+        </div>
       </div>
     </section>
   );
