@@ -17,11 +17,11 @@ export const scatteredVariant: VariantConfig = {
         const randomRotation = Math.random() * 30 - 15;
 
         gsap.set(element, {
-          opacity: 1,
-          x: 0,
-          y: 0,
-          rotation: 0,
-          scale: 1,
+          opacity: 0,
+          x: randomX,
+          y: randomY,
+          rotation: randomRotation,
+          scale: 0.5,
         });
       }
     });
@@ -31,18 +31,16 @@ export const scatteredVariant: VariantConfig = {
     elements.forEach((element, index) => {
       if (element) {
         const delay = 0.1 + index * 0.2;
-        const randomX = (Math.random() * 200 - 100) * ((index % 3) + 1);
-        const randomY = (Math.random() * 200 - 100) * ((index % 3) + 1);
-        const randomRotation = Math.random() * 30 - 15;
+
         animateElement(
           element,
           timeline,
           {
-            opacity: 0,
-            x: randomX,
-            y: randomY,
-            rotation: randomRotation,
-            scale: 0.5,
+            opacity: 1,
+            x: 0,
+            y: 0,
+            rotation: 0,
+            scale: 1,
           },
           delay,
           1.5,
