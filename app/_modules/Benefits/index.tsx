@@ -15,7 +15,6 @@ const Benefits: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const dividerRef = useRef<HTMLDivElement>(null);
   const verticalDividerRef = useRef<HTMLDivElement>(null);
   const mediaGridRef = useRef<HTMLDivElement>(null);
 
@@ -49,7 +48,6 @@ const Benefits: React.FC = () => {
     sectionRef,
     headerRef,
     itemsRef,
-    dividerRef,
     verticalDividerRef,
     mediaGridRef,
     cx,
@@ -82,7 +80,7 @@ const Benefits: React.FC = () => {
                 <div
                   key={benefit.id}
                   ref={(el) => setItemRef(el, index)}
-                  className={cx("benefits__item")}
+                  className={cx("benefits__item", "benefits__item--first-row")}
                 >
                   <span className={cx("benefits__item-number")}>
                     {String(benefit.id).padStart(2, "0")}
@@ -114,11 +112,6 @@ const Benefits: React.FC = () => {
                 </div>
               );
             })}
-          </div>
-
-          {/* Divisor horizontal para Desktop */}
-          <div ref={dividerRef} className={cx("benefits__divider-row")}>
-            <div className={cx("benefits__divider")}></div>
           </div>
 
           {/* Segunda fila de beneficios (3 elementos) */}

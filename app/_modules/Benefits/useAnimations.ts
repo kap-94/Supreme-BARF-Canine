@@ -8,7 +8,7 @@ interface UseAnimationsProps {
   sectionRef: React.RefObject<HTMLElement>;
   headerRef: React.RefObject<HTMLDivElement>;
   itemsRef: React.MutableRefObject<(HTMLDivElement | null)[]>;
-  dividerRef: React.RefObject<HTMLDivElement>;
+  dividerRef?: React.RefObject<HTMLDivElement>; // Hacemos dividerRef opcional
   verticalDividerRef: React.RefObject<HTMLDivElement>;
   mediaGridRef: React.RefObject<HTMLDivElement>;
   cx: (...args: any[]) => string;
@@ -65,28 +65,34 @@ export const useAnimations = ({
           }
         }
 
-        // 2. ANIMACIÓN DEL DIVISOR HORIZONTAL (sólo en desktop)
-        if (dividerRef.current && !isTablet && !isMobile) {
-          const divider = dividerRef.current.querySelector(
-            `.${cx("benefits__divider")}`
+        // 2. ANIMACIÓN DEL BORDER-BOTTOM DE FIRST-ROW ITEMS (reemplaza al divisor horizontal)
+        if (!isTablet && !isMobile) {
+          const firstRowItems = document.querySelectorAll(
+            `.${cx("benefits__item--first-row")}`
           );
 
-          if (divider) {
-            gsap.set(divider, {
-              scaleX: 0,
-              opacity: 0,
-            });
-
-            gsap.to(divider, {
-              scaleX: 1,
-              opacity: 1,
-              duration: 1,
-              ease: "power2.inOut",
-              scrollTrigger: {
-                trigger: dividerRef.current,
-                start: "top bottom-=100",
-                toggleActions: "play none none reverse",
-              },
+          if (firstRowItems.length) {
+            // Animar el pseudo-elemento ::after de cada item
+            firstRowItems.forEach((item) => {
+              // Usar GSAP para animar el item con respecto a su propiedad CSS
+              gsap.fromTo(
+                item,
+                {
+                  "--border-scale": 0, // Propiedad CSS personalizada
+                  opacity: 0.5,
+                },
+                {
+                  "--border-scale": 1,
+                  opacity: 1,
+                  duration: 1,
+                  ease: "power2.inOut",
+                  scrollTrigger: {
+                    trigger: item,
+                    start: "top bottom-=100",
+                    toggleActions: "play none none reverse",
+                  },
+                }
+              );
             });
           }
         }

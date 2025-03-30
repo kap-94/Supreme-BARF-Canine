@@ -43,7 +43,7 @@
     &--desktop {
       display: flex;
       flex-direction: column;
-      gap: 32px;
+      gap: 0;
 
       @media only screen and (max-width: $xlarge) {
         display: none; // Ocultar en tablet
@@ -98,33 +98,11 @@
     // Mobile grid
     &--mobile {
       grid-template-columns: 1fr;
-      gap: 0;
+      gap: 16px;
     }
   }
 
-  // Fila para el divisor horizontal
-  &__divider-row {
-    width: 100%;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  // Divisor horizontal
-  &__divider {
-    height: 1px;
-    width: 100%;
-    background: linear-gradient(
-      to right,
-      transparent,
-      rgba($black-color, 0.1) 15%,
-      rgba($black-color, 0.1) 85%,
-      transparent
-    );
-  }
-
-  // Divisor Vertical para tablet
+  // Vertical Divider para tablet
   &__vertical-divider {
     display: none; // Oculto por defecto
 
@@ -156,10 +134,39 @@
     align-items: flex-start;
     text-align: left;
 
+    // Border bottom para items de la primera fila en desktop
+    &--first-row {
+      padding-bottom: 40px; // Espacio entre el contenido y el borde
+      margin-bottom: 20px; // Espacio entre el borde y los items de abajo
+
+      // Variable CSS para animación
+      --border-scale: 0;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          rgba($black-color, 0.1) 15%,
+          rgba($black-color, 0.1) 85%,
+          transparent
+        );
+        transform: scaleX(
+          var(--border-scale, 0)
+        ); // Usar la variable CSS para escalado
+        transform-origin: center;
+        transition: transform 0.3s ease; // Fallback para no-JS
+      }
+    }
+
     // En mobile, añadimos espacio específico
     @media only screen and (max-width: $medium) {
-      padding-top: 24px;
-      padding-bottom: 16px;
+      padding-bottom: 0;
     }
 
     @media only screen and (max-width: $small) {
