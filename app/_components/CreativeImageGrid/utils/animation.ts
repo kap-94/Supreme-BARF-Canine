@@ -14,14 +14,25 @@ import {
 export const createAnimationTimeline = (
   trigger: HTMLElement | HTMLDivElement
 ): gsap.core.Timeline => {
-  // Configuración de ScrollTrigger específica para este elemento
+  // Limpieza previa
+  gsap.killTweensOf(trigger);
+
+  // Configuración de ScrollTrigger
   const scrollTrigger = {
     trigger,
     ...SCROLL_TRIGGER_CONFIG,
   };
 
   // Timeline principal
-  return gsap.timeline({ scrollTrigger });
+  const timeline = gsap.timeline({
+    scrollTrigger,
+    reversed: false, // Dirección normal
+    paused: false, // Iniciar inmediatamente
+    smoothChildTiming: true, // Mejor coordinación de animaciones
+    autoRemoveChildren: false, // Mantener las animaciones en el timeline
+  });
+
+  return timeline;
 };
 
 /**
@@ -34,10 +45,15 @@ export const animateContainer = (
   container: HTMLElement | HTMLDivElement,
   timeline: gsap.core.Timeline
 ): void => {
+  // Limpiar cualquier animación existente
+  gsap.killTweensOf(container);
+
   // Estado inicial para el contenedor
   gsap.set(container, {
     opacity: 0,
     y: 20,
+    immediateRender: true,
+    overwrite: "auto",
   });
 
   // Animación del contenedor
@@ -48,6 +64,7 @@ export const animateContainer = (
       y: 0,
       duration: ANIMATION_DURATIONS.container,
       ease: "power2.out",
+      overwrite: "auto",
     },
     ANIMATION_DELAYS.container
   );
@@ -85,12 +102,17 @@ export const animateElement = (
   duration: number = ANIMATION_DURATIONS.element.medium,
   ease: string = "power2.out"
 ): void => {
+  // Asegurar que no hay animaciones conflictivas
+  gsap.killTweensOf(element);
+
+  // Añadir la animación al timeline
   timeline.to(
     element,
     {
       ...config,
       duration,
       ease,
+      overwrite: "auto", // Asegurar que sobrescribe propiedades conflictivas
     },
     delay
   );

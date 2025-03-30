@@ -12,17 +12,22 @@ import { getVariantConfig } from "../variants";
  * @param variant Variante seleccionada
  * @param animate Flag para activar/desactivar animaciones
  * @param childCount Número de elementos hijo
+ * @param setIsReady Callback para indicar cuando el grid está listo
  */
 export const useGridAnimation = (
   gridRef: RefObject<HTMLDivElement>,
   imageRefs: RefObject<Array<HTMLDivElement | null>>,
   variant: CreativeGridVariant,
   animate: boolean,
-  childCount: number
+  childCount: number,
+  setIsReady: (ready: boolean) => void
 ): void => {
   useLayoutEffect(() => {
     // No animar si la animación está desactivada o no hay referencia
-    if (!animate || !gridRef.current) return;
+    if (!animate || !gridRef.current) {
+      setIsReady(true); // Mostrar inmediatamente si no hay animación
+      return;
+    }
 
     const gridElement = gridRef.current;
     const elements = imageRefs.current?.filter(Boolean) || [];
@@ -30,32 +35,71 @@ export const useGridAnimation = (
     // Obtener configuración de la variante
     const variantConfig = getVariantConfig(variant);
 
-    // 1. Inicializa estados de los elementos (opacidad 0, x/y inicial, etc.)
-    //    Esto asegura que, antes de mostrarse, estén "listos" para animar.
+    // PASO 1: Asegurarnos de que el grid está completamente oculto al principio
+    gsap.set(gridElement, {
+      opacity: 0,
+      visibility: "hidden",
+      immediateRender: true,
+      overwrite: "auto",
+    });
+
+    // PASO 2: Limpiar completamente las animaciones existentes
+    elements.forEach((element) => {
+      if (element) {
+        gsap.killTweensOf(element);
+      }
+    });
+
+    // PASO 3: Ejecutar setup inicial ANTES de mostrar el grid
     variantConfig.initElements(elements, childCount);
 
-    // 2. Cambiamos el atributo para mostrar el contenedor una vez listos
-    //    (de "false" a "true"). Ya no estará oculto.
-    gridElement.setAttribute("data-ready", "true");
+    // Usar requestAnimationFrame para sincronizar con el ciclo de renderizado
+    const rafId = requestAnimationFrame(() => {
+      // Verificar que el componente sigue montado
+      if (!gridElement) return;
 
-    // 3. Configuramos la animación con GSAP MatchMedia + ScrollTrigger (si lo usas)
-    const mm = gsap.matchMedia();
-    mm.add("(min-width: 768px)", () => {
-      // Creamos el timeline
-      const mainTimeline = createAnimationTimeline(gridElement);
+      // Configurar match media
+      const mm = gsap.matchMedia();
 
-      // Animación del contenedor (fade in principal)
-      animateContainer(gridElement, mainTimeline);
+      mm.add("(min-width: 1px)", () => {
+        try {
+          // Crear timeline principal
+          const mainTimeline = createAnimationTimeline(gridElement);
+          mainTimeline.reversed(false);
 
-      // Animación individual de los elementos
-      variantConfig.animateElements(elements, mainTimeline, childCount);
+          // Animación del contenedor principal
+          animateContainer(gridElement, mainTimeline);
+
+          // Animación de los elementos individuales
+          variantConfig.animateElements(elements, mainTimeline, childCount);
+
+          // Marcar como listo para mostrar (después de configurar todo)
+          setIsReady(true);
+        } catch (error) {
+          console.error("Animation error:", error);
+          setIsReady(true); // Mostrar de todos modos si hay error
+        }
+      });
     });
 
     // Limpieza al desmontar
     return () => {
-      mm.revert();
+      cancelAnimationFrame(rafId);
+      gsap.matchMedia().revert();
+
+      // Limpiar todas las animaciones GSAP
+      elements.forEach((element) => {
+        if (element) {
+          gsap.killTweensOf(element);
+        }
+      });
+
+      // Resetear el grid
+      if (gridRef.current) {
+        gridRef.current.setAttribute("data-ready", "false");
+      }
     };
-  }, [animate, variant, childCount, gridRef, imageRefs]);
+  }, [animate, variant, childCount, gridRef, imageRefs, setIsReady]);
 };
 
 export default useGridAnimation;

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactNode, useRef } from "react";
+import React, { ReactNode, useRef, useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import styles from "./styles/CreativeImageGrid.module.scss";
 import { CreativeImageGridProps } from "./types";
@@ -22,8 +22,8 @@ const CreativeImageGrid: React.FC<CreativeImageGridProps> = ({
   animate = true,
   maxImages = DEFAULT_MAX_IMAGES,
 }) => {
-  // Referencia al contenedor principal
   const gridRef = useRef<HTMLDivElement>(null);
+  const [isReady, setIsReady] = useState(false);
 
   // Preparar los elementos hijos como un array y limitar al número máximo
   const childrenArray = React.Children.toArray(children).slice(0, maxImages);
@@ -31,7 +31,14 @@ const CreativeImageGrid: React.FC<CreativeImageGridProps> = ({
 
   // Hooks para refs y animaciones
   const { imageRefs, setItemRef } = useImageRefs(childCount);
-  useGridAnimation(gridRef, imageRefs, variant, animate, childCount);
+  useGridAnimation(
+    gridRef,
+    imageRefs,
+    variant,
+    animate,
+    childCount,
+    setIsReady
+  );
 
   // Obtener la configuración de la variante
   const variantConfig = getVariantConfig(variant);
@@ -43,17 +50,33 @@ const CreativeImageGrid: React.FC<CreativeImageGridProps> = ({
     className
   );
 
+  // Efecto para limpiar estilos al desmontar
+  useEffect(() => {
+    return () => {
+      if (gridRef.current) {
+        gridRef.current.setAttribute("data-ready", "false");
+      }
+    };
+  }, [variant]);
+
   return (
     <div
       className={gridClassName}
       ref={gridRef}
-      data-ready="false" // <-- Importante: oculta en SSR
+      data-ready={isReady ? "true" : "false"}
+      data-variant={variant}
+      style={{
+        opacity: isReady ? 1 : 0,
+        visibility: isReady ? "visible" : "hidden",
+        transition: "opacity 0.3s ease, visibility 0.3s ease",
+      }}
     >
       {childrenArray.map((child, index) => (
         <div
           key={index}
           className={getItemClassName(index, cx)}
           ref={setItemRef(index)}
+          style={{ opacity: isReady ? 1 : 0 }}
         >
           {child}
         </div>
