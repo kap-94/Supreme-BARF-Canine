@@ -1,20 +1,10 @@
 import gsap from "gsap";
-import classNames from "classnames/bind";
 import { VariantConfig } from "../types";
-import { getElementDelay, animateElement } from "../utils/animation";
+import { animateElement, getElementDelay } from "../utils/animation";
 import { getGridClassName } from "../utils/grid";
 
-/**
- * Configuración de la variante "cascade"
- */
 export const cascadeVariant: VariantConfig = {
-  /**
-   * Inicializa los elementos para la variante cascade
-   */
-  initElements: (
-    elements: (HTMLDivElement | null)[],
-    childCount: number
-  ): void => {
+  initElements: (elements, childCount) => {
     elements.forEach((element, index) => {
       if (element) {
         gsap.set(element, {
@@ -27,18 +17,10 @@ export const cascadeVariant: VariantConfig = {
     });
   },
 
-  /**
-   * Anima los elementos según la configuración de cascade
-   */
-  animateElements: (
-    elements: (HTMLDivElement | null)[],
-    timeline: gsap.core.Timeline,
-    childCount: number
-  ): void => {
+  animateElements: (elements, timeline, childCount) => {
     elements.forEach((element, index) => {
       if (element) {
         const delay = getElementDelay(index);
-
         animateElement(
           element,
           timeline,
@@ -56,14 +38,7 @@ export const cascadeVariant: VariantConfig = {
     });
   },
 
-  /**
-   * Devuelve la clase CSS para el contenedor
-   */
-  getContainerClass: (
-    childCount: number,
-    cx: ReturnType<typeof classNames.bind>,
-    className: string = ""
-  ): string => {
+  getContainerClass: (childCount, cx, className = "") => {
     return getGridClassName("cascade", childCount, cx, className);
   },
 };

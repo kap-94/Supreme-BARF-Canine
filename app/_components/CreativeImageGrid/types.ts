@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
-import { gsap } from "gsap";
 
-type ClassNamesFn = (...args: any[]) => string;
+export type ClassNamesFn = (...args: any[]) => string;
 
 export type CreativeGridVariant =
   | "cascade"
@@ -49,4 +48,9 @@ export interface VariantConfig {
     cx: ClassNamesFn,
     className?: string
   ) => string;
+}
+
+// Nuevo tipo para el registro de variantes
+export interface VariantRegistry {
+  [key: string]: VariantConfig;
 }
