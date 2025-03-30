@@ -4,16 +4,6 @@ import { CreativeGridVariant } from "../types";
 import { animateContainer, createAnimationTimeline } from "../utils/animation";
 import { getVariantConfig } from "../variants";
 
-/**
- * Hook para manejar las animaciones del grid
- *
- * @param gridRef Referencia al contenedor del grid
- * @param imageRefs Referencias a los elementos de imagen
- * @param variant Variante seleccionada
- * @param animate Flag para activar/desactivar animaciones
- * @param childCount Número de elementos hijo
- * @param setIsReady Callback para indicar cuando el grid está listo
- */
 export const useGridAnimation = (
   gridRef: RefObject<HTMLDivElement>,
   imageRefs: RefObject<Array<HTMLDivElement | null>>,
@@ -23,19 +13,16 @@ export const useGridAnimation = (
   setIsReady: (ready: boolean) => void
 ): void => {
   useLayoutEffect(() => {
-    // No animar si la animación está desactivada o no hay referencia
     if (!animate || !gridRef.current) {
-      setIsReady(true); // Mostrar inmediatamente si no hay animación
+      setIsReady(true);
       return;
     }
 
     const gridElement = gridRef.current;
     const elements = imageRefs.current?.filter(Boolean) || [];
-
-    // Obtener configuración de la variante
     const variantConfig = getVariantConfig(variant);
 
-    // PASO 1: Asegurarnos de que el grid está completamente oculto al principio
+    // Hide completely before any setup
     gsap.set(gridElement, {
       opacity: 0,
       visibility: "hidden",
@@ -43,58 +30,53 @@ export const useGridAnimation = (
       overwrite: "auto",
     });
 
-    // PASO 2: Limpiar completamente las animaciones existentes
+    // Clean existing animations
     elements.forEach((element) => {
-      if (element) {
-        gsap.killTweensOf(element);
-      }
+      if (element) gsap.killTweensOf(element);
     });
 
-    // PASO 3: Ejecutar setup inicial ANTES de mostrar el grid
+    // Initialize elements in their starting positions
     variantConfig.initElements(elements, childCount);
 
-    // Usar requestAnimationFrame para sincronizar con el ciclo de renderizado
     const rafId = requestAnimationFrame(() => {
-      // Verificar que el componente sigue montado
       if (!gridElement) return;
 
-      // Configurar match media
       const mm = gsap.matchMedia();
 
       mm.add("(min-width: 1px)", () => {
         try {
-          // Crear timeline principal
           const mainTimeline = createAnimationTimeline(gridElement);
           mainTimeline.reversed(false);
 
-          // Animación del contenedor principal
+          // Animate container first
           animateContainer(gridElement, mainTimeline);
 
-          // Animación de los elementos individuales
+          // Show container before element animations
+          gsap.set(gridElement, {
+            opacity: 1,
+            visibility: "visible",
+            immediateRender: true,
+          });
+
+          // Animate elements
           variantConfig.animateElements(elements, mainTimeline, childCount);
 
-          // Marcar como listo para mostrar (después de configurar todo)
+          // Mark as ready
           setIsReady(true);
         } catch (error) {
           console.error("Animation error:", error);
-          setIsReady(true); // Mostrar de todos modos si hay error
+          // Fallback: show content without animation
+          gsap.set(gridElement, { opacity: 1, visibility: "visible" });
+          gsap.set(elements, { opacity: 1, clearProps: "all" });
+          setIsReady(true);
         }
       });
     });
 
-    // Limpieza al desmontar
     return () => {
       cancelAnimationFrame(rafId);
       gsap.matchMedia().revert();
-
-      // Limpiar todas las animaciones GSAP
-      elements.forEach((element) => {
-        if (element) {
-          gsap.killTweensOf(element);
-        }
-      });
-
-      // Resetear el grid
+      elements.forEach((el) => el && gsap.killTweensOf(el));
       if (gridRef.current) {
         gridRef.current.setAttribute("data-ready", "false");
       }

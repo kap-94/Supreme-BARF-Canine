@@ -12,9 +12,6 @@ import { getVariantConfig } from "./variants";
 
 const cx = classNames.bind(styles);
 
-/**
- * CreativeImageGrid - Componente para mostrar imágenes en diferentes layouts creativos
- */
 const CreativeImageGrid: React.FC<CreativeImageGridProps> = ({
   children,
   variant = DEFAULT_VARIANT,
@@ -24,12 +21,9 @@ const CreativeImageGrid: React.FC<CreativeImageGridProps> = ({
 }) => {
   const gridRef = useRef<HTMLDivElement>(null);
   const [isReady, setIsReady] = useState(false);
-
-  // Preparar los elementos hijos como un array y limitar al número máximo
   const childrenArray = React.Children.toArray(children).slice(0, maxImages);
   const childCount = childrenArray.length;
 
-  // Hooks para refs y animaciones
   const { imageRefs, setItemRef } = useImageRefs(childCount);
   useGridAnimation(
     gridRef,
@@ -40,17 +34,13 @@ const CreativeImageGrid: React.FC<CreativeImageGridProps> = ({
     setIsReady
   );
 
-  // Obtener la configuración de la variante
   const variantConfig = getVariantConfig(variant);
-
-  // Clase CSS para el contenedor
   const gridClassName = variantConfig.getContainerClass(
     childCount,
     cx,
     className
   );
 
-  // Efecto para limpiar estilos al desmontar
   useEffect(() => {
     return () => {
       if (gridRef.current) {

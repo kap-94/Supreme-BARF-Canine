@@ -1,7 +1,8 @@
 import { ReactNode } from "react";
-import classNames from "classnames/bind";
+import { gsap } from "gsap";
 
-// Definición de todas las variantes disponibles
+type ClassNamesFn = (...args: any[]) => string;
+
 export type CreativeGridVariant =
   | "cascade"
   | "mosaic"
@@ -25,7 +26,6 @@ export type CreativeGridVariant =
   | "blueprint"
   | "tetris";
 
-// Props para el componente principal
 export interface CreativeImageGridProps {
   children: ReactNode;
   variant: CreativeGridVariant;
@@ -34,18 +34,7 @@ export interface CreativeImageGridProps {
   maxImages?: number;
 }
 
-// Configuración de animación para un elemento individual
-export interface ElementAnimationConfig {
-  initial?: gsap.TweenVars;
-  animation?: gsap.TweenVars;
-  delay?: number;
-  duration?: number;
-  ease?: string;
-}
-
-// Configuración completa de una variante
 export interface VariantConfig {
-  // Cambiamos para aceptar elementos que pueden ser null
   initElements: (
     elements: (HTMLDivElement | null)[],
     childCount: number
@@ -57,12 +46,7 @@ export interface VariantConfig {
   ) => void;
   getContainerClass: (
     childCount: number,
-    cx: ReturnType<typeof classNames.bind>,
+    cx: ClassNamesFn,
     className?: string
   ) => string;
-}
-
-// Registro de todas las variantes disponibles
-export interface VariantRegistry {
-  [key: string]: VariantConfig;
 }

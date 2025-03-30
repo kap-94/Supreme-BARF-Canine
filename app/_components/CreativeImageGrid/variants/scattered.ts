@@ -1,92 +1,67 @@
 import gsap from "gsap";
-import classNames from "classnames/bind";
 import { VariantConfig } from "../types";
 import { animateElement } from "../utils/animation";
 import { getGridClassName } from "../utils/grid";
 
-// Rotaciones finales de los elementos
-const FINAL_ROTATIONS: { [key: number]: number } = {
-  1: -3,
-  2: 5,
-  3: -5,
-  4: 2,
-  5: -1,
-  6: 6,
-  7: -4,
-  8: 3,
-};
-
-// Posiciones finales basadas en el CSS (en porcentajes)
-const FINAL_POSITIONS: { [key: number]: { x: number; y: number } } = {
-  1: { x: 30, y: 25 }, // left: 30%, top: 25%
-  2: { x: 10, y: 5 }, // left: 10%, top: 5%
-  3: { x: -15, y: 15 }, // right: 15% (equivale a left: -15%)
-  4: { x: 15, y: -10 }, // left: 15%, bottom: 10% (equivale a top: -10%)
-  5: { x: -10, y: -15 }, // right: 10%, bottom: 15% (equivale a left: -10%, top: -15%)
-  6: { x: -5, y: 35 }, // right: 5%, top: 35% (equivale a left: -5%)
-  7: { x: 5, y: -30 }, // left: 5%, bottom: 30% (equivale a top: -30%)
-  8: { x: 55, y: 60 }, // left: 55%, top: 60%
-};
+const FINAL_CONFIG = {
+  1: { rotation: -3, x: 30, y: 25, width: 40, height: 55, zIndex: 5 },
+  2: { rotation: 5, x: 10, y: 5, width: 30, height: 40, zIndex: 4 },
+  3: { rotation: -5, x: -15, y: 15, width: 25, height: 35, zIndex: 3 },
+  4: { rotation: 2, x: 15, y: -10, width: 20, height: 28, zIndex: 2 },
+  5: { rotation: -1, x: -10, y: -15, width: 28, height: 38, zIndex: 3 },
+  6: { rotation: 6, x: -5, y: 35, width: 18, height: 22, zIndex: 1 },
+  7: { rotation: -4, x: 5, y: -30, width: 15, height: 25, zIndex: 1 },
+  8: { rotation: 3, x: 55, y: 60, width: 22, height: 20, zIndex: 1 },
+} as const;
 
 export const scatteredVariant: VariantConfig = {
   initElements: (elements, childCount) => {
     elements.forEach((element, index) => {
       if (!element) return;
 
-      // Limpiar animaciones existentes
       gsap.killTweensOf(element);
 
-      // Obtener posición y rotación final
-      const finalPos = FINAL_POSITIONS[index + 1] || { x: 0, y: 0 };
-      const finalRotation = FINAL_ROTATIONS[index + 1] || 0;
+      const configKey = Math.min(index + 1, 8) as keyof typeof FINAL_CONFIG;
+      const finalConfig = FINAL_CONFIG[configKey];
+      const randomFactor = (index % 3) + 1;
 
-      // Calcular posición inicial aleatoria (más extrema)
-      const randomXOffset = (Math.random() * 200 - 100) * ((index % 3) + 1);
-      const randomYOffset = (Math.random() * 200 - 100) * ((index % 3) + 1);
-
-      const initialX = finalPos.x + randomXOffset;
-      const initialY = finalPos.y + randomYOffset;
-      const initialRotation = finalRotation + (Math.random() * 40 - 20);
-
-      // Aplicar estado inicial
       gsap.set(element, {
         opacity: 0,
-        xPercent: initialX,
-        yPercent: initialY,
-        rotation: initialRotation,
+        xPercent: finalConfig.x + (Math.random() * 200 - 100) * randomFactor,
+        yPercent: finalConfig.y + (Math.random() * 200 - 100) * randomFactor,
+        rotation: finalConfig.rotation + (Math.random() * 40 - 20),
         scale: 0.5,
         force3D: true,
         immediateRender: true,
         overwrite: "auto",
       });
 
-      // Guardar posición final como propiedad del elemento
-      element.dataset.finalX = finalPos.x.toString();
-      element.dataset.finalY = finalPos.y.toString();
+      gsap.set(element, {
+        width: `${finalConfig.width}%`,
+        height: `${finalConfig.height}%`,
+        zIndex: finalConfig.zIndex,
+      });
     });
   },
 
-  animateElements: (elements, timeline) => {
+  animateElements: (elements, timeline, childCount) => {
     timeline.reversed(false);
 
     elements.forEach((element, index) => {
       if (!element) return;
 
+      const configKey = Math.min(index + 1, 8) as keyof typeof FINAL_CONFIG;
+      const finalConfig = FINAL_CONFIG[configKey];
       const delay = 0.1 + index * 0.2;
-      const finalRotation = FINAL_ROTATIONS[index + 1] || 0;
-
-      // Recuperar posición final guardada
-      const finalX = parseFloat(element.dataset.finalX || "0");
-      const finalY = parseFloat(element.dataset.finalY || "0");
 
       animateElement(
         element,
         timeline,
         {
           opacity: 1,
-          xPercent: finalX,
-          yPercent: finalY,
-          rotation: finalRotation,
+          xPercent: finalConfig.x,
+          yPercent: finalConfig.y,
+          rotation: finalConfig.rotation,
           scale: 1,
           force3D: true,
           overwrite: "auto",
