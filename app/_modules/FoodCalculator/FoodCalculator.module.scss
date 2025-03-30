@@ -129,13 +129,12 @@
     width: calc(50% - 64px);
     height: 100%;
     z-index: 1;
-    background: #f8dbd1;
+    background: #e7ebec;
     background: linear-gradient(
       270deg,
       rgba(#eed3c7, 0.715),
       rgba(#f8dbd1, 0.615)
     );
-    background: #e7ebec;
 
     @media only screen and (max-width: $large) {
       position: relative;
