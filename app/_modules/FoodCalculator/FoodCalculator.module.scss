@@ -126,7 +126,7 @@
     top: 0;
     bottom: 0;
     right: 0;
-    width: calc(50% - 40px);
+    width: calc(50% - 64px);
     height: 100%;
     z-index: 1;
     background: #f8dbd1;
@@ -135,6 +135,7 @@
       rgba(#eed3c7, 0.715),
       rgba(#f8dbd1, 0.615)
     );
+    background: #e7ebec;
 
     @media only screen and (max-width: $large) {
       position: relative;
@@ -148,16 +149,7 @@
   }
 
   &__image {
-    // filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.1));
-    object-fit: contain;
-    transform: translate(-90px, 42px) scale(1.01);
-
-    @media only screen and (max-width: $large) {
-      transform: translateY(-24px);
-    }
-
-    @media only screen and (max-width: $medium) {
-      transform: translateY(-16px);
-    }
+    object-fit: cover;
+    opacity: 0.95;
   }
 }

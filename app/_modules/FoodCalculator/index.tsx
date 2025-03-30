@@ -5,7 +5,7 @@ import Image from "next/image";
 import classNames from "classnames/bind";
 import { DogForm, SectionHeader } from "@/app/_components";
 import Typography from "@/app/_components/Typography";
-import dogImage from "@/public/food-calculator-dog.png";
+import dogImage from "@/public/food-calculator-dog.jpg";
 import styles from "./FoodCalculator.module.scss";
 
 const cx = classNames.bind(styles);
