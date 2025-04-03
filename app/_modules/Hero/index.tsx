@@ -31,6 +31,14 @@ const Hero = () => {
       <div className={cx("hero__content")}>
         <div className={cx("hero__text")}>
           <Typography
+            variant="p3"
+            fontWeight={900}
+            textTransform="uppercase"
+            className={cx("hero__eyebrow")}
+          >
+            Supreme Barf Canine
+          </Typography>
+          <Typography
             variant="h1"
             fontWeight={900}
             className={cx("hero__title")}
@@ -80,7 +88,7 @@ const Hero = () => {
         <CreativeImageGrid
           variant="scattered"
           className={cx("hero__gallery")}
-          animate={true}
+          animate={false}
           maxImages={5}
         >
           <Image
