@@ -14,7 +14,7 @@ import { Option } from "@/app/_components/Dropdown";
 import styles from "./Header.module.scss";
 import PromoSnackbar from "../PromoSnackbar";
 import CartButton from "../CartButton";
-import CartDrawer from "../CartDrawer";
+import CartDrawer from "../CartDrawer/indexLegacy";
 
 const cx = classnames.bind(styles);
 
