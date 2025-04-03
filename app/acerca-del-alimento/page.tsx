@@ -41,7 +41,7 @@ export default function AcercaDelAlimentoPage() {
         */}
         <About />
         <Benefits />
-        <VeterinaryValidation />
+        {/* <VeterinaryValidation /> */}
         <NutritionalData />
         <Contact />
       </main>
