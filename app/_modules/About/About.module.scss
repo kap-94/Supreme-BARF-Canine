@@ -6,87 +6,117 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 120px 36px;
+  padding: 100px 32px;
 
   @media only screen and (max-width: $xlarge) {
-    padding: 100px 24px;
+    padding: 80px 24px;
   }
 
   @media only screen and (max-width: $medium) {
-    padding: 88px 24px;
+    padding: 72px 24px 48px;
   }
 
   &__content {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    max-width: 1440px;
+    max-width: 1260px;
     width: 100%;
-    gap: 80px;
-    padding-left: 48px;
+    gap: 48px;
 
     @media only screen and (max-width: $xlarge) {
-      flex-direction: column;
+      max-width: 95%;
+      gap: 32px;
+    }
+
+    @media only screen and (max-width: $medium) {
       gap: 48px;
-      max-width: 620px;
-      padding-left: 0;
+      max-width: 90%;
+    }
+
+    @media only screen and (max-width: $small) {
+      max-width: 100%;
+      gap: 24px;
     }
   }
 
-  &__text {
-    width: 50%;
+  &__heading {
+    max-width: 800px;
+    max-width: 800px;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 520px;
+    align-items: center;
+    margin-bottom: 40px;
+    text-align: center;
+    gap: 40px;
 
     @media only screen and (max-width: $xlarge) {
-      justify-content: unset;
-      gap: 36px;
-      height: unset;
-      width: unset;
-    }
-
-    &--top {
-      align-self: flex-start;
       max-width: 640px;
-      width: 100%;
     }
 
-    &--bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 36px;
-
-      @media only screen and (max-width: $xlarge) {
-        flex-direction: column-reverse;
-        align-items: flex-start;
-        width: 100%;
-      }
-
-      p {
-        max-width: 448px;
-      }
+    @media only screen and (max-width: $medium) {
+      max-width: 100%;
+      gap: 32px;
+      margin-bottom: 32px;
     }
   }
 
-  &__image {
-    width: 50%;
-    position: relative;
+  &__gallery {
+    /* Estilos adicionales para el grid que no están ya en el componente ImageGrid */
+  }
+
+  &__button-wrapper {
     display: flex;
     justify-content: center;
-    align-items: center;
-    border: 5px solid $white-color;
-    border-radius: 4px;
-    aspect-ratio: 1 / 1;
+    width: 100%;
+  }
 
-    @media (max-width: 1348px) {
-      width: 100%;
+  &__button {
+    padding: 6px 0;
+
+    @media only screen and (max-width: $xlarge) {
+      padding: 0;
+    }
+
+    p {
+      font-weight: 600 !important;
+      font-size: 18px !important;
+    }
+
+    img {
+      transform: rotate(90deg);
     }
   }
 
   &__dog {
     object-fit: cover;
+    transition: transform 0.5s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  /* Estilos para los controles de desarrollo */
+  &__dev-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  &__variant-button {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
   }
 }

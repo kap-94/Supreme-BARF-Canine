@@ -1,0 +1,117 @@
+.add-to-cart {
+  display: flex;
+  flex-direction: column; // Columna para que el control de cantidad esté arriba de los botones
+  gap: 6px;
+  align-items: flex-start; // Alinea a la izquierda
+  overflow: hidden;
+  max-width: 220px;
+
+  &__quantity {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; // Alinea el contenido a la izquierda
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+
+  // Estilo para la variante dropdown en el control de cantidad
+  &__dropdown {
+    width: 100%;
+  }
+
+  // Estilo para la variante por defecto de cantidad (botones y valor)
+  &__default-quantity {
+    display: flex;
+    align-items: center;
+    border: 1px solid #e7e7e7;
+    gap: 4px; // Espacio uniforme entre los elementos
+  }
+
+  &__quantity-btn {
+    width: 48px;
+    height: 40px;
+    border: none;
+    background-color: #ededed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover:not(:disabled) {
+      background-color: #e8e8e8;
+    }
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  }
+
+  &__quantity-value {
+    width: 40px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    user-select: none;
+    line-height: 40px; // Centrado vertical en 40px de alto
+  }
+
+  &__actions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start; // Alinea los botones a la izquierda
+  }
+
+  &__button {
+    min-width: 220px;
+    border-radius: 4px;
+    padding: 12px 30px;
+    height: auto;
+
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+  }
+}
+
+/* Mobile responsiveness */
+@media only screen and (max-width: 1290px) {
+  .add-to-cart {
+    width: 100%;
+    max-width: unset;
+
+    &__quantity {
+      width: 100%;
+      margin-bottom: 4px;
+    }
+
+    &__actions {
+      width: 100%;
+    }
+
+    &__button {
+      flex: 1;
+      max-width: unset;
+      padding: 14px 24px;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .add-to-cart {
+    &__actions {
+      flex-direction: column;
+    }
+
+    &__button {
+      width: 100%;
+      padding: 12px 24px;
+    }
+  }
+}

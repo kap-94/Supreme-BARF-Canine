@@ -1,0 +1,144 @@
+/* ====== Variante: Floating (Elementos Flotantes) ====== */
+.creative-grid--floating {
+  position: relative;
+  height: 100vh;
+  min-height: 650px;
+  padding: 3rem;
+  background: transparent;
+  overflow: visible;
+
+  // Todos los elementos tienen fondos transparentes y bordes sutiles
+  .creative-grid__item {
+    position: absolute;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background-color: transparent;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform-origin: center center;
+
+    // Contenido dentro del item
+    & > * {
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    &:hover {
+      border-color: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+      transform: scale(1.05) translateY(-10px);
+      z-index: 10;
+    }
+  }
+
+  // Primer elemento - tamaño grande
+  .creative-grid__item--1 {
+    width: 60%;
+    height: 75%;
+    left: 20%;
+    top: 15%;
+    z-index: 5;
+
+    @media (max-width: $medium) {
+      width: 80%;
+      height: 60%;
+      left: 10%;
+      top: 20%;
+    }
+  }
+
+  // Segundo elemento - tamaño medio-grande, posición alterna
+  .creative-grid__item--2 {
+    width: 45%;
+    height: 50%;
+    left: 5%;
+    top: 25%;
+    z-index: 4;
+
+    @media (max-width: $medium) {
+      width: 55%;
+      height: 40%;
+      left: 5%;
+      top: 10%;
+    }
+
+    @media (max-width: $small) {
+      display: none;
+    }
+  }
+
+  // Tercer elemento - tamaño medio, posición alterna
+  .creative-grid__item--3 {
+    width: 35%;
+    height: 40%;
+    right: 5%;
+    top: 35%;
+    z-index: 3;
+
+    @media (max-width: $medium) {
+      width: 45%;
+      height: 35%;
+      right: 5%;
+      top: 65%;
+    }
+
+    @media (max-width: $small) {
+      display: none;
+    }
+  }
+
+  // Cuarto elemento - posición más extrema
+  .creative-grid__item--4 {
+    width: 25%;
+    height: 35%;
+    left: 15%;
+    bottom: 10%;
+    z-index: 2;
+
+    @media (max-width: $medium) {
+      display: none;
+    }
+  }
+
+  // Quinto elemento - posición más extrema
+  .creative-grid__item--5 {
+    width: 30%;
+    height: 35%;
+    right: 15%;
+    top: 10%;
+    z-index: 2;
+
+    @media (max-width: $medium) {
+      display: none;
+    }
+  }
+
+  // Elementos adicionales - tamaños pequeños
+  .creative-grid__item--6,
+  .creative-grid__item--7,
+  .creative-grid__item--8 {
+    width: 20%;
+    height: 25%;
+    z-index: 1;
+
+    @media (max-width: $medium) {
+      display: none;
+    }
+  }
+
+  .creative-grid__item--6 {
+    left: 40%;
+    bottom: 5%;
+  }
+
+  .creative-grid__item--7 {
+    right: 35%;
+    bottom: 15%;
+  }
+
+  .creative-grid__item--8 {
+    left: 45%;
+    top: 5%;
+  }
+}

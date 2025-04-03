@@ -1,0 +1,62 @@
+// app/_components/Breadcrumbs/Breadcrumbs.module.scss
+@import "../../_styles/functions.scss";
+@import "../../_styles/variables.scss";
+
+.breadcrumbs {
+  margin-bottom: 20px;
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    color: rgba($black-color, 0.6);
+
+    &--active {
+      color: $black-color;
+    }
+  }
+
+  &__link {
+    color: rgba($black-color, 0.6);
+    text-decoration: none;
+    transition: color 0.2s ease, text-decoration 0.2s ease;
+
+    &:hover {
+      color: $primary-color;
+      text-decoration: underline;
+    }
+
+    &--active {
+      color: $black-color;
+      font-weight: 500;
+    }
+  }
+
+  &__current {
+    color: $black-color;
+    font-weight: 500;
+  }
+
+  &__separator {
+    margin: 0 8px;
+    color: rgba($black-color, 0.4);
+  }
+
+  @media only screen and (max-width: $small) {
+    &__list {
+      font-size: 12px;
+    }
+
+    &__separator {
+      margin: 0 6px;
+    }
+  }
+}

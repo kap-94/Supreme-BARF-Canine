@@ -13,6 +13,7 @@ interface StepItem {
 interface StepperProps {
   activeStep: number;
   steps?: StepItem[];
+  variant?: "default" | "compact" | "minimal";
 }
 
 const DEFAULT_STEPS: StepItem[] = [
@@ -26,22 +27,47 @@ interface StepProps {
   label: string;
   isActive: boolean;
   isCurrent: boolean;
+  variant: "default" | "compact" | "minimal";
 }
 
-const Step: React.FC<StepProps> = ({ number, label, isActive, isCurrent }) => {
+const Step: React.FC<StepProps> = ({
+  number,
+  label,
+  isActive,
+  isCurrent,
+  variant,
+}) => {
+  if (variant === "minimal") {
+    return (
+      <div
+        className={cx("stepper__minimal-step", {
+          "stepper__minimal-step--active": isActive,
+          "stepper__minimal-step--current": isCurrent,
+        })}
+      />
+    );
+  }
+
   return (
     <div
       className={cx("stepper__step", {
         "stepper__step--active": isActive,
         "stepper__step--current": isCurrent,
+        "stepper__step--compact": variant === "compact",
       })}
     >
       <span className={cx("stepper__step-number")}>
-        {isActive && !isCurrent ? <Check size={18} /> : number}
+        {isActive && !isCurrent ? (
+          <Check size={variant === "compact" ? 14 : 18} />
+        ) : (
+          number
+        )}
       </span>
-      <Typography variant="p2" className={cx("stepper__step-label")}>
-        {label}
-      </Typography>
+      {variant === "default" && (
+        <Typography variant="p2" className={cx("stepper__step-label")}>
+          {label}
+        </Typography>
+      )}
     </div>
   );
 };
@@ -49,9 +75,31 @@ const Step: React.FC<StepProps> = ({ number, label, isActive, isCurrent }) => {
 export const FormStepper: React.FC<StepperProps> = ({
   activeStep,
   steps = DEFAULT_STEPS,
+  variant = "default",
 }) => {
+  if (variant === "minimal") {
+    return (
+      <div className={cx("stepper", "stepper--minimal")}>
+        <div className={cx("stepper__minimal-steps")}>
+          {steps.map((step) => (
+            <Step
+              key={step.step}
+              number={step.step}
+              label={step.label}
+              isActive={activeStep >= step.step}
+              isCurrent={activeStep === step.step}
+              variant={variant}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className={cx("stepper")}>
+    <div
+      className={cx("stepper", { "stepper--compact": variant === "compact" })}
+    >
       <div className={cx("stepper__steps")}>
         {steps.map((step) => (
           <Step
@@ -60,6 +108,7 @@ export const FormStepper: React.FC<StepperProps> = ({
             label={step.label}
             isActive={activeStep >= step.step}
             isCurrent={activeStep === step.step}
+            variant={variant}
           />
         ))}
       </div>

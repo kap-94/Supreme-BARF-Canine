@@ -1,0 +1,45 @@
+/* ====== Archivo: CreativeImageGrid.module.scss ====== */
+
+/* Breakpoints y variables que uses */
+$white-color: #ffffff;
+$medium: 768px;
+$small: 480px;
+
+/* Estilos base compartidos */
+.creative-grid {
+  width: 100%;
+  position: relative;
+
+  &__item {
+    border: 5.5px solid $white-color;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative;
+
+    // &:hover {
+    //   transform: scale(1.02);
+    //   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    //   z-index: 10;
+    // }
+
+    & > * {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      object-fit: cover;
+    }
+  }
+}
+
+/* Oculta el contenedor mientras data-ready="false" (SSR) */
+.creative-grid[data-ready="false"] {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* ====== Importa variantes específicas ====== */
+@import "./variants/cascade.module.scss";
+@import "./variants/floating.module.scss";
+@import "./variants/scattered.module.scss";

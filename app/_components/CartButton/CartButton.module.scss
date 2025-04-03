@@ -1,0 +1,51 @@
+// app/_components/CartIcon/CartButton.module.scss
+
+.cart-button {
+  position: relative;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px; // Gap fijo de 8px
+  transition: all 0.2s ease;
+  color: white;
+
+  &:focus {
+    outline: none;
+  }
+
+  &__icon-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  &__badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: var(--primary-color, #ec8933);
+    border-radius: 50%;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+
+    p {
+      font-size: 12px;
+    }
+  }
+}
+
+// Add responsive styles
+@media (max-width: 1290px) {
+  .cart-button__text {
+    display: none;
+  }
+}

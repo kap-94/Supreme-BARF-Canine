@@ -4,7 +4,6 @@ import Link from "next/link";
 import classNames from "classnames/bind";
 import whatsappImage from "@/public/whatsapp.png";
 import {
-  About,
   Benefits,
   Hero,
   ProductGrid,
@@ -13,18 +12,19 @@ import {
   Contact,
 } from "./_modules";
 import styles from "@/app/page.module.scss";
+import FeaturedProducts from "./_components/FeaturedProducts";
 
 const cx = classNames.bind(styles);
 
 export const metadata: Metadata = {
-  title: "Supreme BARF Canine | Alimento Natural para Perros",
+  title: "Supreme BARF Canine | Alimentación BARF y Comida Natural para Perros",
   description:
-    "Alimentación natural y saludable para perros. Dieta BARF de alta calidad, elaborada por expertos veterinarios. Mejora la salud y vitalidad de tu mascota con ingredientes 100% naturales.",
+    "La mejor dieta BARF para perros en México. Conoce nuestra comida natural y balanceada, preparada con ingredientes 100% reales y supervisada por veterinarios. Mejora la salud y el bienestar de tu mascota con Supreme BARF Canine.",
   keywords: [
     "Supreme BARF Canine",
     "alimento para perros",
-    "dieta BARF",
     "comida natural perros",
+    "dieta BARF",
     "alimentación canina",
     "nutrición canina",
     "comida cruda para perros",
@@ -32,24 +32,6 @@ export const metadata: Metadata = {
     "alimento natural mascotas",
     "salud canina",
   ],
-  openGraph: {
-    title: "Supreme BARF Canine | Alimento Natural para Perros",
-    description:
-      "Alimentación natural y saludable para perros. Dieta BARF de alta calidad, elaborada por expertos veterinarios.",
-    url: "https://www.supremebarfcanine.com",
-    siteName: "Supreme BARF Canine",
-    locale: "es_MX",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Supreme BARF Canine | Alimento Natural para Perros",
-    description:
-      "Alimentación natural y saludable para perros. Dieta BARF de alta calidad.",
-  },
-  alternates: {
-    canonical: "https://www.supremebarfcanine.com",
-  },
 };
 
 export default function Home() {
@@ -57,9 +39,7 @@ export default function Home() {
     <div>
       <main>
         <Hero />
-        <About />
-        <ProductGrid />
-        <Benefits />
+        <FeaturedProducts />
         <FoodCalculator />
         <FrequentAskedQuestions />
         <Contact />

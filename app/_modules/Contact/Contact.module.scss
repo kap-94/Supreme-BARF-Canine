@@ -1,13 +1,14 @@
-@import "../../_styles/variables.scss";
+@import "@/app/_styles/variables.scss";
 
 .contact {
-  background: $secondary-color;
+  background: $secondary-color-light;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 100px 36px;
   gap: 90px;
+  position: relative; /* Ensure position context for absolute positioning */
 
   @media only screen and (max-width: $xlarge) {
     padding: 60px 48px;
@@ -18,12 +19,23 @@
     padding: 48px 24px 64px;
   }
 
+  /* Esta regla aplica sólo al badge dentro del contact section */
+  &:global(#contact-section) :global(.grecaptcha-badge) {
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 1000;
+    bottom: 20px !important;
+    right: 20px !important;
+  }
+
   &__content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     gap: 80px;
-    max-width: 1440px;
+    width: 100%;
+    padding-inline: 16px;
+    max-width: 1280px;
     margin-inline: auto;
 
     @media only screen and (max-width: $xlarge) {
@@ -36,14 +48,18 @@
       max-width: unset;
       width: 100%;
     }
+
+    @media only screen and (max-width: $small) {
+      padding-inline: 0;
+    }
   }
 
   &__form {
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 40px;
+    // align-items: flex-start;
+    gap: 48px;
     width: 600px;
 
     @media only screen and (max-width: $xlarge) {
@@ -51,15 +67,24 @@
       margin-bottom: 20px;
     }
 
-    @media only screen and (max-width: $medium) {
+    @media only screen and (max-width: $large) {
+      align-items: center;
       width: 100%;
+    }
+
+    @media only screen and (max-width: $small) {
+      gap: 40px;
     }
   }
 
   &__form-heading {
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
+    @media only screen and (max-width: $large) {
+      h3,
+      p {
+        text-align: center !important;
+        margin-inline: auto;
+      }
+    }
   }
 
   &__captcha-container {
@@ -69,7 +94,7 @@
   }
 
   &__submit-button {
-    margin-top: 16px;
+    margin-top: 10px;
     margin-inline: auto;
     // padding-inline: 34px;
 
@@ -87,8 +112,11 @@
   }
 
   &__input {
-    background-color: rgba(#e7dfd9, 0.3);
+    // background-color: rgba(#e7dfd9, 0.3);
     padding: 16px;
+    background: $secondary-color-light;
+    .form-control__input {
+    }
   }
 
   &__info {
@@ -97,22 +125,18 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 16px;
+    gap: 20px;
     position: relative; // Añadido para el contenedor de imagen
 
-    @media only screen and (max-width: $xlarge) {
-      margin-top: 16px;
-    }
-
     @media only screen and (max-width: $medium) {
-      gap: 12px;
+      gap: 16px;
     }
   }
 
   &__image-wrapper {
     position: relative;
     width: 100%;
-    aspect-ratio: 530/340;
+    aspect-ratio: 550/360;
 
     @media only screen and (max-width: $xlarge) {
       max-width: 400px;
@@ -125,11 +149,79 @@
   }
 
   &__image {
-    top: 32px !important;
+    // top: 32px !important;
     object-fit: contain;
+    filter: drop-shadow(0px 8px 20px rgba($primary-color, 0.1));
+    -webkit-filter: drop-shadow(0px 8px 20px rgba($primary-color, 0.1));
 
     @media only screen and (max-width: $medium) {
       top: 16px !important;
+    }
+  }
+
+  &__company-name,
+  &__details {
+    transform: translateY(-32px);
+
+    @media only screen and (max-width: $medium) {
+      transform: translateY(-16px);
+      transform: unset;
+    }
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    justify-content: center;
+    gap: 18px;
+    width: 100%;
+    max-width: 500px;
+
+    @media only screen and (max-width: 600px) {
+      align-items: center;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    @media only screen and (max-width: $small) {
+    }
+  }
+
+  &__detail-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+
+    &:first-child {
+      .contact__detail-icon {
+        transform: translateY(2.5px);
+      }
+    }
+  }
+
+  &__detail-icon {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    svg {
+      color: $secondary-color-light;
+      fill: rgba($black-color, 0.9);
+      width: 22px;
+      height: 22px;
+
+      @media only screen and (max-width: $medium) {
+        width: 20px;
+        height: 20px;
+      }
+
+      @media only screen and (max-width: $small) {
+        width: 18px;
+        height: 18px;
+      }
     }
   }
 
@@ -138,5 +230,27 @@
     flex-direction: column;
     width: 100%;
     gap: 24px;
+  }
+
+  .recaptcha-terms {
+    margin-top: -6px;
+    font-size: 0.75rem;
+
+    a {
+      color: #666;
+      text-decoration: underline;
+
+      &:hover {
+        color: $accent-color;
+      }
+    }
+  }
+}
+
+/* Usamos una clase auxiliar para gestionar el badge */
+.recaptchaBadgeHelper {
+  &:global(.grecaptcha-badge) {
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 }

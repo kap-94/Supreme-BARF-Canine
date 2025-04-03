@@ -1,0 +1,103 @@
+@import "@/app/_styles/functions.scss";
+@import "@/app/_styles/variables.scss";
+
+.nutritional-chart {
+  height: 100%;
+  padding: 16px;
+
+  &__section {
+    position: relative;
+    background: $white-color;
+    transition: transform 0.3s ease;
+    min-height: 240px;
+  }
+
+  &__header {
+    margin-bottom: 14px;
+  }
+
+  &__title {
+    font-size: 16px !important;
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+
+  &__subtitle {
+    font-size: 14px;
+    color: rgba($black-color, 0.6);
+  }
+
+  &__container {
+    height: 200px;
+  }
+
+  // Recharts Global Styles
+  :global {
+    .recharts-legend-wrapper {
+      .recharts-legend-item {
+        padding: 4px 8px !important;
+        margin: 2px 0 !important;
+        border-radius: 4px;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+          background-color: rgba($black-color, 0.04);
+        }
+
+        .recharts-legend-item-text {
+          color: $black-color !important;
+        }
+      }
+    }
+
+    .recharts-default-legend {
+      .recharts-legend-item-text {
+        color: $black-color !important;
+      }
+    }
+
+    .recharts-legend-item-text {
+      color: $black-color !important;
+      font-size: 12px !important;
+      font-weight: 500 !important;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: $black-color !important;
+      }
+    }
+
+    // Remover borde de selección con mayor especificidad
+    .recharts-wrapper {
+      .recharts-sector {
+        outline: none !important;
+        stroke: none !important;
+
+        &:focus,
+        &:hover,
+        &:active {
+          outline: none !important;
+          stroke: none !important;
+        }
+      }
+    }
+
+    // Ajustar posición y escala del gráfico
+    .recharts-pie {
+      transform: scale(0.9);
+      cursor: pointer;
+    }
+
+    // Asegurar que no haya bordes en ningún estado
+    .recharts-pie-sector {
+      outline: none !important;
+
+      &:focus,
+      &:hover,
+      &:active {
+        outline: none !important;
+      }
+    }
+  }
+}

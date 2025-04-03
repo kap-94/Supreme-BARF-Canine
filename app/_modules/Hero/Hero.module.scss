@@ -1,350 +1,205 @@
-@import "../../_styles/variables.scss";
+@import "@/app/_styles/variables.scss";
 
 .hero {
-  background: $secondary-color;
+  padding-top: 159px;
+  background: $secondary-color-light;
+  background: rgba($secondary-color-light, 0.8);
+
+  position: relative;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-shrink: 1;
-  margin-top: 88px;
-  min-height: 880px;
-  max-height: 980px;
+  height: 100vh;
   overflow: hidden;
 
-  @media only screen and (max-width: 1280px) {
-    background: $secondary-color;
+  @media only screen and (max-width: $medium) {
     height: auto;
-    margin-top: unset;
-    padding-top: 232px;
+    padding-top: 220px;
+    min-height: 1000px;
     max-height: unset;
   }
 
   &__content {
     display: flex;
-    max-width: 1440px;
+    align-items: center; // Center content vertically
+    max-width: $xlarge;
     width: 100%;
-    padding-left: 48px;
+    height: 100%;
+    padding-inline: 8px;
 
-    @media only screen and (max-width: 1280px) {
+    // padding-left: 48px;
+    min-height: 600px; // Minimum height for content area
+    position: relative;
+    z-index: 2; // Place content above the texture
+
+    @media only screen and (max-width: $medium) {
       flex-direction: column;
       align-items: center;
       padding-left: 0;
       padding-inline: 24px;
       gap: 40px;
     }
+
+    @media only screen and (max-width: $small) {
+      padding-inline: 16px;
+    }
   }
 
   &__text {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    width: 52%;
+    margin-top: -2px;
+    margin-left: 16px;
+    gap: 27px;
+    width: 55%;
     justify-content: center;
-    margin-top: 70px;
 
-    @media only screen and (max-width: 1280px) {
+    @media only screen and (max-width: $medium) {
       width: 100%;
-      margin-top: unset;
       align-items: center;
       text-align: center;
+      margin-left: 0;
     }
   }
 
   &__eyebrow-container {
     display: flex;
     align-items: center;
-    gap: 16px;
+    // gap: 16px;
+    transform: translateY(-6px);
 
-    &::before,
-    &::after {
-      content: "";
-      width: 28px;
-      height: 1px;
-      background: $primary-color;
-      position: relative;
+    // &::before,
+    // &::after {
+    //   content: "";
+    //   width: 24px;
+    //   height: 1px;
+    //   background: $primary-color;
+    //   position: relative;
 
-      &::after,
-      &::before {
-        content: "";
-        position: absolute;
-        width: 4px;
-        height: 4px;
-        border-radius: 50%;
-        background: $primary-color;
-        top: -1.5px;
-      }
-    }
+    //   &::after,
+    //   &::before {
+    //     content: "";
+    //     position: absolute;
+    //     width: 4px;
+    //     height: 4px;
+    //     border-radius: 50%;
+    //     background: $primary-color;
+    //     top: -1.5px;
+    //   }
+    // }
 
-    &::before {
-      &::before {
-        left: 0;
-      }
-      &::after {
-        right: 0;
-      }
-    }
+    // &::before {
+    //   &::before {
+    //     left: 0;
+    //   }
+    //   &::after {
+    //     right: 0;
+    //   }
+    // }
 
-    &::after {
-      &::before {
-        left: 0;
-      }
-      &::after {
-        right: 0;
-      }
-    }
+    // &::after {
+    //   &::before {
+    //     left: 0;
+    //   }
+    //   &::after {
+    //     right: 0;
+    //   }
+    // }
   }
 
   &__eyebrow {
-    font-size: 14px !important;
-    letter-spacing: 3.15px;
-    font-weight: 600;
     color: $primary-color;
-    padding: 4px 0;
+    padding: 4px;
+    transform: translateY(8px);
 
     @media only screen and (max-width: $medium) {
-      font-size: 12px !important;
     }
   }
 
   &__title {
-    max-width: 656px;
+    max-width: 600px;
   }
 
   &__paragraph {
-    max-width: 400px;
-    margin-bottom: 12px;
-    margin-left: 1px;
-    font-size: 20px;
-
-    @media only screen and (max-width: 1280px) {
-      margin-left: unset;
-    }
+    max-width: 440px;
+    font-size: 19px;
 
     @media only screen and (max-width: $medium) {
-      font-size: 16px;
+      font-size: 17px;
     }
   }
 
-  &__benefits {
+  &__buttons {
+    margin-top: 20px;
     display: flex;
-    flex-direction: column;
-    gap: 16px;
-    align-items: flex-start;
-    width: fit-content;
-
-    @media only screen and (max-width: 1280px) {
-      text-align: left;
-      width: 100%;
-      max-width: 400px;
-      gap: 12px;
-    }
-  }
-
-  &__benefit-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    // padding: 8px 0;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    width: 100%;
-    cursor: default;
-
-    @media only screen and (max-width: 1280px) {
-      justify-content: center;
-      width: fit-content;
-      margin-inline: auto;
-    }
-
-    &--delivery {
-      position: relative;
-
-      .hero__benefit-text {
-        padding-right: 30px;
-
-        &::after {
-          content: "*";
-          position: absolute;
-          right: 16px;
-          top: 50%;
-          transform: translateY(-50%);
-          font-size: 26px;
-          color: $black-color;
-          transition: opacity 0.2s ease;
-        }
-      }
-
-      &:hover {
-        &::after {
-          content: "Consulta disponibilidad de entrega";
-          position: absolute;
-          bottom: -22px;
-          left: 48px;
-          color: rgba($primary-color, 0.8);
-          font-size: 12px;
-          white-space: nowrap;
-          font-weight: 500;
-
-          @media only screen and (max-width: 1280px) {
-            left: 50%;
-            bottom: -18px;
-            transform: translateX(-50%);
-          }
-        }
-      }
-    }
-  }
-
-  &__benefit-icon {
-    // opacity: 0.75;
-    width: 22px;
-    height: 22px;
-
-    @media only screen and (max-width: 1280px) {
-      width: 20px;
-      height: 20px;
-    }
-  }
-
-  &__benefit-text {
-    // opacity: 0.9;
-    font-size: 20px;
-    font-weight: 600 !important;
-    letter-spacing: 0.01em;
-    line-height: 1.5;
-
-    @media only screen and (max-width: 1280px) {
-      font-size: 16px !important;
-    }
+    gap: 9px;
   }
 
   &__button {
-    margin-top: 24px;
+    min-width: 184px;
 
-    @media only screen and (max-width: 1280px) {
-      margin-top: 20px !important;
+    @media only screen and (max-width: $medium) {
+      min-width: unset;
     }
   }
 
-  &__images {
-    height: 100%;
+  &__feature {
     display: flex;
-    align-items: flex-end;
-    position: relative;
-    width: 48%;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-    will-change: transform;
+    align-items: center;
+    gap: 8px;
+    margin-top: -10px;
+    max-width: 480px;
 
-    @media only screen and (max-width: 768px) {
-      transform: none;
-      will-change: auto;
+    p {
+      color: rgba($black-color, 0.85);
+    }
+
+    svg {
+      transform: translateY(0.5px);
+      height: 16px;
+      width: 16px;
+      color: rgba($black-color, 0.85);
+      stroke-width: 2.1px;
+
+      @media only screen and (max-width: $medium) {
+        height: 14px;
+        width: 14px;
+      }
+    }
+  }
+
+  &__gallery {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45%;
+    height: 100%;
+    margin-top: 16px;
+
+    @media only screen and (max-width: $medium) {
+      width: 75%;
+      // max-width: 400px;
+      margin-top: 0;
     }
   }
 
   &__image {
-    &--primary,
-    &--secondary,
-    &--tertiary {
-      display: flex;
-      filter: drop-shadow(0px 8px 20px rgba(153, 115, 90, 0.3));
-      transform: translateZ(0);
-      backface-visibility: hidden;
-      will-change: transform;
-
-      img {
-        transform: translateZ(0);
-        backface-visibility: hidden;
-      }
-
-      @media only screen and (max-width: 768px) {
-        transform: none !important;
-        will-change: auto;
-      }
-    }
-  }
-
-  &__image--primary {
-    height: 100%;
-    width: 100%;
-    position: relative;
-    z-index: 2;
-
-    @media only screen and (max-width: 1280px) {
-      aspect-ratio: 1 / 1;
-      height: unset;
-      transform: unset;
-    }
-  }
-
-  &__image--secondary {
-    height: 30%;
-    width: 50%;
-    position: absolute;
-    bottom: 0;
-    left: -60px;
-
-    @media only screen and (max-width: 1280px) {
-      left: -40px;
-    }
-  }
-
-  &__image--tertiary {
-    aspect-ratio: 1;
-    width: 50%;
-    position: absolute;
-    bottom: -120px;
-    right: -60px;
-    z-index: 3;
-
-    @media only screen and (max-width: 1280px) {
-      width: 48%;
-      bottom: -10vw;
-      right: 0;
-    }
-  }
-
-  &__dog {
     object-fit: cover;
-    height: fit-content !important;
-    align-self: flex-end;
+    height: 100%;
+    max-width: 100%;
 
     @media only screen and (max-width: 1280px) {
-      height: 100% !important;
-      max-width: 400px;
       margin-inline: auto;
-      transform: translateY(40px);
-    }
-  }
-
-  &__meat {
-    object-fit: contain;
-    transform: scale(0.95) translateY(24px);
-    filter: brightness(1.05);
-
-    @media only screen and (max-width: 1280px) {
-      transform: unset;
-      object-fit: contain;
     }
 
-    @media only screen and (max-width: $small) {
-      transform: translateX(16px) !important;
+    &--first {
+      transform: scale(1.26) translateY(24px);
+      filter: brightness(1.12) !important;
+
+      @media only screen and (max-width: $medium) {
+        transform: unset;
+      }
     }
-  }
-
-  &__food {
-    object-fit: contain;
-    transform: rotate(-7deg);
-    filter: brightness(1.02);
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
   }
 }

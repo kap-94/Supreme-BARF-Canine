@@ -39,16 +39,21 @@
     }
   }
 
-  &__hamburger-container {
+  &__mobile-actions {
     display: none;
-    background: transparent;
-    border: 1px solid rgba(244, 247, 246, 0.5);
+    align-items: center;
+    gap: 28px;
     z-index: 10000000;
 
     @media only screen and (max-width: 1290px) {
       display: flex;
-      width: fit-content;
     }
+  }
+
+  &__hamburger-container {
+    background: transparent;
+    border: 1px solid rgba(244, 247, 246, 0.5);
+    width: fit-content;
 
     button {
       padding: 12px;
@@ -88,7 +93,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 24px;
+    gap: 40px;
     z-index: 1;
     margin-left: auto !important;
 

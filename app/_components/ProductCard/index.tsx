@@ -1,85 +1,132 @@
-import React, { FC } from "react";
+"use client";
+
+import React from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { Typography } from "@/app/_components";
 import classNames from "classnames/bind";
-import { Button, Typography } from "@/app/_components";
 import styles from "./ProductCard.module.scss";
 
 const cx = classNames.bind(styles);
 
 interface ProductCardProps {
-  eyebrow?: string;
-  title?: string;
-  excerpt?: string;
-  button?: { url: string; target: string; title: string };
-  image: { url: string; alt: string };
-  fontColor?: string;
-  className?: string;
+  id: string;
+  title: string;
+  subtitle: string;
+  shortDescription: string;
+  price: string;
+  discountedPrice?: string;
+  image: string;
+  imageAlt: string;
+  slug: string;
+  isSubscription: boolean;
+  badge?: string;
+  withHover?: boolean;
+  compact?: boolean;
 }
 
-const ProductCard: FC<ProductCardProps> = ({
-  eyebrow,
+const ProductCard: React.FC<ProductCardProps> = ({
   title,
-  excerpt,
-  button,
+  subtitle,
+  shortDescription,
+  price,
+  discountedPrice,
   image,
-  fontColor = "#2c2929",
-  className,
+  imageAlt,
+  slug,
+  isSubscription,
+  badge,
+  withHover = true,
+  compact = false,
 }) => {
   return (
-    <div className={cx("product-card", className)}>
-      {/* Header con imagen y overlay */}
-      <div className={cx("product-card__header")}>
-        <div className={cx("product-card__image")}>
+    <div
+      className={cx("featured-product-card", {
+        "featured-product-card--with-hover": withHover,
+        "featured-product-card--compact": compact,
+        "featured-product-card--subscription": isSubscription,
+      })}
+    >
+      <div className={cx("featured-product-card__image-container")}>
+        <Link href={`/productos/${slug}`}>
           <Image
-            src={image.url}
-            alt={image.alt}
-            layout="fill"
-            objectFit="contain"
+            src={image}
+            alt={imageAlt}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className={cx("featured-product-card__image")}
           />
-        </div>
-        <div className={cx("product-card__overlay")} />
+        </Link>
 
-        <div className={cx("product-card__textbox")}>
-          {/* <Typography variant="h5" className={cx("product-card__eyebrow")}>
-            {eyebrow}
-          </Typography> */}
+        {badge && (
+          <div className={cx("featured-product-card__badge")}>
+            <Typography
+              variant="p3"
+              fontWeight={700}
+              className={cx("featured-product-card__badge-text")}
+            >
+              {badge}
+            </Typography>
+          </div>
+        )}
+      </div>
+
+      <div className={cx("featured-product-card__content")}>
+        <div className={cx("featured-product-card__header")}>
           <Typography
-            variant="h4"
-            fontWeight={700}
-            className={cx("product-card__title")}
+            variant="p3"
+            className={cx("featured-product-card__title")}
           >
             {title}
           </Typography>
+
+          {!compact && subtitle && (
+            <Typography
+              variant="p3"
+              className={cx("featured-product-card__subtitle")}
+            >
+              {subtitle}
+            </Typography>
+          )}
+        </div>
+
+        {!compact && (
+          <Link
+            href={`/productos/${slug}`}
+            className={cx("featured-product-card__description")}
+          >
+            {shortDescription}
+          </Link>
+        )}
+
+        <div className={cx("featured-product-card__price-container")}>
+          {discountedPrice ? (
+            <>
+              <Typography
+                variant="p3"
+                className={cx("featured-product-card__original-price")}
+              >
+                {price}
+              </Typography>
+              <Typography
+                variant="p2"
+                fontWeight={700}
+                className={cx("featured-product-card__discounted-price")}
+              >
+                {discountedPrice}
+              </Typography>
+            </>
+          ) : (
+            <Typography
+              variant="p2"
+              fontWeight={700}
+              className={cx("featured-product-card__price")}
+            >
+              {price}
+            </Typography>
+          )}
         </div>
       </div>
-
-      {/* Body con excerpt */}
-      {/* <div className={cx("product-card__body")}>
-        <Typography
-          variant="p1"
-          className={cx("product-card__excerpt")}
-          align="center"
-          style={{ color: fontColor }}
-        >
-          {excerpt}
-        </Typography>
-      </div> */}
-
-      {/* Footer con botón */}
-      {/* <div className={cx("product-card__footer")}>
-        <Button
-          variant="link-dark"
-          icon="right-arrow"
-          size="large"
-          className={cx("product-card__button")}
-        >
-          Order
-        </Button>
-
-        <Button variant="link-dark" icon="right-arrow" href="/">
-          Compra y ahorra
-        </Button>
-      </div> */}
     </div>
   );
 };

@@ -1,0 +1,40 @@
+@import "@/app/_styles/functions.scss";
+@import "@/app/_styles/variables.scss";
+
+.container {
+  margin-top: 159px;
+  padding: 48px 24px;
+  background: $white-color;
+  max-width: 1280px;
+  margin-inline: auto;
+  min-height: 90vh;
+
+  // Contenedor del header (título y subtítulo)
+  &__header {
+    margin-inline: auto;
+    width: 100%;
+    // margin-bottom: 64px;
+
+    @media only screen and (max-width: $medium) {
+      z-index: 1;
+      margin-bottom: 40px;
+    }
+  }
+
+  // Contenedor interno general
+  &__inner-wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  // Contenedor para la fila de tarjetas (incluyendo los skeletons)
+  &__row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+
+    @media only screen and (max-width: $medium) {
+      grid-template-columns: 1fr;
+    }
+  }
+}

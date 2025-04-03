@@ -1,0 +1,25 @@
+@import "../../_styles/functions.scss";
+@import "../../_styles/variables.scss";
+
+.container {
+  padding: 60px 24px 40px;
+  background: $white-color;
+  display: flex;
+  flex-direction: column;
+  margin-inline: auto;
+  max-width: 1280px;
+  max-width: $xlarge;
+
+  @media only screen and (max-width: $medium) {
+    gap: 16px; // Espacio entre header y grid
+  }
+}
+
+.featured-products {
+  &__header {
+    @media only screen and (max-width: $medium) {
+      align-items: center;
+      text-align: center;
+    }
+  }
+}

@@ -7,16 +7,20 @@ $column-gap: rem(32);
 // Breakpoints
 $small: 480px;
 $medium: 768px;
+$large: 1024px;
 $xlarge: 1348px;
 
 // Colors (También deben ser asignados en el componente Typography)
 $primary-color: #1f3a41;
+// $secondary-color: rgba(#f9f1eb, 0.9);
 $secondary-color: #f9f1eb;
+// $secondary-color-light: rgba(#fef8f4, 0.9);
 $secondary-color-light: #fef8f4;
-$secondary-color-dark: #e3c9b7;
+// $secondary-color-dark: #e3c9b7;
+$secondary-color-dark: #f4ebe4;
 $accent-color: #ec863b;
 $white-color: #fdfdff;
-$black-color: #383734;
+$black-color: #3e3d3b;
 $success-color: #4bb050;
 $warning-color: #e1b667;
 $information-color: #2196f3;

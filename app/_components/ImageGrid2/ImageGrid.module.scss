@@ -1,0 +1,697 @@
+@import "../../_styles/variables.scss";
+
+.image-grid {
+  width: 100%;
+  margin-bottom: 40px;
+  position: relative;
+
+  /* Estilos comunes para todos los elementos */
+  &__primary,
+  &__secondary,
+  &__tertiary,
+  &__additional {
+    border: 5px solid $white-color;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative;
+
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    & > * {
+      /* Asegurar que las imágenes y otros contenidos se ajusten al contenedor */
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+  }
+
+  /* Variante 1: Diseño simétrico con efecto masonry */
+  &--masonry {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 200px 180px;
+    gap: 16px;
+
+    @media only screen and (max-width: $medium) {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .image-grid__primary {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+      width: 100%;
+      height: 100%;
+
+      @media only screen and (max-width: $medium) {
+        height: 280px;
+      }
+    }
+
+    .image-grid__secondary {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      width: 100%;
+      height: 100%;
+
+      @media only screen and (max-width: $medium) {
+        height: 280px;
+      }
+    }
+
+    .image-grid__tertiary {
+      grid-column: 3;
+      grid-row: 1;
+      width: 100%;
+      height: 100%;
+
+      @media only screen and (max-width: $medium) {
+        height: 200px;
+      }
+    }
+  }
+
+  /* Variante 2: Diseño creativo con diagonal */
+  &--diagonal {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.2fr;
+    grid-template-rows: 180px 200px;
+    gap: 16px;
+
+    @media only screen and (max-width: $medium) {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .image-grid__primary {
+      grid-column: 1 / span 2;
+      grid-row: 1;
+      width: 100%;
+      height: 100%;
+
+      @media only screen and (max-width: $medium) {
+        height: 250px;
+      }
+    }
+
+    .image-grid__secondary {
+      grid-column: 3;
+      grid-row: 1 / span 2;
+      width: 100%;
+      height: 100%;
+
+      @media only screen and (max-width: $medium) {
+        height: 280px;
+      }
+    }
+
+    .image-grid__tertiary {
+      grid-column: 1;
+      grid-row: 2;
+      width: 100%;
+      height: 100%;
+
+      @media only screen and (max-width: $medium) {
+        height: 200px;
+      }
+    }
+  }
+
+  /* Variante 3: Diseño simétrico con tres columnas escalonadas */
+  &--stepped {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+    @media only screen and (max-width: $medium) {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .image-grid__primary {
+      grid-column: 1;
+      width: 100%;
+      height: 360px;
+
+      @media only screen and (max-width: $medium) {
+        height: 280px;
+      }
+    }
+
+    .image-grid__secondary {
+      grid-column: 2;
+      width: 100%;
+      height: 310px;
+      transform: translateY(25px);
+
+      &:hover {
+        transform: translateY(25px) scale(1.02);
+      }
+
+      @media only screen and (max-width: $medium) {
+        height: 260px;
+        transform: none;
+
+        &:hover {
+          transform: scale(1.02);
+        }
+      }
+    }
+
+    .image-grid__tertiary {
+      grid-column: 3;
+      width: 100%;
+      height: 280px;
+      transform: translateY(50px);
+
+      &:hover {
+        transform: translateY(50px) scale(1.02);
+      }
+
+      @media only screen and (max-width: $medium) {
+        height: 240px;
+        transform: none;
+
+        &:hover {
+          transform: scale(1.02);
+        }
+      }
+    }
+  }
+
+  /* Variante 4: Diseño cinematográfico panorámico */
+  &--cinematic {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr auto;
+    gap: 16px;
+
+    @media only screen and (max-width: $medium) {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .image-grid__primary {
+      grid-column: 1 / span 4;
+      grid-row: 1;
+      width: 100%;
+      height: 240px;
+
+      @media only screen and (max-width: $medium) {
+        height: 220px;
+      }
+    }
+
+    .image-grid__secondary {
+      grid-column: 1 / span 2;
+      grid-row: 2;
+      width: 100%;
+      height: 180px;
+
+      @media only screen and (max-width: $medium) {
+        height: 200px;
+      }
+    }
+
+    .image-grid__tertiary {
+      grid-column: 3 / span 2;
+      grid-row: 2;
+      width: 100%;
+      height: 180px;
+
+      @media only screen and (max-width: $medium) {
+        height: 200px;
+      }
+    }
+  }
+
+  /* Variante 5: Diseño de cinta de película */
+  &--filmstrip {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 300px;
+
+    @media only screen and (max-width: $medium) {
+      flex-direction: column;
+      height: auto;
+      gap: 12px;
+    }
+
+    .image-grid__primary {
+      width: 38%;
+      height: 100%;
+
+      @media only screen and (max-width: $medium) {
+        width: 100%;
+        height: 280px;
+      }
+    }
+
+    .image-grid__secondary {
+      width: 32%;
+      height: 85%;
+
+      @media only screen and (max-width: $medium) {
+        width: 100%;
+        height: 250px;
+      }
+    }
+
+    .image-grid__tertiary {
+      width: 26%;
+      height: 75%;
+
+      @media only screen and (max-width: $medium) {
+        width: 100%;
+        height: 220px;
+      }
+    }
+  }
+
+  /* Variante 6: Diseño con superposición */
+  &--overlapping {
+    position: relative;
+    width: 100%;
+    height: 400px;
+
+    @media only screen and (max-width: $medium) {
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .image-grid__primary {
+      width: 38%;
+      height: 250px;
+      position: absolute;
+      left: 0;
+      top: 60px;
+      z-index: 2;
+
+      @media only screen and (max-width: $medium) {
+        position: relative;
+        width: 100%;
+        height: 240px;
+        top: 0;
+      }
+    }
+
+    .image-grid__secondary {
+      width: 19%;
+      height: 310px;
+      position: absolute;
+      left: 35%;
+      top: 0;
+      z-index: 3;
+
+      @media only screen and (max-width: $medium) {
+        position: relative;
+        width: 100%;
+        height: 200px;
+        left: 0;
+      }
+    }
+
+    .image-grid__tertiary {
+      width: 17%;
+      height: 200px;
+      position: absolute;
+      right: 0;
+      top: 90px;
+      z-index: 2;
+
+      @media only screen and (max-width: $medium) {
+        position: relative;
+        width: 100%;
+        height: 180px;
+        top: 0;
+      }
+    }
+  }
+
+  /* Variante 7: Diseño con rotaciones sutiles */
+  &--rotated {
+    position: relative;
+    width: 100%;
+    height: 380px;
+    margin: 40px 0;
+
+    @media only screen and (max-width: $medium) {
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .image-grid__primary {
+      width: 38%;
+      height: 250px;
+      position: absolute;
+      left: 0;
+      top: 40px;
+      transform: rotate(-2deg);
+      z-index: 2;
+
+      &:hover {
+        transform: rotate(-2deg) scale(1.02);
+      }
+
+      @media only screen and (max-width: $medium) {
+        position: relative;
+        width: 100%;
+        height: 240px;
+        top: 0;
+        transform: none;
+
+        &:hover {
+          transform: scale(1.02);
+        }
+      }
+    }
+
+    .image-grid__secondary {
+      width: 19%;
+      height: 310px;
+      position: absolute;
+      left: 36%;
+      top: 0;
+      transform: rotate(1deg);
+      z-index: 1;
+
+      &:hover {
+        transform: rotate(1deg) scale(1.02);
+      }
+
+      @media only screen and (max-width: $medium) {
+        position: relative;
+        width: 100%;
+        height: 200px;
+        left: 0;
+        transform: none;
+
+        &:hover {
+          transform: scale(1.02);
+        }
+      }
+    }
+
+    .image-grid__tertiary {
+      width: 19%;
+      height: 270px;
+      position: absolute;
+      right: 0;
+      top: 25px;
+      transform: rotate(-1deg);
+      z-index: 3;
+
+      &:hover {
+        transform: rotate(-1deg) scale(1.02);
+      }
+
+      @media only screen and (max-width: $medium) {
+        position: relative;
+        width: 100%;
+        height: 200px;
+        right: 0;
+        top: 0;
+        transform: none;
+
+        &:hover {
+          transform: scale(1.02);
+        }
+      }
+    }
+  }
+
+  /* Variante 8: Grid asimétrico con diferentes alturas */
+  &--asymmetric {
+    display: grid;
+    grid-template-columns: 5fr 4fr 3fr;
+    grid-template-rows: 380px;
+    gap: 16px;
+    width: 100%;
+    margin: 40px 0;
+
+    @media only screen and (max-width: $medium) {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      height: auto;
+    }
+
+    .image-grid__primary {
+      width: 100%;
+      height: 100%;
+      align-self: center;
+
+      @media only screen and (max-width: $medium) {
+        height: 250px;
+      }
+    }
+
+    .image-grid__secondary {
+      width: 100%;
+      height: 100%;
+      transform: translateY(-30px);
+
+      &:hover {
+        transform: translateY(-30px) scale(1.02);
+      }
+
+      @media only screen and (max-width: $medium) {
+        height: 230px;
+        transform: none;
+
+        &:hover {
+          transform: scale(1.02);
+        }
+      }
+    }
+
+    .image-grid__tertiary {
+      width: 100%;
+      height: 100%;
+      transform: translateY(30px);
+
+      &:hover {
+        transform: translateY(30px) scale(1.02);
+      }
+
+      @media only screen and (max-width: $medium) {
+        height: 200px;
+        transform: none;
+
+        &:hover {
+          transform: scale(1.02);
+        }
+      }
+    }
+  }
+
+  /* Variante 9: Diseño escalonado vertical */
+  &--staggered {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 80px;
+    gap: 16px;
+    width: 100%;
+    margin: 40px 0;
+
+    @media only screen and (max-width: $medium) {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .image-grid__primary {
+      grid-column: 1;
+      grid-row: 1 / span 4;
+      width: 100%;
+      height: 100%;
+
+      @media only screen and (max-width: $medium) {
+        height: 250px;
+      }
+    }
+
+    .image-grid__secondary {
+      grid-column: 2;
+      grid-row: 2 / span 4;
+      width: 100%;
+      height: 100%;
+
+      @media only screen and (max-width: $medium) {
+        height: 230px;
+      }
+    }
+
+    .image-grid__tertiary {
+      grid-column: 3;
+      grid-row: 1 / span 3;
+      width: 100%;
+      height: 100%;
+
+      @media only screen and (max-width: $medium) {
+        height: 200px;
+      }
+    }
+  }
+
+  /* Variante 10: Diseño geométrico con formas distintas */
+  &--geometric {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 16px;
+    width: 100%;
+    height: 440px;
+    margin: 40px 0;
+
+    @media only screen and (max-width: $medium) {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      gap: 12px;
+    }
+
+    .image-grid__primary {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+      width: 100%;
+      height: 100%;
+
+      /* Asegurar que la transformación de hover vuelva a la posición original */
+      &:hover {
+        transform: scale(1.02); /* Sin rotación que afecte la posición */
+      }
+
+      @media only screen and (max-width: $medium) {
+        height: 280px;
+      }
+    }
+
+    .image-grid__secondary {
+      grid-column: 2;
+      grid-row: 1;
+      width: 100%;
+      height: 100%;
+
+      /* Asegurar que la transformación de hover vuelva a la posición original */
+      &:hover {
+        transform: scale(1.02); /* Sin rotación que afecte la posición */
+      }
+
+      @media only screen and (max-width: $medium) {
+        height: 220px;
+      }
+    }
+
+    .image-grid__tertiary {
+      grid-column: 2;
+      grid-row: 2;
+      width: 100%;
+      height: 100%;
+
+      /* Asegurar que la transformación de hover vuelva a la posición original */
+      &:hover {
+        transform: scale(1.02); /* Sin rotación que afecte la posición */
+      }
+
+      @media only screen and (max-width: $medium) {
+        height: 220px;
+      }
+    }
+  }
+
+  /* Variante 11: Espaciado dinámico y ángulos */
+  &--dynamic-spacing {
+    display: flex;
+    width: 100%;
+    height: 350px;
+    margin: 40px 0;
+    align-items: center;
+
+    @media only screen and (max-width: $medium) {
+      height: auto;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .image-grid__primary {
+      width: 45%;
+      height: 85%;
+      margin-right: 3%;
+      transform: rotate(-1deg);
+
+      &:hover {
+        transform: rotate(-1deg) scale(1.02);
+      }
+
+      @media only screen and (max-width: $medium) {
+        width: 100%;
+        height: 260px;
+        transform: none;
+        margin-right: 0;
+
+        &:hover {
+          transform: scale(1.02);
+        }
+      }
+    }
+
+    .image-grid__secondary {
+      width: 28%;
+      height: 95%;
+      margin-right: 3%;
+      transform: rotate(1deg);
+
+      &:hover {
+        transform: rotate(1deg) scale(1.02);
+      }
+
+      @media only screen and (max-width: $medium) {
+        width: 100%;
+        height: 230px;
+        transform: none;
+        margin-right: 0;
+
+        &:hover {
+          transform: scale(1.02);
+        }
+      }
+    }
+
+    .image-grid__tertiary {
+      width: 21%;
+      height: 75%;
+      transform: rotate(-0.5deg);
+
+      &:hover {
+        transform: rotate(-0.5deg) scale(1.02);
+      }
+
+      @media only screen and (max-width: $medium) {
+        width: 100%;
+        height: 200px;
+        transform: none;
+
+        &:hover {
+          transform: scale(1.02);
+        }
+      }
+    }
+  }
+}

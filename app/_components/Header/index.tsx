@@ -13,6 +13,8 @@ import { Option } from "@/app/_components/Dropdown";
 
 import styles from "./Header.module.scss";
 import PromoSnackbar from "../PromoSnackbar";
+import CartButton from "../CartButton";
+import CartDrawer from "../CartDrawer/indexLegacy";
 
 const cx = classnames.bind(styles);
 
@@ -123,12 +125,18 @@ const Header: FC<HeaderProps> = ({
       {/* <div className={cx("light-overlay")}></div> */}
 
       <div className={cx("header__inner-wrapper")}>
-        <div className={cx("header__hamburger-container")} onClick={toggleMenu}>
-          <Hamburger
-            // dark={menuIsLight || headerDark}
-            dark={false}
-            active={hamburgerIsActive}
-          />
+        <div className={cx("header__mobile-actions")}>
+          <CartButton />
+          <div
+            className={cx("header__hamburger-container")}
+            onClick={toggleMenu}
+          >
+            <Hamburger
+              // dark={menuIsLight || headerDark}
+              dark={false}
+              active={hamburgerIsActive}
+            />
+          </div>
         </div>
 
         {/* <div className={cx("header__nav")}> */}
@@ -160,19 +168,9 @@ const Header: FC<HeaderProps> = ({
               // frontPageID={frontPageID}
             />
           )}
-
-          {/* {currentVariant !== "scrolled" && buttonMapping["sign-in"] && (
-            <Button
-              size="small"
-              key={buttonMapping["sign-in"].id}
-              icon="user"
-              className={cx("header__sign-in-button")}
-            >
-              {buttonMapping["sign-in"].children}
-            </Button>
-          )} */}
+          {/* Add CartIcon here */}
+          <CartButton />
         </div>
-        {/* </div> */}
       </div>
 
       <div className={cx("mobile")}>
@@ -187,17 +185,6 @@ const Header: FC<HeaderProps> = ({
               active={hamburgerIsActive}
             />
           </div>
-
-          {/* {buttonMapping["sign-in"] && (
-              <Button
-                size="small"
-                key={buttonMapping["sign-in"].id}
-                icon="user"
-                className={cx("mobile__sign-in-button")}
-              >
-                {buttonMapping["sign-in"].children}
-              </Button>
-            )} */}
         </div>
 
         <div className={cx("mobile__menu")}>

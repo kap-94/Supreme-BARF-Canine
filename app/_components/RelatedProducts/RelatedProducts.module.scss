@@ -1,0 +1,109 @@
+@import "@/app/_styles/functions.scss";
+@import "@/app/_styles/variables.scss";
+
+.related-products {
+  padding: 60px 24px;
+  background-color: #f8f9fa;
+
+  @media only screen and (max-width: $medium) {
+    padding: 40px 24px;
+  }
+
+  &__header {
+    margin-inline: auto;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 48px;
+    z-index: 1;
+
+    @media only screen and (max-width: $medium) {
+      margin-bottom: 32px;
+    }
+  }
+
+  &__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+    padding: 0 40px;
+
+    @media only screen and (max-width: $small) {
+      padding: 0 20px;
+    }
+  }
+
+  &__swiper {
+    width: 100%;
+    padding-bottom: 48px;
+    // max-width: 1008px;
+    margin: 0 auto;
+    margin-right: auto;
+
+    :global {
+      .swiper-wrapper {
+        display: flex;
+        gap: 24px;
+      }
+
+      .swiper-slide {
+        width: 280px !important;
+        margin-right: 0 !important;
+
+        @media only screen and (max-width: $medium) {
+          width: 260px !important;
+        }
+
+        @media only screen and (max-width: $small) {
+          width: 230px !important;
+        }
+      }
+
+      .swiper-button-next,
+      .swiper-button-prev {
+        width: 36px;
+        height: 36px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        color: $primary-color;
+        transition: all 0.3s ease;
+
+        &::after {
+          font-size: 14px;
+          font-weight: bold;
+        }
+
+        &:hover {
+          background: $white-color;
+          transform: scale(1.05);
+        }
+      }
+
+      .swiper-button-prev {
+        left: 0;
+      }
+
+      .swiper-button-next {
+        right: 0;
+      }
+
+      .swiper-pagination {
+        bottom: 0 !important;
+
+        &-bullet {
+          width: 8px;
+          height: 8px;
+          background: rgba($black-color, 0.2);
+          transition: all 0.3s ease;
+          opacity: 1;
+
+          &-active {
+            width: 20px;
+            border-radius: 4px;
+            background: $primary-color;
+          }
+        }
+      }
+    }
+  }
+}

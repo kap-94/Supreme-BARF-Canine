@@ -1,20 +1,19 @@
-// Button.tsx
 import React, { ReactNode } from "react";
 import classNames from "classnames/bind";
 import Icon, { IconName } from "@/app/_components/CustomIcon";
 import { Typography, Spinner } from "@/app/_components";
 import styles from "./Button.module.scss";
-import { LucideIcon, ArrowRight, Search, User } from "lucide-react"; // Importar LucideIcon y los iconos que necesites
+import { LucideIcon, ArrowRight, Search, User } from "lucide-react";
 
 const cx = classNames.bind(styles);
 
-// Definir interfaz para la configuración del icono
+// Configuración para el icono
 interface IconConfig {
   source: "custom" | "lucide";
   name: IconName | string;
 }
 
-// Base props para el botón
+// Propiedades base del botón (se agregó la prop "disabled" y se conserva "isDisabled" para compatibilidad)
 export interface ButtonBaseProps {
   children: ReactNode;
   className?: string;
@@ -28,22 +27,22 @@ export interface ButtonBaseProps {
   type?: "button" | "submit" | "reset";
   variant?: "primary" | "secondary" | "accent" | "link-light" | "link-dark";
   isLoading?: boolean;
+  disabled?: boolean; // NUEVA prop
+  isDisabled?: boolean; // Prop antigua (mantener para compatibilidad)
 }
 
-// Props cuando el variant es "link-light" o "link-dark"
+// Props para variante de link
 interface LinkVariantProps extends ButtonBaseProps {
   variant: "link-light" | "link-dark";
   href: string;
   target: "_blank" | "_self";
-  isDisabled?: never;
 }
 
-// Props para todos los otros variants
+// Props para los otros variants
 interface NonLinkVariantProps extends ButtonBaseProps {
   variant?: "primary" | "secondary" | "accent";
   href?: undefined;
   target?: undefined;
-  isDisabled?: boolean;
 }
 
 export type ButtonProps = LinkVariantProps | NonLinkVariantProps;
@@ -63,7 +62,7 @@ const renderIcon = (
 ) => {
   if (!iconProp) return null;
 
-  // Si es solo un string, asumimos que es un icono personalizado (retrocompatibilidad)
+  // Si se pasa un string, asumimos que es un icono personalizado (retrocompatibilidad)
   if (typeof iconProp === "string") {
     return (
       <Icon
@@ -75,7 +74,7 @@ const renderIcon = (
     );
   }
 
-  // Si es un objeto IconConfig
+  // Si es un objeto IconConfig y el source es "lucide"
   if (iconProp.source === "lucide") {
     const LucideIconComponent = LUCIDE_ICONS[iconProp.name];
     return LucideIconComponent ? (
@@ -105,7 +104,8 @@ export const Button: React.FC<ButtonProps> = React.memo(
     variant = "primary",
     children,
     className = "",
-    isDisabled = false,
+    disabled,
+    isDisabled,
     fullWidth = false,
     icon,
     onClick,
@@ -116,7 +116,9 @@ export const Button: React.FC<ButtonProps> = React.memo(
     isLoading = false,
     target,
   }) => {
-    const actualDisabled = isDisabled || isLoading;
+    // Se prioriza la prop "disabled" y se utiliza "isDisabled" si no está definida
+    const actualDisabled =
+      (disabled !== undefined ? disabled : isDisabled) || isLoading;
 
     const buttonClasses = cx(
       "button",
@@ -138,7 +140,7 @@ export const Button: React.FC<ButtonProps> = React.memo(
         ? { height: 20, width: 20 }
         : { height: 16, width: 16 };
 
-    // Para los variants de link
+    // Para variantes de link
     if ((variant === "link-light" || variant === "link-dark") && href) {
       return (
         <a
@@ -147,6 +149,12 @@ export const Button: React.FC<ButtonProps> = React.memo(
           style={style}
           target={target}
           rel="noopener noreferrer"
+          aria-disabled={actualDisabled}
+          onClick={(e) => {
+            if (actualDisabled) {
+              e.preventDefault();
+            }
+          }}
         >
           <Typography
             variant="p1"
@@ -176,7 +184,7 @@ export const Button: React.FC<ButtonProps> = React.memo(
       >
         <Typography
           variant="p1"
-          fontWeight={700}
+          fontWeight={800}
           className={cx("button__text")}
         >
           {children}

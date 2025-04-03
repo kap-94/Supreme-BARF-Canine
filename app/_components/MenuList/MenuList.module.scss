@@ -7,7 +7,8 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: var(--menu-gap, 24px);
+  // gap: var(--menu-gap, 24px);
+  gap: 40px;
   position: relative;
   z-index: 1;
   flex-wrap: wrap;
@@ -116,7 +117,6 @@
     justify-content: center;
     text-wrap: nowrap;
     text-decoration: none;
-    font-weight: 400 !important;
 
     .icon {
       flex: 0;

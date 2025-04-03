@@ -1,33 +1,66 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { AnimatedText, Button } from "@/app/_components";
+
 import classNames from "classnames/bind";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import aboutImage from "@/public/about-image.jpg";
+import dogAndBanana from "@/public/dog-and-banana.jpg";
+import dogPov from "@/public/dog-pov.jpg";
 import styles from "./About.module.scss";
+import ImageGrid, { ImageGridVariant } from "@/app/_components/ImageGrid";
 
 const cx = classNames.bind(styles);
 
+// Lista de variantes disponibles para el grid
+const gridVariants: ImageGridVariant[] = [
+  "masonry",
+  "diagonal",
+  "stepped",
+  "cinematic",
+  "filmstrip",
+  "overlapping",
+  "rotated",
+  "asymmetric",
+  "staggered",
+  "geometric",
+  "dynamic-spacing",
+];
+
 const About = () => {
+  // La variante predeterminada puede cambiarse según tu preferencia
+  const [gridVariant, setGridVariant] =
+    useState<ImageGridVariant>("dynamic-spacing");
+
   const containerRef = useRef<HTMLDivElement>(null);
+  const headingRef = useRef<HTMLDivElement>(null);
+  const buttonWrapperRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
-  const textBottomRef = useRef<HTMLDivElement>(null);
+
+  // Función para cambiar a la siguiente variante (solo para demostración)
+  const changeGridVariant = () => {
+    const currentIndex = gridVariants.indexOf(gridVariant);
+    const nextIndex = (currentIndex + 1) % gridVariants.length;
+    setGridVariant(gridVariants[nextIndex]);
+  };
 
   useEffect(() => {
+    // Register ScrollToPlugin
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
     if (
       !containerRef.current ||
-      !buttonRef.current ||
-      !imageRef.current ||
-      !textBottomRef.current
+      !headingRef.current ||
+      !buttonWrapperRef.current ||
+      !buttonRef.current
     )
       return;
 
     const mm = gsap.matchMedia();
-    const imageElement = imageRef.current;
     const buttonContainer = buttonRef.current;
     const cleanupFunctions: (() => void)[] = [];
 
@@ -41,13 +74,12 @@ const About = () => {
       };
 
       // Set initial states
-      gsap.set([buttonContainer, imageElement], {
+      gsap.set(headingRef.current, {
         opacity: 0,
-        scale: 0.98,
         y: 20,
       });
 
-      gsap.set(textBottomRef.current, {
+      gsap.set(buttonWrapperRef.current, {
         opacity: 0,
         y: 20,
       });
@@ -56,32 +88,25 @@ const About = () => {
       const mainTimeline = gsap.timeline({ scrollTrigger });
 
       mainTimeline
-        .to(imageElement, {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          duration: 1.2,
-          ease: "power3.out",
-        })
         .to(
-          textBottomRef.current,
+          headingRef.current,
           {
             opacity: 1,
             y: 0,
             duration: 0.8,
             ease: "power2.out",
           },
-          "-=0.8"
+          0
         )
         .to(
-          buttonContainer,
+          buttonWrapperRef.current,
           {
             opacity: 1,
             y: 0,
             duration: 0.8,
             ease: "power3.out",
           },
-          "-=0.8"
+          0.9
         );
 
       // Button hover animation
@@ -107,9 +132,28 @@ const About = () => {
         buttonElement.addEventListener("mouseenter", handleButtonEnter);
         buttonElement.addEventListener("mouseleave", handleButtonLeave);
 
+        // Add smooth scroll on click
+        const handleButtonClick = (e: Event) => {
+          e.preventDefault();
+          const targetSection = document.querySelector("#benefits-section");
+          if (targetSection) {
+            gsap.to(window, {
+              duration: 1.2,
+              scrollTo: {
+                y: targetSection,
+                offsetY: 80,
+              },
+              ease: "power3.inOut",
+            });
+          }
+        };
+
+        buttonElement.addEventListener("click", handleButtonClick);
+
         cleanupFunctions.push(() => {
           buttonElement.removeEventListener("mouseenter", handleButtonEnter);
           buttonElement.removeEventListener("mouseleave", handleButtonLeave);
+          buttonElement.removeEventListener("click", handleButtonClick);
         });
       }
     });
@@ -126,47 +170,73 @@ const About = () => {
   return (
     <section id="about-section" className={cx("about")} ref={containerRef}>
       <div className={cx("about__content")}>
-        <div className={cx("about__text")}>
-          <div className={cx("about__text--top")}>
-            <AnimatedText
-              text="Supreme BARF Canine es un alimento diseñado por amantes de perros para amantes de perros."
-              variant="h3"
-              color="white"
-              animationType="words"
-            />
-          </div>
+        <div className={cx("about__heading")} ref={headingRef}>
+          <AnimatedText
+            text="Supreme BARF Canine es un alimento diseñado por amantes de perros para amantes de perros."
+            variant="h3"
+            color="white"
+            animationType="words"
+          />
 
-          <div className={cx("about__text--bottom")} ref={textBottomRef}>
+          <div className={cx("about__button-wrapper")} ref={buttonWrapperRef}>
             <div ref={buttonRef}>
               <Button
                 variant="link-light"
                 icon="right-arrow"
-                target="_blank"
-                href="https://supremebarfcanine.shop/"
+                target="_self"
+                href="#benefits-section"
+                className={cx("about__button")}
               >
-                Visita la tienda
+                Conoce los beneficios
               </Button>
             </div>
-
-            <AnimatedText
-              text="Alimento natural de calidad humana con nutrientes esenciales que ofrece beneficios únicos."
-              variant="p1"
-              color="white"
-              animationType="block"
-            />
           </div>
         </div>
 
-        <div className={cx("about__image")} ref={imageRef}>
+        <ImageGrid
+          variant={gridVariant}
+          className={cx("about__gallery")}
+          animate={true}
+        >
           <Image
-            src={aboutImage}
             alt="Cute dog"
             className={cx("about__dog")}
             fill
             placeholder="blur"
-            sizes="(max-width: 1348px) 100vw, (max-width: 1440px) 50vw, 720px"
+            src={aboutImage}
+            sizes="(max-width: 768px) 100%, 33.333%"
           />
-        </div>
+          <Image
+            alt="Cute dog profile"
+            className={cx("about__dog")}
+            src={dogAndBanana}
+            fill
+            style={{ opacity: 0.9 }}
+            placeholder="blur"
+            sizes="(max-width: 768px) 100%, 33.333%"
+          />
+          <Image
+            src={dogPov}
+            alt="Cute dog close-up"
+            style={{ opacity: 0.9 }}
+            className={cx("about__dog")}
+            fill
+            placeholder="blur"
+            sizes="(max-width: 768px) 100%, 33.333%"
+          />
+        </ImageGrid>
+
+        {/* Botón para cambiar la variante (solo para demostración, en entorno de desarrollo) */}
+        {/* {process.env.NODE_ENV === "development" && (
+          <div className={cx("about__dev-controls")}>
+            <button
+              onClick={changeGridVariant}
+              className={cx("about__variant-button")}
+            >
+              Cambiar variante (Actual: {gridVariant})
+            </button>
+          </div>
+        )} */}
       </div>
     </section>
   );
