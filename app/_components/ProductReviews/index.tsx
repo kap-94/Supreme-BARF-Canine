@@ -32,7 +32,7 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ productId }) => {
       rating: 5,
       content:
         "Mi perro adora este alimento. Desde que empezamos a darle Supreme BARF, su pelaje luce más brillante y tiene mucha más energía. Definitivamente se nota la diferencia entre este alimento natural y las croquetas convencionales.",
-      avatarUrl: "/avatars/avatar1.jpg",
+      avatarUrl: "/carlos-martinez.jpg",
     },
     {
       author: "Ana Rodríguez",
@@ -40,7 +40,7 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ productId }) => {
       rating: 4,
       content:
         "Excelente calidad de ingredientes. Mi veterinario notó la mejora en la salud de mi mascota después de solo un mes. Lo único que podría mejorar es el tamaño de la bolsa, me gustaría una opción más grande para no tener que comprar tan seguido.",
-      avatarUrl: "/avatars/avatar2.jpg",
+      avatarUrl: "/ana-rodriguez.jpg",
     },
     {
       author: "Miguel Sánchez",
@@ -48,16 +48,16 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ productId }) => {
       rating: 5,
       content:
         "Increíble producto. Mi perro es muy exigente con la comida, pero con Supreme BARF come con mucho gusto. He notado menos problemas digestivos y más vitalidad en general. El servicio de entrega también es excelente.",
-      avatarUrl: "/avatars/avatar3.jpg",
+      avatarUrl: "/miguel-sanchez.jpg",
     },
-    {
-      author: "Laura Gómez",
-      date: "10 de diciembre de 2024",
-      rating: 5,
-      content:
-        "Desde que cambié a mi mascota a esta comida, ha mejorado mucho su salud digestiva. Ya no tiene problemas estomacales y se nota más activo. Muy recomendable para perros con sensibilidad alimentaria.",
-      avatarUrl: "/avatars/avatar4.jpg",
-    },
+    // {
+    //   author: "Laura Gómez",
+    //   date: "10 de diciembre de 2024",
+    //   rating: 5,
+    //   content:
+    //     "Desde que cambié a mi mascota a esta comida, ha mejorado mucho su salud digestiva. Ya no tiene problemas estomacales y se nota más activo. Muy recomendable para perros con sensibilidad alimentaria.",
+    //   avatarUrl: "/avatars/avatar4.jpg",
+    // },
   ];
 
   // Swiper configuration

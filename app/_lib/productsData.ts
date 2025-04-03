@@ -96,7 +96,7 @@ export async function getProductsData(): Promise<ProductData[]> {
       ],
       images: [
         {
-          url: "/products.jpeg",
+          url: "/alimento-paquete-8.jpeg",
           alt: "Paquete de 8 bolsas de alimento Supreme BARF para perros",
         },
         {
@@ -138,7 +138,7 @@ export async function getProductsData(): Promise<ProductData[]> {
       ],
       images: [
         {
-          url: "/products.jpeg",
+          url: "/alimento-paquete-16.jpeg",
           alt: "Paquete familiar de 16 bolsas de alimento Supreme BARF",
         },
         {

@@ -39,7 +39,7 @@ const ProductSpecs = () => {
     { label: "Grasas totales", value: "96.43", unit: "g" },
     { label: "Carbohidratos totales", value: "77.48", unit: "g" },
     { label: "Fibra total", value: "10.80", unit: "g" },
-    { label: "Omega 6:3", value: "5.43:1", unit: "" },
+    { label: "Omega 6:3", value: "5.43", unit: "" },
     { label: "Por porción", value: "1000", unit: "g" },
     { label: "Minerales totales", value: "17.47", unit: "g" },
   ];

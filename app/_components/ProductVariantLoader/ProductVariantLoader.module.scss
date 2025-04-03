@@ -1,0 +1,113 @@
+@import "@/app/_styles/variables.scss";
+
+.product-variant-loader {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+/* Asegurar que el selector tenga el mismo ancho que el botón */
+.quantity-selector,
+.add-button {
+  width: 100%;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 46px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: white;
+  width: 100%;
+  max-width: 220px;
+}
+
+.quantity-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #000000; /* Cambiado a negro */
+  transition: all 0.2s ease;
+  padding: 0;
+  z-index: 2; /* Asegurar que esté por encima */
+  background-color: white; /* Fondo blanco para asegurar visibilidad */
+  font-weight: bold;
+
+  &:hover {
+    background-color: #f5f5f5;
+  }
+
+  &:active {
+    background-color: #ebebeb;
+  }
+}
+
+.quantity-input {
+  flex: 1;
+  height: 100%;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-left: 1px solid #e0e0e0;
+  border-right: 1px solid #e0e0e0;
+  padding: 0;
+  outline: none;
+  min-width: 40px;
+  color: #000000; /* Cambiado a negro */
+  -moz-appearance: textfield; /* Firefox */
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &:focus {
+    outline: none;
+    background-color: #f9f9f9;
+  }
+}
+
+.add-button {
+  width: 100%;
+}
+
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Alineado a la izquierda */
+  width: 100%;
+  height: 46px;
+  color: #000000; /* Cambiado a negro */
+  font-weight: 500;
+
+  &::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    margin-right: 8px;
+    animation: spin 0.8s linear infinite;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

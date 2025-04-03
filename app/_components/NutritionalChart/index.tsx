@@ -69,7 +69,7 @@ const NutritionalChart = () => {
       <div className={cx("nutritional-chart__section")}>
         <div className={cx("nutritional-chart__header")}>
           <Typography variant="p3" className={cx("nutritional-chart__title")}>
-            Distribución Nutricional (por bolsa)
+            Distribución Nutricional (Por cada 1000 gramos)
           </Typography>
           {/* <Typography
             variant="p3"

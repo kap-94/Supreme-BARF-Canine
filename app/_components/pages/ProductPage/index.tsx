@@ -8,7 +8,6 @@ import React, {
   useEffect,
 } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { Button, Typography } from "@/app/_components";
 import Breadcrumbs from "@/app/_components/Breadcrumbs";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -387,7 +386,6 @@ const ProductPage: React.FC<ProductPageProps> = ({ productData }) => {
               {[
                 { id: "description", label: "Descripción" },
                 { id: "specifications", label: "Especificaciones" },
-                { id: "nutrition", label: "Nutrición" },
               ].map((tab) => (
                 <button
                   key={tab.id}

@@ -3,6 +3,11 @@
 import React, { useEffect, useState } from "react";
 import { getProductVariantByHandle } from "@/app/_actions/shopify-actions";
 import AddToCartButton from "@/app/_components/AddToCartButton";
+import { Minus, Plus } from "lucide-react";
+import classNames from "classnames/bind";
+import styles from "./ProductVariantLoader.module.scss";
+
+const cx = classNames.bind(styles);
 
 interface ProductVariantLoaderProps {
   productHandle: string;
@@ -20,9 +25,10 @@ const ProductVariantLoader: React.FC<ProductVariantLoaderProps> = ({
   const [variantId, setVariantId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [quantity, setQuantity] = useState(1);
 
-  // Determinar la cantidad de bolsas basado en el handle del producto
-  const getPackQuantity = (): number => {
+  // Determinar la cantidad inicial de bolsas basado en el handle del producto
+  const getInitialPackQuantity = (): number => {
     if (!isMultiPack) return 1;
 
     const match = productHandle.match(/paquete-(\d+)/);
@@ -42,7 +48,10 @@ const ProductVariantLoader: React.FC<ProductVariantLoaderProps> = ({
     return 1;
   };
 
-  const packQuantity = getPackQuantity();
+  useEffect(() => {
+    // Inicializar la cantidad basada en el tipo de producto
+    setQuantity(1); // Siempre comenzamos con 1 unidad
+  }, [productHandle]);
 
   useEffect(() => {
     const loadVariantId = async () => {
@@ -66,10 +75,27 @@ const ProductVariantLoader: React.FC<ProductVariantLoaderProps> = ({
     loadVariantId();
   }, [productHandle, isMultiPack]);
 
+  const incrementQuantity = () => {
+    setQuantity((prev) => prev + 1);
+  };
+
+  const decrementQuantity = () => {
+    setQuantity((prev) => (prev > 1 ? prev - 1 : 1));
+  };
+
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(e.target.value, 10);
+    if (!isNaN(value) && value > 0) {
+      setQuantity(value);
+    } else if (e.target.value === "") {
+      setQuantity(1);
+    }
+  };
+
   if (isLoading) {
     return (
-      <div className={className}>
-        <div className="loading-spinner">Cargando...</div>
+      <div className={cx("product-variant-loader", className)}>
+        <div className={cx("loading-spinner")}>Cargando...</div>
       </div>
     );
   }
@@ -78,16 +104,55 @@ const ProductVariantLoader: React.FC<ProductVariantLoaderProps> = ({
     return <>{fallbackButton}</>;
   }
 
+  const basePackQuantity = getInitialPackQuantity();
+  // Para paquetes, multiplicamos la cantidad base por la cantidad seleccionada
+  const finalQuantity = isMultiPack ? basePackQuantity * quantity : quantity;
+
   return (
-    <AddToCartButton
-      quantityInputVariant={isMultiPack ? "none" : "dropdown"}
-      variantId={variantId}
-      fixedQuantity={packQuantity}
-      className={className}
-      directCheckout={isMultiPack}
-    >
-      {isMultiPack ? "Comprar Paquete" : "Agregar al Carrito"}
-    </AddToCartButton>
+    <div className={cx("product-variant-loader", className)}>
+      {/* Solo mostrar el contador para productos individuales */}
+      {!isMultiPack && (
+        <div className={cx("quantity-selector")}>
+          <button
+            className={cx("quantity-btn", "quantity-btn--minus")}
+            onClick={decrementQuantity}
+            aria-label="Disminuir cantidad"
+            type="button"
+          >
+            <Minus size={18} strokeWidth={2.5} color="#000000" />
+          </button>
+
+          <input
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            className={cx("quantity-input")}
+            value={quantity}
+            onChange={handleQuantityChange}
+            aria-label="Cantidad"
+          />
+
+          <button
+            className={cx("quantity-btn", "quantity-btn--plus")}
+            onClick={incrementQuantity}
+            aria-label="Aumentar cantidad"
+            type="button"
+          >
+            <Plus size={18} strokeWidth={2.5} color="#000000" />
+          </button>
+        </div>
+      )}
+
+      <AddToCartButton
+        quantityInputVariant="none" // Ya manejamos la cantidad aquí
+        variantId={variantId}
+        fixedQuantity={isMultiPack ? basePackQuantity : quantity}
+        className={cx("add-button")}
+        directCheckout={isMultiPack}
+      >
+        {isMultiPack ? "Comprar Paquete" : "Agregar al Carrito"}
+      </AddToCartButton>
+    </div>
   );
 };
 

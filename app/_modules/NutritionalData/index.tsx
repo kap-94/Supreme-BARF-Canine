@@ -34,6 +34,8 @@ const NutritionalData: React.FC = () => {
   // Estado para detectar si la pantalla es medium o más pequeña
   const [isMediumOrSmaller, setIsMediumOrSmaller] = useState(false);
   const [isSmallOrSmaller, setIsSmallOrSmaller] = useState(false);
+  // Nuevo estado para controlar la visibilidad del tooltip
+  const [showMacroTooltip, setShowMacroTooltip] = useState(false);
 
   // Detectar tamaño de pantalla
   useEffect(() => {
@@ -62,6 +64,7 @@ const NutritionalData: React.FC = () => {
     accent2: "#5d9ea8",
     accent3: "#4896e8",
     accent4: "#4a78bd",
+    accent5: "#ec863b",
     background: "#f5f7f9",
   };
 
@@ -90,7 +93,7 @@ const NutritionalData: React.FC = () => {
     { label: "Grasas totales", value: "96.43", unit: "g" },
     { label: "Carbohidratos totales", value: "77.48", unit: "g" },
     { label: "Fibra total", value: "10.80", unit: "g" },
-    { label: "Omega 6:3", value: "5.43:1", unit: "" },
+    { label: "Omega 6:3", value: "5.43", unit: "" },
     { label: "Por porción", value: "1000", unit: "g" },
     { label: "Minerales totales", value: "17.47", unit: "g" },
   ];
@@ -191,7 +194,7 @@ const NutritionalData: React.FC = () => {
           <div className={cx("nutritional-data__specs-header")}>
             <SectionHeader
               title="Especificaciones Nutricionales"
-              // subtitle="Formulación avalada por profesionales en nutrición animal."
+              subtitle="Por cada 1000 gramos de nuestro alimento"
               align="left"
               className={cx("nutritional-data__specs-title")}
             />
@@ -236,12 +239,28 @@ const NutritionalData: React.FC = () => {
           <div className={cx("nutritional-data__chart-grid")}>
             <div className={cx("nutritional-data__chart-column")}>
               <div className={cx("nutritional-data__chart-column-header")}>
-                <Typography
-                  variant="h4"
-                  className={cx("nutritional-data__chart-title")}
-                >
-                  Distribución de Macronutrientes
-                </Typography>
+                <div className={cx("nutritional-data__chart-title-wrapper")}>
+                  <Typography
+                    variant="h4"
+                    className={cx("nutritional-data__chart-title")}
+                  >
+                    Distribución de Macronutrientes
+                  </Typography>
+                  <div
+                    className={cx("nutritional-data__info-icon")}
+                    onMouseEnter={() => setShowMacroTooltip(true)}
+                    onMouseLeave={() => setShowMacroTooltip(false)}
+                  >
+                    <span>i</span>
+                    {showMacroTooltip && (
+                      <div className={cx("nutritional-data__tooltip")}>
+                        <Typography variant="p3">
+                          Cantidades expresadas como porcentaje de materia seca
+                        </Typography>
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
               <div className={cx("nutritional-data__pie-container")}>
                 <div className={cx("nutritional-data__aspect-ratio-box")}>
@@ -303,12 +322,14 @@ const NutritionalData: React.FC = () => {
 
             <div className={cx("nutritional-data__chart-column")}>
               <div className={cx("nutritional-data__chart-column-header")}>
-                <Typography
-                  variant="h4"
-                  className={cx("nutritional-data__chart-title")}
-                >
-                  Comparación con estándar de la industria
-                </Typography>
+                <div className={cx("nutritional-data__chart-title-wrapper")}>
+                  <Typography
+                    variant="h4"
+                    className={cx("nutritional-data__chart-title")}
+                  >
+                    Comparación con estándar de la industria
+                  </Typography>
+                </div>
               </div>
               <div className={cx("nutritional-data__bar-container")}>
                 <div className={cx("nutritional-data__aspect-ratio-box")}>
@@ -343,13 +364,13 @@ const NutritionalData: React.FC = () => {
                         <Bar
                           name="Nuestro Producto"
                           dataKey="producto"
-                          fill={colors.primary}
+                          fill={colors.accent5}
                           barSize={isSmallOrSmaller ? 15 : 20}
                         />
                         <Bar
                           name="Estándar AAFCO"
                           dataKey="estandar"
-                          fill={colors.accent3}
+                          fill={colors.primary}
                           barSize={isSmallOrSmaller ? 15 : 20}
                         />
                       </BarChart>

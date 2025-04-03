@@ -5,6 +5,10 @@
   background: $white-color;
   margin-top: 159px;
 
+  @media only screen and (max-width: $medium) {
+    overflow-x: hidden; // Contener desbordamiento solo en mobile
+  }
+
   &__container {
     max-width: 1280px;
     margin: 0 auto;
@@ -12,6 +16,7 @@
 
     @media only screen and (max-width: $medium) {
       padding: 20px 24px 60px;
+      overflow: hidden; // Contener elementos hijos solo en mobile
     }
   }
 
@@ -36,6 +41,7 @@
     @media only screen and (max-width: $medium) {
       grid-template-columns: 1fr;
       gap: 48px;
+      width: 100%; // Asegurar ancho completo en mobile
     }
   }
 
@@ -47,30 +53,31 @@
     @media only screen and (max-width: $medium) {
       position: relative;
       top: 0;
+      width: 100%; // Asegurar ancho completo en mobile
+      overflow: hidden; // Contener desbordamiento en mobile
     }
   }
 
   &__gallery {
     position: relative;
-    // border-radius: 8px;
     overflow: hidden;
     background-color: $white-color;
-    // box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+    @media only screen and (max-width: $medium) {
+      width: 100%; // Asegurar ancho completo en mobile
+      max-width: 100%; // Limitar al ancho disponible en mobile
+    }
   }
 
   &__badge {
     position: absolute;
     top: 0;
     left: 0;
-    // width: 44px;
-    // height: 44px;
-    // border-radius: 50%;
     background-color: $accent-color;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
     display: flex;
     align-items: center;
     padding: 8px 12px;
-
     justify-content: center;
     z-index: 10;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -98,9 +105,31 @@
 
     @media only screen and (max-width: $medium) {
       height: 320px;
+      overflow: hidden; // Asegurar que el contenido permanezca dentro solo en mobile
     }
 
     :global {
+      @media only screen and (max-width: $medium) {
+        // Configurar para mostrar solo una imagen a la vez, pero permitiendo swipe
+        .swiper-slide {
+          width: 100% !important; // Asegurar que cada slide ocupe todo el ancho
+        }
+
+        // Ocultar flechas de navegación en mobile (mantener paginación)
+        .swiper-button-next,
+        .swiper-button-prev {
+          display: none !important;
+        }
+
+        // Asegurar que los contenedores permanezcan contenidos
+        .swiper,
+        .swiper-wrapper {
+          width: 100% !important;
+          max-width: 100% !important;
+          overflow: hidden;
+        }
+      }
+
       .swiper-button-next,
       .swiper-button-prev {
         width: 36px;
@@ -162,6 +191,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media only screen and (max-width: $medium) {
+      max-width: 100%; // Limitar al ancho disponible en mobile
+    }
   }
 
   &__image-wrapper {
@@ -169,6 +202,10 @@
     height: 100%;
     position: relative;
     cursor: zoom-in;
+
+    @media only screen and (max-width: $medium) {
+      max-width: 100%; // Limitar al ancho disponible en mobile
+    }
   }
 
   &__image {
@@ -178,6 +215,10 @@
   &__thumbs-container {
     padding: 12px 0;
     background-color: $white-color;
+
+    @media only screen and (max-width: $medium) {
+      display: none; // Ocultar miniaturas en mobile
+    }
   }
 
   &__thumbs-swiper {
@@ -213,6 +254,10 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+
+    @media only screen and (max-width: $medium) {
+      width: 100%; // Asegurar ancho completo en mobile
+    }
   }
 
   &__header {
@@ -324,10 +369,6 @@
   &__tab-content-wrapper {
     position: relative;
     height: 264px;
-
-    // @media only screen and (max-width: $medium) {
-    //   height: 280px;
-    // }
   }
 
   &__tab-content {
@@ -406,6 +447,18 @@
   }
 
   &__subscription-note {
+    padding: 12px 16px;
+    background-color: rgba($accent-color, 0.08);
+    border-left: 3px solid $accent-color;
+    border-radius: 0 4px 4px 0;
+    color: $accent-color !important;
+  }
+
+  &__package-info {
+    margin-top: 8px;
+  }
+
+  &__package-note {
     padding: 12px 16px;
     background-color: rgba($accent-color, 0.08);
     border-left: 3px solid $accent-color;
@@ -499,6 +552,13 @@
     &:hover {
       background-color: darken($primary-color, 5%);
       transform: translateY(-2px);
+    }
+  }
+
+  // Related section
+  &__related-section {
+    @media only screen and (max-width: $medium) {
+      overflow: hidden; // Contener desbordamiento en la sección relacionada solo en mobile
     }
   }
 
