@@ -1,10 +1,10 @@
 // app/layout.tsx
 import type { Metadata } from "next";
+import { footerData, headerData } from "./_lib/data";
 import { Header, Footer, GoogleAnalytics } from "@/app/_components";
 import ClientCartProvider from "@/app/_components/ClientCartProvider";
-import { footerData, headerData } from "./_lib/data";
-import "@/app/_styles/globals.scss";
 import CartDrawer from "./_components/CartDrawer";
+import "@/app/_styles/globals.scss";
 
 export const metadata: Metadata = {
   title: {
