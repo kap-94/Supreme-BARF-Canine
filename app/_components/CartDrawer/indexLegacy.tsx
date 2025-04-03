@@ -1,6 +1,7 @@
+// app/_components/CartDrawer/CartDrawer.tsx
 "use client";
 
-import React, { useRef, useEffect, useState, useCallback } from "react";
+import React, { useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import classnames from "classnames/bind";
@@ -11,43 +12,11 @@ import styles from "./CartDrawer.module.scss";
 
 const cx = classnames.bind(styles);
 
-// Tipo para los temporizadores
-type TimersMap = {
-  [key: string]: number;
-};
-
 const CartDrawer: React.FC = () => {
   const { cart, isCartOpen, closeCart, updateItem, removeItem, isLoading } =
     useCart();
   const overlayRef = useRef<HTMLDivElement>(null);
   const drawerRef = useRef<HTMLDivElement>(null);
-
-  // Estado para manejar las cantidades que se están editando
-  const [editingQuantities, setEditingQuantities] = useState<
-    Record<string, string>
-  >({});
-
-  // Referencia para los temporizadores (más adecuado que usar un estado)
-  const timersRef = useRef<TimersMap>({});
-
-  // Initialize editing quantities from cart
-  useEffect(() => {
-    if (cart) {
-      const initialQuantities: Record<string, string> = {};
-      cart.lines.edges.forEach(({ node }) => {
-        initialQuantities[node.id] = node.quantity.toString();
-      });
-      setEditingQuantities(initialQuantities);
-    }
-  }, [cart]);
-
-  // Limpiar los temporizadores al desmontar el componente
-  useEffect(() => {
-    return () => {
-      // Limpiar todos los temporizadores pendientes
-      Object.values(timersRef.current).forEach((timer) => clearTimeout(timer));
-    };
-  }, []);
 
   // Cerrar al hacer clic en el overlay, pero no en el drawer
   const handleOverlayClick = (e: React.MouseEvent) => {
@@ -92,82 +61,17 @@ const CartDrawer: React.FC = () => {
     }, 300);
   };
 
+  if (!isCartOpen) {
+    return null;
+  }
+
   const handleUpdateQuantity = (lineId: string, newQuantity: number) => {
     if (newQuantity < 1) {
       removeItem(lineId);
     } else {
       updateItem(lineId, newQuantity);
     }
-    // Update the editing quantity
-    setEditingQuantities((prev) => ({
-      ...prev,
-      [lineId]: newQuantity.toString(),
-    }));
   };
-
-  // Handle input change con debounce
-  const handleQuantityInputChange = (lineId: string, value: string) => {
-    // Only allow numeric values
-    if (/^\d*$/.test(value)) {
-      setEditingQuantities((prev) => ({
-        ...prev,
-        [lineId]: value,
-      }));
-
-      // Cancelar cualquier temporizador existente para este lineId
-      if (timersRef.current[lineId]) {
-        clearTimeout(timersRef.current[lineId]);
-      }
-
-      // Configurar un nuevo temporizador (800ms es un tiempo razonable)
-      timersRef.current[lineId] = window.setTimeout(() => {
-        const newQuantity = parseInt(value, 10);
-        if (!isNaN(newQuantity) && newQuantity > 0) {
-          handleUpdateQuantity(lineId, newQuantity);
-        }
-
-        // Limpiar la referencia al temporizador
-        delete timersRef.current[lineId];
-      }, 500);
-    }
-  };
-
-  // Handle blur/enter to submit the new quantity inmediatamente
-  const handleQuantityInputBlur = (lineId: string) => {
-    // Cancelar cualquier temporizador pendiente
-    if (timersRef.current[lineId]) {
-      clearTimeout(timersRef.current[lineId]);
-      delete timersRef.current[lineId];
-    }
-
-    const newQuantity = parseInt(editingQuantities[lineId] || "0", 10);
-    if (!isNaN(newQuantity) && newQuantity > 0) {
-      handleUpdateQuantity(lineId, newQuantity);
-    } else {
-      // Reset to current quantity if invalid
-      const currentQuantity =
-        cart?.lines.edges.find(({ node }) => node.id === lineId)?.node
-          .quantity || 1;
-      setEditingQuantities((prev) => ({
-        ...prev,
-        [lineId]: currentQuantity.toString(),
-      }));
-    }
-  };
-
-  // Handle key press in the input
-  const handleQuantityKeyPress = (
-    e: React.KeyboardEvent<HTMLInputElement>,
-    lineId: string
-  ) => {
-    if (e.key === "Enter") {
-      e.currentTarget.blur();
-    }
-  };
-
-  if (!isCartOpen) {
-    return null;
-  }
 
   const subtotal = cart ? parseFloat(cart.estimatedCost.totalAmount.amount) : 0;
   const currencyCode = cart?.estimatedCost.totalAmount.currencyCode || "MXN";
@@ -257,19 +161,9 @@ const CartDrawer: React.FC = () => {
                       >
                         -
                       </button>
-                      <input
-                        type="text"
-                        inputMode="numeric"
-                        pattern="[0-9]*"
-                        className={cx("cart-drawer__quantity-input")}
-                        value={editingQuantities[node.id] || "1"}
-                        onChange={(e) =>
-                          handleQuantityInputChange(node.id, e.target.value)
-                        }
-                        onBlur={() => handleQuantityInputBlur(node.id)}
-                        onKeyPress={(e) => handleQuantityKeyPress(e, node.id)}
-                        aria-label="Editar cantidad"
-                      />
+                      <span className={cx("cart-drawer__quantity-value")}>
+                        {node.quantity}
+                      </span>
                       <button
                         onClick={() =>
                           handleUpdateQuantity(node.id, node.quantity + 1)
