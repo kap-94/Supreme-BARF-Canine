@@ -47,7 +47,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
   withHover = true,
   customAnchorId,
   isLoading = false,
-  calculatorUrl = "/calculadora-alimento",
+  calculatorUrl = "/#food-calculator-section",
 }) => {
   return (
     <section className={cx("product-grid", className)} id={customAnchorId}>
