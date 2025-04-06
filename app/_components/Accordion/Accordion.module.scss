@@ -30,6 +30,7 @@
         justify-content: space-between;
         cursor: pointer;
         color: $primary-color;
+        gap: 16px;
 
         .accordion__icon {
           transition: transform 0.3s ease;
