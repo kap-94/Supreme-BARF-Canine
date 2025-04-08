@@ -2,7 +2,7 @@
 @import "../../_styles/variables.scss";
 
 .container {
-  padding: 60px 24px 40px;
+  padding: 0 24px 16px;
   background: $white-color;
   display: flex;
   flex-direction: column;
@@ -11,7 +11,7 @@
   max-width: $xlarge;
 
   @media only screen and (max-width: $medium) {
-    gap: 16px; // Espacio entre header y grid
+    padding: 16px 0 24px;
   }
 }
 
