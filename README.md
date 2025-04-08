@@ -1,6 +1,6 @@
 # Supreme BARF Canine 🐕
 
-![Hero section of the Supreme BARF Canine site](images/supreme-barf-hero.png)
+![Hero section of the Supreme BARF Canine site](/public/supreme-barf-hero.png)
 
 ## 📋 Description
 
