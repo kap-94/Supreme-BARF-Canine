@@ -1,6 +1,6 @@
 # Supreme BARF Canine 🐕
 
-![Hero section of the Supreme BARF Canine site](public/images/portfolio/supreme-barf-hero.png)
+![Hero section of the Supreme BARF Canine site](public/images/supreme-barf-hero.png)
 
 ## 📋 Description
 
@@ -53,7 +53,7 @@ npm start
 
 ## 📸 Screenshots
 
-![About the Food page](public/images/portfolio/supreme-barf-about.png)
+![About the Food page](public/images/supreme-barf-about.png)
 
 ## 📝 License
 
