@@ -53,7 +53,7 @@ npm start
 
 ## 📸 Screenshots
 
-![About the Food page](public/images/supreme-barf-about.png)
+![About the Food page](/public/supreme-barf-about.png)
 
 ## 📝 License
 
