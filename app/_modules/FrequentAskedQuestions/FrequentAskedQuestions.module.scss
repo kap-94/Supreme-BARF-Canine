@@ -10,7 +10,7 @@
   justify-content: center;
   align-items: center;
   padding: 100px 0;
-  gap: 88px;
+  gap: 70px;
 
   @media only screen and (max-width: $xlarge) {
     padding: 60px 48px;
@@ -19,6 +19,10 @@
 
   @media only screen and (max-width: $medium) {
     padding: 60px 24px;
+  }
+
+  @media only screen and (max-width: $small) {
+    gap: 48px;
   }
 
   &__header,
