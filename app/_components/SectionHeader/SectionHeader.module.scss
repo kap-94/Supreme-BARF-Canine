@@ -5,6 +5,7 @@
   flex-direction: column;
   // justify-content: center;
   // align-items: center;
+  gap: 12px;
 
   &--left {
     align-items: flex-start;
@@ -22,7 +23,7 @@
   }
 
   &__title {
-    margin-bottom: 12px;
+    // margin-bottom: 12px;
   }
 
   &__subtitle {
