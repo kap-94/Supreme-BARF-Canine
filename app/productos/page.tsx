@@ -55,6 +55,7 @@ async function ProductsPageContent() {
         align="left"
         variant="grid"
         isLoading={false}
+        showCalculatorLink={true}
       />
     </div>
   );
@@ -73,6 +74,7 @@ export default function ProductsPage() {
             align="left"
             variant="grid"
             isLoading={true}
+            showCalculatorLink={true}
           />
         </div>
       }

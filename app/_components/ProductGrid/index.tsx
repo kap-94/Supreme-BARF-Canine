@@ -1,11 +1,13 @@
 "use client";
 
 import React from "react";
-import { SectionHeader } from "@/app/_components";
+import { Button, SectionHeader } from "@/app/_components";
 import ProductCard from "../ProductCard";
 import ProductCardSkeleton from "../ProductCardSkeleton";
 import classNames from "classnames/bind";
 import styles from "./ProductGrid.module.scss";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const cx = classNames.bind(styles);
 
@@ -33,6 +35,8 @@ interface ProductGridProps {
   withHover?: boolean;
   customAnchorId?: string;
   isLoading?: boolean;
+  calculatorUrl?: string;
+  showCalculatorLink?: boolean;
 }
 
 const ProductGrid: React.FC<ProductGridProps> = ({
@@ -45,18 +49,84 @@ const ProductGrid: React.FC<ProductGridProps> = ({
   withHover = true,
   customAnchorId,
   isLoading = false,
+  showCalculatorLink = false,
+  calculatorUrl = "/#food-calculator-section",
 }) => {
+  const router = useRouter();
+  const handleClick = () => {
+    router.push(calculatorUrl);
+  };
+
   return (
     <section className={cx("product-grid", className)} id={customAnchorId}>
       <div className={cx("product-grid__inner-wrapper")}>
-        {(title || subtitle) && (
-          <SectionHeader
-            title={title || ""}
-            subtitle={subtitle || ""}
-            align={align}
-            className={cx("product-grid__header")}
-          />
-        )}
+        <div className={cx("product-grid__header-container")}>
+          {(title || subtitle) && (
+            <SectionHeader
+              title={title || ""}
+              subtitle={subtitle || ""}
+              align={align}
+              className={cx("product-grid__header")}
+            />
+          )}
+
+          {showCalculatorLink && (
+            <div className={cx("product-grid__calculator-link")}>
+              {/* <Link href={calculatorUrl} className={cx("calculator-link")}>
+                <span className={cx("calculator-icon")}>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M13.3334 1.33325H2.66671C1.93033 1.33325 1.33337 1.93021 1.33337 2.66659V13.3333C1.33337 14.0696 1.93033 14.6666 2.66671 14.6666H13.3334C14.0698 14.6666 14.6667 14.0696 14.6667 13.3333V2.66659C14.6667 1.93021 14.0698 1.33325 13.3334 1.33325Z"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M4 4H12"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M4 8H12"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M4 12H8"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+                <span>¿Cuánto alimento debo darle a mi perro?</span>
+              </Link> */}
+
+              <Button
+                type="button"
+                size="medium"
+                variant="primary"
+                className={cx("product-grid__calculator-button")}
+                onClick={handleClick}
+              >
+                ¿Cuánto alimento <br />
+                debo darle a mi perro?
+              </Button>
+            </div>
+          )}
+        </div>
 
         <div
           className={cx("product-grid__row", {

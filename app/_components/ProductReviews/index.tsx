@@ -39,7 +39,7 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ productId }) => {
       date: "3 de enero de 2025",
       rating: 4,
       content:
-        "Excelente calidad de ingredientes. Mi veterinario notó la mejora en la salud de mi mascota después de solo un mes. Lo único que podría mejorar es el tamaño de la bolsa, me gustaría una opción más grande para no tener que comprar tan seguido.",
+        "Excelente calidad de ingredientes. Mi veterinario notó la mejora en la salud de mi mascota después de solo un mes. Además, la textura es perfecta y a mi perro le encanta el sabor - no deja nada en el plato.",
       avatarUrl: "/ana-rodriguez.jpg",
     },
     {

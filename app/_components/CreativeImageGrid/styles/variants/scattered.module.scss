@@ -66,6 +66,7 @@
     height: 55%;
     top: 25%;
     left: 30%;
+    filter: brightness(1.15);
     z-index: 5;
 
     @media (max-width: $medium) {

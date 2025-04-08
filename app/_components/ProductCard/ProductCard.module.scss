@@ -77,6 +77,10 @@
       font-size: 12px;
       font-weight: 600 !important;
       letter-spacing: 0.5px;
+
+      @media only screen and (max-width: $medium) {
+        font-size: 10px;
+      }
     }
   }
 
@@ -113,7 +117,7 @@
 
   // -- Descripción --
   &__description {
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.4;
     margin-top: 12px;
     color: #007185;

@@ -32,7 +32,8 @@ async function FeaturedProductsContent() {
   return (
     <ProductGrid
       products={mappedProducts}
-      title=""
+      // title=""
+      title="Productos destacados"
       subtitle=""
       align="left"
       customAnchorId="featured-products"
@@ -45,18 +46,17 @@ async function FeaturedProductsContent() {
 export default async function FeaturedProducts() {
   return (
     <div className={cx("container")}>
-      <SectionHeader
-        title="Productos destacados"
+      {/* <SectionHeader
         // subtitle="La mejor comida natural para el bienestar de tu mascota"
         align="left"
         className={cx("featured-products__header")}
-      />
+        /> */}
       <Suspense
         fallback={
           <div className={cx("featured-products")}>
             <ProductGrid
               products={[]}
-              title=""
+              title="Productos destacados"
               subtitle=""
               align="left"
               variant="grid"
